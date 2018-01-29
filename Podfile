@@ -6,6 +6,9 @@ target 'Ngage' do
   use_frameworks!
 	pod 'KYDrawerController', '~> 2.0'
 	pod 'Alamofire', '~> 4.0'
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
 
   # Pods for Ngage
 

@@ -261,10 +261,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e36-pg-Ofb">
-                                <rect key="frame" x="50" y="302" width="315" height="300"/>
+                                <rect key="frame" x="50" y="302" width="315" height="310"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="WFj-84-lJQ"/>
+                                    <constraint firstAttribute="height" constant="310" id="WFj-84-lJQ"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="100" id="O1Z-Gh-hpP" customClass="TaskTableViewCell" customModule="Ngage" customModuleProvider="target">

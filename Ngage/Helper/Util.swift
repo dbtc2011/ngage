@@ -8,8 +8,13 @@
 
 import Foundation
 import UIKit
-struct Util {
 
+enum Environment {
+    case dev, prod
+}
+struct Util {
+    
+    static let environment = Environment.dev
     static func setNavigationBar(color : UIColor) {
         UITabBar.appearance().backgroundColor = color
         UINavigationBar.appearance().backgroundColor = color
