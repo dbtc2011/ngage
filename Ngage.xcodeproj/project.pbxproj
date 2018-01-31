@@ -35,6 +35,11 @@
 		50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DA201BAAC70015D4C5 /* DrawerViewController.swift */; };
 		50FC56DD201BACFD0015D4C5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DC201BACFD0015D4C5 /* NavigationController.swift */; };
 		50FC56E0201BADF80015D4C5 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DF201BADF80015D4C5 /* Util.swift */; };
+		8CDE8497201F69C400C525A4 /* Ngage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE8494201F69C400C525A4 /* Ngage.xcdatamodeld */; };
+		8CDE84B1201F743100C525A4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B0201F743100C525A4 /* CoreDataManager.swift */; };
+		8CDE84B4201F7A7500C525A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B3201F7A7500C525A4 /* User.swift */; };
+		8CDE84B6201F7CA900C525A4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B5201F7CA900C525A4 /* Task.swift */; };
+		8CDE84B8201F7CBA00C525A4 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B7201F7CBA00C525A4 /* Mission.swift */; };
 		D726018ECEDF3F36F0A99D6C /* Pods_NgageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +100,12 @@
 		50FC56DF201BADF80015D4C5 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		586FB7E2959E8ACDCF4078B7 /* Pods-Ngage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage/Pods-Ngage.debug.xcconfig"; sourceTree = "<group>"; };
 		59F4CF8D427844D6EDE6CFD8 /* Pods-NgageUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NgageUITests/Pods-NgageUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8CDE8495201F69C400C525A4 /* Ngage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ngage.xcdatamodel; sourceTree = "<group>"; };
+		8CDE8496201F69C400C525A4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		8CDE84B0201F743100C525A4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		8CDE84B3201F7A7500C525A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8CDE84B5201F7CA900C525A4 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		8CDE84B7201F7CBA00C525A4 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		8EE64851D4D24F7D9D371790 /* Pods-NgageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NgageTests/Pods-NgageTests.release.xcconfig"; sourceTree = "<group>"; };
 		BAEEEA30556FD08E1DF705E3 /* Pods-Ngage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage/Pods-Ngage.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +192,8 @@
 				509C3919201BB21F0015A35B /* MainViewController.swift */,
 				50814939201A2CE700D66514 /* Extensions */,
 				509B0FA22019A73F00DC0F21 /* View */,
+				8CDE84B2201F7A6100C525A4 /* Model */,
+				8CDE8492201F69C400C525A4 /* Resources */,
 				501AE430201849490088983A /* Main.storyboard */,
 				501AE433201849490088983A /* Assets.xcassets */,
 				501AE435201849490088983A /* LaunchScreen.storyboard */,
@@ -266,9 +279,37 @@
 				50C8B008201F32230014DCEF /* APIManager.swift */,
 				50C8B00D201F741F0014DCEF /* RequestManager.swift */,
 				50C8B00F201F7B780014DCEF /* ServiceManager.swift */,
+				8CDE84B0201F743100C525A4 /* CoreDataManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
+		};
+		8CDE8492201F69C400C525A4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8CDE8493201F69C400C525A4 /* Core Data */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8CDE8493201F69C400C525A4 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				8CDE8494201F69C400C525A4 /* Ngage.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		8CDE84B2201F7A6100C525A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CDE84B3201F7A7500C525A4 /* User.swift */,
+				8CDE84B7201F7CBA00C525A4 /* Mission.swift */,
+				8CDE84B5201F7CA900C525A4 /* Task.swift */,
+			);
+			name = Model;
+			path = Ngage/Model;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -554,8 +595,10 @@
 			files = (
 				501AE42F201849490088983A /* ViewController.swift in Sources */,
 				5020B5CE201C677A00A3933F /* TaskViewController.swift in Sources */,
+				8CDE84B8201F7CBA00C525A4 /* Mission.swift in Sources */,
 				5020B5D0201C6E3F00A3933F /* TaskTableViewCell.swift in Sources */,
 				50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */,
+				8CDE84B6201F7CA900C525A4 /* Task.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
 				50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */,
@@ -566,12 +609,15 @@
 				503E62D4201A1CD900363D80 /* HomeViewController.swift in Sources */,
 				5081493B201A2CFC00D66514 /* String.swift in Sources */,
 				50C8B009201F32230014DCEF /* APIManager.swift in Sources */,
+				8CDE8497201F69C400C525A4 /* Ngage.xcdatamodeld in Sources */,
 				509C3918201BB20A0015A35B /* DrawerFrontViewController.swift in Sources */,
 				50C1259A201F03FA0051D3E8 /* LoginViewController.swift in Sources */,
 				50FC56E0201BADF80015D4C5 /* Util.swift in Sources */,
 				50814938201A2A4600D66514 /* MarketButtonCollectionViewCell.swift in Sources */,
+				8CDE84B1201F743100C525A4 /* CoreDataManager.swift in Sources */,
 				503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */,
 				50C8B010201F7B780014DCEF /* ServiceManager.swift in Sources */,
+				8CDE84B4201F7A7500C525A4 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,6 +923,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8CDE8494201F69C400C525A4 /* Ngage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8CDE8495201F69C400C525A4 /* Ngage.xcdatamodel */,
+				8CDE8496201F69C400C525A4 /* Model.xcdatamodel */,
+			);
+			currentVersion = 8CDE8495201F69C400C525A4 /* Ngage.xcdatamodel */;
+			path = Ngage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 501AE421201849490088983A /* Project object */;
 }
