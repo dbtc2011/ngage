@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct User {
+struct UserModel {
     var userId = ""
     var facebookId = ""
     
@@ -19,4 +19,6 @@ struct User {
     var mobileNumber = ""
     var name = ""
     var points = ""
+    
+    var missions = [MissionModel]()
 }

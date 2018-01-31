@@ -133,16 +133,16 @@ class CoreDataManager: NSObject {
     func saveModelToCoreData(withModel model: AnyObject,
                              completionHandler: @escaping (_ fetchResult: CoreDataManagerResult) -> Void) {
         switch model {
-        case is User:
-            let userModel = model as! User
+        case is UserModel:
+            let userModel = model as! UserModel
             saveModelAsUserEntity(withModel: userModel)
             
-        case is Mission:
-            let missionModel = model as! Mission
+        case is MissionModel:
+            let missionModel = model as! MissionModel
             saveModelAsMissionEntity(withModel: missionModel)
             
-        case is Task:
-            let taskModel = model as! Task
+        case is TaskModel:
+            let taskModel = model as! TaskModel
             saveModelAsTaskEntity(withModel: taskModel)
             
         default:
@@ -170,7 +170,7 @@ class CoreDataManager: NSObject {
             guard userResults != nil else { break }
             
             for result in userResults! {
-                var user = User()
+                var user = UserModel()
                 user.userId = result.userId ?? ""
                 user.facebookId = result.facebookId ?? ""
                 user.age = result.age ?? ""
@@ -189,7 +189,7 @@ class CoreDataManager: NSObject {
             guard missionResults != nil else { break }
             
             for result in missionResults! {
-                var mission = Mission()
+                var mission = MissionModel()
                 mission.code = result.code ?? "1"
                 mission.userId = result.userId ?? "1"
                 mission.brand = result.brand ?? ""
@@ -216,7 +216,7 @@ class CoreDataManager: NSObject {
             guard taskResults != nil else { break }
             
             for result in taskResults! {
-                var task = Task()
+                var task = TaskModel()
                 task.code = result.code ?? "1"
                 task.missionCode = result.missionCode ?? "1"
                 task.contentId = result.contentId ?? ""
@@ -241,7 +241,7 @@ class CoreDataManager: NSObject {
     
     //MARK: Saving
     
-    private func saveModelAsUserEntity(withModel model: User) {
+    private func saveModelAsUserEntity(withModel model: UserModel) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "UserDataModel", into: managedObjectContext) as! UserDataModel
         
         entity.userId = model.userId
@@ -255,7 +255,7 @@ class CoreDataManager: NSObject {
         entity.points = model.points
     }
     
-    private func saveModelAsMissionEntity(withModel model: Mission) {
+    private func saveModelAsMissionEntity(withModel model: MissionModel) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "MissionDataModel", into: managedObjectContext) as! MissionDataModel
         
         entity.code = model.code
@@ -277,7 +277,7 @@ class CoreDataManager: NSObject {
         entity.title = model.title
     }
     
-    private func saveModelAsTaskEntity(withModel model: Task) {
+    private func saveModelAsTaskEntity(withModel model: TaskModel) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "TaskDataModel", into: managedObjectContext) as! TaskDataModel
         
         entity.code = model.code
