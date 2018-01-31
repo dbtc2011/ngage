@@ -9,12 +9,14 @@
 import UIKit
 
 class HomeViewController: DrawerFrontViewController {
-
+    
+    let fbid = "10211232954239118"
     @IBOutlet weak var buttonDrawer: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        getMission()
 
         // Do any additional setup after loading the view.
     }
@@ -43,6 +45,11 @@ class HomeViewController: DrawerFrontViewController {
         Util.setNavigationBar(color: color)
         navigationController?.navigationBar.barTintColor = color
 
+    }
+    
+    func getMission() {
+        
+        
     }
     
     //MARK: - Button action
@@ -98,7 +105,7 @@ extension HomeViewController : UICollectionViewDataSource {
 
 extension HomeViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
+        return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height-50)
     }
     
     func collectionView(_ collectionView: UICollectionView,

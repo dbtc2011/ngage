@@ -30,6 +30,8 @@
 		509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509C391B201BB6EA0015A35B /* DrawerTableViewCell.swift */; };
 		50C1259A201F03FA0051D3E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C12599201F03FA0051D3E8 /* LoginViewController.swift */; };
 		50C8B009201F32230014DCEF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B008201F32230014DCEF /* APIManager.swift */; };
+		50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B00D201F741F0014DCEF /* RequestManager.swift */; };
+		50C8B010201F7B780014DCEF /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B00F201F7B780014DCEF /* ServiceManager.swift */; };
 		50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DA201BAAC70015D4C5 /* DrawerViewController.swift */; };
 		50FC56DD201BACFD0015D4C5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DC201BACFD0015D4C5 /* NavigationController.swift */; };
 		50FC56E0201BADF80015D4C5 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DF201BADF80015D4C5 /* Util.swift */; };
@@ -86,6 +88,8 @@
 		509C391B201BB6EA0015A35B /* DrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTableViewCell.swift; sourceTree = "<group>"; };
 		50C12599201F03FA0051D3E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		50C8B008201F32230014DCEF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		50C8B00D201F741F0014DCEF /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		50C8B00F201F7B780014DCEF /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		50FC56DA201BAAC70015D4C5 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
 		50FC56DC201BACFD0015D4C5 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		50FC56DF201BADF80015D4C5 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 			children = (
 				50FC56DF201BADF80015D4C5 /* Util.swift */,
 				50C8B008201F32230014DCEF /* APIManager.swift */,
+				50C8B00D201F741F0014DCEF /* RequestManager.swift */,
+				50C8B00F201F7B780014DCEF /* ServiceManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -552,6 +558,7 @@
 				50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
+				50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */,
 				501AE42D201849490088983A /* AppDelegate.swift in Sources */,
 				509C391A201BB21F0015A35B /* MainViewController.swift in Sources */,
 				50814936201A298600D66514 /* MarketViewController.swift in Sources */,
@@ -564,6 +571,7 @@
 				50FC56E0201BADF80015D4C5 /* Util.swift in Sources */,
 				50814938201A2A4600D66514 /* MarketButtonCollectionViewCell.swift in Sources */,
 				503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */,
+				50C8B010201F7B780014DCEF /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

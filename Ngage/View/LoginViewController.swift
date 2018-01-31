@@ -35,6 +35,8 @@ class LoginViewController: UIViewController {
                 if (error == nil){
                     let dict = result as! [String : AnyObject]
                     print(result!)
+                    
+                    
                 }
             })
         }

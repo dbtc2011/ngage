@@ -26,6 +26,7 @@ PODS:
   - FBSDKShareKit (4.29.0):
     - FBSDKCoreKit
   - KYDrawerController (2.0.4)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - KYDrawerController (~> 2.0)
+  - SwiftyJSON (~> 3.0)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -44,7 +46,8 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 56a057ca6822535ea0faa25f57a7c41edb697fd4
   FBSDKShareKit: 18a2cd118aef11dd657fe7e8b64bae5c719088b2
   KYDrawerController: cf5839877c442132123e9d482f458821026defdf
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: e73ce683ea71632c8c8e5e635c09f544c50a12d9
+PODFILE CHECKSUM: d4cea94613e4f4649ce4fbd5d08047cb71bd7fbc
 
 COCOAPODS: 1.2.1

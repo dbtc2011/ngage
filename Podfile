@@ -10,6 +10,8 @@ pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
 
+    pod 'SwiftyJSON', '~> 3.0'
+
   # Pods for Ngage
 
   target 'NgageTests' do
