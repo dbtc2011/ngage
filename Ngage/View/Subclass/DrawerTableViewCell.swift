@@ -10,7 +10,13 @@ import UIKit
 
 class DrawerTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var title: UILabel!
+    //MARK: - Properties
+    
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var imgIcon: UIImageView!
+    
+    //MARK: - View Life Cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -18,12 +24,12 @@ class DrawerTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
-    func setupTitle(value : String) {
-        title.text = value
+    //MARK: - Methods
+    
+    func setup(withTitle title: String, withImage image: UIImage) {
+        lblTitle.text = title
+        imgIcon.image = image
     }
-
 }
