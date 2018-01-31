@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Task {
+struct TaskModel {
     var code = ""
     var missionCode = ""
     

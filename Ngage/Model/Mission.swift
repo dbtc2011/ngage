@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Mission {
+struct MissionModel {
     var code = ""
     var userId = ""
     
@@ -27,4 +27,6 @@ struct Mission {
     var rewardType = ""
     var startDate = ""
     var title = ""
+    
+    var tasks = [TaskModel]()
 }

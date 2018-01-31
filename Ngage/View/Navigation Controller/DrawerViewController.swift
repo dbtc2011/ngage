@@ -22,7 +22,6 @@ class DrawerViewController: UIViewController {
     }
     
     func showMarketPlace() {
-        
         let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "MarketNavigation") as! NavigationController
         let transition = CATransition()
         transition.duration = 0.25
