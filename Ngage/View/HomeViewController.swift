@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: DrawerFrontViewController {
     
     let fbid = "10211232954239118"
+    let userID = "5369"
     @IBOutlet weak var buttonDrawer: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
@@ -48,6 +49,11 @@ class HomeViewController: DrawerFrontViewController {
     }
     
     func getMission() {
+        
+        RegisterService.getMissionList(fbid: fbid) { (result, error) in
+            print(result)
+            print(error)
+        }
         
         
     }

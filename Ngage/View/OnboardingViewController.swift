@@ -12,6 +12,7 @@ import FBSDKLoginKit
 
 class OnboardingViewController: UIViewController {
 
+    var user : UserModel!
     @IBOutlet weak var pageIndicator: UIPageControl!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageFirst: UIImageView!
@@ -22,10 +23,12 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
 
@@ -39,35 +42,77 @@ class OnboardingViewController: UIViewController {
         loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
         loginButton.delegate = self
         loginButton.center = view.center
+        loginButton.frame.origin.y = UIScreen.main.bounds.size.height - 90
+        loginButton.frame.size.width = 220
+        loginButton.frame.size.height = 50
         loginButton.isHidden = true
         view.addSubview(loginButton)
         
-        pageIndicator.currentPage = 1
+        pageIndicator.currentPage = 0
+        pageIndicator.isEnabled = false
     }
     
     func getFBUserData(){
         if((FBSDKAccessToken.current()) != nil){
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email, age_range, gender, picture.type(large)"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
-                    let dict = result as! [String : AnyObject]
+                    self.user = UserModel()
+                    let dict = result as! [String : Any]
+                    if let ageDict = dict["age_range"] as? NSDictionary {
+                        self.user.age = "\(ageDict["min"] as? Int ?? 0)"
+                    }
+                    self.user.emailAddress = dict["email"] as? String ?? ""
+                    self.user.gender = dict["gender"] as? String ?? ""
+                    self.user.facebookId = dict["id"] as? String ?? ""
+                    self.user.name = dict["name"] as? String ?? ""
+                    self.user.emailAddress = dict["email"] as? String ?? ""
+        
+                    if let pictureDict = dict["picture"] as? NSDictionary {
+                        if let pictureDataDict = pictureDict["data"] as? NSDictionary {
+                            let imageUrl = URL(string: pictureDataDict["url"] as! String)
+                            self.getDataFromUrl(url: imageUrl!, completion: { (data, response, error) in
+                                guard let data = data, error == nil else {
+                                    print("No Image to download")
+                                    return
+                                    
+                                }
+                                print("Download Finished")
+                                self.user.image = data
+                                CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
+                                    
+                                    DispatchQueue.main.async {
+                                        self.goToLogin()
+                                    }
+                                })
+                                
+                                
+                            })
+                        }
+                    }
                     print(result!)
-                    
-                    
                 }
             })
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
     }
-    */
+    
+    func goToLogin() {
+        self.performSegue(withIdentifier: "goToLogin", sender: self)
+    }
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let controller = segue.destination as? LoginViewController {
+            controller.user = self.user
+        }
+    }
+ 
 
 }
 
@@ -93,10 +138,9 @@ extension OnboardingViewController : LoginButtonDelegate {
 
 extension OnboardingViewController : UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("Scroll view = \(scrollView.contentOffset)")
         let index = scrollView.contentOffset.x/self.view.frame.size.width
         print(index)
-        pageIndicator.currentPage = index + 1
+        pageIndicator.currentPage = Int(index)
         switch Int(index) {
         case 2:
             self.loginButton.isHidden = false

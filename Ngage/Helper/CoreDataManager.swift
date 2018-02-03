@@ -129,9 +129,10 @@ class CoreDataManager: NSObject {
     }
     
     //MARK: Saving
-    
     func saveModelToCoreData(withModel model: AnyObject,
                              completionHandler: @escaping (_ fetchResult: CoreDataManagerResult) -> Void) {
+        var result = CoreDataManagerResult.Error
+        
         switch model {
         case is UserModel:
             let userModel = model as! UserModel
@@ -151,9 +152,12 @@ class CoreDataManager: NSObject {
         
         do {
             try managedObjectContext.save()
+            result = .Success
         } catch let error {
             errorDescription = error.localizedDescription
         }
+        
+        completionHandler(result)
     }
     
     //MARK: - Private Methods
