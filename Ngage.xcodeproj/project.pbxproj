@@ -21,6 +21,7 @@
 		5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5020B5D1201C753500A3933F /* AccomplishmentView.swift */; };
 		503E62D4201A1CD900363D80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E62D3201A1CD900363D80 /* HomeViewController.swift */; };
 		503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */; };
+		506B09CF20234AFC0017C481 /* PinVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */; };
 		50814936201A298600D66514 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50814935201A298600D66514 /* MarketViewController.swift */; };
 		50814938201A2A4600D66514 /* MarketButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50814937201A2A4600D66514 /* MarketButtonCollectionViewCell.swift */; };
 		5081493B201A2CFC00D66514 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5081493A201A2CFC00D66514 /* String.swift */; };
@@ -33,6 +34,8 @@
 		50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B00D201F741F0014DCEF /* RequestManager.swift */; };
 		50C8B010201F7B780014DCEF /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B00F201F7B780014DCEF /* ServiceManager.swift */; };
 		50F15E182022000700A3E589 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E172022000700A3E589 /* OnboardingViewController.swift */; };
+		50F15E1A2022167E00A3E589 /* ReferralCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */; };
+		50F15E1C2022172600A3E589 /* MSISDNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E1B2022172600A3E589 /* MSISDNViewController.swift */; };
 		50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DA201BAAC70015D4C5 /* DrawerViewController.swift */; };
 		50FC56DD201BACFD0015D4C5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DC201BACFD0015D4C5 /* NavigationController.swift */; };
 		50FC56E0201BADF80015D4C5 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DF201BADF80015D4C5 /* Util.swift */; };
@@ -85,6 +88,7 @@
 		5020B5D1201C753500A3933F /* AccomplishmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomplishmentView.swift; sourceTree = "<group>"; };
 		503E62D3201A1CD900363D80 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationViewController.swift; sourceTree = "<group>"; };
 		50814935201A298600D66514 /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		50814937201A2A4600D66514 /* MarketButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		5081493A201A2CFC00D66514 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 		50C8B00D201F741F0014DCEF /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		50C8B00F201F7B780014DCEF /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		50F15E172022000700A3E589 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCodeViewController.swift; sourceTree = "<group>"; };
+		50F15E1B2022172600A3E589 /* MSISDNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSISDNViewController.swift; sourceTree = "<group>"; };
 		50FC56DA201BAAC70015D4C5 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
 		50FC56DC201BACFD0015D4C5 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		50FC56DF201BADF80015D4C5 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -252,6 +258,9 @@
 				5020B5CD201C677A00A3933F /* TaskViewController.swift */,
 				50C12599201F03FA0051D3E8 /* LoginViewController.swift */,
 				50F15E172022000700A3E589 /* OnboardingViewController.swift */,
+				50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */,
+				50F15E1B2022172600A3E589 /* MSISDNViewController.swift */,
+				506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */,
 				50FC56D9201BAA330015D4C5 /* Navigation Controller */,
 				503E62D5201A1D6700363D80 /* Subclass */,
 			);
@@ -596,6 +605,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				506B09CF20234AFC0017C481 /* PinVerificationViewController.swift in Sources */,
 				501AE42F201849490088983A /* ViewController.swift in Sources */,
 				5020B5CE201C677A00A3933F /* TaskViewController.swift in Sources */,
 				8CDE84B8201F7CBA00C525A4 /* Mission.swift in Sources */,
@@ -614,11 +624,13 @@
 				5081493B201A2CFC00D66514 /* String.swift in Sources */,
 				50C8B009201F32230014DCEF /* APIManager.swift in Sources */,
 				8CDE8497201F69C400C525A4 /* Ngage.xcdatamodeld in Sources */,
+				50F15E1C2022172600A3E589 /* MSISDNViewController.swift in Sources */,
 				509C3918201BB20A0015A35B /* DrawerFrontViewController.swift in Sources */,
 				50C1259A201F03FA0051D3E8 /* LoginViewController.swift in Sources */,
 				50FC56E0201BADF80015D4C5 /* Util.swift in Sources */,
 				50814938201A2A4600D66514 /* MarketButtonCollectionViewCell.swift in Sources */,
 				8CDE84B1201F743100C525A4 /* CoreDataManager.swift in Sources */,
+				50F15E1A2022167E00A3E589 /* ReferralCodeViewController.swift in Sources */,
 				503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */,
 				50C8B010201F7B780014DCEF /* ServiceManager.swift in Sources */,
 				8CDE84B4201F7A7500C525A4 /* User.swift in Sources */,
