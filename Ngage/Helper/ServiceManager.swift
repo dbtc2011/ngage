@@ -36,7 +36,7 @@ final class RegisterService: RequestManager {
         
         let parameter = ["FBID": fbid]
         perform(task: .getMission(parameter)) { (result, error) in
-            
+            success(result, error)
         }
     }
     

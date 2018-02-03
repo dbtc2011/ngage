@@ -15,7 +15,7 @@ class DrawerViewController: UIViewController {
     
     @IBOutlet weak var tblMenu: UITableView!
     
-    var user = UserModel()
+    var user = UserModel().mainUser()
     
     //MARK: - View Life Cycle
     
@@ -23,9 +23,7 @@ class DrawerViewController: UIViewController {
         super.viewDidLoad()
 
         //dummy data
-        user = UserModel()
-        user.name = "Mark Angeles"
-        user.points = "80"
+        
     }
 
     override func didReceiveMemoryWarning() {

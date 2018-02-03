@@ -21,4 +21,33 @@ struct UserModel {
     var points = ""
     
     var missions = [MissionModel]()
+    
+    // App Generated or inputs
+    var refferedBy = ""
+    var referralCode = ""
+    var operatorID = ""
+    var deviceID = ""
+}
+
+extension UserModel {
+    
+    func mainUser() -> UserModel {
+        
+        if let user = CoreDataManager.sharedInstance.getMainUser() {
+            var userModel = UserModel()
+            userModel.name = user.name ?? ""
+            userModel.emailAddress = user.emailAddress ?? ""
+            userModel.mobileNumber = user.mobileNumber ?? ""
+            userModel.facebookId = user.facebookId ?? ""
+            userModel.userId = user.userId ?? ""
+            userModel.age = user.age ?? ""
+            userModel.gender = user.gender ?? ""
+            userModel.points = user.points ?? ""
+            userModel.referralCode = String(userModel.facebookId.characters.prefix(4) + userModel.mobileNumber.characters.suffix(4))
+            UserDefaults.standard.set(userModel.referralCode, forKey: Keys.ReferralCode)
+            return userModel
+        }
+        return UserModel()
+    }
+    
 }

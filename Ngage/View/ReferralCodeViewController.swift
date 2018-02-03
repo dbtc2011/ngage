@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol ReferralCodeViewControllerDelegate {
+    
+    func didEnterReferredBy(value: String)
+    
+}
 class ReferralCodeViewController: UIViewController {
     
     var user : UserModel!
+    var delegate : ReferralCodeViewControllerDelegate?
 
     @IBOutlet weak var textField: UITextField!
     override func viewDidLoad() {
@@ -47,7 +53,8 @@ class ReferralCodeViewController: UIViewController {
     }
     
     @IBAction func enterButtonClicked(_ sender: UIButton) {
-        
+    
+        delegate?.didEnterReferredBy(value: textField.text ?? "")
         _ = navigationController?.popViewController(animated: true)
     }
     

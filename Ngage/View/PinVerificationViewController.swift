@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
+import SwiftyJSON
 class PinVerificationViewController: UIViewController {
     
-    
+    var user: UserModel!
+    var pinCode = ""
     @IBOutlet weak var labelPleaseWait: UILabel!
     
     @IBOutlet weak var buttonVerify: UIButton!
@@ -19,12 +20,28 @@ class PinVerificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        requestPin()
         // Do any additional setup after loading the view.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func requestPin() {
+        self.buttonVerify.isEnabled = false
+        RegisterService.generatePinCodeFor(msisdn: user.mobileNumber) { (result, error) in
+            self.buttonVerify.isEnabled = true
+            print(result ?? "Result = nil")
+            print(error ?? "error = nil")
+            if error == nil {
+                self.pinCode = result?["pincode"].string ?? ""
+            }
+            
+            
+        }
     }
     
 
@@ -40,9 +57,22 @@ class PinVerificationViewController: UIViewController {
     
     //MARK: - Button Actions
 
+    @IBAction func backButtonClicked(_ sender: UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
+    }
     @IBAction func resendButtonClicked(_ sender: UIButton) {
+        requestPin()
     }
     @IBAction func verifyButtonClicked(_ sender: UIButton) {
+        if pinCode == textField.text ?? "" {
+            DispatchQueue.main.async {
+                let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
+                let controller = storyBoard.instantiateInitialViewController()
+                self.present(controller!, animated: true, completion: {
+                    
+                })
+            }
+        }
     }
     
     @IBAction func didTapView(_ sender: UITapGestureRecognizer) {

@@ -109,6 +109,8 @@ class RequestManager {
             
             if let error = responseJSON["Message"].string {
                 completion(nil, NSError(domain: "Ngage", code: 500, userInfo: [NSLocalizedDescriptionKey: error]))
+            }else {
+                completion(responseJSON, nil)
             }
 //            if let error = mapError(from: responseJSON) {
 //                // show error if needed

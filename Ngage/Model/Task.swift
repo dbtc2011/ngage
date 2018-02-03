@@ -9,8 +9,8 @@
 import UIKit
 
 struct TaskModel {
-    var code = ""
-    var missionCode = ""
+    var code = 0
+    var missionCode = 0
     
     var contentId = ""
     var detail = ""
@@ -21,7 +21,7 @@ struct TaskModel {
     var rewardDetails = ""
     var rewardInfo = ""
     var rewardType = ""
-    var state = ""
+    var state = 0
     var title = ""
-    var type = ""
+    var type = 0
 }

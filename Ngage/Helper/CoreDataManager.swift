@@ -97,6 +97,25 @@ class CoreDataManager: NSObject {
     
     //MARK: Fetching
     
+    func getMainUser() -> UserDataModel? {
+        let entityDescription =  NSEntityDescription.entity(forEntityName: "UserDataModel",
+                                                            in:managedObjectContext)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        fetchRequest.entity = entityDescription
+        do {
+            let fetchRawResults = try managedObjectContext.fetch(fetchRequest)
+            if fetchRawResults.count != 0 {
+                return fetchRawResults[0] as? UserDataModel
+            }
+            return nil
+    
+        } catch let error {
+            errorDescription = error.localizedDescription
+        }
+        
+        return nil
+        
+    }
     func fetchSavedObjects(forEntity entity: CoreDataEntity,
                            completionHandler: @escaping (_ fetchResult: CoreDataManagerResult,
                             _ results: [AnyObject]?) -> Void) {
@@ -194,8 +213,9 @@ class CoreDataManager: NSObject {
             
             for result in missionResults! {
                 var mission = MissionModel()
-                mission.code = result.code ?? "1"
-                mission.userId = result.userId ?? "1"
+    
+                mission.code = Int(result.code)
+                mission.userId = result.userId ?? ""
                 mission.brand = result.brand ?? ""
                 mission.colorBackground = result.colorBackground ?? "#ffffff"
                 mission.colorPrimary = result.colorPrimary ?? "#ffffff"
@@ -221,8 +241,8 @@ class CoreDataManager: NSObject {
             
             for result in taskResults! {
                 var task = TaskModel()
-                task.code = result.code ?? "1"
-                task.missionCode = result.missionCode ?? "1"
+                task.code = Int(result.code)
+                task.missionCode = Int(result.missionCode)
                 task.contentId = result.contentId ?? ""
                 task.detail = result.detail ?? ""
                 task.instructions = result.instructions ?? ""
@@ -232,9 +252,9 @@ class CoreDataManager: NSObject {
                 task.rewardDetails = result.rewardDetails ?? ""
                 task.rewardInfo = result.rewardInfo ?? ""
                 task.rewardType = result.rewardType ?? "5"
-                task.state = result.state ?? "0"
+                task.state = Int(result.state)
                 task.title = result.title ?? ""
-                task.type = result.type ?? "1"
+                task.type = Int(result.type)
                 
                 convertedResults.append(taskResults as AnyObject)
             }
@@ -262,7 +282,7 @@ class CoreDataManager: NSObject {
     private func saveModelAsMissionEntity(withModel model: MissionModel) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "MissionDataModel", into: managedObjectContext) as! MissionDataModel
         
-        entity.code = model.code
+        entity.code = Int64(model.code)
         entity.userId = model.userId
         entity.brand = model.brand
         entity.colorBackground = model.colorBackground
@@ -283,9 +303,8 @@ class CoreDataManager: NSObject {
     
     private func saveModelAsTaskEntity(withModel model: TaskModel) {
         let entity = NSEntityDescription.insertNewObject(forEntityName: "TaskDataModel", into: managedObjectContext) as! TaskDataModel
-        
-        entity.code = model.code
-        entity.missionCode = model.missionCode
+        entity.code = Int64(model.code)
+        entity.missionCode = Int64(model.missionCode)
         entity.contentId = model.contentId
         entity.detail = model.detail
         entity.instructions = model.instructions
@@ -295,8 +314,8 @@ class CoreDataManager: NSObject {
         entity.rewardDetails = model.rewardDetails
         entity.rewardInfo = model.rewardInfo
         entity.rewardType = model.rewardType
-        entity.state = model.state
+        entity.state = Int64(model.state)
         entity.title = model.title
-        entity.type = model.type
+        entity.type = Int64(model.type)
     }
 }

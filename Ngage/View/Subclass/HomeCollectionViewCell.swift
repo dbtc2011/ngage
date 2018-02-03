@@ -16,11 +16,16 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var button: UIButton!
     var delegate : HomeCollectionViewCellDelegate?
     
-    func setupContents(color : UIColor) {
+    func setupContents(mission : MissionModel) {
         button.layer.cornerRadius = 5
-        button.backgroundColor = color
-        image.backgroundColor = color
+        button.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
+        if mission.imageTask!.data != nil {
+            if let imageData = UIImage(data: mission.imageTask!.data!) {
+                image.image = imageData
+            }
+        }
     }
+    
     @IBAction func didTapStart(_ sender: UIButton) {
         delegate?.homeDidTapStart()
     }

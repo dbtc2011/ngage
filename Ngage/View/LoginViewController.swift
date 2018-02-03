@@ -42,6 +42,8 @@ class LoginViewController: UIViewController {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? ReferralCodeViewController {
+            
+            controller.delegate = self
             controller.user = self.user
             
         }else if let controller = segue.destination as? MSISDNViewController {
@@ -61,5 +63,13 @@ class LoginViewController: UIViewController {
         self.performSegue(withIdentifier: "goToReferral", sender: self)
     }
 }
+
+extension LoginViewController : ReferralCodeViewControllerDelegate {
+    
+    func didEnterReferredBy(value: String) {
+        self.user.refferedBy = value
+    }
+}
+
 
 

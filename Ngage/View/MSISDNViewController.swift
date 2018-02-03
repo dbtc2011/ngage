@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
 class MSISDNViewController: UIViewController {
 
@@ -32,12 +33,10 @@ class MSISDNViewController: UIViewController {
     }
     
     func registerUser() {
-        
         let name = user.name.components(separatedBy: " ")
         var firstName = ""
         var lastName = ""
         for content in name {
-            
             if content == name.last{
                 lastName = content
             }else if content == name.first {
@@ -46,13 +45,16 @@ class MSISDNViewController: UIViewController {
                 firstName = firstName + " \(content)"
             }
         }
-        
-        user.mobileNumber = "09777870229"
-        let referral = String(user.facebookId.characters.prefix(4) + user.mobileNumber.characters.suffix(4))
-        print("refferal = \(referral)")
-        
-        RegisterService.register(fbid: user.facebookId, fName: firstName, lName: lastName, gender: user.gender, email: user.emailAddress, referralCode: "0000000", msisdn: "09777870229", operatorID: "51502", refferedBy: "") { (result, error) in
-            
+        user.mobileNumber = textField.text ?? ""
+        user.referralCode = String(user.facebookId.characters.prefix(4) + user.mobileNumber.characters.suffix(4))
+        UserDefaults.standard.set(user.referralCode, forKey: Keys.ReferralCode)
+        RegisterService.register(fbid: user.facebookId, fName: firstName, lName: lastName, gender: user.gender, email: user.emailAddress, referralCode: user.referralCode, msisdn: user.mobileNumber, operatorID: user.operatorID, refferedBy: user.refferedBy) { (result, error) in
+            if CoreDataManager.sharedInstance.getMainUser() == nil {
+                
+                CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (coreResult) in
+                    
+                })
+            }
             print("Result = \(String(describing: result))")
             print("error = \(String(describing: error))")
             DispatchQueue.main.async {
@@ -64,15 +66,17 @@ class MSISDNViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let controller = segue.destination as? PinVerificationViewController {
+            print("Should go to pin verification")
+            controller.user = self.user
+        }
     }
-    */
+    
     
     //MARK: - Button Action
     @IBAction func backButtonClicked(_ sender: UIBarButtonItem) {
@@ -80,12 +84,25 @@ class MSISDNViewController: UIViewController {
     }
     
     @IBAction func submitButtonClicked(_ sender: UIButton) {
-        
         registerUser()
     }
     
     @IBAction func carrierButtonClicked(_ sender: UIButton) {
-        
+        ActionSheetStringPicker.show(withTitle: "Operator ID", rows: ["Globe/TM", "Smart/TNT", "Sun"], initialSelection: 0, doneBlock: { (picker, index, value) in
+            switch index {
+            case 0 :
+                self.user.operatorID = "51502"
+            case 1 :
+                self.user.operatorID = "51503"
+            case 2 :
+                self.user.operatorID = "51505"
+            default:
+                self.user.operatorID = "51502"
+            }
+            return
+        }, cancel: { (picker) in
+            return
+        }, origin: sender)
     }
     
     @IBAction func didTapView(_ sender: UITapGestureRecognizer) {

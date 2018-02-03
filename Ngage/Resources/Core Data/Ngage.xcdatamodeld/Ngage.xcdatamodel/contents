@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="MissionDataModel" representedClassName="MissionDataModel" syncable="YES" codeGenerationType="class">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="code" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="colorBackground" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="colorPrimary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="colorSecondary" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,22 +18,25 @@
         <attribute name="startDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="missionTask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskDataModel" inverseName="mission" inverseEntity="TaskDataModel" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserDataModel" inverseName="userMission" inverseEntity="UserDataModel" syncable="YES"/>
     </entity>
     <entity name="TaskDataModel" representedClassName="TaskDataModel" syncable="YES" codeGenerationType="class">
-        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="code" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="contentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isClaimed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isReward" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="missionCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="missionCode" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="reward" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rewardDetails" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rewardInfo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rewardType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="mission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MissionDataModel" inverseName="missionTask" inverseEntity="MissionDataModel" syncable="YES"/>
     </entity>
     <entity name="UserDataModel" representedClassName="UserDataModel" syncable="YES" codeGenerationType="class">
         <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,10 +48,11 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="points" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="userMission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MissionDataModel" inverseName="user" inverseEntity="MissionDataModel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserDataModel" positionX="-63" positionY="-18" width="128" height="30"/>
-        <element name="MissionDataModel" positionX="-54" positionY="-9" width="128" height="30"/>
-        <element name="TaskDataModel" positionX="-36" positionY="9" width="128" height="30"/>
+        <element name="MissionDataModel" positionX="-18" positionY="-243" width="128" height="328"/>
+        <element name="TaskDataModel" positionX="178" positionY="-243" width="128" height="268"/>
+        <element name="UserDataModel" positionX="-216" positionY="-243" width="128" height="193"/>
     </elements>
 </model>

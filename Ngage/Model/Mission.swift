@@ -9,7 +9,7 @@
 import UIKit
 
 struct MissionModel {
-    var code = ""
+    var code = 0
     var userId = ""
     
     var brand = ""
@@ -19,6 +19,7 @@ struct MissionModel {
     var createdBy = ""
     var endDate = ""
     var imageUrl = ""
+    var imageTask : DownloadImageClass?
     var isClaimed = false
     var pointsRequiredToUnlock = ""
     var reward = ""
@@ -27,6 +28,5 @@ struct MissionModel {
     var rewardType = ""
     var startDate = ""
     var title = ""
-    
     var tasks = [TaskModel]()
 }

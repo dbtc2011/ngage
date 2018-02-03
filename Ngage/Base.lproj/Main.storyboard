@@ -550,7 +550,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Ngage" id="mVf-E1-NaI">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="r90-rm-KMn"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="r90-rm-KMn">
+                            <connections>
+                                <action selector="backButtonClicked:" destination="PWQ-pQ-bcW" id="UeV-sg-5i1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="buttonResend" destination="iye-U2-Spv" id="D8c-ev-y2s"/>
