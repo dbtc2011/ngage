@@ -39,6 +39,7 @@
 		50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DA201BAAC70015D4C5 /* DrawerViewController.swift */; };
 		50FC56DD201BACFD0015D4C5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DC201BACFD0015D4C5 /* NavigationController.swift */; };
 		50FC56E0201BADF80015D4C5 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DF201BADF80015D4C5 /* Util.swift */; };
+		8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47287A2022074400589594 /* ProfileTableViewCell.swift */; };
 		8CDE8497201F69C400C525A4 /* Ngage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE8494201F69C400C525A4 /* Ngage.xcdatamodeld */; };
 		8CDE84B1201F743100C525A4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B0201F743100C525A4 /* CoreDataManager.swift */; };
 		8CDE84B4201F7A7500C525A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B3201F7A7500C525A4 /* User.swift */; };
@@ -108,6 +109,7 @@
 		50FC56DF201BADF80015D4C5 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		586FB7E2959E8ACDCF4078B7 /* Pods-Ngage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage/Pods-Ngage.debug.xcconfig"; sourceTree = "<group>"; };
 		59F4CF8D427844D6EDE6CFD8 /* Pods-NgageUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NgageUITests/Pods-NgageUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8C47287A2022074400589594 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8CDE8495201F69C400C525A4 /* Ngage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ngage.xcdatamodel; sourceTree = "<group>"; };
 		8CDE8496201F69C400C525A4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8CDE84B0201F743100C525A4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */,
 				50814937201A2A4600D66514 /* MarketButtonCollectionViewCell.swift */,
 				509C391B201BB6EA0015A35B /* DrawerTableViewCell.swift */,
+				8C47287A2022074400589594 /* ProfileTableViewCell.swift */,
 				509C3917201BB20A0015A35B /* DrawerFrontViewController.swift */,
 				5020B5CF201C6E3F00A3933F /* TaskTableViewCell.swift */,
 				5020B5D1201C753500A3933F /* AccomplishmentView.swift */,
@@ -261,6 +264,7 @@
 				50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */,
 				50F15E1B2022172600A3E589 /* MSISDNViewController.swift */,
 				506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */,
+				8C472879202206EC00589594 /* View Controller */,
 				50FC56D9201BAA330015D4C5 /* Navigation Controller */,
 				503E62D5201A1D6700363D80 /* Subclass */,
 			);
@@ -294,6 +298,17 @@
 				8CDE84B0201F743100C525A4 /* CoreDataManager.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		8C472879202206EC00589594 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				50C12599201F03FA0051D3E8 /* LoginViewController.swift */,
+				503E62D3201A1CD900363D80 /* HomeViewController.swift */,
+				50814935201A298600D66514 /* MarketViewController.swift */,
+				5020B5CD201C677A00A3933F /* TaskViewController.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 		8CDE8492201F69C400C525A4 /* Resources */ = {
@@ -615,6 +630,7 @@
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
 				50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */,
+				8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */,
 				501AE42D201849490088983A /* AppDelegate.swift in Sources */,
 				509C391A201BB21F0015A35B /* MainViewController.swift in Sources */,
 				50814936201A298600D66514 /* MarketViewController.swift in Sources */,
