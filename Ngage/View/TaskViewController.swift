@@ -10,6 +10,9 @@ import UIKit
 
 class TaskViewController: UIViewController {
 
+    var mission: MissionModel!
+    var user = UserModel().mainUser()
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +22,7 @@ class TaskViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let color = UIColor().setColorUsingHex(hex: mission.colorBackground)
         
     }
 
@@ -55,24 +59,14 @@ extension TaskViewController : UITableViewDelegate {
 
 extension TaskViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return mission.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell") as! TaskTableViewCell
-        switch indexPath.row {
-        case 0:
-            cell.setupContent(value: "Play HTML5 Games", color: UIColor.red)
-        case 1:
-            cell.setupContent(value: "Play HTML5 Games", color: UIColor.blue)
-        case 2:
-            cell.setupContent(value: "Play HTML5 Games", color: UIColor.gray)
-        case 3:
-            cell.setupContent(value: "Play HTML5 Games", color: UIColor.yellow)
-        default:
-            cell.setupContent(value: "Play HTML5 Games", color: UIColor.red)
-        }
+        let color = UIColor().setColorUsingHex(hex: mission.colorBackground)
+        cell.setupUsing(task: mission.tasks[indexPath.row], color: color)
         return cell
     }
 }

@@ -74,6 +74,7 @@
 		2104C45A66AF35AF536B3938 /* Pods-NgageUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NgageUITests/Pods-NgageUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		500367902026FA77007E693A /* Ngage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ngage-Bridging-Header.h"; sourceTree = "<group>"; };
 		501AE429201849490088983A /* Ngage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ngage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		501AE42C201849490088983A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		501AE42E201849490088983A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +274,7 @@
 				506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */,
 				50FC56D9201BAA330015D4C5 /* Navigation Controller */,
 				503E62D5201A1D6700363D80 /* Subclass */,
+				500367902026FA77007E693A /* Ngage-Bridging-Header.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -412,6 +414,7 @@
 				TargetAttributes = {
 					501AE428201849490088983A = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 					};
 					501AE43C201849490088983A = {
@@ -816,6 +819,7 @@
 			baseConfigurationReference = 586FB7E2959E8ACDCF4078B7 /* Pods-Ngage.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7R395RP3E5;
@@ -825,6 +829,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f243f0dc-c1d8-4cb2-a7eb-fe6222d6399c";
 				PROVISIONING_PROFILE_SPECIFIER = "ZedPh-Ngage";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ngage/View/Ngage-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -835,6 +841,7 @@
 			baseConfigurationReference = BAEEEA30556FD08E1DF705E3 /* Pods-Ngage.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7R395RP3E5;
@@ -844,6 +851,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f243f0dc-c1d8-4cb2-a7eb-fe6222d6399c";
 				PROVISIONING_PROFILE_SPECIFIER = "ZedPh-Ngage";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ngage/View/Ngage-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

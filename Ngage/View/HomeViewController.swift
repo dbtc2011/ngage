@@ -71,6 +71,27 @@ class HomeViewController: DrawerFrontViewController {
                         missionModel.title = mission["missionTitle"].string ?? ""
                         missionModel.imageUrl = mission["missionImage"].string ?? ""
                         missionModel.imageTask = DownloadImageClass(link: missionModel.imageUrl)
+                        
+                        if let tasks = mission["tasks"].array {
+                            for task in tasks {
+                                var taskModel = TaskModel()
+                                taskModel.state = task["taskState"].int ?? 0
+                                taskModel.code = task["taskCode"].int ?? 0
+                                taskModel.instructions = task["taskInstruction"].string ?? ""
+                                taskModel.type = task["taskType"].int ?? 0
+                                taskModel.reward = "\(task["taskReward"].int ?? 0)"
+                                taskModel.title = task["taskTitle"].string ?? ""
+                                taskModel.rewardInfo = task["taskRewardInfo"].string ?? ""
+                                taskModel.contentId = task["taskContentID"].string ?? ""
+                                taskModel.isReward = "\(task["isReward"].int ?? 0)"
+                                taskModel.rewardDetails = task["taskRewardDetails"].string ?? ""
+                                taskModel.isClaimed = task["isClaim"].bool ?? false
+                                taskModel.detail = task["taskDetail"].string ?? ""
+                                taskModel.info = task["taskInfo"].string ?? ""
+                                taskModel.rewardType = "\(task["taskRewardType"].int ?? 0)"
+                                missionModel.tasks.append(taskModel)
+                            }
+                        }
                         self.user.missions.append(missionModel)
                         if mission == missions.last {
                             DispatchQueue.main.async {
@@ -94,15 +115,20 @@ class HomeViewController: DrawerFrontViewController {
     @IBAction func drawerClicked(_ sender: UIBarButtonItem) {
         
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let controller = segue.destination as? TaskViewController {
+            let mission = self.user.missions[selectedIndex]
+            controller.mission = mission
+        }
     }
-    */
+    
 
 }
 
@@ -157,7 +183,8 @@ extension HomeViewController : UIScrollViewDelegate {
     }
 }
 extension HomeViewController : HomeCollectionViewCellDelegate {
-    func homeDidTapStart() {
+    
+    func homeDidTapStart(tag: Int) {
         self.performSegue(withIdentifier: "taskPage", sender: self)
     }
 }
@@ -181,6 +208,8 @@ extension HomeViewController : URLSessionDownloadDelegate {
                     self.user.missions[index!.hashValue] = mission
                     let indexPath = IndexPath(item: index!.hashValue, section: 0)
                     DispatchQueue.main.async {
+                        let color = UIColor().setColorUsingHex(hex: self.user.missions[self.selectedIndex].colorBackground)
+                        self.setUIColor(color: color)
                         self.collectionView.reloadItems(at: [indexPath])
                     }
                 }else {

@@ -12,6 +12,7 @@ struct TaskModel {
     var code = 0
     var missionCode = 0
     
+    var info = ""
     var contentId = ""
     var detail = ""
     var instructions = ""

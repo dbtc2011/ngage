@@ -8,7 +8,7 @@
 
 import UIKit
 protocol HomeCollectionViewCellDelegate {
-    func homeDidTapStart()
+    func homeDidTapStart(tag: Int)
 }
 
 class HomeCollectionViewCell: UICollectionViewCell {
@@ -22,11 +22,15 @@ class HomeCollectionViewCell: UICollectionViewCell {
         if mission.imageTask!.data != nil {
             if let imageData = UIImage(data: mission.imageTask!.data!) {
                 image.image = imageData
+                
             }
         }
+        image.layer.cornerRadius = 12
+        image.layer.masksToBounds = true
+        image.clipsToBounds = true
     }
     
     @IBAction func didTapStart(_ sender: UIButton) {
-        delegate?.homeDidTapStart()
+        delegate?.homeDidTapStart(tag: self.tag)
     }
 }

@@ -24,13 +24,15 @@ class TaskTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    func setupContent(value : String, color : UIColor) {
-        title.text = value
+
+    func setupUsing(task : TaskModel, color: UIColor) {
+        title.text = task.info
         leftIcon.backgroundColor = color
         rightIcon.backgroundColor = color
+        
         rightIcon.layer.cornerRadius = 20
         leftIcon.layer.cornerRadius = 15
     }
+
 
 }
