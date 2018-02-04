@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		096AE424CA2512F7B44FA95B /* Pods_Ngage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0191F275C93C0A87A443C57B /* Pods_Ngage.framework */; };
 		4994B0BD3E4BAF9D60EB6542 /* Pods_NgageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */; };
+		5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003679920270770007E693A /* WebViewTaskViewController.swift */; };
 		501AE42D201849490088983A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AE42C201849490088983A /* AppDelegate.swift */; };
 		501AE42F201849490088983A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AE42E201849490088983A /* ViewController.swift */; };
 		501AE432201849490088983A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 501AE430201849490088983A /* Main.storyboard */; };
@@ -75,6 +76,7 @@
 		3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500367902026FA77007E693A /* Ngage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ngage-Bridging-Header.h"; sourceTree = "<group>"; };
+		5003679920270770007E693A /* WebViewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTaskViewController.swift; sourceTree = "<group>"; };
 		501AE429201849490088983A /* Ngage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ngage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		501AE42C201849490088983A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		501AE42E201849490088983A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5003679820270720007E693A /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				5003679920270770007E693A /* WebViewTaskViewController.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
 		501AE420201849490088983A = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +282,7 @@
 				50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */,
 				50F15E1B2022172600A3E589 /* MSISDNViewController.swift */,
 				506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */,
+				5003679820270720007E693A /* Tasks */,
 				50FC56D9201BAA330015D4C5 /* Navigation Controller */,
 				503E62D5201A1D6700363D80 /* Subclass */,
 				500367902026FA77007E693A /* Ngage-Bridging-Header.h */,
@@ -631,6 +642,7 @@
 				8CDE84B6201F7CA900C525A4 /* Task.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
+				5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */,
 				502403B120258D4900180BAC /* Constants.swift in Sources */,
 				50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */,
 				8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */,

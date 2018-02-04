@@ -459,11 +459,81 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="e36-pg-Ofb" id="pB9-XN-ZwQ"/>
+                        <segue destination="MSb-1h-2pa" kind="show" identifier="webViewTask" id="wn3-DQ-CfI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Is-hC-nXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="933.60000000000002" y="44.527736131934034"/>
+        </scene>
+        <!--Web View Task View Controller-->
+        <scene sceneID="R0P-ak-rOQ">
+            <objects>
+                <viewController id="MSb-1h-2pa" customClass="WebViewTaskViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PJe-Gx-v24">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cs4-Ij-s7h">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uah-y7-b7k">
+                                        <rect key="frame" x="10" y="10" width="50" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Q8V-d6-UBm"/>
+                                            <constraint firstAttribute="height" constant="30" id="aI1-m8-zaP"/>
+                                        </constraints>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="backButtonClicked:" destination="MSb-1h-2pa" eventType="touchUpInside" id="Yjk-QQ-WBl"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYi-C5-vBb">
+                                        <rect key="frame" x="75" y="15" width="280" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1529411765" green="0.47219381890000001" blue="0.80714518229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="uah-y7-b7k" firstAttribute="top" secondItem="cs4-Ij-s7h" secondAttribute="top" constant="10" id="8m3-L0-0Sc"/>
+                                    <constraint firstAttribute="height" constant="50" id="D23-bZ-e9Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="UYi-C5-vBb" secondAttribute="trailing" constant="20" id="EYT-yp-Aq5"/>
+                                    <constraint firstItem="UYi-C5-vBb" firstAttribute="leading" secondItem="uah-y7-b7k" secondAttribute="trailing" constant="15" id="Esa-8v-Zad"/>
+                                    <constraint firstItem="UYi-C5-vBb" firstAttribute="centerY" secondItem="cs4-Ij-s7h" secondAttribute="centerY" id="I24-vT-0M0"/>
+                                    <constraint firstItem="uah-y7-b7k" firstAttribute="leading" secondItem="cs4-Ij-s7h" secondAttribute="leading" constant="10" id="nvS-4w-xsg"/>
+                                </constraints>
+                            </view>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="892-33-itP">
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cs4-Ij-s7h" firstAttribute="top" secondItem="E2b-gT-87K" secondAttribute="top" id="3Hy-aM-gT1"/>
+                            <constraint firstItem="cs4-Ij-s7h" firstAttribute="leading" secondItem="E2b-gT-87K" secondAttribute="leading" id="GfL-oq-cUP"/>
+                            <constraint firstItem="E2b-gT-87K" firstAttribute="bottom" secondItem="892-33-itP" secondAttribute="bottom" id="IPC-XT-jKk"/>
+                            <constraint firstItem="892-33-itP" firstAttribute="top" secondItem="cs4-Ij-s7h" secondAttribute="bottom" id="JYW-Ds-Wsv"/>
+                            <constraint firstItem="E2b-gT-87K" firstAttribute="trailing" secondItem="892-33-itP" secondAttribute="trailing" id="W62-CD-dhH"/>
+                            <constraint firstItem="E2b-gT-87K" firstAttribute="trailing" secondItem="cs4-Ij-s7h" secondAttribute="trailing" id="kmx-kj-SSr"/>
+                            <constraint firstItem="892-33-itP" firstAttribute="leading" secondItem="E2b-gT-87K" secondAttribute="leading" id="xPb-t4-S2S"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="E2b-gT-87K"/>
+                    </view>
+                    <connections>
+                        <outlet property="labelTask" destination="UYi-C5-vBb" id="xTK-95-WRk"/>
+                        <outlet property="webView" destination="892-33-itP" id="Lgo-9U-A10"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2HT-hT-sli" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1930" y="-507"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="00W-RL-tsL">
