@@ -33,14 +33,16 @@ class DrawerViewController: UIViewController {
     
     //MARK: - Methods
     
-    func showMarketPlace() {
-        let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "MarketNavigation") as! NavigationController
+    func showViewController(withIdentifier identifier: String, fromStoryboard storyboard: String) {
+        let storyboard = UIStoryboard(name: storyboard, bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
+        
         let transition = CATransition()
         transition.duration = 0.25
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
         view.window!.layer.add(transition, forKey: kCATransition)
-        present(navigationController, animated: false, completion: nil)
+        present(viewController, animated: false, completion: nil)
     }
 }
 
@@ -52,9 +54,36 @@ extension DrawerViewController : UITableViewDelegate {
             drawer.setDrawerState(.closed, animated: true)
         }
         
-        showMarketPlace()
-        
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        var identifier = "MarketNavigation"
+        var storyboard = "Main"
+        
+        switch indexPath.row {
+        case 0:
+            if indexPath.section == 1 {
+                return
+            } else {
+                return
+            }
+            
+        case 1:
+            if indexPath.section == 1 {
+                identifier = "MarketNavigation"
+                storyboard = "HomeStoryboard"
+            } else {
+                return
+            }
+            
+        case 2:
+            identifier = "ProfileVC"
+            storyboard = "HomeStoryboard"
+            
+        default:
+            return
+        }
+        
+        self.showViewController(withIdentifier: identifier, fromStoryboard: storyboard)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

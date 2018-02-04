@@ -11,7 +11,6 @@ import UIKit
 extension UIColor {
     
     func setColorUsingHex(hex: String) -> UIColor {
-        
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cString.hasPrefix("#")) {
