@@ -11,7 +11,7 @@ import UIKit
 private struct Constants {
     static let numberOfGlasses = 8
     static let lineWidth: CGFloat = 5.0
-    static let arcWidth: CGFloat = 76
+    static let arcWidth: CGFloat = 150
     static var halfOfLineWidth: CGFloat {
         return lineWidth / 2
     }
@@ -44,7 +44,9 @@ class AccomplishmentView: UIView {
     
     func setPercentage(percent: Int) {
         percentage = percent
-        labelPercentage.text = "\(percentage)%"
+        labelPercentage.font = UIFont.boldSystemFont(ofSize: 34)
+        labelPercentage.textAlignment = NSTextAlignment.center
+        labelPercentage.text = " \(percentage)%"
         self.setNeedsDisplay()
     }
     
@@ -61,14 +63,15 @@ class AccomplishmentView: UIView {
         let outlineEndAngle = arcLengthPerGlass * CGFloat(counter) + startAngle
         
         //2 - draw the outer arc
-        let outlinePath = UIBezierPath(arcCenter: center,
+        
+        let outlinePath = UIBezierPath(arcCenter: CGPoint(x: 75, y: 75),
                                        radius: bounds.width/2 - Constants.halfOfLineWidth,
                                        startAngle: startAngle,
                                        endAngle: outlineEndAngle,
                                        clockwise: true)
         
         //3 - draw the inner arc
-        outlinePath.addArc(withCenter: center,
+        outlinePath.addArc(withCenter: CGPoint(x: 75, y: 75),
                            radius: bounds.width/2 - Constants.arcWidth + Constants.halfOfLineWidth,
                            startAngle: outlineEndAngle,
                            endAngle: startAngle,
@@ -76,7 +79,6 @@ class AccomplishmentView: UIView {
         
         //4 - close the path
         outlinePath.close()
-        
         outlineColor.setStroke()
         outlinePath.lineWidth = Constants.lineWidth
         outlinePath.stroke()

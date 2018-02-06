@@ -19,6 +19,8 @@ struct UserModel {
     var mobileNumber = ""
     var name = ""
     var points = ""
+    var birthday = ""
+    var location = ""
     
     var missions = [MissionModel]()
     
@@ -30,9 +32,7 @@ struct UserModel {
 }
 
 extension UserModel {
-    
     func mainUser() -> UserModel {
-        
         if let user = CoreDataManager.sharedInstance.getMainUser() {
             var userModel = UserModel()
             userModel.name = user.name ?? ""
@@ -49,5 +49,4 @@ extension UserModel {
         }
         return UserModel()
     }
-    
 }

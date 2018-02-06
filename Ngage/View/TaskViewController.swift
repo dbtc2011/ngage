@@ -16,11 +16,13 @@ class TaskViewController: UIViewController {
 
     var mission: MissionModel!
     var user = UserModel().mainUser()
+    var accomplishmentView:  AccomplishmentView!
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupUI()
         // Do any additional setup after loading the view.
     }
     
@@ -35,6 +37,15 @@ class TaskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setupUI() {
+        
+        let accFrame = CGRect(x: (UIScreen.main.bounds.width/2)-(150/2), y: 55, width: 150, height: 150)
+        accomplishmentView = AccomplishmentView(frame: accFrame)
+        accomplishmentView.setMainColor(color: UIColor().setColorUsingHex(hex: mission.colorPrimary))
+        accomplishmentView.setPercentage(percent: 60)
+        accomplishmentView.backgroundColor = UIColor.clear
+        view.addSubview(accomplishmentView)
+    }
 
     
     // MARK: - Navigation

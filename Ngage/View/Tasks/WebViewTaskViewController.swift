@@ -37,7 +37,6 @@ class WebViewTaskViewController: UIViewController {
             webView.load(URLRequest(url: url))
             webView.allowsBackForwardNavigationGestures = true
         }
-        
     }
 
     /*
@@ -50,13 +49,16 @@ class WebViewTaskViewController: UIViewController {
     }
     */
     @IBAction func backButtonClicked(_ sender: UIButton) {
+        _ = navigationController?.popViewController(animated: true)
     }
     
 }
 
 extension WebViewTaskViewController : WKNavigationDelegate {
     
-    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        
+    }
     
 }
 
