@@ -28,6 +28,7 @@ PODS:
     - FBSDKCoreKit
   - KYDrawerController (2.0.4)
   - SwiftyJSON (3.1.4)
+  - UICircularProgressRing (1.7.5)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - FacebookShare
   - KYDrawerController (~> 2.0)
   - SwiftyJSON (~> 3.0)
+  - UICircularProgressRing
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
@@ -50,7 +52,8 @@ SPEC CHECKSUMS:
   FBSDKShareKit: 18a2cd118aef11dd657fe7e8b64bae5c719088b2
   KYDrawerController: cf5839877c442132123e9d482f458821026defdf
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  UICircularProgressRing: b35e45dc82aac8009d038ef4d2e19718675df2bd
 
-PODFILE CHECKSUM: b3718af9133aa0c8d9170363f158bd72c0ebb3da
+PODFILE CHECKSUM: 45a3bede3556103edea3cd06aa32f5c303b2f31a
 
 COCOAPODS: 1.2.1

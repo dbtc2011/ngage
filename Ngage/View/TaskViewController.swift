@@ -16,7 +16,6 @@ class TaskViewController: UIViewController {
 
     var mission: MissionModel!
     var user = UserModel().mainUser()
-    var accomplishmentView:  AccomplishmentView!
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -39,12 +38,7 @@ class TaskViewController: UIViewController {
     
     func setupUI() {
         
-        let accFrame = CGRect(x: (UIScreen.main.bounds.width/2)-(150/2), y: 55, width: 150, height: 150)
-        accomplishmentView = AccomplishmentView(frame: accFrame)
-        accomplishmentView.setMainColor(color: UIColor().setColorUsingHex(hex: mission.colorPrimary))
-        accomplishmentView.setPercentage(percent: 60)
-        accomplishmentView.backgroundColor = UIColor.clear
-        view.addSubview(accomplishmentView)
+        
     }
 
     

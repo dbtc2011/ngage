@@ -11,6 +11,7 @@ target 'Ngage' do
     pod 'FacebookShare'
     pod 'ActionSheetPicker-3.0'
     pod 'SwiftyJSON', '~> 3.0'
+    pod 'UICircularProgressRing'
 
   # Pods for Ngage
 
