@@ -10,14 +10,20 @@ import UIKit
 
 class MarketViewController: UIViewController {
 
+    //MARK: - Properties
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var viewContainer: UIView!
-    var markets : [String] = []
+    
+    var markets = [String]()
+    var selectedMarket = ""
+    
+    //MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         temporaryTitle()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,13 +31,21 @@ class MarketViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Methods
+    
     func temporaryTitle() {
         markets = ["SMART", "GLOBE", "SUN", "MOBILE LEGENDS", "ZED", "ZALORA"]
+        selectedMarket = markets.first!
+        
         collectionView.reloadData()
-
+        
+        if let marketPageVC = self.childViewControllers.first as? MarketPageViewController {
+            marketPageVC.initPageViewControllers(withNumberOfControllers: markets.count)
+        }
     }
     
-    //MARK: - Button Action
+    //MARK: - IBAction Delegate
+    
     @IBAction func backClicked(_ sender: UIBarButtonItem) {
         let transition = CATransition()
         transition.duration = 0.25
@@ -40,20 +54,13 @@ class MarketViewController: UIViewController {
         view.window!.layer.add(transition, forKey: kCATransition)
         dismiss(animated: false, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
-extension MarketViewController : UICollectionViewDataSource {
+//MARK: - UICollectionView
+
+//MARK: Data Source
+
+extension MarketViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -63,15 +70,20 @@ extension MarketViewController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "marketTitleCell", for: indexPath) as! MarketButtonCollectionViewCell
-        cell.setupContent(title: markets[indexPath.row])
-        return cell
         
+        let market = markets[indexPath.row]
+        cell.setupContent(withTitle: market)
+        
+        cell.setSelectionIndicator(isHidden: !{ selectedMarket == market }())
+        
+        return cell
     }
 }
 
-extension MarketViewController : UICollectionViewDelegateFlowLayout {
+//MARK: Flow Layout
+
+extension MarketViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let labelWidth = markets[indexPath.row].width(withConstrainedHeight: 40, font: UIFont.systemFont(ofSize: 13))
@@ -84,6 +96,25 @@ extension MarketViewController : UICollectionViewDelegateFlowLayout {
         return 0
     }
 }
-extension MarketViewController : UICollectionViewDelegate {
-    
+
+//MARK: Delegate
+
+extension MarketViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //update page view controller
+        if let marketPageVC = self.childViewControllers.first as? MarketPageViewController {
+            marketPageVC.selectedHeaderIndex = indexPath.row
+            marketPageVC.updateSelectedPageViewController()
+        }
+        
+        //update and animate collection view
+        selectedMarket = markets[indexPath.row]
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+        
+        let index = indexPath.row
+        guard index < markets.count - 1 else { return }
+        
+        let indexPath = IndexPath(row: index + 1, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
 }

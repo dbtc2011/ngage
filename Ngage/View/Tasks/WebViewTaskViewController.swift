@@ -31,7 +31,7 @@ class WebViewTaskViewController: UIViewController {
     }
     
     func setupUI() {
-        labelTask.text = task.info ?? ""
+        labelTask.text = task.info
         print("URL = \(webLink)")
         if let url = URL(string: webLink) {
             webView.load(URLRequest(url: url))

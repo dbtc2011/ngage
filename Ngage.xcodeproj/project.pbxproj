@@ -54,6 +54,8 @@
 		8CDE84B4201F7A7500C525A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B3201F7A7500C525A4 /* User.swift */; };
 		8CDE84B6201F7CA900C525A4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B5201F7CA900C525A4 /* Task.swift */; };
 		8CDE84B8201F7CBA00C525A4 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B7201F7CBA00C525A4 /* Mission.swift */; };
+		8CF7451E2029F8C400C44C06 /* MarketPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */; };
+		8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */; };
 		D726018ECEDF3F36F0A99D6C /* Pods_NgageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +137,8 @@
 		8CDE84B3201F7A7500C525A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8CDE84B5201F7CA900C525A4 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8CDE84B7201F7CBA00C525A4 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPageViewController.swift; sourceTree = "<group>"; };
+		8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMarketTableViewController.swift; sourceTree = "<group>"; };
 		8EE64851D4D24F7D9D371790 /* Pods-NgageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NgageTests/Pods-NgageTests.release.xcconfig"; sourceTree = "<group>"; };
 		BAEEEA30556FD08E1DF705E3 /* Pods-Ngage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage/Pods-Ngage.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -287,15 +291,15 @@
 			children = (
 				509B0FA32019A74B00DC0F21 /* Storyboard */,
 				503E62D3201A1CD900363D80 /* HomeViewController.swift */,
-				50814935201A298600D66514 /* MarketViewController.swift */,
 				5020B5CD201C677A00A3933F /* TaskViewController.swift */,
 				50C12599201F03FA0051D3E8 /* LoginViewController.swift */,
 				50F15E172022000700A3E589 /* OnboardingViewController.swift */,
 				50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */,
 				50F15E1B2022172600A3E589 /* MSISDNViewController.swift */,
 				506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */,
-				5003679820270720007E693A /* Tasks */,
 				8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */,
+				8CF7451F2029FD4D00C44C06 /* Market Place */,
+				5003679820270720007E693A /* Tasks */,
 				50FC56D9201BAA330015D4C5 /* Navigation Controller */,
 				503E62D5201A1D6700363D80 /* Subclass */,
 				500367902026FA77007E693A /* Ngage-Bridging-Header.h */,
@@ -362,6 +366,16 @@
 			name = Model;
 			path = Ngage/Model;
 			sourceTree = SOURCE_ROOT;
+		};
+		8CF7451F2029FD4D00C44C06 /* Market Place */ = {
+			isa = PBXGroup;
+			children = (
+				50814935201A298600D66514 /* MarketViewController.swift */,
+				8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */,
+				8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */,
+			);
+			path = "Market Place";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -649,6 +663,7 @@
 			files = (
 				506B09CF20234AFC0017C481 /* PinVerificationViewController.swift in Sources */,
 				501AE42F201849490088983A /* ViewController.swift in Sources */,
+				8CF7451E2029F8C400C44C06 /* MarketPageViewController.swift in Sources */,
 				5020B5CE201C677A00A3933F /* TaskViewController.swift in Sources */,
 				50DBE5352025E2F00017DE63 /* DownloadImageClass.swift in Sources */,
 				8C7C4B69202737CC00795264 /* UserPointsTableViewCell.swift in Sources */,
@@ -667,6 +682,7 @@
 				50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */,
 				8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */,
 				501AE42D201849490088983A /* AppDelegate.swift in Sources */,
+				8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */,
 				509C391A201BB21F0015A35B /* MainViewController.swift in Sources */,
 				50814936201A298600D66514 /* MarketViewController.swift in Sources */,
 				50FC56DD201BACFD0015D4C5 /* NavigationController.swift in Sources */,
