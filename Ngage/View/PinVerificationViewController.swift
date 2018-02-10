@@ -32,13 +32,17 @@ class PinVerificationViewController: UIViewController {
     
     func requestPin() {
         self.buttonVerify.isEnabled = false
-        RegisterService.generatePinCodeFor(msisdn: user.mobileNumber) { (result, error) in
+        
+        RegisterService.resendVerificationCode(fbid: self.user.facebookId) { (result, error) in
             self.buttonVerify.isEnabled = true
             print(result ?? "Result = nil")
             print(error ?? "error = nil")
-            if error == nil {
-                self.pinCode = result?["pincode"].string ?? ""
-            }
+           
+        }
+    }
+    
+    func validatePin() {
+        RegisterService.validateRegistration(fbid: user.facebookId, pCode: textField.text!, mobileNumber: user.mobileNumber) { (result, error) in
             
             
         }
@@ -64,6 +68,12 @@ class PinVerificationViewController: UIViewController {
         requestPin()
     }
     @IBAction func verifyButtonClicked(_ sender: UIButton) {
+        if textField.text?.characters.count == 4 {
+            validatePin()
+        }else {
+            //error handling
+            print("Input pin")
+        }
         if pinCode == textField.text ?? "" {
             DispatchQueue.main.async {
                 let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)

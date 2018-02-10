@@ -12,7 +12,9 @@ import SwiftyJSON
 
 enum Task {
     case register(Parameters)
+    case validateRegistration(Parameters)
     case sendPinCode(Parameters)
+    case resendVerificationCode(Parameters)
     case getMission(Parameters)
     case getTaskContent(Parameters)
     case insertRecord(Parameters)
@@ -48,8 +50,14 @@ class RequestManager {
             case let .register(parameters):
                 return RequestTask(urlRequest: Router.register(parameter: parameters))
                 
+            case let .validateRegistration(parameters):
+                return RequestTask(urlRequest: Router.validateRegistration(parameter: parameters))
+                
             case let .sendPinCode(parameters):
                 return RequestTask(urlRequest: Router.sendPinCode(parameter: parameters))
+                
+            case let .resendVerificationCode(parameters):
+                return RequestTask(urlRequest: Router.resendVerificationCode(parameter: parameters))
                 
             case let .getMission(parameters):
                 return RequestTask(urlRequest: Router.getMission(parameter: parameters))

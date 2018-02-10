@@ -12,6 +12,7 @@ import UICircularProgressRing
 class MultipleChoiceTaskViewController: UIViewController {
 
     @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var button4: UIButton!
@@ -22,7 +23,7 @@ class MultipleChoiceTaskViewController: UIViewController {
     var currentTime : Int!
     
     var divider : CGFloat {
-        return CGFloat(100/maxTime)
+        return 100.0/CGFloat(maxTime)
     }
     
     override func viewDidLoad() {
@@ -51,16 +52,18 @@ class MultipleChoiceTaskViewController: UIViewController {
     }
     
     func scheduleTimer() {
+        
         timeLimit = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             if self.currentTime == 0 {
+                self.labelTimer.text = "\(self.currentTime!)"
                 timer.invalidate()
                 return
             }
             DispatchQueue.main.async {
 //                self.progressView.valueIndicator = ""
                 self.currentTime = self.currentTime - 1
-                self.labelTimer.text = "\(self.currentTime!)"
                 self.progressView.setProgress(value: self.progressView.currentValue! - self.divider, animationDuration: 1)
+                self.labelTimer.text = "\(self.currentTime!)"
             }
             
         })
@@ -75,7 +78,10 @@ class MultipleChoiceTaskViewController: UIViewController {
     }
     */
     @IBAction func answerButtonClicked(_ sender: UIButton) {
-        
+        button1.shake()
+        button2.shake()
+        button3.shake()
+        button4.pulsate()
         UIView.animate(withDuration: 0.3, animations: {
             self.button1.setAsWrong()
             self.button2.setAsWrong()

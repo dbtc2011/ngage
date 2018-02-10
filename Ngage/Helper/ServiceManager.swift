@@ -13,15 +13,24 @@ import Alamofire
 final class RegisterService: RequestManager {
     
     class func register(fbid: String, fName: String, lName: String, gender: String, email: String, referralCode: String, msisdn: String, operatorID: String, refferedBy: String, success: @escaping CompletionBlock) {
-        
-        let deviceId = ""
+        let user = UserModel().mainUser()
         let long = ""
         let lat = ""
-        let parameter = ["FBID" : fbid, "FName": fName, "LName": lName, "Gender": gender, "Email": email, "ReferralCode": referralCode, "DeviceID": deviceId, "Msisdn": msisdn, "Lat": lat, "LLong": long, "OperatorID": operatorID, "ReferredBy": refferedBy]
+        let parameter = ["FBID" : fbid, "FName": fName, "LName": lName, "Gender": gender, "Email": email, "ReferralCode": referralCode, "DeviceID": user.deviceID, "Msisdn": msisdn, "Lat": lat, "LLong": long, "OperatorID": operatorID, "ReferredBy": refferedBy, "ltype" : "1"]
         perform(task: .register(parameter)) { (result, error) in
             print("Result = \(String(describing: result))")
             success(result, error)
         }
+    }
+    
+    class func validateRegistration(fbid: String, pCode: String, mobileNumber: String, success: @escaping CompletionBlock) {
+        
+        let parameter = ["FBID": fbid, "Pcode": pCode, "MSISDN": mobileNumber]
+        perform(task: .validateRegistration(parameter)) { (result, error) in
+            print("Result = \(String(describing: result))")
+            success(result, error)
+        }
+        
     }
     
     class func generatePinCodeFor(msisdn: String, success: @escaping CompletionBlock) {
@@ -30,6 +39,15 @@ final class RegisterService: RequestManager {
         perform(task: .sendPinCode(parameter)) { (result, error) in
             success(result, error)
         }
+    }
+    
+    class func resendVerificationCode(fbid: String, success: @escaping CompletionBlock) {
+    
+        let parameter = ["FBID" : fbid]
+        perform(task: .resendVerificationCode(parameter)) { (result, error) in
+            success(result, error)
+        }
+        
     }
     
     class func getMissionList(fbid: String, success: @escaping CompletionBlock) {
@@ -55,6 +73,44 @@ final class RegisterService: RequestManager {
             
         }
     }
+    
+    class func getMerchantList(categories: [String], success: @escaping CompletionBlock) {
+        
+        let parameter = ["category" : categories]
+        perform(task: .merchantList(parameter)) { (result, error) in
+            
+            success(result, error)
+            
+        }
+    }
+    
+    class func getLoadList(telco: String, success: @escaping CompletionBlock) {
+        
+        let parameter = ["{Telco}": telco]
+        perform(task: .getLoadList(parameter)) { (result, error) in
+
+            success(result, error)
+        }
+        
+    }
+    
+    class func getServicesType(serviceType: String, success: @escaping CompletionBlock) {
+        let parameter = ["{ServicesType}": serviceType]
+        perform(task: .getServices(parameter)) { (result, error) in
+            success(result, error)
+        }
+    }
+    
+    class func sendLoadCentral(to: String, pcode: String, fbid: String, prevPoints: String, currentPoint: String, points: String, success: @escaping CompletionBlock) {
+        
+        let parameter = ["To": to, "pcode": pcode, "FBID": pcode, "Prev_Points": prevPoints, "Current_Points" : currentPoint, "Points": points]
+        perform(task: .getLoadCentral(parameter)) { (result, error) in
+            success(result, error)
+        }
+    }
+    
+    
+    
     
     
 }

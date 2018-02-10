@@ -12,6 +12,8 @@ import Alamofire
 enum Router : URLRequestConvertible {
     
     case register(parameter : Parameters)
+    case validateRegistration(parameter: Parameters)
+    case resendVerificationCode(parameter: Parameters)
     case sendPinCode(parameter : Parameters)
     case getMission(parameter : Parameters)
     case getTaskContent(parameter : Parameters)
@@ -32,15 +34,15 @@ enum Router : URLRequestConvertible {
 
     var baseURL : String {
         if Util.environment == Environment.dev {
-            return "http://ph.ngage.ph"
+            return "https://ph.ngage.ph"
         }else {
-            return "http://ph.ngage.ph"
+            return "https://ph.ngage.ph"
         }
     }
     
     var method : HTTPMethod {
         switch self {
-        case .getHistory :
+        case .getHistory, .resendVerificationCode, .getLoadList, .getServices, .getLoadCentral:
             return .get
         default:
             return .post
@@ -49,7 +51,9 @@ enum Router : URLRequestConvertible {
     
     struct Endpoint {
         static let register = "svc/api/Registration"
+        static let validateRegistration = "svc/api/ValidateREG"
         static let sendPinCode = "svc/api/SendPincode"
+        static let resendVerificationCode = "svc/api/ResendPinCode/{FBID}"
         static let getMission = "svc/api/GetMission"
         static let getTaskContent = "svc/api/GETContent"
         static let insertRecord = "svc/api/INSERTRecord"
@@ -74,9 +78,15 @@ enum Router : URLRequestConvertible {
             switch self {
             case let .register(parameters):
                 return (Router.Endpoint.register, parameters)
+    
+            case let .validateRegistration(parameters):
+                return (Router.Endpoint.validateRegistration, parameters)
                 
             case let .sendPinCode(parameters):
                 return (Router.Endpoint.sendPinCode, parameters)
+                
+            case let .resendVerificationCode(parameters):
+                return (Router.Endpoint.resendVerificationCode, parameters)
                 
             case let .getMission(parameters):
                 return (Router.Endpoint.getMission, parameters)
@@ -131,9 +141,21 @@ enum Router : URLRequestConvertible {
         let url = try baseURL.asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent("\(result.path)"))
         urlRequest.httpMethod = method.rawValue
+        print("method = \(method.rawValue)")
         if method.rawValue == "GET" {
-            return try URLEncoding.default.encode(urlRequest, with: result.parameters)
+            print("DID set as Get ------> \(url)")
+            var getParameter = result.path
+            if let parameters = result.parameters {
+                for key in parameters.keys {
+                    getParameter = getParameter.replacingOccurrences(of: key, with: parameters[key] as! String)
+                }
+            }
+            let urlPath = try (baseURL + "/\(getParameter)").asURL()
+            return URLRequest(url: urlPath)
+//            return try URLEncoding.default.encode(urlRequest, with: result.parameters)
         } else {
+            
+            print("DID set as POST ------> \(url)")
             urlRequest.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
             
             if let parameters = result.parameters {

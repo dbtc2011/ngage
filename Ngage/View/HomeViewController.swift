@@ -48,7 +48,8 @@ class HomeViewController: DrawerFrontViewController {
     }
     
     func getMission() {
-        RegisterService.getMissionList(fbid: user.facebookId) { (result, error) in
+        
+        RegisterService.getMissionList(fbid: self.user.facebookId) { (result, error) in
             print(result)
             print(error as Any)
             if error == nil {
@@ -107,7 +108,10 @@ class HomeViewController: DrawerFrontViewController {
             }
         }
         
-        
+        RegisterService.getLoadList(telco: "GLOBE") { (result, error) in
+            
+            print("Load list = \(result) - error = \(error)")
+        }
     }
     
     //MARK: - Button action

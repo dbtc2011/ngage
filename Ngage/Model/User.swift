@@ -28,7 +28,7 @@ struct UserModel {
     var refferedBy = ""
     var referralCode = ""
     var operatorID = ""
-    var deviceID = ""
+    var deviceID = "23213123131"
 }
 
 extension UserModel {
