@@ -52,11 +52,14 @@
 		8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47287A2022074400589594 /* ProfileTableViewCell.swift */; };
 		8C7C4B6720270C1C00795264 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */; };
 		8C7C4B69202737CC00795264 /* UserPointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C4B68202737CC00795264 /* UserPointsTableViewCell.swift */; };
+		8CCD9CE4202C9392000D887F /* RedeemableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD9CE3202C9392000D887F /* RedeemableTableViewCell.swift */; };
+		8CCD9CE6202C95C3000D887F /* MarketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD9CE5202C95C3000D887F /* MarketModel.swift */; };
+		8CCD9CE8202C961C000D887F /* RedeemableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD9CE7202C961C000D887F /* RedeemableModel.swift */; };
 		8CDE8497201F69C400C525A4 /* Ngage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE8494201F69C400C525A4 /* Ngage.xcdatamodeld */; };
 		8CDE84B1201F743100C525A4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B0201F743100C525A4 /* CoreDataManager.swift */; };
-		8CDE84B4201F7A7500C525A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B3201F7A7500C525A4 /* User.swift */; };
-		8CDE84B6201F7CA900C525A4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B5201F7CA900C525A4 /* Task.swift */; };
-		8CDE84B8201F7CBA00C525A4 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B7201F7CBA00C525A4 /* Mission.swift */; };
+		8CDE84B4201F7A7500C525A4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B3201F7A7500C525A4 /* UserModel.swift */; };
+		8CDE84B6201F7CA900C525A4 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B5201F7CA900C525A4 /* TaskModel.swift */; };
+		8CDE84B8201F7CBA00C525A4 /* MissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B7201F7CBA00C525A4 /* MissionModel.swift */; };
 		8CF7451E2029F8C400C44C06 /* MarketPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */; };
 		8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */; };
 		D726018ECEDF3F36F0A99D6C /* Pods_NgageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */; };
@@ -137,12 +140,15 @@
 		8C47287A2022074400589594 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		8C7C4B68202737CC00795264 /* UserPointsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPointsTableViewCell.swift; sourceTree = "<group>"; };
+		8CCD9CE3202C9392000D887F /* RedeemableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemableTableViewCell.swift; sourceTree = "<group>"; };
+		8CCD9CE5202C95C3000D887F /* MarketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketModel.swift; sourceTree = "<group>"; };
+		8CCD9CE7202C961C000D887F /* RedeemableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemableModel.swift; sourceTree = "<group>"; };
 		8CDE8495201F69C400C525A4 /* Ngage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ngage.xcdatamodel; sourceTree = "<group>"; };
 		8CDE8496201F69C400C525A4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8CDE84B0201F743100C525A4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		8CDE84B3201F7A7500C525A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8CDE84B5201F7CA900C525A4 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		8CDE84B7201F7CBA00C525A4 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		8CDE84B3201F7A7500C525A4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		8CDE84B5201F7CA900C525A4 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		8CDE84B7201F7CBA00C525A4 /* MissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionModel.swift; sourceTree = "<group>"; };
 		8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPageViewController.swift; sourceTree = "<group>"; };
 		8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMarketTableViewController.swift; sourceTree = "<group>"; };
 		8EE64851D4D24F7D9D371790 /* Pods-NgageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NgageTests/Pods-NgageTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -280,6 +286,7 @@
 				8C7C4B68202737CC00795264 /* UserPointsTableViewCell.swift */,
 				50141F57202CC6630082EF2B /* AudioPlayerView.swift */,
 				50141F59202CC67F0082EF2B /* AudioPlayerView.xib */,
+				8CCD9CE3202C9392000D887F /* RedeemableTableViewCell.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -368,9 +375,11 @@
 		8CDE84B2201F7A6100C525A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8CDE84B3201F7A7500C525A4 /* User.swift */,
-				8CDE84B7201F7CBA00C525A4 /* Mission.swift */,
-				8CDE84B5201F7CA900C525A4 /* Task.swift */,
+				8CDE84B3201F7A7500C525A4 /* UserModel.swift */,
+				8CDE84B7201F7CBA00C525A4 /* MissionModel.swift */,
+				8CDE84B5201F7CA900C525A4 /* TaskModel.swift */,
+				8CCD9CE5202C95C3000D887F /* MarketModel.swift */,
+				8CCD9CE7202C961C000D887F /* RedeemableModel.swift */,
 			);
 			name = Model;
 			path = Ngage/Model;
@@ -678,23 +687,25 @@
 				50DBE5352025E2F00017DE63 /* DownloadImageClass.swift in Sources */,
 				8C7C4B69202737CC00795264 /* UserPointsTableViewCell.swift in Sources */,
 				5078EA672029FD0C00E35591 /* Button.swift in Sources */,
-				8CDE84B8201F7CBA00C525A4 /* Mission.swift in Sources */,
+				8CDE84B8201F7CBA00C525A4 /* MissionModel.swift in Sources */,
 				5078EA652029FC3F00E35591 /* MultipleChoiceTaskViewController.swift in Sources */,
 				8C7C4B6720270C1C00795264 /* UserProfileViewController.swift in Sources */,
 				5020B5D0201C6E3F00A3933F /* TaskTableViewCell.swift in Sources */,
 				50A41D622025C5BD0062A287 /* Color.swift in Sources */,
 				50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */,
-				8CDE84B6201F7CA900C525A4 /* Task.swift in Sources */,
+				8CDE84B6201F7CA900C525A4 /* TaskModel.swift in Sources */,
 				50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
 				5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */,
+				8CCD9CE4202C9392000D887F /* RedeemableTableViewCell.swift in Sources */,
 				502403B120258D4900180BAC /* Constants.swift in Sources */,
 				50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */,
 				50366C83202C95E800AA9B1A /* View.swift in Sources */,
 				8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */,
 				501AE42D201849490088983A /* AppDelegate.swift in Sources */,
 				8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */,
+				8CCD9CE6202C95C3000D887F /* MarketModel.swift in Sources */,
 				509C391A201BB21F0015A35B /* MainViewController.swift in Sources */,
 				50814936201A298600D66514 /* MarketViewController.swift in Sources */,
 				50FC56DD201BACFD0015D4C5 /* NavigationController.swift in Sources */,
@@ -703,6 +714,7 @@
 				5081493B201A2CFC00D66514 /* String.swift in Sources */,
 				50C8B009201F32230014DCEF /* APIManager.swift in Sources */,
 				8CDE8497201F69C400C525A4 /* Ngage.xcdatamodeld in Sources */,
+				8CCD9CE8202C961C000D887F /* RedeemableModel.swift in Sources */,
 				50F15E1C2022172600A3E589 /* MSISDNViewController.swift in Sources */,
 				509C3918201BB20A0015A35B /* DrawerFrontViewController.swift in Sources */,
 				50C1259A201F03FA0051D3E8 /* LoginViewController.swift in Sources */,
@@ -712,7 +724,7 @@
 				50F15E1A2022167E00A3E589 /* ReferralCodeViewController.swift in Sources */,
 				503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */,
 				50C8B010201F7B780014DCEF /* ServiceManager.swift in Sources */,
-				8CDE84B4201F7A7500C525A4 /* User.swift in Sources */,
+				8CDE84B4201F7A7500C525A4 /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

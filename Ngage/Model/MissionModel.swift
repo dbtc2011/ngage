@@ -6,8 +6,6 @@
 //  Copyright © 2018 Mark Louie Angeles. All rights reserved.
 //
 
-import UIKit
-
 struct MissionModel {
     var code = 0
     var userId = ""

@@ -15,6 +15,7 @@ class MarketPageViewController: UIPageViewController {
     //MARK: Public
     
     var selectedHeaderIndex = 0
+    var markets: [MarketModel]!
     
     //MARK: Private
     
@@ -39,13 +40,9 @@ class MarketPageViewController: UIPageViewController {
     //MARK: Public
     
     func initPageViewControllers(withNumberOfControllers number: Int) {
-        for i in 1...number {
-            if let singleMarketVC = self.storyboard?.instantiateViewController(withIdentifier: "singleMarketTVC") {
-                if i%2 == 0 {
-                    singleMarketVC.view.backgroundColor = UIColor.orange
-                } else {
-                    singleMarketVC.view.backgroundColor = UIColor.white
-                }
+        for market in markets {
+            if let singleMarketVC = self.storyboard?.instantiateViewController(withIdentifier: "singleMarketTVC") as? SingleMarketTableViewController {
+                singleMarketVC.market = market
                 orderedViewControllers.append(singleMarketVC)
             }
         }

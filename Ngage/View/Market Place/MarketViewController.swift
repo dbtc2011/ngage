@@ -15,15 +15,16 @@ class MarketViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var viewContainer: UIView!
     
-    var markets = [String]()
-    var selectedMarket = ""
+    private let marketTitles = ["RINGING TONE", "eCARD", "SMART", "GLOBE", "SUN", "MOBILE LEGENDS"]
+    private var markets = [MarketModel]()
+    private var selectedMarket: MarketModel!
     
     //MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        temporaryTitle()
+        initializePageViewController()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,14 +34,47 @@ class MarketViewController: UIViewController {
     
     //MARK: - Methods
     
-    func temporaryTitle() {
-        markets = ["SMART", "GLOBE", "SUN", "MOBILE LEGENDS", "ZED", "ZALORA"]
+    private func initializePageViewController() {
+        for (index, title) in marketTitles.enumerated() {
+            var marketModel: MarketModel!
+            
+            switch index {
+            case 0, 1:
+                let serviceModel = ServiceMarketModel()
+                serviceModel.type = .Ringtone
+                serviceModel.type = (index == 0) ? .Ringtone : .Wallpaper
+                
+                marketModel = serviceModel
+                marketModel.marketType = .Services
+                
+            default:
+                let loadListModel = LoadListMarketModel()
+                loadListModel.type = .Smart
+                if index == 3 {
+                    loadListModel.type = .Globe
+                } else if index == 4 {
+                    loadListModel.type = .Sun
+                } else if index == 5 {
+                    loadListModel.type = .MobileLegends
+                }
+                
+                marketModel = loadListModel
+                marketModel.marketType = .LoadList
+            }
+            
+            marketModel.marketId = index
+            marketModel.name = title
+            markets.append(marketModel)
+        }
+        
         selectedMarket = markets.first!
         
         collectionView.reloadData()
         
         if let marketPageVC = self.childViewControllers.first as? MarketPageViewController {
+            marketPageVC.markets = markets
             marketPageVC.initPageViewControllers(withNumberOfControllers: markets.count)
+            
         }
     }
     
@@ -73,7 +107,7 @@ extension MarketViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "marketTitleCell", for: indexPath) as! MarketButtonCollectionViewCell
         
         let market = markets[indexPath.row]
-        cell.setupContent(withTitle: market)
+        cell.setupContent(withTitle: market.name)
         
         cell.setSelectionIndicator(isHidden: !{ selectedMarket == market }())
         
@@ -86,7 +120,8 @@ extension MarketViewController: UICollectionViewDataSource {
 extension MarketViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let labelWidth = markets[indexPath.row].width(withConstrainedHeight: 40, font: UIFont.systemFont(ofSize: 13))
+        let title = markets[indexPath.row].name
+        let labelWidth = title.width(withConstrainedHeight: 40, font: UIFont.systemFont(ofSize: 13))
         return CGSize(width: labelWidth + 20, height: 40)
     }
     
