@@ -114,8 +114,8 @@ class CoreDataManager: NSObject {
         }
         
         return nil
-        
     }
+    
     func fetchSavedObjects(forEntity entity: CoreDataEntity,
                            completionHandler: @escaping (_ fetchResult: CoreDataManagerResult,
                             _ results: [AnyObject]?) -> Void) {
@@ -148,6 +148,7 @@ class CoreDataManager: NSObject {
     }
     
     //MARK: Saving
+    
     func saveModelToCoreData(withModel model: AnyObject,
                              completionHandler: @escaping (_ fetchResult: CoreDataManagerResult) -> Void) {
         var result = CoreDataManagerResult.Error
@@ -174,6 +175,26 @@ class CoreDataManager: NSObject {
             result = .Success
         } catch let error {
             errorDescription = error.localizedDescription
+        }
+        
+        completionHandler(result)
+    }
+    
+    func updateUserPoints(withPoints points: String,
+                          completionHandler: @escaping (_ fetchResult: CoreDataManagerResult) -> Void) {
+        var result = CoreDataManagerResult.Error
+        
+        if let user = self.getMainUser() {
+            user.points = points
+            
+            do {
+                try managedObjectContext.save()
+                result = .Success
+            } catch let error {
+                errorDescription = error.localizedDescription
+            }
+        } else {
+            errorDescription = "Error fetching user profile"
         }
         
         completionHandler(result)

@@ -11,7 +11,7 @@ import UIKit
 //MARK: - Enums
 
 enum MarketType {
-    case Services, LoadList
+    case Services, LoadList, Merchant
 }
 
 enum ServicesType: String {
@@ -20,6 +20,10 @@ enum ServicesType: String {
 
 enum LoadListType: String {
     case Globe = "GLOBE", Smart = "SMART", Sun = "SUN", MobileLegends = "MOBILELEGENDS"
+}
+
+enum MerchantType: String {
+    case Food = "food", Shop = "shop", Health = "health", Travel = "travel", Service = "service"
 }
 
 //MARK: - Classes
@@ -38,4 +42,8 @@ class LoadListMarketModel: MarketModel {
 
 class ServiceMarketModel: MarketModel {
     var type: ServicesType!
+}
+
+class MerchantMarketModel: MarketModel {
+    var type: MerchantType!
 }

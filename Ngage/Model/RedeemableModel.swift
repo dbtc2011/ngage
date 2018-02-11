@@ -24,3 +24,16 @@ class LoadListRedeemableModel: RedeemableModel {
     var code = ""
     var loadDescription = ""
 }
+
+class MerchantRedeemableModel: RedeemableModel {
+    var isVirtual = "False"
+    var detailsUrl = ""
+    var logoUrl = ""
+    var tagline = ""
+    var subcategory = ""
+    var locationCount = 0
+    var denominationCount = 0
+    var hasCustom = "False"
+    var hasMarkup = "False"
+    var maximumPointsRequired = 0
+}

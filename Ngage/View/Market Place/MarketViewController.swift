@@ -15,7 +15,9 @@ class MarketViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var viewContainer: UIView!
     
-    private let marketTitles = ["RINGING TONE", "eCARD", "SMART", "GLOBE", "SUN", "MOBILE LEGENDS"]
+    private let marketTitles = ["RINGING TONE", "eCARD", "SMART", "GLOBE", "SUN",
+                                "MOBILE LEGENDS", "FOOD", "SHOP", "HEALTH & WELLNESS",
+                                "TRAVEL & LEISURE", "SERVICES"]
     private var markets = [MarketModel]()
     private var selectedMarket: MarketModel!
     
@@ -24,7 +26,7 @@ class MarketViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        initializePageViewController()
+        initializeMarkets()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,32 +36,35 @@ class MarketViewController: UIViewController {
     
     //MARK: - Methods
     
-    private func initializePageViewController() {
+    private func initializeMarkets() {
+        let servicesTypes: [ServicesType] = [.Ringtone, .Wallpaper]
+        let loadListTypes: [LoadListType] = [.Smart, .Globe, .Sun, .MobileLegends]
+        let merchantTypes: [MerchantType] = [.Food, .Shop, .Health, .Travel, .Service]
+        
         for (index, title) in marketTitles.enumerated() {
             var marketModel: MarketModel!
             
             switch index {
             case 0, 1:
                 let serviceModel = ServiceMarketModel()
-                serviceModel.type = .Ringtone
-                serviceModel.type = (index == 0) ? .Ringtone : .Wallpaper
+                serviceModel.type = servicesTypes[index]
                 
                 marketModel = serviceModel
                 marketModel.marketType = .Services
                 
-            default:
+            case 2, 3, 4, 5:
                 let loadListModel = LoadListMarketModel()
-                loadListModel.type = .Smart
-                if index == 3 {
-                    loadListModel.type = .Globe
-                } else if index == 4 {
-                    loadListModel.type = .Sun
-                } else if index == 5 {
-                    loadListModel.type = .MobileLegends
-                }
+                loadListModel.type = loadListTypes[index - 2]
                 
                 marketModel = loadListModel
                 marketModel.marketType = .LoadList
+                
+            default:
+                let merchantModel = MerchantMarketModel()
+                merchantModel.type = merchantTypes[index - 6]
+                
+                marketModel = merchantModel
+                marketModel.marketType = .Merchant
             }
             
             marketModel.marketId = index
@@ -70,7 +75,10 @@ class MarketViewController: UIViewController {
         selectedMarket = markets.first!
         
         collectionView.reloadData()
-        
+        initializePageViewController()
+    }
+    
+    private func initializePageViewController() {
         if let marketPageVC = self.childViewControllers.first as? MarketPageViewController {
             marketPageVC.markets = markets
             marketPageVC.initPageViewControllers(withNumberOfControllers: markets.count)

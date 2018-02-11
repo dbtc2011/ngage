@@ -37,8 +37,6 @@ class MarketPageViewController: UIPageViewController {
     
     //MARK: - Methods
     
-    //MARK: Public
-    
     func initPageViewControllers(withNumberOfControllers number: Int) {
         for market in markets {
             if let singleMarketVC = self.storyboard?.instantiateViewController(withIdentifier: "singleMarketTVC") as? SingleMarketTableViewController {
@@ -70,12 +68,6 @@ class MarketPageViewController: UIPageViewController {
         
         previousSelectedIndex = selectedHeaderIndex
     }
-    
-    //MARK: Private
-    
-    private func setupViewController() {
-        
-    }
 }
 
 extension MarketPageViewController: UIPageViewControllerDataSource {
@@ -86,7 +78,6 @@ extension MarketPageViewController: UIPageViewControllerDataSource {
         
         if selectedHeaderIndex != viewControllerIndex {
             selectedHeaderIndex = viewControllerIndex
-            //reload here
         }
         
         let previousIndex = viewControllerIndex - 1
@@ -108,7 +99,6 @@ extension MarketPageViewController: UIPageViewControllerDataSource {
         
         if selectedHeaderIndex != viewControllerIndex {
             selectedHeaderIndex = viewControllerIndex
-            //reload here
         }
         
         let nextIndex = viewControllerIndex + 1
