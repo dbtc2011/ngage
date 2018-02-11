@@ -855,12 +855,12 @@
         <scene sceneID="qlb-kA-Glc">
             <objects>
                 <viewController id="Ofq-HO-Rtb" customClass="MarketViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZfN-F0-8P7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZfN-F0-8P7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eUM-lb-PSC">
-                                <rect key="frame" x="0.0" y="64" width="375" height="40"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eUM-lb-PSC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.48627450980392156" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="oq4-Na-inx"/>
@@ -880,13 +880,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbh-5G-qhZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="84" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ghj-VR-QNG">
-                                                    <rect key="frame" x="0.0" y="31" width="84" height="3"/>
+                                                    <rect key="frame" x="0.0" y="-3" width="0.0" height="3"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="3" id="d5y-hW-ESb"/>
@@ -914,9 +913,8 @@
                                     <outlet property="delegate" destination="Ofq-HO-Rtb" id="Eia-02-W5O"/>
                                 </connections>
                             </collectionView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Me-Ru-iPR">
-                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Me-Ru-iPR">
+                                <rect key="frame" x="0.0" y="40" width="375" height="563"/>
                                 <connections>
                                     <segue destination="nai-Ne-mfg" kind="embed" id="t5m-jd-Niz"/>
                                 </connections>
@@ -924,11 +922,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eUM-lb-PSC" firstAttribute="top" secondItem="LZf-Pn-fjp" secondAttribute="top" id="8Oe-oc-ktA"/>
-                            <constraint firstItem="eUM-lb-PSC" firstAttribute="leading" secondItem="LZf-Pn-fjp" secondAttribute="leading" id="cTT-za-Nhj"/>
-                            <constraint firstItem="LZf-Pn-fjp" firstAttribute="trailing" secondItem="eUM-lb-PSC" secondAttribute="trailing" id="m19-Xa-6d2"/>
+                            <constraint firstItem="5Me-Ru-iPR" firstAttribute="top" secondItem="eUM-lb-PSC" secondAttribute="bottom" id="MAa-Il-1ph"/>
+                            <constraint firstAttribute="trailing" secondItem="5Me-Ru-iPR" secondAttribute="trailing" id="WFd-sV-V6b"/>
+                            <constraint firstItem="eUM-lb-PSC" firstAttribute="leading" secondItem="ZfN-F0-8P7" secondAttribute="leading" id="cTT-za-Nhj"/>
+                            <constraint firstAttribute="trailing" secondItem="eUM-lb-PSC" secondAttribute="trailing" id="m19-Xa-6d2"/>
+                            <constraint firstItem="5Me-Ru-iPR" firstAttribute="leading" secondItem="ZfN-F0-8P7" secondAttribute="leading" id="nLE-oY-tBo"/>
+                            <constraint firstItem="eUM-lb-PSC" firstAttribute="top" secondItem="ZfN-F0-8P7" secondAttribute="top" id="okw-o1-l1p"/>
+                            <constraint firstAttribute="bottom" secondItem="5Me-Ru-iPR" secondAttribute="bottom" id="s1u-Gk-XVG"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="LZf-Pn-fjp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Market Place" id="e1h-eY-FfO">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="P0o-bG-HUf">
@@ -937,6 +938,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="eUM-lb-PSC" id="gJU-lw-x5b"/>
                     </connections>
