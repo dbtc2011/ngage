@@ -12,7 +12,7 @@
         <!--Ngage-->
         <scene sceneID="pbm-9M-m86">
             <objects>
-                <viewController id="KPG-cb-A6K" customClass="MultipleChoiceTaskViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MultipleChoiceTaskViewController" id="KPG-cb-A6K" customClass="MultipleChoiceTaskViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cz1-qt-Lty">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,7 +151,11 @@
                         <viewLayoutGuide key="safeArea" id="EnT-5z-SKC"/>
                     </view>
                     <navigationItem key="navigationItem" title="Ngage" id="8Gz-kW-2Mn">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="M0M-W9-PEw"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="M0M-W9-PEw">
+                            <connections>
+                                <action selector="backButtonClicked:" destination="KPG-cb-A6K" id="lCb-37-zL6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="button1" destination="VYv-PE-1Me" id="sok-EI-Ppk"/>
@@ -182,6 +186,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vM0-9P-ZI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-798" y="-68"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6IG-W3-iZK">
+            <objects>
+                <navigationController id="zs8-0X-6NF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nf5-aG-Slh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DV1-Bl-uew" kind="relationship" relationship="rootViewController" id="C30-AB-Uc9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGf-TP-EbC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-799" y="664"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qf9-sB-d4L">
+            <objects>
+                <navigationController id="D0S-qZ-HHy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EcP-wM-AoX">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="K9x-qe-rY1" kind="relationship" relationship="rootViewController" id="BIv-dn-2kn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yXt-LW-1O6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-799" y="1378"/>
+        </scene>
+        <!--Ngage-->
+        <scene sceneID="zd3-5i-YYc">
+            <objects>
+                <viewController storyboardIdentifier="FBShareTaskViewController" id="K9x-qe-rY1" customClass="FBShareTaskViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AcQ-5h-F7b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="om6-pm-gSy"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ngage" id="gO2-iw-Gv6">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="0bm-Ga-c0x"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j8K-E9-Ohg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="105" y="1378"/>
+        </scene>
+        <!--Ngage-->
+        <scene sceneID="6AJ-wy-ITL">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="DV1-Bl-uew" customClass="VideoPlayerTaskViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Ngage" id="BVL-Vg-WAi">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="b1o-QD-ses"/>
+                    </navigationItem>
+                </avPlayerViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VNM-Ta-AIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="105" y="663"/>
         </scene>
     </scenes>
 </document>

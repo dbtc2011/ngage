@@ -8,6 +8,8 @@
 
 import UIKit
 
+import Social
+
 enum TaskAppCode : Int {
     case updateProfile = 1
 }
@@ -27,7 +29,9 @@ class TaskViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        let color = UIColor().setColorUsingHex(hex: mission.colorBackground)
+        self.navigationController?.isNavigationBarHidden = true
+        let color = UIColor().setColorUsingHex(hex: mission.colorBackground)
+        navigationController?.navigationBar.barTintColor = color
         
     }
 
@@ -35,28 +39,64 @@ class TaskViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    //MARK: - Functions
     func setupUI() {
         
+        
+    }
+    
+    func facebookShare() {
+        
+    }
+    
+    func openQuestionaireWithMusic(task: TaskModel) {
+        
+        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
+        if let controller = storyBoard.instantiateViewController(withIdentifier: "MultipleChoiceTaskViewController") as? MultipleChoiceTaskViewController {
+            controller.task = task
+            controller.mission = mission
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
         
     }
 
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         let task = sender as! TaskModel
         if let controller = segue.destination as? WebViewTaskViewController {
             var url = ""
             switch task.type {
             case 1:
-                url = "http://ph.ngage.ph/web/Home/profile?MID={MID}&TID={TID}&TTyID={TTyID}&FBID={FBID}&DID={DID}"
+                url = "https://ph.ngage.ph/web/Home/profile?MID={MID}&TID={TID}&TTyID={TTyID}&FBID={FBID}&DID={DID}"
                 url = url.replacingOccurrences(of: "{MID}", with: "\(mission.code)")
                 url = url.replacingOccurrences(of: "{TID}", with: "\(task.code)")
                 url = url.replacingOccurrences(of: "{TTyID}", with: "\(task.type)")
                 url = url.replacingOccurrences(of: "{FBID}", with: "\(user.facebookId)")
                 url = url.replacingOccurrences(of: "{DID}", with: "\(user.deviceID)")
                 break
+                
+            case 2:
+                url = "https://ph.ngage.ph/web/Home/Survey?MID={MID}&TID={TID}&TTyID={TTyID}&CID={CID}&FBID={FBID}&DID={DID}"
+                print("URL = \(url)")
+                url = url.replacingOccurrences(of: "{MID}", with: "\(mission.code)")
+                url = url.replacingOccurrences(of: "{TID}", with: "\(task.code)")
+                url = url.replacingOccurrences(of: "{TTyID}", with: "\(task.type)")
+                url = url.replacingOccurrences(of: "{CID}", with: task.contentId)
+                url = url.replacingOccurrences(of: "{FBID}", with: "\(user.facebookId)")
+                url = url.replacingOccurrences(of: "{DID}", with: "\(user.deviceID)")
+                break
+                
+            case 12, 13, 14, 15:
+                url = "https://ph.ngage.ph/web/Home/ProfileQuest?MID={MID}&TID={TID}&TTyID={TTyID}&CID={CID}&FBID={FBID}&DID={DID}"
+                url = url.replacingOccurrences(of: "{MID}", with: "\(mission.code)")
+                url = url.replacingOccurrences(of: "{TID}", with: "\(task.code)")
+                url = url.replacingOccurrences(of: "{TTyID}", with: "\(task.type)")
+                url = url.replacingOccurrences(of: "{CID}", with: task.contentId)
+                url = url.replacingOccurrences(of: "{FBID}", with: "\(user.facebookId)")
+                url = url.replacingOccurrences(of: "{DID}", with: "\(user.deviceID)")
+                break
+            
             default:
                 break
             }
@@ -78,8 +118,18 @@ extension TaskViewController : UITableViewDelegate {
         let task = mission.tasks[indexPath.row]
         
         switch task.type {
-        case 1:
-            self.performSegue(withIdentifier: "webViewTask", sender: task)
+        case 1, 2, 12, 13, 14, 15:
+            performSegue(withIdentifier: "webViewTask", sender: task)
+            
+        case 5:
+            facebookShare()
+            
+        case 7, 8, 17:
+            openQuestionaireWithMusic(task: task)
+            
+        case 10:
+            showPhotoPopOver()
+            
         default:
             break
         }

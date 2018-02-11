@@ -16,6 +16,7 @@ class HomeViewController: DrawerFrontViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUIColor(color: UIColor.lightGray)
         setupUI()
         getMission()
 
@@ -107,11 +108,7 @@ class HomeViewController: DrawerFrontViewController {
                 
             }
         }
-        
-        RegisterService.getLoadList(telco: "GLOBE") { (result, error) in
-            
-            print("Load list = \(result) - error = \(error)")
-        }
+    
     }
     
     //MARK: - Button action

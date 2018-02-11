@@ -11,14 +11,17 @@ import UIKit
 extension UIButton {
     
     func setAsCorrect() {
+        self.isEnabled = false
         self.backgroundColor = UIColor().setColorUsingHex(hex: "#017302")
     }
     
     func setAsWrong() {
+        self.isEnabled = false
         self.backgroundColor = UIColor().setColorUsingHex(hex: "#c2231d")
     }
     
     func setAsDefault() {
+        self.isEnabled = true
         self.backgroundColor = UIColor().setColorUsingHex(hex: "#012b63")
     }
     
@@ -32,6 +35,7 @@ extension UIButton {
         pulse.repeatCount = 1
         pulse.initialVelocity = 0.5
         pulse.damping = 1.0
+        setAsCorrect()
         
         layer.add(pulse, forKey: "pulse")
     }
@@ -50,7 +54,19 @@ extension UIButton {
         
         shake.fromValue = fromValue
         shake.toValue = toValue
+        setAsWrong()
         
         layer.add(shake, forKey: "position")
+    }
+    
+    
+    func animateUsing(tag: Int) {
+        
+        if self.tag == tag {
+            self.pulsate()
+        }else {
+            self.shake()
+        }
+        
     }
 }

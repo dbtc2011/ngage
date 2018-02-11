@@ -58,14 +58,6 @@ final class RegisterService: RequestManager {
         }
     }
     
-    class func getTaskContent(missionID: String, taskID: String, tasktype: String, contentID: String, FBID: String) {
-        
-        let parameter = ["missionID" : missionID, "taskID": taskID, "tasktype": tasktype, "contentID": contentID, "FBID": FBID]
-        perform(task: .getTaskContent(parameter)) { (result, error) in
-            
-        }
-    }
-    
     class func insertRecord(missionID: String, taskID: String, tasktype: String, FBID: String, ContentID: String, SubContentID: String, Answer: String, WatchType: String, WatchTime: String, DeviceID: String, TaskStatus: String, success: @escaping CompletionBlock) {
         let deviceID = ""
         let parameter = ["missionID": missionID, "taskID": taskID, "tasktype": tasktype, "FBID": FBID, "ContentID": ContentID, "SubContentID" : SubContentID, "Answer": Answer, "WatchType": WatchType, "WatchTime": WatchTime, "DeviceID": deviceID, "TaskStatus": TaskStatus]
@@ -109,7 +101,13 @@ final class RegisterService: RequestManager {
         }
     }
     
-    
+    class func getTaskContent(missionID: String, taskID: String, tasktype: String, contentID: String, FBID: String, success: @escaping CompletionBlock) {
+        
+        let parameter = ["missionID": missionID, "taskID": taskID, "tasktype": tasktype, "contentID": contentID, "FBID": FBID]
+        perform(task: .getTaskContent(parameter)) { (result, error) in
+            success(result, error)
+        }
+    }
     
     
     

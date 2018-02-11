@@ -24,6 +24,7 @@
 		5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5020B5D1201C753500A3933F /* AccomplishmentView.swift */; };
 		502403B120258D4900180BAC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502403B020258D4900180BAC /* Constants.swift */; };
 		50366C83202C95E800AA9B1A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50366C82202C95E800AA9B1A /* View.swift */; };
+		5038847B20308ED80042C5A0 /* FBShareTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038847A20308ED80042C5A0 /* FBShareTaskViewController.swift */; };
 		503E62D4201A1CD900363D80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E62D3201A1CD900363D80 /* HomeViewController.swift */; };
 		503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */; };
 		506B09CF20234AFC0017C481 /* PinVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */; };
@@ -43,6 +44,13 @@
 		50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B00D201F741F0014DCEF /* RequestManager.swift */; };
 		50C8B010201F7B780014DCEF /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B00F201F7B780014DCEF /* ServiceManager.swift */; };
 		50DBE5352025E2F00017DE63 /* DownloadImageClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBE5342025E2F00017DE63 /* DownloadImageClass.swift */; };
+		50DF518D203015E800F16FB4 /* TaskNameThatSountPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF518C203015E800F16FB4 /* TaskNameThatSountPlayerView.swift */; };
+		50DF518F203015FC00F16FB4 /* TaskNameThatSoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DF518E203015FC00F16FB4 /* TaskNameThatSoundView.xib */; };
+		50DF519120303B6100F16FB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DF519020303B6100F16FB4 /* AVFoundation.framework */; };
+		50DF519320303B6B00F16FB4 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DF519220303B6B00F16FB4 /* AVKit.framework */; };
+		50DF519520303BEA00F16FB4 /* VideoPlayerTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF519420303BEA00F16FB4 /* VideoPlayerTaskViewController.swift */; };
+		50DF519720303FE200F16FB4 /* CameraTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF519620303FE200F16FB4 /* CameraTask.swift */; };
+		50E9D824202F63570018A3E5 /* QuestionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9D823202F63570018A3E5 /* QuestionsModel.swift */; };
 		50F15E182022000700A3E589 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E172022000700A3E589 /* OnboardingViewController.swift */; };
 		50F15E1A2022167E00A3E589 /* ReferralCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */; };
 		50F15E1C2022172600A3E589 /* MSISDNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E1B2022172600A3E589 /* MSISDNViewController.swift */; };
@@ -107,6 +115,7 @@
 		5020B5D1201C753500A3933F /* AccomplishmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomplishmentView.swift; sourceTree = "<group>"; };
 		502403B020258D4900180BAC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		50366C82202C95E800AA9B1A /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		5038847A20308ED80042C5A0 /* FBShareTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBShareTaskViewController.swift; sourceTree = "<group>"; };
 		503E62D3201A1CD900363D80 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +135,13 @@
 		50C8B00D201F741F0014DCEF /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		50C8B00F201F7B780014DCEF /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		50DBE5342025E2F00017DE63 /* DownloadImageClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageClass.swift; sourceTree = "<group>"; };
+		50DF518C203015E800F16FB4 /* TaskNameThatSountPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNameThatSountPlayerView.swift; sourceTree = "<group>"; };
+		50DF518E203015FC00F16FB4 /* TaskNameThatSoundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskNameThatSoundView.xib; sourceTree = "<group>"; };
+		50DF519020303B6100F16FB4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		50DF519220303B6B00F16FB4 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		50DF519420303BEA00F16FB4 /* VideoPlayerTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerTaskViewController.swift; sourceTree = "<group>"; };
+		50DF519620303FE200F16FB4 /* CameraTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTask.swift; sourceTree = "<group>"; };
+		50E9D823202F63570018A3E5 /* QuestionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsModel.swift; sourceTree = "<group>"; };
 		50F15E172022000700A3E589 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCodeViewController.swift; sourceTree = "<group>"; };
 		50F15E1B2022172600A3E589 /* MSISDNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSISDNViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +170,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50DF519320303B6B00F16FB4 /* AVKit.framework in Frameworks */,
+				50DF519120303B6100F16FB4 /* AVFoundation.framework in Frameworks */,
 				096AE424CA2512F7B44FA95B /* Pods_Ngage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,6 +211,8 @@
 		24D8ED7302CB9BA67FE4836A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50DF519220303B6B00F16FB4 /* AVKit.framework */,
+				50DF519020303B6100F16FB4 /* AVFoundation.framework */,
 				0191F275C93C0A87A443C57B /* Pods_Ngage.framework */,
 				3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */,
 				41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */,
@@ -205,6 +225,9 @@
 			children = (
 				5003679920270770007E693A /* WebViewTaskViewController.swift */,
 				5078EA642029FC3F00E35591 /* MultipleChoiceTaskViewController.swift */,
+				50DF519420303BEA00F16FB4 /* VideoPlayerTaskViewController.swift */,
+				50DF519620303FE200F16FB4 /* CameraTask.swift */,
+				5038847A20308ED80042C5A0 /* FBShareTaskViewController.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -280,6 +303,8 @@
 				8C7C4B68202737CC00795264 /* UserPointsTableViewCell.swift */,
 				50141F57202CC6630082EF2B /* AudioPlayerView.swift */,
 				50141F59202CC67F0082EF2B /* AudioPlayerView.xib */,
+				50DF518C203015E800F16FB4 /* TaskNameThatSountPlayerView.swift */,
+				50DF518E203015FC00F16FB4 /* TaskNameThatSoundView.xib */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -371,6 +396,7 @@
 				8CDE84B3201F7A7500C525A4 /* User.swift */,
 				8CDE84B7201F7CBA00C525A4 /* Mission.swift */,
 				8CDE84B5201F7CA900C525A4 /* Task.swift */,
+				50E9D823202F63570018A3E5 /* QuestionsModel.swift */,
 			);
 			name = Model;
 			path = Ngage/Model;
@@ -503,6 +529,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50DF518F203015FC00F16FB4 /* TaskNameThatSoundView.xib in Resources */,
 				501AE437201849490088983A /* LaunchScreen.storyboard in Resources */,
 				501AE434201849490088983A /* Assets.xcassets in Resources */,
 				50141F5A202CC67F0082EF2B /* AudioPlayerView.xib in Resources */,
@@ -688,16 +715,20 @@
 				50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
+				50E9D824202F63570018A3E5 /* QuestionsModel.swift in Sources */,
 				5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */,
 				502403B120258D4900180BAC /* Constants.swift in Sources */,
 				50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */,
 				50366C83202C95E800AA9B1A /* View.swift in Sources */,
 				8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */,
+				5038847B20308ED80042C5A0 /* FBShareTaskViewController.swift in Sources */,
 				501AE42D201849490088983A /* AppDelegate.swift in Sources */,
 				8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */,
 				509C391A201BB21F0015A35B /* MainViewController.swift in Sources */,
+				50DF518D203015E800F16FB4 /* TaskNameThatSountPlayerView.swift in Sources */,
 				50814936201A298600D66514 /* MarketViewController.swift in Sources */,
 				50FC56DD201BACFD0015D4C5 /* NavigationController.swift in Sources */,
+				50DF519720303FE200F16FB4 /* CameraTask.swift in Sources */,
 				50F15E182022000700A3E589 /* OnboardingViewController.swift in Sources */,
 				503E62D4201A1CD900363D80 /* HomeViewController.swift in Sources */,
 				5081493B201A2CFC00D66514 /* String.swift in Sources */,
@@ -712,6 +743,7 @@
 				50F15E1A2022167E00A3E589 /* ReferralCodeViewController.swift in Sources */,
 				503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */,
 				50C8B010201F7B780014DCEF /* ServiceManager.swift in Sources */,
+				50DF519520303BEA00F16FB4 /* VideoPlayerTaskViewController.swift in Sources */,
 				8CDE84B4201F7A7500C525A4 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
