@@ -6,8 +6,6 @@
 //  Copyright © 2018 Mark Louie Angeles. All rights reserved.
 //
 
-import UIKit
-
 struct TaskModel {
     var code = 0
     var missionCode = 0

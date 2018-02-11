@@ -240,16 +240,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LE4-6Z-DgP">
-                                <rect key="frame" x="97" y="94" width="180" height="180"/>
-                                <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_referral" translatesAutoresizingMaskIntoConstraints="NO" id="LE4-6Z-DgP">
+                                <rect key="frame" x="107" y="94" width="160" height="160"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="2FY-yr-4n7"/>
-                                    <constraint firstAttribute="height" constant="180" id="K1Z-nB-1Fl"/>
+                                    <constraint firstAttribute="width" constant="160" id="2FY-yr-4n7"/>
+                                    <constraint firstAttribute="height" constant="160" id="K1Z-nB-1Fl"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="193-QU-jtq">
-                                <rect key="frame" x="0.0" y="311.5" width="375" height="44.5"/>
+                                <rect key="frame" x="0.0" y="284" width="375" height="44.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="ENTER REFERRAL CODE">
                                         <attributes>
@@ -262,9 +262,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XGu-Oo-apK">
-                                <rect key="frame" x="87.5" y="386" width="200" height="30"/>
+                                <rect key="frame" x="107.5" y="358.5" width="160" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="kxB-7x-uec"/>
+                                    <constraint firstAttribute="width" constant="160" id="kxB-7x-uec"/>
                                     <constraint firstAttribute="height" constant="30" id="uGI-aU-ymC"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -275,7 +275,7 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tv6-6s-rO4">
-                                <rect key="frame" x="87.5" y="417" width="200" height="1"/>
+                                <rect key="frame" x="107.5" y="389.5" width="160" height="1"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="3iC-wR-y4x"/>
@@ -307,7 +307,7 @@
                             <constraint firstItem="XGu-Oo-apK" firstAttribute="centerX" secondItem="Nab-1v-T5Q" secondAttribute="centerX" id="nDf-uy-Udv"/>
                             <constraint firstItem="H7M-1L-DqG" firstAttribute="trailing" secondItem="z6h-XS-Xzg" secondAttribute="trailing" constant="30" id="o5U-BT-ZFE"/>
                             <constraint firstItem="H7M-1L-DqG" firstAttribute="trailing" secondItem="193-QU-jtq" secondAttribute="trailing" id="uMm-OL-G4N"/>
-                            <constraint firstItem="193-QU-jtq" firstAttribute="centerY" secondItem="Nab-1v-T5Q" secondAttribute="centerY" id="vpp-3S-fm9"/>
+                            <constraint firstItem="193-QU-jtq" firstAttribute="top" secondItem="LE4-6Z-DgP" secondAttribute="bottom" constant="30" id="wqO-Xm-dDT"/>
                             <constraint firstItem="tv6-6s-rO4" firstAttribute="leading" secondItem="XGu-Oo-apK" secondAttribute="leading" id="zRj-e9-JyZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="H7M-1L-DqG"/>
@@ -323,6 +323,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonEnter" destination="z6h-XS-Xzg" id="4Je-cC-36D"/>
                         <outlet property="textField" destination="XGu-Oo-apK" id="5Uh-EV-jsv"/>
                         <segue destination="S9C-xz-ZdC" kind="show" identifier="goToMSISDN" id="CxY-jf-esJ"/>
                     </connections>
@@ -359,7 +360,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fe1-73-Gdd">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fe1-73-Gdd">
                                 <rect key="frame" x="87.5" y="387.5" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="HSp-Tx-v3d"/>
@@ -382,7 +383,9 @@
                                     <constraint firstAttribute="height" constant="30" id="Tlc-ph-giH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Smart/TNT" image="ic_arrow_down">
+                                <inset key="titleEdgeInsets" minX="-100" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="180" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Select Operator" image="ic_arrow_down">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -478,7 +481,7 @@
                                 <color key="textColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KtK-Fh-N1T">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KtK-Fh-N1T">
                                 <rect key="frame" x="87.5" y="356.5" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ps3-rc-Lgd"/>
@@ -575,6 +578,7 @@
     </scenes>
     <resources>
         <image name="ic_arrow_down" width="24" height="32"/>
+        <image name="ic_referral" width="250" height="250"/>
         <image name="img_top_blue" width="414" height="272"/>
         <image name="intro_01" width="550" height="978"/>
         <image name="intro_02" width="550" height="978"/>

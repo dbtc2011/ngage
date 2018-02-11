@@ -16,12 +16,13 @@ protocol ReferralCodeViewControllerDelegate {
 class ReferralCodeViewController: UIViewController {
     
     var user : UserModel!
+    @IBOutlet weak var buttonEnter: UIButton!
     var delegate : ReferralCodeViewControllerDelegate?
 
     @IBOutlet weak var textField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        buttonEnter.layer.cornerRadius = 10.0
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {

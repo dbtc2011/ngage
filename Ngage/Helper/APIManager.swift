@@ -42,7 +42,7 @@ enum Router : URLRequestConvertible {
     
     var method : HTTPMethod {
         switch self {
-        case .getHistory, .resendVerificationCode, .getLoadList, .getServices, .getLoadCentral:
+        case .getHistory, .resendVerificationCode, .getLoadList, .getServices:
             return .get
         default:
             return .post

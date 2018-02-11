@@ -37,6 +37,8 @@ class LoginViewController: UIViewController {
     func setupView() {
         name.text = user.name
         email.text = user.emailAddress
+        buttonOK.layer.cornerRadius = 10
+        buttonReferral.layer.cornerRadius = 10
     }
     
     // MARK: - Navigation

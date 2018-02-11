@@ -19,6 +19,7 @@ class MSISDNViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        buttonSubmit.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -99,6 +100,7 @@ class MSISDNViewController: UIViewController {
             default:
                 self.user.operatorID = "51502"
             }
+            self.buttonCarrier.setTitle((value as! String), for: UIControlState.normal)
             return
         }, cancel: { (picker) in
             return

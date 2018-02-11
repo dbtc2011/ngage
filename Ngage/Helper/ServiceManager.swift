@@ -66,9 +66,9 @@ final class RegisterService: RequestManager {
         }
     }
     
-    class func getMerchantList(categories: [String], success: @escaping CompletionBlock) {
+    class func getMerchantList(category: String, success: @escaping CompletionBlock) {
         
-        let parameter = ["category" : categories]
+        let parameter = ["category" : category]
         perform(task: .merchantList(parameter)) { (result, error) in
             
             success(result, error)

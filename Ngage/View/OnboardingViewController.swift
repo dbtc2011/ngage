@@ -41,10 +41,10 @@ class OnboardingViewController: UIViewController {
         // Add a custom login button to your app
         loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
         loginButton.delegate = self
-        loginButton.center = view.center
-        loginButton.frame.origin.y = UIScreen.main.bounds.size.height - 90
         loginButton.frame.size.width = 220
         loginButton.frame.size.height = 50
+        loginButton.center = view.center
+        loginButton.frame.origin.y = UIScreen.main.bounds.size.height - 90
         loginButton.isHidden = true
         view.addSubview(loginButton)
         
