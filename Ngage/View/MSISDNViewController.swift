@@ -20,6 +20,9 @@ class MSISDNViewController: UIViewController {
         super.viewDidLoad()
 
         buttonSubmit.layer.cornerRadius = 10
+        buttonCarrier.layer.cornerRadius = 10
+        buttonCarrier.layer.borderWidth = 0.5
+        buttonCarrier.layer.borderColor = UIColor.lightGray.cgColor
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {

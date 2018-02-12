@@ -48,6 +48,6 @@ class ProfileTableViewCell: UITableViewCell {
             lblPoints.text = textPoints
         }
         
-        lblReferralCode.text = "Referral Code: 12345678"
+        lblReferralCode.text = "Referral Code: \(user.referralCode)"
     }
 }

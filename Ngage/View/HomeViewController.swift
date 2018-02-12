@@ -49,7 +49,6 @@ class HomeViewController: DrawerFrontViewController {
     }
     
     func getMission() {
-        
         RegisterService.getMissionList(fbid: self.user.facebookId) { (result, error) in
             print(result)
             print(error as Any)

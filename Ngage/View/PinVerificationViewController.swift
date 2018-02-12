@@ -21,6 +21,7 @@ class PinVerificationViewController: UIViewController {
         super.viewDidLoad()
 
         requestPin()
+        setupUI()
         // Do any additional setup after loading the view.
     }
     
@@ -30,6 +31,10 @@ class PinVerificationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setupUI() {
+        buttonResend.layer.cornerRadius = 10
+        buttonVerify.layer.cornerRadius = 10
+    }
     func requestPin() {
         self.buttonVerify.isEnabled = false
         
@@ -44,7 +49,8 @@ class PinVerificationViewController: UIViewController {
     func validatePin() {
         RegisterService.validateRegistration(fbid: user.facebookId, pCode: textField.text!, mobileNumber: user.mobileNumber) { (result, error) in
             
-            
+            print("Result = \(result)")
+            print("Error = \(error)")
         }
     }
     

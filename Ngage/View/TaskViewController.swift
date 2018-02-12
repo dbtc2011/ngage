@@ -68,12 +68,8 @@ class TaskViewController: UIViewController {
             var url = ""
             switch task.type {
             case 1:
-                url = "https://ph.ngage.ph/web/Home/profile?MID={MID}&TID={TID}&TTyID={TTyID}&FBID={FBID}&DID={DID}"
-                url = url.replacingOccurrences(of: "{MID}", with: "\(mission.code)")
-                url = url.replacingOccurrences(of: "{TID}", with: "\(task.code)")
-                url = url.replacingOccurrences(of: "{TTyID}", with: "\(task.type)")
-                url = url.replacingOccurrences(of: "{FBID}", with: "\(user.facebookId)")
-                url = url.replacingOccurrences(of: "{DID}", with: "\(user.deviceID)")
+                url = "https://ph.ngage.ph/web/Home/profile?fbid={fbid}"
+                url = url.replacingOccurrences(of: "{fbid}", with: "\(user.facebookId)")
                 break
                 
             case 2:

@@ -43,7 +43,7 @@ final class RegisterService: RequestManager {
     
     class func resendVerificationCode(fbid: String, success: @escaping CompletionBlock) {
     
-        let parameter = ["FBID" : fbid]
+        let parameter = ["{FBID}" : fbid]
         perform(task: .resendVerificationCode(parameter)) { (result, error) in
             success(result, error)
         }

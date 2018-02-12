@@ -930,7 +930,7 @@
 				INFOPLIST_FILE = Ngage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zedph.Ngage;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ngage PH";
 				PROVISIONING_PROFILE = "f243f0dc-c1d8-4cb2-a7eb-fe6222d6399c";
 				PROVISIONING_PROFILE_SPECIFIER = "ZedPh-Ngage";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ngage/View/Ngage-Bridging-Header.h";
@@ -952,7 +952,7 @@
 				INFOPLIST_FILE = Ngage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zedph.Ngage;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ngage PH";
 				PROVISIONING_PROFILE = "f243f0dc-c1d8-4cb2-a7eb-fe6222d6399c";
 				PROVISIONING_PROFILE_SPECIFIER = "ZedPh-Ngage";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ngage/View/Ngage-Bridging-Header.h";

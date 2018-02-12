@@ -22,8 +22,11 @@ class SingleMarketTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        registerCell()
         user = UserModel().mainUser()
         initializeMarketRedeemables()
+    
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +35,11 @@ class SingleMarketTableViewController: UITableViewController {
     }
     
     //MARK: - Methods
+    
+    private func registerCell() {
+        
+        self.tableView.register(UINib(nibName: "StorePhotoCell", bundle: Bundle.main), forCellReuseIdentifier: keyPhotoCell)
+    }
     
     private func initializeMarketRedeemables() {
         guard market.redeemables == nil else { return }
