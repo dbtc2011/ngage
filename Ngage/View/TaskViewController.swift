@@ -49,6 +49,16 @@ class TaskViewController: UIViewController {
         
     }
     
+    func playVideo(task: TaskModel) {
+        
+        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
+        if let controller = storyBoard.instantiateViewController(withIdentifier: "VideoPlayerTaskViewController") as? VideoPlayerTaskViewController {
+            controller.task = task
+            controller.mission = mission
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
     func openQuestionaireWithMusic(task: TaskModel) {
         
         let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
@@ -116,7 +126,8 @@ extension TaskViewController : UITableViewDelegate {
         switch task.type {
         case 1, 2, 12, 13, 14, 15:
             performSegue(withIdentifier: "webViewTask", sender: task)
-            
+        case 3:
+            playVideo(task: task)
         case 5:
             facebookShare()
             

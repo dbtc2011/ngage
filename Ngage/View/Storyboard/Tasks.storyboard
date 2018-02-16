@@ -12,7 +12,7 @@
         <!--Ngage-->
         <scene sceneID="pbm-9M-m86">
             <objects>
-                <viewController storyboardIdentifier="MultipleChoiceTaskViewController" id="KPG-cb-A6K" customClass="MultipleChoiceTaskViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MultipleChoiceTaskViewController" id="KPG-cb-A6K" customClass="MultipleChoiceTaskViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cz1-qt-Lty">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -174,7 +174,7 @@
         <!--Navigation Controller-->
         <scene sceneID="65z-AF-ZxO">
             <objects>
-                <navigationController id="pHk-k5-YBi" customClass="NavigationController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="pHk-k5-YBi" customClass="NavigationController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lu6-fM-LMY">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -222,7 +222,7 @@
         <!--Ngage-->
         <scene sceneID="zd3-5i-YYc">
             <objects>
-                <viewController storyboardIdentifier="FBShareTaskViewController" id="K9x-qe-rY1" customClass="FBShareTaskViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FBShareTaskViewController" id="K9x-qe-rY1" customClass="FBShareTaskViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AcQ-5h-F7b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,7 +240,7 @@
         <!--Ngage-->
         <scene sceneID="6AJ-wy-ITL">
             <objects>
-                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="DV1-Bl-uew" customClass="VideoPlayerTaskViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <avPlayerViewController storyboardIdentifier="VideoPlayerTaskViewController" videoGravity="AVLayerVideoGravityResizeAspect" id="DV1-Bl-uew" customClass="VideoPlayerTaskViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Ngage" id="BVL-Vg-WAi">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="b1o-QD-ses"/>
                     </navigationItem>

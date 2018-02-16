@@ -78,14 +78,9 @@ class OnboardingViewController: UIViewController {
                                 }
                                 print("Download Finished")
                                 self.user.image = data
-                                CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
-                                    
-                                    DispatchQueue.main.async {
-                                        self.goToLogin()
-                                    }
-                                })
-                                
-                                
+                                DispatchQueue.main.async {
+                                    self.goToLogin()
+                                }
                             })
                         }
                     }

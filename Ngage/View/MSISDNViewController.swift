@@ -53,17 +53,43 @@ class MSISDNViewController: UIViewController {
         user.referralCode = String(user.facebookId.characters.prefix(4) + user.mobileNumber.characters.suffix(4))
         UserDefaults.standard.set(user.referralCode, forKey: Keys.ReferralCode)
         RegisterService.register(fbid: user.facebookId, fName: firstName, lName: lastName, gender: user.gender, email: user.emailAddress, referralCode: user.referralCode, msisdn: user.mobileNumber, operatorID: user.operatorID, refferedBy: user.refferedBy) { (result, error) in
-            if CoreDataManager.sharedInstance.getMainUser() == nil {
+            
+            if error != nil {
+                // Show error
+            }else {
+                if let userRegistration = result!["user_registration"].dictionary {
+                    if let statusCode = userRegistration["StatusCode"]?.int {
+                        if statusCode == 2 {
+                            if CoreDataManager.sharedInstance.getMainUser() == nil {
+                                CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
+                                    DispatchQueue.main.async {
+                                        let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
+                                        let controller = storyBoard.instantiateInitialViewController()
+                                        self.present(controller!, animated: true, completion: {
+                                            
+                                        })
+                                    }
+                                })
+                            }else {
+                                DispatchQueue.main.async {
+                                    self.performSegue(withIdentifier: "goToPinVerification", sender: self)
+                                }
+                            }
+                            
+                        }else {
+                            // Show Error
+                        }
+                    }else {
+                        // Show error
+                    }
+                }else {
+                    // Show error
+                }
                 
-                CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (coreResult) in
-                    
-                })
             }
             print("Result = \(String(describing: result))")
             print("error = \(String(describing: error))")
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "goToPinVerification", sender: self)
-            }
+            
         }
         
         

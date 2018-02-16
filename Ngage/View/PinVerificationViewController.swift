@@ -19,8 +19,6 @@ class PinVerificationViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        requestPin()
         setupUI()
         // Do any additional setup after loading the view.
     }
@@ -36,10 +34,11 @@ class PinVerificationViewController: UIViewController {
         buttonVerify.layer.cornerRadius = 10
     }
     func requestPin() {
+        self.buttonResend.isEnabled = false
         self.buttonVerify.isEnabled = false
-        
         RegisterService.resendVerificationCode(fbid: self.user.facebookId) { (result, error) in
             self.buttonVerify.isEnabled = true
+            self.buttonResend.isEnabled = true
             print(result ?? "Result = nil")
             print(error ?? "error = nil")
            
@@ -49,6 +48,21 @@ class PinVerificationViewController: UIViewController {
     func validatePin() {
         RegisterService.validateRegistration(fbid: user.facebookId, pCode: textField.text!, mobileNumber: user.mobileNumber) { (result, error) in
             
+            if error != nil {
+                // Show error alert
+            }else {
+                if let _ = result?["user_registration"].dictionary {
+                    CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
+                        DispatchQueue.main.async {
+                            let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
+                            let controller = storyBoard.instantiateInitialViewController()
+                            self.present(controller!, animated: true, completion: {
+                                
+                            })
+                        }
+                    })
+                }
+            }
             print("Result = \(result)")
             print("Error = \(error)")
         }
@@ -80,15 +94,7 @@ class PinVerificationViewController: UIViewController {
             //error handling
             print("Input pin")
         }
-        if pinCode == textField.text ?? "" {
-            DispatchQueue.main.async {
-                let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
-                let controller = storyBoard.instantiateInitialViewController()
-                self.present(controller!, animated: true, completion: {
-                    
-                })
-            }
-        }
+        
     }
     
     @IBAction func didTapView(_ sender: UITapGestureRecognizer) {

@@ -38,7 +38,6 @@ class SingleMarketTableViewController: UITableViewController {
     
     private func registerCell() {
         
-        self.tableView.register(UINib(nibName: "StorePhotoCell", bundle: Bundle.main), forCellReuseIdentifier: keyPhotoCell)
     }
     
     private func initializeMarketRedeemables() {
