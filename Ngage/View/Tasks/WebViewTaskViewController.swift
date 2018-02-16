@@ -36,9 +36,13 @@ class WebViewTaskViewController: UIViewController {
         if let url = URL(string: webLink) {
             webView.load(URLRequest(url: url))
             webView.allowsBackForwardNavigationGestures = true
+            webView.navigationDelegate = self
         }
     }
 
+    func finishedTask() {
+        _ = navigationController?.popViewController(animated: true)
+    }
     /*
     // MARK: - Navigation
 
@@ -52,11 +56,22 @@ class WebViewTaskViewController: UIViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    
 }
 
 extension WebViewTaskViewController : WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        decisionHandler(WKNavigationResponsePolicy.allow)
+        print("NAVIGATION WEBVIEW")
+        
+        if let url = navigationResponse.response.url {
+            if url.absoluteString.contains("ph.yahoo.com") {
+                finishedTask()
+            }
+        }
+        print(navigationResponse.response.url)
+        
         
     }
     

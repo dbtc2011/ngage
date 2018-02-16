@@ -11,30 +11,50 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TaskNameThatSountPlayerView" customModule="Ngage" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TaskNameThatSountPlayerView" customModule="Ngage_PH" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="413" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFA-bo-NJH">
-                    <rect key="frame" x="18" y="5" width="377" height="210"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dasda" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFA-bo-NJH">
+                    <rect key="frame" x="60" y="5" width="335" height="210"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldq-J6-4F0">
+                    <rect key="frame" x="18" y="89" width="42" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="aGu-6A-jcv"/>
+                        <constraint firstAttribute="height" constant="42" id="chX-7h-oeV"/>
+                    </constraints>
+                    <state key="normal" image="ic_preview_play">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="playButtonClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="5gB-g8-BMO"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="hFA-bo-NJH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="7IT-rX-rZD"/>
-                <constraint firstItem="hFA-bo-NJH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="18" id="hYS-gD-mLL"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hFA-bo-NJH" secondAttribute="trailing" constant="18" id="lr1-yg-7mg"/>
+                <constraint firstItem="ldq-J6-4F0" firstAttribute="centerY" secondItem="hFA-bo-NJH" secondAttribute="centerY" id="PIH-vx-lnc"/>
+                <constraint firstItem="ldq-J6-4F0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="18" id="b4e-B2-1AI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hFA-bo-NJH" secondAttribute="trailing" constant="18" id="mAR-wO-pIS"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="hFA-bo-NJH" secondAttribute="bottom" constant="5" id="mUm-wY-nLk"/>
+                <constraint firstItem="hFA-bo-NJH" firstAttribute="leading" secondItem="ldq-J6-4F0" secondAttribute="trailing" id="xpJ-re-tMB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="button" destination="ldq-J6-4F0" id="IB3-5G-Z7X"/>
+                <outlet property="buttonWidth" destination="aGu-6A-jcv" id="FE5-GG-UFg"/>
                 <outlet property="title" destination="hFA-bo-NJH" id="awK-hJ-VOx"/>
             </connections>
             <point key="canvasLocation" x="52.5" y="-87"/>
         </view>
     </objects>
+    <resources>
+        <image name="ic_preview_play" width="42" height="42"/>
+    </resources>
 </document>

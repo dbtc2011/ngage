@@ -18,7 +18,9 @@ class MultipleChoiceTaskViewController: UIViewController {
     var currentQuestion = 0
     var player : AVPlayer?
     
-
+    @IBOutlet weak var viewHeader: UIView!
+    
+    @IBOutlet weak var viewQuestioniare: UIView!
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var button2: UIButton!
@@ -28,7 +30,7 @@ class MultipleChoiceTaskViewController: UIViewController {
     var questions : [QuestionsModel] = []
     var correctTag = 1
     @IBOutlet weak var progressView: UICircularProgressRingView!
-    var timeLimit : Timer!
+    var timeLimit : Timer?
     var maxTime = 40
     var currentTime : Int!
     var currentPath = ""
@@ -59,6 +61,10 @@ class MultipleChoiceTaskViewController: UIViewController {
     
     //MARK: Functions
     func setupUI() {
+        viewHeader.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
+        viewQuestioniare.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
+        view.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
+        viewContainer.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
         button1.layer.cornerRadius = 10
         button2.layer.cornerRadius = 10
         button3.layer.cornerRadius = 10
@@ -69,11 +75,14 @@ class MultipleChoiceTaskViewController: UIViewController {
         button2.setAsDefault()
         button3.setAsDefault()
         button4.setAsDefault()
-        scheduleTimer()
+        setupNameThatSound()
         switch task.type {
-        case 7, 8, 17:
-            setupNameThatSound()
+        case 17:
+            scheduleTimer()
         default:
+            maxTime = 10
+            currentTime = 10
+            self.labelTimer.text = "\(self.maxTime)"
             break
         }
     }
@@ -102,17 +111,23 @@ class MultipleChoiceTaskViewController: UIViewController {
         if let url = URL(string: fileURL) {
             player = AVPlayer(url: url)
             player!.play()
+            playerView!.buttonWidth.constant = 0
         }else {
             print("URL not playable ----> \(fileURL)")
         }
         
     }
     func setupQuestionaire() {
+        
         let question = questions[currentQuestion]
         currentPath = question.filePath
         correctTag = question.getCorrectAnswer() + 1
-        playSong()
         UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+            if self.task.type != 17 {
+                self.playerView!.buttonWidth.constant = 42
+                self.progressView.setProgress(value: 100.0, animationDuration: 1)
+                self.labelTimer.text = "\(self.maxTime)"
+            }
             self.button1.setAsDefault()
             self.button2.setAsDefault()
             self.button3.setAsDefault()
@@ -133,7 +148,14 @@ class MultipleChoiceTaskViewController: UIViewController {
             if self.currentTime == 0 {
                 self.labelTimer.text = "\(self.currentTime!)"
                 timer.invalidate()
-                self.finishedTask()
+                if self.task.type == 17 {
+                    self.submitTask()
+                }else {
+                    self.progressView.setProgress(value: 100.0, animationDuration: 1)
+                    self.labelTimer.text = "\(self.maxTime)"
+                    self.player = nil
+                    self.answerdQuestion()
+                }
                 return
             }
             DispatchQueue.main.async {
@@ -145,6 +167,19 @@ class MultipleChoiceTaskViewController: UIViewController {
             
         })
     }
+    func submitTask() {
+        
+        finishedTask()
+    }
+    
+    func answerdQuestion() {
+        if currentQuestion == questions.count - 1 {
+            submitTask()
+            return
+        }
+        currentQuestion = currentQuestion + 1
+        setupQuestionaire()
+    }
     
     func finishedTask() {
         self.player = nil
@@ -155,7 +190,11 @@ class MultipleChoiceTaskViewController: UIViewController {
         playerView = (Bundle.main.loadNibNamed("TaskNameThatSoundView", owner: self, options: nil)?.first as! TaskNameThatSountPlayerView)
         playerView!.bounds = viewContainer.bounds
         playerView?.backgroundColor = UIColor.clear
+        playerView!.delegate = self
         playerView!.frame.origin = CGPoint(x: 0, y: 0)
+        if task.type == 17 {
+            playerView!.buttonWidth.constant = 0
+        }
         viewContainer.addSubview(playerView!)
     }
     /*
@@ -175,12 +214,24 @@ class MultipleChoiceTaskViewController: UIViewController {
         button2.animateUsing(tag: correctTag)
         button3.animateUsing(tag: correctTag)
         button4.animateUsing(tag: correctTag)
-        if currentQuestion == questions.count - 1 {
-            finishedTask()
-            return
+        if task.type != 17 {
+            if timeLimit != nil {
+                timeLimit!.invalidate()
+            }
+            player = nil
         }
-        currentQuestion = currentQuestion + 1
-        setupQuestionaire()
+        answerdQuestion()
     }
+    
+}
+
+extension MultipleChoiceTaskViewController : TaskNameThatSountPlayerViewDelegate {
+    func didTapPlay() {
+        playSong()
+        maxTime = 10
+        currentTime = 10
+        scheduleTimer()
+    }
+    
     
 }

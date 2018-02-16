@@ -165,6 +165,8 @@
                         <outlet property="labelTimer" destination="IJh-bh-1hD" id="mBk-tP-emr"/>
                         <outlet property="progressView" destination="pcw-Tf-tve" id="rYo-Hp-F76"/>
                         <outlet property="viewContainer" destination="j2c-N5-pd1" id="Th4-vn-neg"/>
+                        <outlet property="viewHeader" destination="TfK-lg-Wsl" id="IP6-Ym-JUM"/>
+                        <outlet property="viewQuestioniare" destination="W8D-9R-eFg" id="FMI-KE-Jx0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zv-Mq-BQl" userLabel="First Responder" sceneMemberID="firstResponder"/>

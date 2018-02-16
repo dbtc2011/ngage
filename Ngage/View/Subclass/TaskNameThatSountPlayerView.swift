@@ -7,10 +7,18 @@
 //
 
 import UIKit
-
+protocol TaskNameThatSountPlayerViewDelegate {
+    
+    func didTapPlay()
+    
+}
 class TaskNameThatSountPlayerView: UIView {
 
+    @IBOutlet weak var buttonLeading: NSLayoutConstraint!
+    @IBOutlet weak var buttonWidth: NSLayoutConstraint!
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var title: UILabel!
+    var delegate : TaskNameThatSountPlayerViewDelegate?
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -18,5 +26,9 @@ class TaskNameThatSountPlayerView: UIView {
         // Drawing code
     }
     */
+    @IBAction func playButtonClicked(_ sender: UIButton) {
+        delegate?.didTapPlay()
+    }
+    
 
 }
