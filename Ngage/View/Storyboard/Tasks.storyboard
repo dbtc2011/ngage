@@ -523,6 +523,63 @@
             </objects>
             <point key="canvasLocation" x="105" y="2821"/>
         </scene>
+        <!--Ngage-->
+        <scene sceneID="l75-RD-ObW">
+            <objects>
+                <viewController storyboardIdentifier="InstallTaskViewController" id="KFQ-ss-giA" customClass="InstallTaskViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WFS-LO-bQa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rkq-gL-hGv">
+                                <rect key="frame" x="40" y="94" width="295" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dN-qR-3lV">
+                                <rect key="frame" x="30" y="593" width="315" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="AGv-JD-dkd"/>
+                                </constraints>
+                                <state key="normal" title="DOWNLOAD"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Rkq-gL-hGv" firstAttribute="leading" secondItem="BQg-MR-9fi" secondAttribute="leading" constant="40" id="1xG-i9-0aX"/>
+                            <constraint firstItem="Rkq-gL-hGv" firstAttribute="top" secondItem="BQg-MR-9fi" secondAttribute="top" constant="30" id="6PY-zq-Jx9"/>
+                            <constraint firstItem="BQg-MR-9fi" firstAttribute="trailing" secondItem="1dN-qR-3lV" secondAttribute="trailing" constant="30" id="8c2-NS-PoS"/>
+                            <constraint firstItem="BQg-MR-9fi" firstAttribute="trailing" secondItem="Rkq-gL-hGv" secondAttribute="trailing" constant="40" id="GEg-JB-IsG"/>
+                            <constraint firstItem="BQg-MR-9fi" firstAttribute="bottom" secondItem="1dN-qR-3lV" secondAttribute="bottom" constant="24" id="O7u-Rw-rtT"/>
+                            <constraint firstItem="1dN-qR-3lV" firstAttribute="leading" secondItem="BQg-MR-9fi" secondAttribute="leading" constant="30" id="T44-no-wFE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BQg-MR-9fi"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ngage" id="Yn7-a2-Qi5">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="J7b-Yp-DUd"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bbo-NO-BMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="105" y="3528"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EFk-77-M6n">
+            <objects>
+                <navigationController id="K1h-9C-F5v" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wYt-XX-R8h">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="KFQ-ss-giA" kind="relationship" relationship="rootViewController" id="dnV-iA-NEc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Q9-Bi-3mc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-799" y="3528"/>
+        </scene>
     </scenes>
     <resources>
         <image name="img_congratulations" width="390" height="57"/>

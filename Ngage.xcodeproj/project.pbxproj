@@ -46,6 +46,7 @@
 		509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509C391B201BB6EA0015A35B /* DrawerTableViewCell.swift */; };
 		50A41D622025C5BD0062A287 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A41D612025C5BC0062A287 /* Color.swift */; };
 		50A9C0F020385D3400F46DE8 /* VideoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9C0EF20385D3400F46DE8 /* VideoTaskViewController.swift */; };
+		50A9C0F220389B8B00F46DE8 /* InstallTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9C0F120389B8B00F46DE8 /* InstallTaskViewController.swift */; };
 		50C1259A201F03FA0051D3E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C12599201F03FA0051D3E8 /* LoginViewController.swift */; };
 		50C8B009201F32230014DCEF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B008201F32230014DCEF /* APIManager.swift */; };
 		50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B00D201F741F0014DCEF /* RequestManager.swift */; };
@@ -146,6 +147,7 @@
 		509C391B201BB6EA0015A35B /* DrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTableViewCell.swift; sourceTree = "<group>"; };
 		50A41D612025C5BC0062A287 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		50A9C0EF20385D3400F46DE8 /* VideoTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTaskViewController.swift; sourceTree = "<group>"; };
+		50A9C0F120389B8B00F46DE8 /* InstallTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallTaskViewController.swift; sourceTree = "<group>"; };
 		50C12599201F03FA0051D3E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		50C8B008201F32230014DCEF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		50C8B00D201F741F0014DCEF /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				5003679920270770007E693A /* WebViewTaskViewController.swift */,
+				50A9C0F120389B8B00F46DE8 /* InstallTaskViewController.swift */,
 				506C34702037FD05004E651C /* TaskInstructionsViewController.swift */,
 				5078EA642029FC3F00E35591 /* MultipleChoiceTaskViewController.swift */,
 				506C347220381679004E651C /* CongratulationsMCTaskViewController.swift */,
@@ -756,6 +759,7 @@
 				50A41D622025C5BD0062A287 /* Color.swift in Sources */,
 				50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */,
 				8CDE84B6201F7CA900C525A4 /* TaskModel.swift in Sources */,
+				50A9C0F220389B8B00F46DE8 /* InstallTaskViewController.swift in Sources */,
 				506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */,
 				50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,

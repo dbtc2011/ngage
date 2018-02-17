@@ -62,7 +62,7 @@ class VideoTaskViewController: UIViewController {
                                                                         let maxTime : Float64 = CMTimeGetSeconds(self.player!.currentItem!.duration)
                                                                         self.playerSlider.maximumValue = Float(maxTime)
                                                                         self.playerSlider.value = Float ( time )
-                                                                        print("elapsedTime now:", CMTimeGetSeconds(elapsedTime))
+                                                                        
                 } as AnyObject
             setupUI()
             
@@ -89,6 +89,13 @@ class VideoTaskViewController: UIViewController {
         let timeRemaining: Float64 = CMTimeGetSeconds(self.player!.currentItem!.duration) - elapsedTime
         labelTimer.text = String(format: "%02d:%02d", ((lround(timeRemaining) / 60) % 60), lround(timeRemaining) % 60)
         playerSlider.value = Float(elapsedTime)
+        if labelTimer.text == "00:00" {
+            print("Should stop")
+            if let controller = navigationController?.viewControllers[1] as? TaskViewController {
+                _ = navigationController?.popToViewController(controller, animated: true)
+                controller.didFinishTask(task: task)
+            }
+        }
     }
     
     private func observeTime(elapsedTime: CMTime) {

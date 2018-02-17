@@ -33,7 +33,18 @@ class TaskViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         let color = UIColor().setColorUsingHex(hex: mission.colorBackground)
         navigationController?.navigationBar.barTintColor = color
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
         
+    }
+    
+   
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,8 +97,19 @@ class TaskViewController: UIViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
+    
+    func installTask(task: TaskModel) {
+        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
+        if let controller = storyBoard.instantiateViewController(withIdentifier: "InstallTaskViewController") as? InstallTaskViewController {
+            controller.task = task
+            controller.mission = mission
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
     func didFinishTask(task: TaskModel) {
         
+        print("Finished task \(task.info)")
     }
     
     // MARK: - Navigation
@@ -158,6 +180,9 @@ extension TaskViewController : UITableViewDelegate {
             
         case 7, 8, 17:
             openQuestionaireWithMusic(task: task)
+            
+        case 9:
+            installTask(task: task)
             
         case 10:
             showPhotoPopOver()
