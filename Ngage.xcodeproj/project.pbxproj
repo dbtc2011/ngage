@@ -29,6 +29,11 @@
 		503E62D4201A1CD900363D80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E62D3201A1CD900363D80 /* HomeViewController.swift */; };
 		503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */; };
 		506B09CF20234AFC0017C481 /* PinVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */; };
+		506C34712037FD05004E651C /* TaskInstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C34702037FD05004E651C /* TaskInstructionsViewController.swift */; };
+		506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C347220381679004E651C /* CongratulationsMCTaskViewController.swift */; };
+		506C34762038540D004E651C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506C34752038540D004E651C /* GameKit.framework */; };
+		506C347820385413004E651C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506C347720385413004E651C /* StoreKit.framework */; };
+		506C347A203854B1004E651C /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C3479203854B1004E651C /* ContactListViewController.swift */; };
 		5078EA632029F8F900E35591 /* Tasks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5078EA622029F8F900E35591 /* Tasks.storyboard */; };
 		5078EA652029FC3F00E35591 /* MultipleChoiceTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078EA642029FC3F00E35591 /* MultipleChoiceTaskViewController.swift */; };
 		5078EA672029FD0C00E35591 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078EA662029FD0C00E35591 /* Button.swift */; };
@@ -40,6 +45,7 @@
 		509C391A201BB21F0015A35B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509C3919201BB21F0015A35B /* MainViewController.swift */; };
 		509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509C391B201BB6EA0015A35B /* DrawerTableViewCell.swift */; };
 		50A41D622025C5BD0062A287 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A41D612025C5BC0062A287 /* Color.swift */; };
+		50A9C0F020385D3400F46DE8 /* VideoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9C0EF20385D3400F46DE8 /* VideoTaskViewController.swift */; };
 		50C1259A201F03FA0051D3E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C12599201F03FA0051D3E8 /* LoginViewController.swift */; };
 		50C8B009201F32230014DCEF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B008201F32230014DCEF /* APIManager.swift */; };
 		50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8B00D201F741F0014DCEF /* RequestManager.swift */; };
@@ -100,7 +106,7 @@
 		5003679920270770007E693A /* WebViewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTaskViewController.swift; sourceTree = "<group>"; };
 		50141F57202CC6630082EF2B /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		50141F59202CC67F0082EF2B /* AudioPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioPlayerView.xib; sourceTree = "<group>"; };
-		501AE429201849490088983A /* Ngage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ngage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		501AE429201849490088983A /* Ngage PH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ngage PH.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		501AE42C201849490088983A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		501AE42E201849490088983A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		501AE431201849490088983A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,6 +128,12 @@
 		503E62D3201A1CD900363D80 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationViewController.swift; sourceTree = "<group>"; };
+		506C34702037FD05004E651C /* TaskInstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInstructionsViewController.swift; sourceTree = "<group>"; };
+		506C347220381679004E651C /* CongratulationsMCTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsMCTaskViewController.swift; sourceTree = "<group>"; };
+		506C34742038538E004E651C /* Ngage PH.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ngage PH.entitlements"; sourceTree = "<group>"; };
+		506C34752038540D004E651C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		506C347720385413004E651C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		506C3479203854B1004E651C /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 		5078EA622029F8F900E35591 /* Tasks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tasks.storyboard; sourceTree = "<group>"; };
 		5078EA642029FC3F00E35591 /* MultipleChoiceTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceTaskViewController.swift; sourceTree = "<group>"; };
 		5078EA662029FD0C00E35591 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -133,6 +145,7 @@
 		509C3919201BB21F0015A35B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		509C391B201BB6EA0015A35B /* DrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTableViewCell.swift; sourceTree = "<group>"; };
 		50A41D612025C5BC0062A287 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		50A9C0EF20385D3400F46DE8 /* VideoTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTaskViewController.swift; sourceTree = "<group>"; };
 		50C12599201F03FA0051D3E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		50C8B008201F32230014DCEF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		50C8B00D201F741F0014DCEF /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
@@ -178,7 +191,9 @@
 			files = (
 				50DF519320303B6B00F16FB4 /* AVKit.framework in Frameworks */,
 				50DF519120303B6100F16FB4 /* AVFoundation.framework in Frameworks */,
+				506C347820385413004E651C /* StoreKit.framework in Frameworks */,
 				096AE424CA2512F7B44FA95B /* Pods_Ngage.framework in Frameworks */,
+				506C34762038540D004E651C /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +232,8 @@
 		24D8ED7302CB9BA67FE4836A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				506C347720385413004E651C /* StoreKit.framework */,
+				506C34752038540D004E651C /* GameKit.framework */,
 				50DF519220303B6B00F16FB4 /* AVKit.framework */,
 				50DF519020303B6100F16FB4 /* AVFoundation.framework */,
 				0191F275C93C0A87A443C57B /* Pods_Ngage.framework */,
@@ -230,8 +247,11 @@
 			isa = PBXGroup;
 			children = (
 				5003679920270770007E693A /* WebViewTaskViewController.swift */,
+				506C34702037FD05004E651C /* TaskInstructionsViewController.swift */,
 				5078EA642029FC3F00E35591 /* MultipleChoiceTaskViewController.swift */,
+				506C347220381679004E651C /* CongratulationsMCTaskViewController.swift */,
 				50DF519420303BEA00F16FB4 /* VideoPlayerTaskViewController.swift */,
+				50A9C0EF20385D3400F46DE8 /* VideoTaskViewController.swift */,
 				50DF519620303FE200F16FB4 /* CameraTask.swift */,
 				5038847A20308ED80042C5A0 /* FBShareTaskViewController.swift */,
 			);
@@ -253,7 +273,7 @@
 		501AE42A201849490088983A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				501AE429201849490088983A /* Ngage.app */,
+				501AE429201849490088983A /* Ngage PH.app */,
 				501AE43D201849490088983A /* NgageTests.xctest */,
 				501AE448201849490088983A /* NgageUITests.xctest */,
 			);
@@ -263,6 +283,7 @@
 		501AE42B201849490088983A /* Ngage */ = {
 			isa = PBXGroup;
 			children = (
+				506C34742038538E004E651C /* Ngage PH.entitlements */,
 				501AE42C201849490088983A /* AppDelegate.swift */,
 				50FC56DE201BADE70015D4C5 /* Helper */,
 				501AE42E201849490088983A /* ViewController.swift */,
@@ -339,6 +360,7 @@
 				50F15E1B2022172600A3E589 /* MSISDNViewController.swift */,
 				506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */,
 				8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */,
+				506C3479203854B1004E651C /* ContactListViewController.swift */,
 				8CF7451F2029FD4D00C44C06 /* Market Place */,
 				5003679820270720007E693A /* Tasks */,
 				50FC56D9201BAA330015D4C5 /* Navigation Controller */,
@@ -441,7 +463,7 @@
 			);
 			name = Ngage;
 			productName = Ngage;
-			productReference = 501AE429201849490088983A /* Ngage.app */;
+			productReference = 501AE429201849490088983A /* Ngage PH.app */;
 			productType = "com.apple.product-type.application";
 		};
 		501AE43C201849490088983A /* NgageTests */ = {
@@ -500,6 +522,17 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					501AE43C201849490088983A = {
 						CreatedOnToolsVersion = 9.0;
@@ -718,10 +751,12 @@
 				8CDE84B8201F7CBA00C525A4 /* MissionModel.swift in Sources */,
 				5078EA652029FC3F00E35591 /* MultipleChoiceTaskViewController.swift in Sources */,
 				8C7C4B6720270C1C00795264 /* UserProfileViewController.swift in Sources */,
+				50A9C0F020385D3400F46DE8 /* VideoTaskViewController.swift in Sources */,
 				5020B5D0201C6E3F00A3933F /* TaskTableViewCell.swift in Sources */,
 				50A41D622025C5BD0062A287 /* Color.swift in Sources */,
 				50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */,
 				8CDE84B6201F7CA900C525A4 /* TaskModel.swift in Sources */,
+				506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */,
 				50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
@@ -734,6 +769,7 @@
 				8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */,
 				5038847B20308ED80042C5A0 /* FBShareTaskViewController.swift in Sources */,
 				501AE42D201849490088983A /* AppDelegate.swift in Sources */,
+				506C34712037FD05004E651C /* TaskInstructionsViewController.swift in Sources */,
 				8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */,
 				8CCD9CE6202C95C3000D887F /* MarketModel.swift in Sources */,
 				509C391A201BB21F0015A35B /* MainViewController.swift in Sources */,
@@ -757,6 +793,7 @@
 				503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */,
 				50C8B010201F7B780014DCEF /* ServiceManager.swift in Sources */,
 				50DF519520303BEA00F16FB4 /* VideoPlayerTaskViewController.swift in Sources */,
+				506C347A203854B1004E651C /* ContactListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +961,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Ngage/Ngage PH.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7R395RP3E5;
@@ -946,6 +984,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Ngage/Ngage PH.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7R395RP3E5;

@@ -18,6 +18,7 @@ class TaskViewController: UIViewController {
 
     var mission: MissionModel!
     var user = UserModel().mainUser()
+    var selectedTask : TaskModel!
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -45,14 +46,20 @@ class TaskViewController: UIViewController {
         
     }
     
-    func facebookShare() {
-        
+    func facebookShare(task: TaskModel) {
+        //FBShareTaskViewController
+        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
+        if let controller = storyBoard.instantiateViewController(withIdentifier: "FBShareTaskViewController") as? FBShareTaskViewController {
+            controller.task = task
+            controller.mission = mission
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     func playVideo(task: TaskModel) {
         
         let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
-        if let controller = storyBoard.instantiateViewController(withIdentifier: "VideoPlayerTaskViewController") as? VideoPlayerTaskViewController {
+        if let controller = storyBoard.instantiateViewController(withIdentifier: "VideoTaskViewController") as? VideoTaskViewController {
             controller.task = task
             controller.mission = mission
             self.navigationController?.pushViewController(controller, animated: true)
@@ -60,16 +67,28 @@ class TaskViewController: UIViewController {
     }
     
     func openQuestionaireWithMusic(task: TaskModel) {
-        
-        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
-        if let controller = storyBoard.instantiateViewController(withIdentifier: "MultipleChoiceTaskViewController") as? MultipleChoiceTaskViewController {
-            controller.task = task
-            controller.mission = mission
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        selectedTask = task
+        performSegue(withIdentifier: "taskInstructions", sender: task)
+//        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
+//        if let controller = storyBoard.instantiateViewController(withIdentifier: "MultipleChoiceTaskViewController") as? MultipleChoiceTaskViewController {
+//            controller.task = task
+//            controller.mission = mission
+//            self.navigationController?.pushViewController(controller, animated: true)
+//        }
         
     }
 
+    func openContactList(task: TaskModel) {
+        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
+        if let controller = storyBoard.instantiateViewController(withIdentifier: "ContactListViewController") as? ContactListViewController {
+//            controller.task = task
+//            controller.mission = mission
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    func didFinishTask(task: TaskModel) {
+        
+    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -109,6 +128,9 @@ class TaskViewController: UIViewController {
             controller.task = task
             controller.mission = mission
             controller.webLink = url
+        }else if let controller = segue.destination as? TaskInstructionsViewController {
+            controller.mission = mission
+            controller.task = task
         }
     }
     
@@ -129,7 +151,10 @@ extension TaskViewController : UITableViewDelegate {
         case 3:
             playVideo(task: task)
         case 5:
-            facebookShare()
+            facebookShare(task: task)
+            
+        case 6:
+            openContactList(task: task)
             
         case 7, 8, 17:
             openQuestionaireWithMusic(task: task)

@@ -70,9 +70,6 @@ extension WebViewTaskViewController : WKNavigationDelegate {
                 finishedTask()
             }
         }
-        print(navigationResponse.response.url)
-        
-        
     }
     
 }

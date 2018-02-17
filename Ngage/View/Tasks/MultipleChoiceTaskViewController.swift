@@ -35,6 +35,7 @@ class MultipleChoiceTaskViewController: UIViewController {
     var currentTime : Int!
     var currentPath = ""
     var playerView : TaskNameThatSountPlayerView?
+    var answeredCorrectly = 0
     
     var divider : CGFloat {
         return 100.0/CGFloat(maxTime)
@@ -45,7 +46,6 @@ class MultipleChoiceTaskViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupUI()
-        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +76,7 @@ class MultipleChoiceTaskViewController: UIViewController {
         button3.setAsDefault()
         button4.setAsDefault()
         setupNameThatSound()
+        setupQuestionaire()
         switch task.type {
         case 17:
             scheduleTimer()
@@ -183,7 +184,8 @@ class MultipleChoiceTaskViewController: UIViewController {
     
     func finishedTask() {
         self.player = nil
-        _ = self.navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "congratulations", sender: self)
+//        _ = self.navigationController?.popViewController(animated: true)
     }
     
     func setupNameThatSound() {
@@ -197,29 +199,48 @@ class MultipleChoiceTaskViewController: UIViewController {
         }
         viewContainer.addSubview(playerView!)
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let controller = segue.destination as? CongratulationsMCTaskViewController {
+            controller.task = task
+        }
     }
-    */
+    
     @IBAction func backButtonClicked(_ sender: UIBarButtonItem) {
         finishedTask()
     }
     @IBAction func answerButtonClicked(_ sender: UIButton) {
-        button1.animateUsing(tag: correctTag)
-        button2.animateUsing(tag: correctTag)
-        button3.animateUsing(tag: correctTag)
-        button4.animateUsing(tag: correctTag)
         if task.type != 17 {
+            if player == nil {
+                view.isUserInteractionEnabled = false
+                UIView.animate(withDuration: 1, animations: {
+                    self.playerView?.button.highlight()
+                }, completion: { (value) in
+                    self.view.isUserInteractionEnabled = true
+                })
+                return
+            }
+            
+            
             if timeLimit != nil {
                 timeLimit!.invalidate()
             }
             player = nil
         }
+        
+        if sender.tag == correctTag {
+            answeredCorrectly = answeredCorrectly + 1
+        }
+        button1.animateUsing(tag: correctTag)
+        button2.animateUsing(tag: correctTag)
+        button3.animateUsing(tag: correctTag)
+        button4.animateUsing(tag: correctTag)
+        
         answerdQuestion()
     }
     
