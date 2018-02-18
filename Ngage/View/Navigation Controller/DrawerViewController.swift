@@ -70,7 +70,7 @@ extension DrawerViewController : UITableViewDelegate {
         case 1:
             if indexPath.section == 1 {
                 identifier = "MarketNavigation"
-                storyboard = "HomeStoryboard"
+                storyboard = "RedeemStoryboard"
             } else {
                 return
             }

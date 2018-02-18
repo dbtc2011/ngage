@@ -23,10 +23,12 @@ class RedeemViewController: UIViewController {
     
     @IBOutlet weak var btnClose: UIButton!
     @IBOutlet weak var btnRedeem: UIButton!
+    @IBOutlet weak var btnSend: UIButton!
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblPoints: UILabel!
+    @IBOutlet weak var lblMerchant: UILabel!
     
     @IBOutlet weak var imgWallpaper: UIImageView!
     
@@ -41,8 +43,8 @@ class RedeemViewController: UIViewController {
     var player: AVPlayer?
     
     var audioTimer: Timer?
-    var audioDuration = 0
-    var audioInterval = CGFloat(0)
+    var audioDuration = 0.0
+    var audioInterval = 0.0
     
     //MARK: - View Life Cycle
 
@@ -89,6 +91,10 @@ class RedeemViewController: UIViewController {
             btnClose.layer.cornerRadius = btnClose.frame.width/2
         }
         
+        if btnSend != nil {
+            btnSend.layer.cornerRadius = 5.0
+        }
+        
         if viewTrack != nil {
             viewTrack.layer.cornerRadius = viewTrack.frame.width/2
         }
@@ -100,6 +106,10 @@ class RedeemViewController: UIViewController {
             lblDescription.text = serviceRedeemable.artist
             
             showPreview(forRedeemable: serviceRedeemable)
+            
+        case is MerchantRedeemableModel:
+            lblMerchant.text = lblMerchant.text?.replacingOccurrences(of: "<merchant>", with: redeemable.name)
+            btnRedeem.isEnabled = true
             
         default:
             break
@@ -130,8 +140,8 @@ class RedeemViewController: UIViewController {
                 self.btnRedeem.isEnabled = true
                 
                 let asset = AVURLAsset(url: url)
-                audioDuration = Int(CMTimeGetSeconds(asset.duration))
-                audioInterval = (viewLine.frame.width/CGFloat(audioDuration)) + 1
+                audioDuration = CMTimeGetSeconds(asset.duration)
+                audioInterval = Double(viewLine.frame.width)/audioDuration
                 self.enableTimer()
                 
                 self.player = AVPlayer(url: url)
@@ -189,9 +199,11 @@ class RedeemViewController: UIViewController {
     @objc func timerDidFire() {
         audioDuration -= 1
         
-        viewTrack.frame.origin.x += audioInterval
+        viewTrack.frame.origin.x += CGFloat(audioInterval)
         
         if audioDuration <= 0 {
+            disableTimer()
+        } else if viewTrack.frame.maxX >= viewLine.frame.maxX {
             disableTimer()
         }
     }
@@ -200,68 +212,74 @@ class RedeemViewController: UIViewController {
     
     @IBAction func didRedeem(_ sender: UIButton) {
         sender.isEnabled = false
-        activityIndicator.startAnimating()
+        activityIndicator?.startAnimating()
         
-        let serviceRedeemable = redeemable as! ServiceRedeemableModel
-        
-        switch serviceType {
-        case .Wallpaper:
-            downloadImage(with: serviceRedeemable.filePath, completionHandler: { (image) in
-                if let image = image {
+        if let serviceRedeemable = redeemable as? ServiceRedeemableModel {
+            switch serviceType {
+            case .Wallpaper:
+                downloadImage(with: serviceRedeemable.filePath, completionHandler: { (image) in
+                    if let image = image {
+                        DispatchQueue.main.async {
+                            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                        }
+                    }
+                    
                     DispatchQueue.main.async {
-                        UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                        self.activityIndicator.stopAnimating()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                })
+                
+            case .Ringtone:
+                let fileComponents = serviceRedeemable.filePath.components(separatedBy: "/")
+                
+                var fileURL = serviceRedeemable.filePath.replacingOccurrences(of: "http", with: "https")
+                fileURL = fileURL.replacingOccurrences(of: " ", with: "%20")
+                if let url = URL(string: fileURL), let data = NSData(contentsOf: url) {
+                    let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                    let fileURL = documentsDirectoryURL.appendingPathComponent(fileComponents.last!)
+                    print(fileURL)
+                    
+                    let success = data.write(to: fileURL, atomically: true)
+                    if success {
+                        DispatchQueue.main.async {
+                            if self.player != nil {
+                                self.player!.pause()
+                            }
+                            
+                            self.activityIndicator.stopAnimating()
+                            self.dismiss(animated: true, completion: nil)
+                            
+                            self.delegate.didSuccessfullyRedeem()
+                        }
+                        
+                        return
                     }
                 }
                 
                 DispatchQueue.main.async {
+                    let ac = UIAlertController(title: "Redeem error", message: "There was a problem redeeming this item. Please try again later.", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .default))
+                    self.present(ac, animated: true)
+                    
+                    if self.player != nil {
+                        self.player!.pause()
+                    }
+                    
                     self.activityIndicator.stopAnimating()
                     self.dismiss(animated: true, completion: nil)
                 }
-            })
-            
-        case .Ringtone:
-            let fileComponents = serviceRedeemable.filePath.components(separatedBy: "/")
-
-            var fileURL = serviceRedeemable.filePath.replacingOccurrences(of: "http", with: "https")
-            fileURL = fileURL.replacingOccurrences(of: " ", with: "%20")
-            if let url = URL(string: fileURL), let data = NSData(contentsOf: url) {
-                let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                let fileURL = documentsDirectoryURL.appendingPathComponent(fileComponents.last!)
-                print(fileURL)
                 
-                let success = data.write(to: fileURL, atomically: true)
-                if success {
-                    DispatchQueue.main.async {
-                        if self.player != nil {
-                            self.player!.pause()
-                        }
-                        
-                        self.activityIndicator.stopAnimating()
-                        self.dismiss(animated: true, completion: nil)
-                        
-                        self.delegate.didSuccessfullyRedeem()
-                    }
-                    
-                    return
-                }
+            default:
+                break
             }
+        } else if let _ = redeemable as? MerchantRedeemableModel  {
+            self.dismiss(animated: true, completion: nil)
             
-            DispatchQueue.main.async {
-                let ac = UIAlertController(title: "Redeem error", message: "There was a problem redeeming this item. Please try again later.", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Ok", style: .default))
-                self.present(ac, animated: true)
-                
-                if self.player != nil {
-                    self.player!.pause()
-                }
-                
-                self.activityIndicator.stopAnimating()
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-        default:
-            break
+            self.delegate.didSuccessfullyRedeem()
         }
+        
+        
     }
     
     @IBAction func didClose(_ sender: UIButton) {

@@ -20,6 +20,8 @@ class RedeemableTableViewCell: UITableViewCell {
     
     @IBOutlet weak var btnRedeem: UIButton!
     
+    @IBOutlet weak var imgArrow: UIImageView!
+    
     //MARK: - View Life Cycle
     
     override func awakeFromNib() {

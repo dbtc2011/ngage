@@ -88,6 +88,21 @@ class SingleMarketTableViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    private func presentRedeemVC(withIdentifier identifier: String, withServiceType type: ServicesType?) {
+        let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: Bundle.main)
+        let redeemVC = storyboard.instantiateViewController(withIdentifier: identifier) as! RedeemViewController
+        redeemVC.delegate = self
+        redeemVC.redeemable = selectedRedeemable
+        redeemVC.modalPresentationStyle = .overCurrentContext
+        redeemVC.modalTransitionStyle = .crossDissolve
+        
+        if let type = type {
+            redeemVC.serviceType = type
+        }
+        
+        self.present(redeemVC, animated: true, completion: nil)
+    }
+    
     //MARK: - API
     
     private func fetchServiceMarketRedeemables() {
@@ -339,14 +354,7 @@ class SingleMarketTableViewController: UITableViewController {
                 vcIdentifier = "redeemWallpaper"
             }
             
-            let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
-            let redeemVC = storyboard.instantiateViewController(withIdentifier: vcIdentifier) as! RedeemViewController
-            redeemVC.delegate = self
-            redeemVC.redeemable = selectedRedeemable
-            redeemVC.serviceType = serviceMarket.type
-            redeemVC.modalPresentationStyle = .overCurrentContext
-            redeemVC.modalTransitionStyle = .crossDissolve
-            self.present(redeemVC, animated: true, completion: nil)
+            presentRedeemVC(withIdentifier: vcIdentifier, withServiceType: serviceMarket.type)
             
         default:
             break
@@ -372,18 +380,32 @@ class SingleMarketTableViewController: UITableViewController {
         let redeemable = market.redeemables[indexPath.row]
         
         cell.lblTitle.text = redeemable.name
-        cell.lblPoint.text = "\(redeemable.pointsRequired)"
+        cell.lblPoint.text = "\(redeemable.pointsRequired)pt"
+        if redeemable.pointsRequired > 1 {
+            cell.lblPoint.text = cell.lblPoint.text! + "s"
+        }
         
         cell.btnRedeem.isHidden = false
         cell.btnRedeem.tag = indexPath.row
+        cell.imgArrow.isHidden = true
         
         switch market.marketType {
         case .Services:
             cell.lblSubtitle.text = (redeemable as! ServiceRedeemableModel).artist
             
         case .Merchant:
+            let text = NSMutableAttributedString(string: cell.lblTitle.text!,
+                                attributes: [NSAttributedStringKey.foregroundColor: UIColor.black,
+                                         NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 18.0)!])
+            let attributedText = NSMutableAttributedString(string: " eGift",
+                                    attributes: [NSAttributedStringKey.foregroundColor: UIColor().setColorUsingHex(hex: "31F7ED"),
+                                                NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 18.0)!])
+            text.append(attributedText)
+            cell.lblTitle.attributedText = text
+            
             cell.lblSubtitle.text = (redeemable as! MerchantRedeemableModel).tagline
             cell.btnRedeem.isHidden = true
+            cell.imgArrow.isHidden = false
             
         default:
              cell.lblSubtitle.text = ""
@@ -401,18 +423,26 @@ class SingleMarketTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard market.marketType == .Merchant else { return }
         
-        print("Redeem item at index \(indexPath.row)")
+        selectedRedeemable = market.redeemables[indexPath.row]
+        presentRedeemVC(withIdentifier: "redeemMerchant", withServiceType: nil)
     }
 }
 
 //MARK: - RedeemViewController Delegate
 extension SingleMarketTableViewController: RedeemViewControllerDelegate {
     func didSuccessfullyRedeem() {
-        let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
-        let redeemVC = storyboard.instantiateViewController(withIdentifier: "redeemSuccessful") as! RedeemViewController
-        redeemVC.redeemable = selectedRedeemable
-        redeemVC.modalPresentationStyle = .overCurrentContext
-        redeemVC.modalTransitionStyle = .crossDissolve
-        self.present(redeemVC, animated: true, completion: nil)
+        switch selectedRedeemable {
+        case is ServiceRedeemableModel:
+            presentRedeemVC(withIdentifier: "redeemSuccessful", withServiceType: nil)
+            
+        case is MerchantRedeemableModel:
+            let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: Bundle.main)
+            let redeemMerchantVC = storyboard.instantiateViewController(withIdentifier: "convertMerchantPoints") as! RedeemMerchantViewController
+            
+            self.navigationController?.pushViewController(redeemMerchantVC, animated: true)
+            
+        default:
+            break
+        }
     }
 }
