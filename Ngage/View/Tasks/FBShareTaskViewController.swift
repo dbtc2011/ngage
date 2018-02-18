@@ -46,10 +46,6 @@ class FBShareTaskViewController: UIViewController {
         RegisterService.getTaskContent(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", contentID: task.contentId, FBID: user.facebookId) { (result, error) in
             if let result = result {
                 if let contents = result["content"].array {
-//                    for content in contents {
-//                        let questionaire = QuestionsModel(info: content)
-//                        self.questions.append(questionaire)
-//                    }
                     if let dictionary = contents[0].dictionary {
                         var urlString = dictionary["URL"]?.string ?? ""
                         urlString = urlString.replacingOccurrences(of: "http", with: "https")
@@ -63,6 +59,13 @@ class FBShareTaskViewController: UIViewController {
                 }
                 
             }
+        }
+    }
+    
+    func didShare() {
+        if let controller = navigationController?.viewControllers[1] as? TaskViewController {
+            _ = navigationController?.popToViewController(controller, animated: true)
+            controller.didFinishTask(task: task)
         }
     }
 
@@ -83,12 +86,18 @@ class FBShareTaskViewController: UIViewController {
         
         let content = LinkShareContent(url: urlLink)
         let shareDialog = ShareDialog(content: content)
-        shareDialog.mode = ShareDialogMode.native
-        shareDialog.failsOnInvalidData = true
+        shareDialog.mode = ShareDialogMode.web
         shareDialog.completion = { result in
-            // Handle share results
+            switch result {
+            case .cancelled, .failed(_):
+                print("Did cancel")
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.didShare()
+                }
+            }
         }
-        
+    
         do {
             try shareDialog.show()
         } catch {
@@ -96,6 +105,5 @@ class FBShareTaskViewController: UIViewController {
         }
         
     }
-    
     
 }
