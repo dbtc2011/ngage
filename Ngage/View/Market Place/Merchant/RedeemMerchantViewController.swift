@@ -28,12 +28,6 @@ class RedeemMerchantViewController: UIViewController {
         
         setupInterface()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.navigationController?.isNavigationBarHidden = false
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -81,5 +75,9 @@ class RedeemMerchantViewController: UIViewController {
     }
     
     @IBAction func didPressContinue(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: Bundle.main)
+        let formVC = storyboard.instantiateViewController(withIdentifier: "redeemMerchantForm") as! RedeemMerchantFormViewController
+        
+        self.navigationController?.pushViewController(formVC, animated: true)
     }
 }
