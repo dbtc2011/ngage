@@ -92,8 +92,8 @@ class TaskViewController: UIViewController {
     func openContactList(task: TaskModel) {
         let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
         if let controller = storyBoard.instantiateViewController(withIdentifier: "ContactListViewController") as? ContactListViewController {
-//            controller.task = task
-//            controller.mission = mission
+            controller.task = task
+            controller.mission = mission
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }

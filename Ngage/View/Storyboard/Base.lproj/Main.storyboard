@@ -12,7 +12,7 @@
         <!--Navigation Controller-->
         <scene sceneID="V6Q-GJ-XhZ">
             <objects>
-                <navigationController id="JRz-wn-Yo4" customClass="NavigationController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="JRz-wn-Yo4" customClass="NavigationController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bjU-on-zA5">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -28,7 +28,7 @@
         <!--Onboarding View Controller-->
         <scene sceneID="PSA-eA-Wu1">
             <objects>
-                <viewController id="Huo-c6-a2L" customClass="OnboardingViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Huo-c6-a2L" customClass="OnboardingViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="18O-YT-fmF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -141,7 +141,7 @@
         <!--Ngage-->
         <scene sceneID="bLd-ox-n2H">
             <objects>
-                <viewController id="U43-TM-Y9Q" customClass="LoginViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="U43-TM-Y9Q" customClass="LoginViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hPm-Nd-LqL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,7 +235,7 @@
         <!--Ngage-->
         <scene sceneID="4gS-ju-Mze">
             <objects>
-                <viewController id="ZpE-Iy-b4g" customClass="ReferralCodeViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZpE-Iy-b4g" customClass="ReferralCodeViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nab-1v-T5Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -340,7 +340,7 @@
         <!--Ngage-->
         <scene sceneID="c7T-nL-BB5">
             <objects>
-                <viewController id="S9C-xz-ZdC" customClass="MSISDNViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="S9C-xz-ZdC" customClass="MSISDNViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RRD-fP-rpz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -457,7 +457,7 @@
         <!--Ngage-->
         <scene sceneID="i85-lb-9V7">
             <objects>
-                <viewController id="PWQ-pQ-bcW" customClass="PinVerificationViewController" customModule="Ngage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PWQ-pQ-bcW" customClass="PinVerificationViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TDJ-3f-Mf3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -577,7 +577,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_arrow_down" width="24" height="32"/>
+        <image name="ic_arrow_down" width="18" height="24"/>
         <image name="ic_referral" width="250" height="250"/>
         <image name="img_top_blue" width="414" height="272"/>
         <image name="intro_01" width="550" height="978"/>
