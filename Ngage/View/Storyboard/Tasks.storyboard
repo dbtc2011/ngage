@@ -56,7 +56,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJh-bh-1hD">
                                         <rect key="frame" x="187" y="60.5" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2c-N5-pd1">
@@ -215,50 +215,53 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wrong Answers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ax-jO-kMM">
-                                <rect key="frame" x="90" y="514" width="117" height="55"/>
+                                <rect key="frame" x="96" y="504" width="130" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="117" id="qdl-4a-7wc"/>
+                                    <constraint firstAttribute="width" constant="130" id="qdl-4a-7wc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct Answers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU9-Mr-XAg">
-                                <rect key="frame" x="90" y="459" width="150" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="Y0h-G7-GFG"/>
-                                    <constraint firstAttribute="width" constant="150" id="kTc-Ex-zGk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dYT-Hj-4ee">
-                                <rect key="frame" x="35" y="467" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="OAJ-7P-168"/>
-                                    <constraint firstAttribute="height" constant="40" id="cwk-Aa-qog"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUs-Ba-jpE">
-                                <rect key="frame" x="240" y="459.5" width="100" height="55"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vq0-9A-l0a">
-                                <rect key="frame" x="35" y="522" width="40" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct Answers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU9-Mr-XAg">
+                                <rect key="frame" x="96" y="449" width="150" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="GrO-Es-OTG"/>
-                                    <constraint firstAttribute="height" constant="40" id="W42-l8-APk"/>
+                                    <constraint firstAttribute="height" constant="55" id="Y0h-G7-GFG"/>
+                                    <constraint firstAttribute="width" constant="150" id="kTc-Ex-zGk"/>
                                 </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ck2-rS-IRP">
-                                <rect key="frame" x="207" y="514.5" width="133" height="55"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_quiz_correct" translatesAutoresizingMaskIntoConstraints="NO" id="dYT-Hj-4ee">
+                                <rect key="frame" x="35" y="454" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="OAJ-7P-168"/>
+                                    <constraint firstAttribute="height" constant="46" id="cwk-Aa-qog"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUs-Ba-jpE">
+                                <rect key="frame" x="246" y="449.5" width="94" height="55"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_quiz_wrong" translatesAutoresizingMaskIntoConstraints="NO" id="Vq0-9A-l0a">
+                                <rect key="frame" x="35" y="509" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="GrO-Es-OTG"/>
+                                    <constraint firstAttribute="height" constant="46" id="W42-l8-APk"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ck2-rS-IRP">
+                                <rect key="frame" x="226" y="504.5" width="114" height="55"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_confetti" translatesAutoresizingMaskIntoConstraints="NO" id="p9a-bf-zkl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.36078431370000003" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -267,9 +270,11 @@
                             <constraint firstItem="cLH-7R-Fe5" firstAttribute="leading" secondItem="hOz-fY-WcJ" secondAttribute="leading" constant="24" id="7Nk-gd-KLy"/>
                             <constraint firstItem="0ax-jO-kMM" firstAttribute="top" secondItem="BU9-Mr-XAg" secondAttribute="bottom" id="9Xp-nm-7c0"/>
                             <constraint firstItem="rMc-5z-iNe" firstAttribute="leading" secondItem="hOz-fY-WcJ" secondAttribute="leading" constant="70" id="APo-GY-V5f"/>
+                            <constraint firstItem="hOz-fY-WcJ" firstAttribute="trailing" secondItem="p9a-bf-zkl" secondAttribute="trailing" id="CMX-xW-HNF"/>
                             <constraint firstItem="Vq0-9A-l0a" firstAttribute="centerY" secondItem="0ax-jO-kMM" secondAttribute="centerY" id="Cbb-fq-wRg"/>
                             <constraint firstItem="Ck2-rS-IRP" firstAttribute="centerY" secondItem="0ax-jO-kMM" secondAttribute="centerY" id="CjN-u9-Ee5"/>
                             <constraint firstItem="GfD-Xu-eft" firstAttribute="centerX" secondItem="QIa-CN-v9X" secondAttribute="centerX" id="Ds2-O7-49U"/>
+                            <constraint firstItem="p9a-bf-zkl" firstAttribute="top" secondItem="4jU-8Y-5aS" secondAttribute="top" id="ENR-Ch-6Eo"/>
                             <constraint firstItem="wUs-Ba-jpE" firstAttribute="leading" secondItem="BU9-Mr-XAg" secondAttribute="trailing" id="IXb-1o-foK"/>
                             <constraint firstItem="wUs-Ba-jpE" firstAttribute="centerY" secondItem="BU9-Mr-XAg" secondAttribute="centerY" id="Jhv-Tz-ZUn"/>
                             <constraint firstItem="hOz-fY-WcJ" firstAttribute="trailing" secondItem="cLH-7R-Fe5" secondAttribute="trailing" constant="24" id="Ljz-64-sfe"/>
@@ -289,14 +294,22 @@
                             <constraint firstItem="Ck2-rS-IRP" firstAttribute="leading" secondItem="0ax-jO-kMM" secondAttribute="trailing" id="oWb-xO-i9E"/>
                             <constraint firstItem="Ck2-rS-IRP" firstAttribute="trailing" secondItem="wUs-Ba-jpE" secondAttribute="trailing" id="qcv-JO-xQM"/>
                             <constraint firstItem="pop-J2-Btc" firstAttribute="top" secondItem="hOz-fY-WcJ" secondAttribute="top" constant="15" id="rSB-6D-fe7"/>
+                            <constraint firstItem="p9a-bf-zkl" firstAttribute="leading" secondItem="hOz-fY-WcJ" secondAttribute="leading" id="sz3-Oj-peU"/>
                             <constraint firstItem="QIa-CN-v9X" firstAttribute="centerX" secondItem="4jU-8Y-5aS" secondAttribute="centerX" id="vuG-oV-yG9"/>
-                            <constraint firstItem="cLH-7R-Fe5" firstAttribute="top" secondItem="0ax-jO-kMM" secondAttribute="bottom" constant="30" id="xZ2-b9-5CG"/>
+                            <constraint firstItem="cLH-7R-Fe5" firstAttribute="top" secondItem="0ax-jO-kMM" secondAttribute="bottom" constant="40" id="xZ2-b9-5CG"/>
                             <constraint firstItem="pop-J2-Btc" firstAttribute="leading" secondItem="4jU-8Y-5aS" secondAttribute="leading" constant="15" id="xar-VK-lUc"/>
                             <constraint firstItem="0ax-jO-kMM" firstAttribute="top" secondItem="BU9-Mr-XAg" secondAttribute="bottom" id="xhf-5n-jzg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hOz-fY-WcJ"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="button" destination="cLH-7R-Fe5" id="4LQ-XW-0YV"/>
+                        <outlet property="imgTimer" destination="QIa-CN-v9X" id="mSs-nH-bE8"/>
+                        <outlet property="labelCorrect" destination="wUs-Ba-jpE" id="Z04-dO-FsO"/>
+                        <outlet property="labelTotal" destination="GfD-Xu-eft" id="iuj-K9-g4A"/>
+                        <outlet property="labelWrong" destination="Ck2-rS-IRP" id="WCf-z8-GfA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KES-23-VL2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -582,6 +595,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_quiz_correct" width="46" height="46"/>
+        <image name="ic_quiz_wrong" width="46" height="46"/>
+        <image name="img_confetti" width="414" height="450"/>
         <image name="img_congratulations" width="390" height="57"/>
         <image name="img_timer" width="200" height="200"/>
         <image name="img_total_score" width="250" height="59"/>

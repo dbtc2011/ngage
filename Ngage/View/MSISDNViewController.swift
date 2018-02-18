@@ -78,6 +78,9 @@ class MSISDNViewController: UIViewController {
                             
                         }else {
                             // Show Error
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "goToPinVerification", sender: self)
+                            }
                         }
                     }else {
                         // Show error

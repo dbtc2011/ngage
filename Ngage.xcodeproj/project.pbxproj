@@ -970,15 +970,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ngage/Ngage PH.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7R395RP3E5;
 				INFOPLIST_FILE = Ngage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zedph.Ngage;
 				PRODUCT_NAME = "Ngage PH";
-				PROVISIONING_PROFILE = "f243f0dc-c1d8-4cb2-a7eb-fe6222d6399c";
-				PROVISIONING_PROFILE_SPECIFIER = "ZedPh-Ngage";
+				PROVISIONING_PROFILE = "4b50b2d2-2dc9-4001-b1d8-11d055638c40";
+				PROVISIONING_PROFILE_SPECIFIER = NgageDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ngage/View/Ngage-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;

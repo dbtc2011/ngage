@@ -80,6 +80,7 @@ class TaskInstructionsViewController: UIViewController {
             controller.task = task
             controller.mission = mission
             controller.questions = questions
+            controller.maxTime = questions.count * 6
             self.navigationController?.pushViewController(controller, animated: true)
         }
         

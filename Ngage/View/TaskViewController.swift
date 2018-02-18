@@ -166,7 +166,7 @@ extension TaskViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let task = mission.tasks[indexPath.row]
-        
+        selectedTask = task
         switch task.type {
         case 1, 2, 12, 13, 14, 15:
             performSegue(withIdentifier: "webViewTask", sender: task)

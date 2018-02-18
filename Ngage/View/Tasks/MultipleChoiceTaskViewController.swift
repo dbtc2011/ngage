@@ -35,7 +35,8 @@ class MultipleChoiceTaskViewController: UIViewController {
     var currentTime : Int!
     var currentPath = ""
     var playerView : TaskNameThatSountPlayerView?
-    var answeredCorrectly = 0
+    var correctAnswer = 0
+    var wrongAnswer = 0
     
     var divider : CGFloat {
         return 100.0/CGFloat(maxTime)
@@ -208,6 +209,9 @@ class MultipleChoiceTaskViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if let controller = segue.destination as? CongratulationsMCTaskViewController {
             controller.task = task
+            controller.mission = mission
+            controller.correctAnswer = correctAnswer
+            controller.wrongAnswer = wrongAnswer
         }
     }
     
@@ -234,7 +238,9 @@ class MultipleChoiceTaskViewController: UIViewController {
         }
         
         if sender.tag == correctTag {
-            answeredCorrectly = answeredCorrectly + 1
+            correctAnswer = correctAnswer + 1
+        }else {
+            wrongAnswer = wrongAnswer + 1
         }
         button1.animateUsing(tag: correctTag)
         button2.animateUsing(tag: correctTag)

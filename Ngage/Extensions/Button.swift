@@ -20,9 +20,16 @@ extension UIButton {
         self.backgroundColor = UIColor().setColorUsingHex(hex: "#c2231d")
     }
     
+    func addLayer() {
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.white.cgColor
+    }
     func setAsDefault() {
         self.isEnabled = true
-        self.backgroundColor = UIColor().setColorUsingHex(hex: "#012b63")
+        
+        self.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.3)
+        addLayer()
+//        self.backgroundColor = UIColor().setColorUsingHex(hex: "#012b63")
     }
     
     func pulsate() {
