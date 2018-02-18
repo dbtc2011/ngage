@@ -68,6 +68,9 @@
 		8C3C3FC52039DDFF000EBEEC /* RedeemMerchantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FC42039DDFF000EBEEC /* RedeemMerchantViewController.swift */; };
 		8C3C3FC72039E66C000EBEEC /* MerchantLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FC62039E66C000EBEEC /* MerchantLocationsViewController.swift */; };
 		8C3C3FCA2039E95E000EBEEC /* RedeemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C3FC92039E95E000EBEEC /* RedeemStoryboard.storyboard */; };
+		8C3C3FCC2039F787000EBEEC /* RedeemMerchantFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FCB2039F787000EBEEC /* RedeemMerchantFormViewController.swift */; };
+		8C3C3FCE2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FCD2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift */; };
+		8C3C3FD02039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FCF2039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift */; };
 		8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47287A2022074400589594 /* ProfileTableViewCell.swift */; };
 		8C7C4B6720270C1C00795264 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */; };
 		8C7C4B69202737CC00795264 /* UserPointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C4B68202737CC00795264 /* UserPointsTableViewCell.swift */; };
@@ -175,6 +178,9 @@
 		8C3C3FC42039DDFF000EBEEC /* RedeemMerchantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemMerchantViewController.swift; sourceTree = "<group>"; };
 		8C3C3FC62039E66C000EBEEC /* MerchantLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLocationsViewController.swift; sourceTree = "<group>"; };
 		8C3C3FC92039E95E000EBEEC /* RedeemStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RedeemStoryboard.storyboard; sourceTree = "<group>"; };
+		8C3C3FCB2039F787000EBEEC /* RedeemMerchantFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemMerchantFormViewController.swift; sourceTree = "<group>"; };
+		8C3C3FCD2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantFormInfoTableViewCell.swift; sourceTree = "<group>"; };
+		8C3C3FCF2039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantFormMessageTableViewCell.swift; sourceTree = "<group>"; };
 		8C47287A2022074400589594 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		8C7C4B68202737CC00795264 /* UserPointsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPointsTableViewCell.swift; sourceTree = "<group>"; };
@@ -344,6 +350,8 @@
 				50DF518C203015E800F16FB4 /* TaskNameThatSountPlayerView.swift */,
 				50DF518E203015FC00F16FB4 /* TaskNameThatSoundView.xib */,
 				8CCD9CE3202C9392000D887F /* RedeemableTableViewCell.swift */,
+				8C3C3FCD2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift */,
+				8C3C3FCF2039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -420,6 +428,7 @@
 			children = (
 				8C3C3FC42039DDFF000EBEEC /* RedeemMerchantViewController.swift */,
 				8C3C3FC62039E66C000EBEEC /* MerchantLocationsViewController.swift */,
+				8C3C3FCB2039F787000EBEEC /* RedeemMerchantFormViewController.swift */,
 			);
 			path = Merchant;
 			sourceTree = "<group>";
@@ -780,6 +789,7 @@
 				50A41D622025C5BD0062A287 /* Color.swift in Sources */,
 				50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */,
 				8CDE84B6201F7CA900C525A4 /* TaskModel.swift in Sources */,
+				8C3C3FCC2039F787000EBEEC /* RedeemMerchantFormViewController.swift in Sources */,
 				50A9C0F220389B8B00F46DE8 /* InstallTaskViewController.swift in Sources */,
 				8C3C3FC72039E66C000EBEEC /* MerchantLocationsViewController.swift in Sources */,
 				506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */,
@@ -810,9 +820,11 @@
 				50C8B009201F32230014DCEF /* APIManager.swift in Sources */,
 				8CDE8497201F69C400C525A4 /* Ngage.xcdatamodeld in Sources */,
 				8CCD9CE8202C961C000D887F /* RedeemableModel.swift in Sources */,
+				8C3C3FCE2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift in Sources */,
 				50F15E1C2022172600A3E589 /* MSISDNViewController.swift in Sources */,
 				509C3918201BB20A0015A35B /* DrawerFrontViewController.swift in Sources */,
 				50C1259A201F03FA0051D3E8 /* LoginViewController.swift in Sources */,
+				8C3C3FD02039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift in Sources */,
 				50FC56E0201BADF80015D4C5 /* Util.swift in Sources */,
 				8C3C3FC52039DDFF000EBEEC /* RedeemMerchantViewController.swift in Sources */,
 				50814938201A2A4600D66514 /* MarketButtonCollectionViewCell.swift in Sources */,
