@@ -75,6 +75,7 @@
 		8CDE84B1201F743100C525A4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B0201F743100C525A4 /* CoreDataManager.swift */; };
 		8CDE84B6201F7CA900C525A4 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B5201F7CA900C525A4 /* TaskModel.swift */; };
 		8CDE84B8201F7CBA00C525A4 /* MissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE84B7201F7CBA00C525A4 /* MissionModel.swift */; };
+		8CE69F5C2039381200BE3806 /* RedeemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE69F5B2039381200BE3806 /* RedeemViewController.swift */; };
 		8CF7451E2029F8C400C44C06 /* MarketPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */; };
 		8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */; };
 		D726018ECEDF3F36F0A99D6C /* Pods_NgageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */; };
@@ -180,6 +181,7 @@
 		8CDE84B3201F7A7500C525A4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		8CDE84B5201F7CA900C525A4 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		8CDE84B7201F7CBA00C525A4 /* MissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionModel.swift; sourceTree = "<group>"; };
+		8CE69F5B2039381200BE3806 /* RedeemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemViewController.swift; sourceTree = "<group>"; };
 		8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPageViewController.swift; sourceTree = "<group>"; };
 		8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMarketTableViewController.swift; sourceTree = "<group>"; };
 		8EE64851D4D24F7D9D371790 /* Pods-NgageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NgageTests/Pods-NgageTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				50814935201A298600D66514 /* MarketViewController.swift */,
 				8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */,
 				8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */,
+				8CE69F5B2039381200BE3806 /* RedeemViewController.swift */,
 			);
 			path = "Market Place";
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
 				50E9D824202F63570018A3E5 /* QuestionsModel.swift in Sources */,
+				8CE69F5C2039381200BE3806 /* RedeemViewController.swift in Sources */,
 				5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */,
 				8CCD9CE4202C9392000D887F /* RedeemableTableViewCell.swift in Sources */,
 				502403B120258D4900180BAC /* Constants.swift in Sources */,

@@ -70,7 +70,7 @@ class MSISDNViewController: UIViewController {
                                         })
                                     }
                                 })
-                            }else {
+                            } else {
                                 DispatchQueue.main.async {
                                     self.performSegue(withIdentifier: "goToPinVerification", sender: self)
                                 }

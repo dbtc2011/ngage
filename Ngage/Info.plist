@@ -69,7 +69,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSContactsUsageDescription</key>
-    <string>This app requires contacts access to function properly.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app requires contacts access to function properly.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app requires access to Albums to function properly.</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 </dict>
 </plist>

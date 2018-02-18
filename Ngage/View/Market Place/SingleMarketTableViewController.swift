@@ -332,6 +332,22 @@ class SingleMarketTableViewController: UITableViewController {
         case .LoadList:
             didRedeemLoadList()
             
+        case .Services:
+            let serviceMarket = market as! ServiceMarketModel
+            var vcIdentifier = "redeemSoundtrack"
+            if serviceMarket.type == .Wallpaper {
+                vcIdentifier = "redeemWallpaper"
+            }
+            
+            let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
+            let redeemVC = storyboard.instantiateViewController(withIdentifier: vcIdentifier) as! RedeemViewController
+            redeemVC.delegate = self
+            redeemVC.redeemable = selectedRedeemable
+            redeemVC.serviceType = serviceMarket.type
+            redeemVC.modalPresentationStyle = .overCurrentContext
+            redeemVC.modalTransitionStyle = .crossDissolve
+            self.present(redeemVC, animated: true, completion: nil)
+            
         default:
             break
         }
@@ -386,5 +402,17 @@ class SingleMarketTableViewController: UITableViewController {
         guard market.marketType == .Merchant else { return }
         
         print("Redeem item at index \(indexPath.row)")
+    }
+}
+
+//MARK: - RedeemViewController Delegate
+extension SingleMarketTableViewController: RedeemViewControllerDelegate {
+    func didSuccessfullyRedeem() {
+        let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
+        let redeemVC = storyboard.instantiateViewController(withIdentifier: "redeemSuccessful") as! RedeemViewController
+        redeemVC.redeemable = selectedRedeemable
+        redeemVC.modalPresentationStyle = .overCurrentContext
+        redeemVC.modalTransitionStyle = .crossDissolve
+        self.present(redeemVC, animated: true, completion: nil)
     }
 }

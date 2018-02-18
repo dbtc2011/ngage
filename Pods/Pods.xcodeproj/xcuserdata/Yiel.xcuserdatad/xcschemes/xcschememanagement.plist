@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ActionSheetPicker-3 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
 		<key>ActionSheetPicker-3.0.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,7 +22,7 @@
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>FBSDKCoreKit.xcscheme</key>
 		<dict>
@@ -69,10 +74,20 @@
 			<key>orderHint</key>
 			<integer>12</integer>
 		</dict>
+		<key>SwiftyJSON 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>14</integer>
+		</dict>
+		<key>UICircularProgressRing 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 		<key>UICircularProgressRing.xcscheme</key>
 		<dict>
@@ -82,12 +97,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>055B42F3B41A1667610E02B13881E0D2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>332F91393FB1DE033D370B4CEDDD5FCF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>44CAD6CE523055ED339E87154473A254</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>44CE8A09F6FF808F3B80210292A0BF20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -118,6 +143,16 @@
 			<true/>
 		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>965699190112DDBD9B7864D091660DBC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AD033E696A59F4ABF398B283EAC91C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
