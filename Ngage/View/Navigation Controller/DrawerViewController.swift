@@ -79,10 +79,13 @@ extension DrawerViewController : UITableViewDelegate {
             identifier = "ProfileVC"
             storyboard = "HomeStoryboard"
             
+        case 4:
+            identifier = "HistoryNavi"
+            storyboard = "HomeStoryboard"
+            
         default:
             return
         }
-        
         self.showViewController(withIdentifier: identifier, fromStoryboard: storyboard)
     }
     

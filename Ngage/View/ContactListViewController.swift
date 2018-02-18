@@ -111,6 +111,13 @@ class ContactListViewController: UIViewController {
         }
     }
     
+    func didFinishTask() {
+        if let controller = navigationController?.viewControllers[1] as? TaskViewController {
+            _ = navigationController?.popToViewController(controller, animated: true)
+            controller.didFinishTask(task: task)
+        }
+    }
+    
     @IBAction func sendButtonClicked(_ sender: UIBarButtonItem) {
         if MFMessageComposeViewController.canSendText() {
             var recipients = [String]()
@@ -161,11 +168,20 @@ extension ContactListViewController : MFMessageComposeViewControllerDelegate {
             print("Message was cancelled")
             self.dismiss(animated: true, completion: nil)
         case MessageComposeResult.failed.rawValue:
-            print("Message failed")
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: false, completion: {
+                DispatchQueue.main.async {
+                    self.didFinishTask()
+                }
+            })
+            break
         case MessageComposeResult.sent.rawValue:
-            print("Message was sent")
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: false, completion: {
+                DispatchQueue.main.async {
+                    self.didFinishTask()
+                }
+            })
+            break
+            
         default:
             break;
         }

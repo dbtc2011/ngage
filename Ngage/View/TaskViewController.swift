@@ -9,6 +9,7 @@
 import UIKit
 
 import Social
+import UICircularProgressRing
 
 enum TaskAppCode : Int {
     case updateProfile = 1
@@ -16,6 +17,8 @@ enum TaskAppCode : Int {
 
 class TaskViewController: UIViewController {
 
+    @IBOutlet weak var progress: UICircularProgressRingView!
+    @IBOutlet weak var backgroundImage: UIImageView!
     var mission: MissionModel!
     var user = UserModel().mainUser()
     var selectedTask : TaskModel!
@@ -38,8 +41,6 @@ class TaskViewController: UIViewController {
         
     }
     
-   
-    
     override var shouldAutorotate: Bool {
         return true
     }
@@ -54,7 +55,14 @@ class TaskViewController: UIViewController {
     //MARK: - Functions
     func setupUI() {
         
-        
+        self.progress.setProgress(value: 0, animationDuration: 1)
+        if mission.imageTask!.data != nil {
+            if let imageData = UIImage(data: mission.imageTask!.data!) {
+                backgroundImage.image = imageData
+                
+            }
+        }
+        backgroundImage.addBlurEffect()
     }
     
     func facebookShare(task: TaskModel) {

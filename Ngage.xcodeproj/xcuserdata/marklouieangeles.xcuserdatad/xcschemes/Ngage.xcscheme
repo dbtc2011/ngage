@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "501AE428201849490088983A"
                BuildableName = "Ngage PH.app"
-               BlueprintName = "Ngage"
+               BlueprintName = "Ngage PH"
                ReferencedContainer = "container:Ngage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -55,7 +55,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "501AE428201849490088983A"
             BuildableName = "Ngage PH.app"
-            BlueprintName = "Ngage"
+            BlueprintName = "Ngage PH"
             ReferencedContainer = "container:Ngage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,7 +79,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "501AE428201849490088983A"
             BuildableName = "Ngage PH.app"
-            BlueprintName = "Ngage"
+            BlueprintName = "Ngage PH"
             ReferencedContainer = "container:Ngage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -98,7 +98,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "501AE428201849490088983A"
             BuildableName = "Ngage PH.app"
-            BlueprintName = "Ngage"
+            BlueprintName = "Ngage PH"
             ReferencedContainer = "container:Ngage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

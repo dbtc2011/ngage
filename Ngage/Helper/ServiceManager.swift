@@ -109,6 +109,13 @@ final class RegisterService: RequestManager {
         }
     }
     
+    class func getHistory(fbid: String, success: @escaping CompletionBlock) {
+        let parameter = ["{FBID}": fbid]
+        perform(task: .getHistory(parameter)) { (result, error) in
+            success(result, error)
+        }
+    }
+    
     
     
 }

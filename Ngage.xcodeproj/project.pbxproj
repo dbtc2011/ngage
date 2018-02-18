@@ -59,6 +59,7 @@
 		50DF519520303BEA00F16FB4 /* VideoPlayerTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF519420303BEA00F16FB4 /* VideoPlayerTaskViewController.swift */; };
 		50DF519720303FE200F16FB4 /* CameraTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF519620303FE200F16FB4 /* CameraTask.swift */; };
 		50E9D824202F63570018A3E5 /* QuestionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9D823202F63570018A3E5 /* QuestionsModel.swift */; };
+		50ED77F0203A1529004CAA74 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED77EF203A1529004CAA74 /* HistoryViewController.swift */; };
 		50F15E182022000700A3E589 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E172022000700A3E589 /* OnboardingViewController.swift */; };
 		50F15E1A2022167E00A3E589 /* ReferralCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */; };
 		50F15E1C2022172600A3E589 /* MSISDNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E1B2022172600A3E589 /* MSISDNViewController.swift */; };
@@ -167,6 +168,7 @@
 		50DF519420303BEA00F16FB4 /* VideoPlayerTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerTaskViewController.swift; sourceTree = "<group>"; };
 		50DF519620303FE200F16FB4 /* CameraTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTask.swift; sourceTree = "<group>"; };
 		50E9D823202F63570018A3E5 /* QuestionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsModel.swift; sourceTree = "<group>"; };
+		50ED77EF203A1529004CAA74 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		50F15E172022000700A3E589 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCodeViewController.swift; sourceTree = "<group>"; };
 		50F15E1B2022172600A3E589 /* MSISDNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSISDNViewController.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */,
 				8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */,
 				506C3479203854B1004E651C /* ContactListViewController.swift */,
+				50ED77EF203A1529004CAA74 /* HistoryViewController.swift */,
 				8CF7451F2029FD4D00C44C06 /* Market Place */,
 				5003679820270720007E693A /* Tasks */,
 				50FC56D9201BAA330015D4C5 /* Navigation Controller */,
@@ -478,9 +481,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		501AE428201849490088983A /* Ngage */ = {
+		501AE428201849490088983A /* Ngage PH */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 501AE451201849490088983A /* Build configuration list for PBXNativeTarget "Ngage" */;
+			buildConfigurationList = 501AE451201849490088983A /* Build configuration list for PBXNativeTarget "Ngage PH" */;
 			buildPhases = (
 				CA80786FF9F9DD2D1C4E554E /* [CP] Check Pods Manifest.lock */,
 				501AE425201849490088983A /* Sources */,
@@ -493,7 +496,7 @@
 			);
 			dependencies = (
 			);
-			name = Ngage;
+			name = "Ngage PH";
 			productName = Ngage;
 			productReference = 501AE429201849490088983A /* Ngage PH.app */;
 			productType = "com.apple.product-type.application";
@@ -591,7 +594,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				501AE428201849490088983A /* Ngage */,
+				501AE428201849490088983A /* Ngage PH */,
 				501AE43C201849490088983A /* NgageTests */,
 				501AE447201849490088983A /* NgageUITests */,
 			);
@@ -774,6 +777,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5038847C203098690042C5A0 /* UserModel.swift in Sources */,
+				50ED77F0203A1529004CAA74 /* HistoryViewController.swift in Sources */,
 				506B09CF20234AFC0017C481 /* PinVerificationViewController.swift in Sources */,
 				501AE42F201849490088983A /* ViewController.swift in Sources */,
 				8CF7451E2029F8C400C44C06 /* MarketPageViewController.swift in Sources */,
@@ -858,12 +862,12 @@
 /* Begin PBXTargetDependency section */
 		501AE43F201849490088983A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 501AE428201849490088983A /* Ngage */;
+			target = 501AE428201849490088983A /* Ngage PH */;
 			targetProxy = 501AE43E201849490088983A /* PBXContainerItemProxy */;
 		};
 		501AE44A201849490088983A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 501AE428201849490088983A /* Ngage */;
+			target = 501AE428201849490088983A /* Ngage PH */;
 			targetProxy = 501AE449201849490088983A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1118,7 +1122,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		501AE451201849490088983A /* Build configuration list for PBXNativeTarget "Ngage" */ = {
+		501AE451201849490088983A /* Build configuration list for PBXNativeTarget "Ngage PH" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				501AE452201849490088983A /* Debug */,
