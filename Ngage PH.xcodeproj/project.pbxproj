@@ -73,6 +73,7 @@
 		8C3C3FCE2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FCD2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift */; };
 		8C3C3FD02039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FCF2039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift */; };
 		8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47287A2022074400589594 /* ProfileTableViewCell.swift */; };
+		8C4EC038203B0200006A71A5 /* MerchantLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4EC037203B0200006A71A5 /* MerchantLocationTableViewCell.swift */; };
 		8C7C4B6720270C1C00795264 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */; };
 		8C7C4B69202737CC00795264 /* UserPointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C4B68202737CC00795264 /* UserPointsTableViewCell.swift */; };
 		8CCD9CE4202C9392000D887F /* RedeemableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD9CE3202C9392000D887F /* RedeemableTableViewCell.swift */; };
@@ -184,6 +185,7 @@
 		8C3C3FCD2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantFormInfoTableViewCell.swift; sourceTree = "<group>"; };
 		8C3C3FCF2039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantFormMessageTableViewCell.swift; sourceTree = "<group>"; };
 		8C47287A2022074400589594 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		8C4EC037203B0200006A71A5 /* MerchantLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLocationTableViewCell.swift; sourceTree = "<group>"; };
 		8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		8C7C4B68202737CC00795264 /* UserPointsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPointsTableViewCell.swift; sourceTree = "<group>"; };
 		8CCD9CE3202C9392000D887F /* RedeemableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemableTableViewCell.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				8CCD9CE3202C9392000D887F /* RedeemableTableViewCell.swift */,
 				8C3C3FCD2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift */,
 				8C3C3FCF2039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift */,
+				8C4EC037203B0200006A71A5 /* MerchantLocationTableViewCell.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */,
 				8CCD9CE4202C9392000D887F /* RedeemableTableViewCell.swift in Sources */,
 				502403B120258D4900180BAC /* Constants.swift in Sources */,
+				8C4EC038203B0200006A71A5 /* MerchantLocationTableViewCell.swift in Sources */,
 				50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */,
 				50366C83202C95E800AA9B1A /* View.swift in Sources */,
 				8C47287B2022074400589594 /* ProfileTableViewCell.swift in Sources */,
