@@ -357,10 +357,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_mission_white" translatesAutoresizingMaskIntoConstraints="NO" id="zNK-ea-BZt">
-                                <rect key="frame" x="0.0" y="203" width="375" height="464"/>
+                                <rect key="frame" x="0.0" y="223" width="375" height="444"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oz7-KJ-id2">
-                                <rect key="frame" x="10" y="20" width="50" height="30"/>
+                                <rect key="frame" x="10" y="40" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="MrW-dg-LH0"/>
                                     <constraint firstAttribute="height" constant="30" id="zZo-g4-FHa"/>
@@ -371,13 +371,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NGAGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJR-1t-evo">
-                                <rect key="frame" x="70" y="20" width="51" height="30"/>
+                                <rect key="frame" x="70" y="40" width="51" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOMPLISHMENTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noP-s9-rXG">
-                                <rect key="frame" x="0.0" y="205" width="375" height="18"/>
+                                <rect key="frame" x="0.0" y="225" width="375" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="ucd-lB-JMz"/>
                                 </constraints>
@@ -386,7 +386,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e36-pg-Ofb">
-                                <rect key="frame" x="50" y="263" width="315" height="310"/>
+                                <rect key="frame" x="50" y="283" width="315" height="310"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="310" id="WFj-84-lJQ"/>
@@ -457,7 +457,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNM-bh-bQj" customClass="UICircularProgressRingView" customModule="UICircularProgressRing">
-                                <rect key="frame" x="117.5" y="55" width="140" height="140"/>
+                                <rect key="frame" x="117.5" y="75" width="140" height="140"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="HNM-bh-bQj" secondAttribute="height" multiplier="1:1" id="XVc-eK-3j7"/>

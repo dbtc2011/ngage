@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Ngage.xcodeproj">
+      location = "group:/Users/marklouieangeles/Documents/Extra/Project/Zed/Ngage/Ngage PH.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

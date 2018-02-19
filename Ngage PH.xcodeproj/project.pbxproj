@@ -122,10 +122,10 @@
 		501AE433201849490088983A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		501AE436201849490088983A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		501AE438201849490088983A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		501AE43D201849490088983A /* NgageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NgageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		501AE43D201849490088983A /* Ngage PHTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ngage PHTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		501AE441201849490088983A /* NgageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NgageTests.swift; sourceTree = "<group>"; };
 		501AE443201849490088983A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		501AE448201849490088983A /* NgageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NgageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		501AE448201849490088983A /* Ngage PHUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ngage PHUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		501AE44C201849490088983A /* NgageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NgageUITests.swift; sourceTree = "<group>"; };
 		501AE44E201849490088983A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5020B5CD201C677A00A3933F /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
@@ -293,8 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				501AE429201849490088983A /* Ngage PH.app */,
-				501AE43D201849490088983A /* NgageTests.xctest */,
-				501AE448201849490088983A /* NgageUITests.xctest */,
+				501AE43D201849490088983A /* Ngage PHTests.xctest */,
+				501AE448201849490088983A /* Ngage PHUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -501,9 +501,9 @@
 			productReference = 501AE429201849490088983A /* Ngage PH.app */;
 			productType = "com.apple.product-type.application";
 		};
-		501AE43C201849490088983A /* NgageTests */ = {
+		501AE43C201849490088983A /* Ngage PHTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 501AE454201849490088983A /* Build configuration list for PBXNativeTarget "NgageTests" */;
+			buildConfigurationList = 501AE454201849490088983A /* Build configuration list for PBXNativeTarget "Ngage PHTests" */;
 			buildPhases = (
 				6F88F4257773F2E6D52F5F42 /* [CP] Check Pods Manifest.lock */,
 				501AE439201849490088983A /* Sources */,
@@ -517,14 +517,14 @@
 			dependencies = (
 				501AE43F201849490088983A /* PBXTargetDependency */,
 			);
-			name = NgageTests;
+			name = "Ngage PHTests";
 			productName = NgageTests;
-			productReference = 501AE43D201849490088983A /* NgageTests.xctest */;
+			productReference = 501AE43D201849490088983A /* Ngage PHTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		501AE447201849490088983A /* NgageUITests */ = {
+		501AE447201849490088983A /* Ngage PHUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 501AE457201849490088983A /* Build configuration list for PBXNativeTarget "NgageUITests" */;
+			buildConfigurationList = 501AE457201849490088983A /* Build configuration list for PBXNativeTarget "Ngage PHUITests" */;
 			buildPhases = (
 				FE75F2B99179231016878F34 /* [CP] Check Pods Manifest.lock */,
 				501AE444201849490088983A /* Sources */,
@@ -538,9 +538,9 @@
 			dependencies = (
 				501AE44A201849490088983A /* PBXTargetDependency */,
 			);
-			name = NgageUITests;
+			name = "Ngage PHUITests";
 			productName = NgageUITests;
-			productReference = 501AE448201849490088983A /* NgageUITests.xctest */;
+			productReference = 501AE448201849490088983A /* Ngage PHUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -581,7 +581,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 501AE424201849490088983A /* Build configuration list for PBXProject "Ngage" */;
+			buildConfigurationList = 501AE424201849490088983A /* Build configuration list for PBXProject "Ngage PH" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -595,8 +595,8 @@
 			projectRoot = "";
 			targets = (
 				501AE428201849490088983A /* Ngage PH */,
-				501AE43C201849490088983A /* NgageTests */,
-				501AE447201849490088983A /* NgageUITests */,
+				501AE43C201849490088983A /* Ngage PHTests */,
+				501AE447201849490088983A /* Ngage PHUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1057,7 +1057,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ngage.app/Ngage";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ngage PH.app/Ngage PH";
 			};
 			name = Debug;
 		};
@@ -1074,7 +1074,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ngage.app/Ngage";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ngage PH.app/Ngage PH";
 			};
 			name = Release;
 		};
@@ -1113,7 +1113,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		501AE424201849490088983A /* Build configuration list for PBXProject "Ngage" */ = {
+		501AE424201849490088983A /* Build configuration list for PBXProject "Ngage PH" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				501AE44F201849490088983A /* Debug */,
@@ -1131,7 +1131,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		501AE454201849490088983A /* Build configuration list for PBXNativeTarget "NgageTests" */ = {
+		501AE454201849490088983A /* Build configuration list for PBXNativeTarget "Ngage PHTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				501AE455201849490088983A /* Debug */,
@@ -1140,7 +1140,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		501AE457201849490088983A /* Build configuration list for PBXNativeTarget "NgageUITests" */ = {
+		501AE457201849490088983A /* Build configuration list for PBXNativeTarget "Ngage PHUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				501AE458201849490088983A /* Debug */,
