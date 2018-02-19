@@ -124,6 +124,23 @@ class MultipleChoiceTaskViewController: UIViewController {
         let question = questions[currentQuestion]
         currentPath = question.filePath
         correctTag = question.getCorrectAnswer() + 1
+        if question.isLogo {
+            let imageUrl = URL(string: currentPath)
+            self.getDataFromUrl(url: imageUrl!, completion: { (data, response, error) in
+                guard let data = data, error == nil else {
+                    print("No Image to download")
+                    return
+                    
+                }
+                print("Download Finished")
+                
+                DispatchQueue.main.async {
+                    self.playerView!.imageLogo.image = UIImage(data: data)
+                }
+            })
+            
+        }
+        
         UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
             if self.task.type != 17 {
                 self.playerView!.buttonWidth.constant = 42
@@ -190,6 +207,7 @@ class MultipleChoiceTaskViewController: UIViewController {
     }
     
     func setupNameThatSound() {
+        let question = questions[currentQuestion]
         playerView = (Bundle.main.loadNibNamed("TaskNameThatSoundView", owner: self, options: nil)?.first as! TaskNameThatSountPlayerView)
         playerView!.bounds = viewContainer.bounds
         playerView?.backgroundColor = UIColor.clear
@@ -197,8 +215,19 @@ class MultipleChoiceTaskViewController: UIViewController {
         playerView!.frame.origin = CGPoint(x: 0, y: 0)
         if task.type == 17 {
             playerView!.buttonWidth.constant = 0
+            if question.isLogo {
+                playerView!.labelBottomConstraint.constant = viewContainer.frame.size.height - 55
+                playerView!.imageLogo.isHidden = false
+                playerView!.imageLogo.backgroundColor = UIColor.clear
+            }
         }
         viewContainer.addSubview(playerView!)
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
     }
     
     // MARK: - Navigation

@@ -17,6 +17,8 @@ class TaskNameThatSountPlayerView: UIView {
     @IBOutlet weak var buttonLeading: NSLayoutConstraint!
     @IBOutlet weak var buttonWidth: NSLayoutConstraint!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var labelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageLogo: UIImageView!
     @IBOutlet weak var title: UILabel!
     var delegate : TaskNameThatSountPlayerViewDelegate?
     /*

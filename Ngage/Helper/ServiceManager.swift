@@ -116,6 +116,13 @@ final class RegisterService: RequestManager {
         }
     }
     
+    class func getMerchantInfo(merchantID: String, success: @escaping CompletionBlock) {
+        let parameter = ["merchantid": merchantID]
+        perform(task: .merchantInfo(parameter)) { (result, error) in
+            success(result, error)
+        }
+    }
+    
     
     
 }

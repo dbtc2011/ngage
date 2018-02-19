@@ -31,6 +31,7 @@ enum Task {
     case orderProcess(Parameters)
     case referralSMS(Parameters)
     case unlockMission(Parameters)
+    case merchantInfo(Parameters)
 }
 
 typealias SuccessBlock = (_ response: Any) -> Void
@@ -106,6 +107,9 @@ class RequestManager {
                 
             case let .unlockMission(parameters):
                 return RequestTask(urlRequest: Router.unlockMission(parameter: parameters))
+                
+            case let .merchantInfo(parameters):
+                return RequestTask(urlRequest: Router.merchantInfo(parameter: parameters))
             }
             
         }()

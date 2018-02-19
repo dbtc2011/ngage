@@ -15,6 +15,7 @@ class QuestionsModel: NSObject {
     var answer: String = ""
     var choices: [String] = []
     var filePath : String = ""
+    var isLogo = false
     
     convenience init(info : JSON) {
         self.init()
@@ -26,6 +27,10 @@ class QuestionsModel: NSObject {
             }
         }
         filePath = info["questionFilePath"].string ?? ""
+        isLogo = info["is_Image"].bool ?? false
+        if isLogo {
+            filePath = info["image"].string ?? ""
+        }
     }
     
     func getCorrectAnswer() -> Int {

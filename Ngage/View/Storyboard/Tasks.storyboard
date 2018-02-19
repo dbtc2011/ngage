@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TfK-lg-Wsl">
-                                <rect key="frame" x="0.0" y="64" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="270"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcw-Tf-tve" customClass="UICircularProgressRingView" customModule="UICircularProgressRing">
                                         <rect key="frame" x="137" y="10" width="100" height="100"/>
@@ -60,7 +60,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2c-N5-pd1">
-                                        <rect key="frame" x="0.0" y="120" width="375" height="130"/>
+                                        <rect key="frame" x="0.0" y="120" width="375" height="150"/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
@@ -74,14 +74,14 @@
                                     <constraint firstItem="pcw-Tf-tve" firstAttribute="centerX" secondItem="TfK-lg-Wsl" secondAttribute="centerX" id="SnL-L6-aGt"/>
                                     <constraint firstItem="IJh-bh-1hD" firstAttribute="centerX" secondItem="pcw-Tf-tve" secondAttribute="centerX" id="h0h-Gf-ACe"/>
                                     <constraint firstItem="IJh-bh-1hD" firstAttribute="centerY" secondItem="pcw-Tf-tve" secondAttribute="centerY" id="lUB-sp-Zu6"/>
-                                    <constraint firstAttribute="height" constant="250" id="x1U-zj-5Vw"/>
+                                    <constraint firstAttribute="height" constant="270" id="x1U-zj-5Vw"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W8D-9R-eFg">
-                                <rect key="frame" x="0.0" y="314" width="375" height="353"/>
+                                <rect key="frame" x="0.0" y="334" width="375" height="333"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYv-PE-1Me">
-                                        <rect key="frame" x="20" y="41.5" width="335" height="50"/>
+                                        <rect key="frame" x="20" y="31.5" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="7JP-cW-Cpl"/>
                                         </constraints>
@@ -91,7 +91,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJH-4g-lJC">
-                                        <rect key="frame" x="20" y="101.5" width="335" height="50"/>
+                                        <rect key="frame" x="20" y="91.5" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Tl3-q1-UQZ"/>
                                         </constraints>
@@ -101,7 +101,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUv-gE-PAp">
-                                        <rect key="frame" x="20" y="161.5" width="335" height="50"/>
+                                        <rect key="frame" x="20" y="151.5" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="maO-gp-eEH"/>
                                         </constraints>
@@ -111,7 +111,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osL-Es-XJT">
-                                        <rect key="frame" x="20" y="221.5" width="335" height="50"/>
+                                        <rect key="frame" x="20" y="211.5" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="mt4-ar-Vsn"/>
                                         </constraints>

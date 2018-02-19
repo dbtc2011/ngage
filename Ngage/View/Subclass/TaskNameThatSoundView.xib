@@ -34,14 +34,23 @@
                         <action selector="playButtonClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="5gB-g8-BMO"/>
                     </connections>
                 </button>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ecy-B3-eEc">
+                    <rect key="frame" x="81.5" y="50" width="250" height="170"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="twp-e9-oxv"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="hFA-bo-NJH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="7IT-rX-rZD"/>
                 <constraint firstItem="ldq-J6-4F0" firstAttribute="centerY" secondItem="hFA-bo-NJH" secondAttribute="centerY" id="PIH-vx-lnc"/>
                 <constraint firstItem="ldq-J6-4F0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="18" id="b4e-B2-1AI"/>
+                <constraint firstItem="ecy-B3-eEc" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="g5G-c6-l8p"/>
+                <constraint firstItem="ecy-B3-eEc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lMn-2b-Pd3"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hFA-bo-NJH" secondAttribute="trailing" constant="18" id="mAR-wO-pIS"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="hFA-bo-NJH" secondAttribute="bottom" constant="5" id="mUm-wY-nLk"/>
+                <constraint firstItem="ecy-B3-eEc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="50" id="reX-iR-mvS"/>
                 <constraint firstItem="hFA-bo-NJH" firstAttribute="leading" secondItem="ldq-J6-4F0" secondAttribute="trailing" id="xpJ-re-tMB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -49,6 +58,8 @@
             <connections>
                 <outlet property="button" destination="ldq-J6-4F0" id="IB3-5G-Z7X"/>
                 <outlet property="buttonWidth" destination="aGu-6A-jcv" id="FE5-GG-UFg"/>
+                <outlet property="imageLogo" destination="ecy-B3-eEc" id="aLr-TB-0Wa"/>
+                <outlet property="labelBottomConstraint" destination="mUm-wY-nLk" id="Rd8-MP-xzQ"/>
                 <outlet property="title" destination="hFA-bo-NJH" id="awK-hJ-VOx"/>
             </connections>
             <point key="canvasLocation" x="52.5" y="-87"/>

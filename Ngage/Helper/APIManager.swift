@@ -31,6 +31,7 @@ enum Router : URLRequestConvertible {
     case orderProcess(parameter : Parameters)
     case referralSMS(parameter : Parameters)
     case unlockMission(parameter : Parameters)
+    case merchantInfo(parameter : Parameters)
 
     var baseURL : String {
         if Util.environment == Environment.dev {
@@ -70,6 +71,7 @@ enum Router : URLRequestConvertible {
         static let orderProcess = "svc/api/OrderProcess"
         static let referralSMS = "svc/api/WebInviteSMS"
         static let unlockMission = "svc/api/UnlockMission"
+        static let merchantInfo = "svc/api/MerchantInfo"
     }
     
     func asURLRequest() throws -> URLRequest {
@@ -135,6 +137,9 @@ enum Router : URLRequestConvertible {
                 
             case let .unlockMission(parameters):
                 return (Router.Endpoint.unlockMission, parameters)
+                
+            case let .merchantInfo(parameters):
+                return (Router.Endpoint.merchantInfo, parameters)
             }
         }()
         
