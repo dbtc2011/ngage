@@ -19,6 +19,8 @@ class HomeViewController: DrawerFrontViewController {
         setUIColor(color: UIColor.lightGray)
         setupUI()
         getMission()
+        
+        TimeManager.sharedInstance.setTimer()
 
         // Do any additional setup after loading the view.
     }

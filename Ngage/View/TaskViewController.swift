@@ -20,13 +20,14 @@ class TaskViewController: UIViewController {
     @IBOutlet weak var progress: UICircularProgressRingView!
     @IBOutlet weak var backgroundImage: UIImageView!
     var mission: MissionModel!
+    var tasks : [TaskModel] = []
     var user = UserModel().mainUser()
     var selectedTask : TaskModel!
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tasks = mission.tasks.reversed()
         setupUI()
         // Do any additional setup after loading the view.
     }
@@ -172,33 +173,34 @@ class TaskViewController: UIViewController {
 
 extension TaskViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let task = mission.tasks[indexPath.row]
-        selectedTask = task
-        switch task.type {
-        case 1, 2, 12, 13, 14, 15:
-            performSegue(withIdentifier: "webViewTask", sender: task)
-        case 3:
-            playVideo(task: task)
-        case 5:
-            facebookShare(task: task)
-            
-        case 6:
-            openContactList(task: task)
-            
-        case 7, 8, 17:
-            openQuestionaireWithMusic(task: task)
-            
-        case 9:
-            installTask(task: task)
-            
-        case 10:
-            showPhotoPopOver()
-            
-        default:
-            break
+        let task = tasks[indexPath.row]
+        if task.state == TaskStatus.enabled.rawValue {
+            selectedTask = task
+            switch task.type {
+            case 1, 2, 12, 13, 14, 15:
+                performSegue(withIdentifier: "webViewTask", sender: task)
+            case 3:
+                playVideo(task: task)
+            case 5:
+                facebookShare(task: task)
+                
+            case 6:
+                openContactList(task: task)
+                
+            case 7, 8, 17:
+                openQuestionaireWithMusic(task: task)
+                
+            case 9:
+                installTask(task: task)
+                
+            case 10:
+                showPhotoPopOver()
+                
+            default:
+                break
+            }
         }
-        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -208,14 +210,14 @@ extension TaskViewController : UITableViewDelegate {
 
 extension TaskViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mission.tasks.count
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell") as! TaskTableViewCell
         let color = UIColor().setColorUsingHex(hex: mission.colorBackground)
-        cell.setupUsing(task: mission.tasks[indexPath.row], color: color)
+        cell.setupUsing(task: tasks[indexPath.row], color: color)
         return cell
     }
 }

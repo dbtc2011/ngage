@@ -63,6 +63,7 @@
 		50F15E182022000700A3E589 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E172022000700A3E589 /* OnboardingViewController.swift */; };
 		50F15E1A2022167E00A3E589 /* ReferralCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */; };
 		50F15E1C2022172600A3E589 /* MSISDNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E1B2022172600A3E589 /* MSISDNViewController.swift */; };
+		50FA4AF9203CB236006CC8BD /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FA4AF8203CB236006CC8BD /* TimeManager.swift */; };
 		50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DA201BAAC70015D4C5 /* DrawerViewController.swift */; };
 		50FC56DD201BACFD0015D4C5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DC201BACFD0015D4C5 /* NavigationController.swift */; };
 		50FC56E0201BADF80015D4C5 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DF201BADF80015D4C5 /* Util.swift */; };
@@ -172,6 +173,7 @@
 		50F15E172022000700A3E589 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		50F15E192022167E00A3E589 /* ReferralCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCodeViewController.swift; sourceTree = "<group>"; };
 		50F15E1B2022172600A3E589 /* MSISDNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSISDNViewController.swift; sourceTree = "<group>"; };
+		50FA4AF8203CB236006CC8BD /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		50FC56DA201BAAC70015D4C5 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
 		50FC56DC201BACFD0015D4C5 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		50FC56DF201BADF80015D4C5 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				50C8B00D201F741F0014DCEF /* RequestManager.swift */,
 				50C8B00F201F7B780014DCEF /* ServiceManager.swift */,
 				8CDE84B0201F743100C525A4 /* CoreDataManager.swift */,
+				50FA4AF8203CB236006CC8BD /* TimeManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -799,6 +802,7 @@
 				506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */,
 				50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
+				50FA4AF9203CB236006CC8BD /* TimeManager.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
 				50E9D824202F63570018A3E5 /* QuestionsModel.swift in Sources */,
 				8CE69F5C2039381200BE3806 /* RedeemViewController.swift in Sources */,

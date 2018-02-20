@@ -84,7 +84,9 @@ extension TaskViewController : UIImagePickerControllerDelegate {
             ]
             
             Alamofire.upload(multipartFormData: { (multipartFormData) in
-                multipartFormData.append(UIImageJPEGRepresentation(chosenImage, 1)!, withName: "file", fileName: "ios-upload.jpeg", mimeType: "image/jpeg")
+//                multipartFormData.append(UIImageJPEGRepresentation(chosenImage, 1)!, withName: "file", fileName: "ios-upload.jpeg", mimeType: "image/jpeg")
+//                multipartFormData.append(UIImageJPEGRepresentation(chosenImage, 1)!, withName: "file")
+                multipartFormData.append(UIImageJPEGRepresentation(chosenImage, 1)!, withName: "file", mimeType: "Photo")
                 for (key, value) in parameters {
                     multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
                 }

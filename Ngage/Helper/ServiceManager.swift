@@ -123,7 +123,11 @@ final class RegisterService: RequestManager {
         }
     }
     
-    
+    class func getServerTime(success: @escaping CompletionBlock) {
+        perform(task: .getServerTime([:])) { (result, error) in
+            success(result, error)
+        }
+    }
     
 }
 
