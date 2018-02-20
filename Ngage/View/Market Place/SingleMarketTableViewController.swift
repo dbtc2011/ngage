@@ -22,11 +22,8 @@ class SingleMarketTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        registerCell()
         user = UserModel().mainUser()
         initializeMarketRedeemables()
-    
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,10 +32,6 @@ class SingleMarketTableViewController: UITableViewController {
     }
     
     //MARK: - Methods
-    
-    private func registerCell() {
-        
-    }
     
     private func initializeMarketRedeemables() {
         guard market.redeemables == nil else { return }
@@ -438,6 +431,7 @@ extension SingleMarketTableViewController: RedeemViewControllerDelegate {
         case is MerchantRedeemableModel:
             let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: Bundle.main)
             let redeemMerchantVC = storyboard.instantiateViewController(withIdentifier: "convertMerchantPoints") as! RedeemMerchantViewController
+            redeemMerchantVC.redeemable = selectedRedeemable as! MerchantRedeemableModel
             
             self.navigationController?.pushViewController(redeemMerchantVC, animated: true)
             

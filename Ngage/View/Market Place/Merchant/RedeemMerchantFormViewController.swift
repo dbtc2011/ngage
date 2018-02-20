@@ -8,13 +8,6 @@
 
 import UIKit
 
-struct RedeemMerchantForm {
-    var fullName = ""
-    var mobileNumber = ""
-    var emailAddress = ""
-    var message = ""
-}
-
 class RedeemMerchantFormViewController: UIViewController {
 
     //MARK: - Properties
@@ -24,11 +17,13 @@ class RedeemMerchantFormViewController: UIViewController {
     
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var tblForm: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnNext: UIButton!
     
-    var formDetails = RedeemMerchantForm()
+    var redeemable: MerchantRedeemableModel!
+    var formDetails: RedeemMerchantForm!
     
     //MARK: - View Life Cycle
     
@@ -52,6 +47,14 @@ class RedeemMerchantFormViewController: UIViewController {
         btnBack.layer.cornerRadius = 5.0
         btnNext.layer.cornerRadius = 5.0
         
+        var userPoints = 0
+        if let points = Int(UserModel().mainUser().points) {
+            userPoints = points
+        }
+        
+        lblConvertedPoints.text = formDetails.points + " pts."
+        lblTotalPoints.text = "\(userPoints) pts."
+        
         tblForm.reloadData()
     }
     
@@ -65,13 +68,77 @@ class RedeemMerchantFormViewController: UIViewController {
         textField.inputAccessoryView = keyboardToolbar
     }
     
+    private func displayAlert(withMessage message: String) {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            self.btnNext.isEnabled = true
+            
+            let alert = UIAlertController(title: "Ngage", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    //MARK: - API
+    
+    private func redeemFromMerchant() {
+        activityIndicator.startAnimating()
+        
+        RegisterService.orderProcess(merchant: redeemable, redeemDetails: formDetails) { (json, error) in
+            guard error == nil else {
+                self.displayAlert(withMessage: error!.localizedDescription)
+                return
+            }
+            
+            guard json != nil else {
+                self.displayAlert(withMessage: "An error has occured")
+                return
+            }
+            
+            let resultDict = json!.dictionary
+            guard resultDict != nil else {
+                self.displayAlert(withMessage: "An error has occured")
+                return
+            }
+            
+            if let points = resultDict!["Points"], let casted = points.string {
+                CoreDataManager.sharedInstance.updateUserPoints(withPoints: casted, completionHandler: { (result) in
+                    if result == .Error {
+                        print(CoreDataManager.sharedInstance.errorDescription)
+                    }
+                })
+            }
+            
+            if let statusCode = resultDict!["statusCode"], let castedStatusCode = statusCode.int {
+                var alertMessage = "Successfully redeemed item"
+                if castedStatusCode != 200 {
+                    if let status = resultDict!["status"], let castedStatus = status.string {
+                        alertMessage = castedStatus
+                    }
+                }
+                
+                self.displayAlert(withMessage: alertMessage)
+            }
+        }
+    }
+    
     //MARK: - IBAction Delegate
     
     @IBAction func didPressBack(_ sender: UIButton) {
+        sender.isEnabled = false
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func didPressNext(_ sender: UIButton) {
+        sender.isEnabled = false
+        
+        guard formDetails.fullName != "" && formDetails.emailAddress != "" && formDetails.mobileNumber != "" else {
+            displayAlert(withMessage: "Incomplete input")
+                    
+            return
+        }
+        
+        redeemFromMerchant()
     }
 }
 

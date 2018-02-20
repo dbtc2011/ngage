@@ -8,6 +8,14 @@
 
 import UIKit
 
+struct RedeemMerchantForm {
+    var fullName = ""
+    var mobileNumber = ""
+    var emailAddress = ""
+    var message = ""
+    var points = ""
+}
+
 class RedeemMerchantViewController: UIViewController {
 
     //MARK: - Properties
@@ -20,6 +28,9 @@ class RedeemMerchantViewController: UIViewController {
     
     @IBOutlet weak var btnLocations: UIButton!
     @IBOutlet weak var btnContinue: UIButton!
+    
+    var redeemable: MerchantRedeemableModel!
+    var formDetails = RedeemMerchantForm()
     
     //MARK: - View Life Cycle
     
@@ -68,6 +79,7 @@ class RedeemMerchantViewController: UIViewController {
     @IBAction func didPressLocations(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: Bundle.main)
         let locationsVC = storyboard.instantiateViewController(withIdentifier: "merchantLocations") as! MerchantLocationsViewController
+        locationsVC.merchantId = "\(redeemable.id)"
         locationsVC.modalPresentationStyle = .overCurrentContext
         locationsVC.modalTransitionStyle = .crossDissolve
         
@@ -75,9 +87,27 @@ class RedeemMerchantViewController: UIViewController {
     }
     
     @IBAction func didPressContinue(_ sender: UIButton) {
+        guard formDetails.points != "" else {
+            let ac = UIAlertController(title: "Ngage", message: "Input points to convert", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(ac, animated: true)
+            
+            return
+        }
+        
         let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: Bundle.main)
         let formVC = storyboard.instantiateViewController(withIdentifier: "redeemMerchantForm") as! RedeemMerchantFormViewController
+        formVC.formDetails = formDetails
+        formVC.redeemable = redeemable
         
         self.navigationController?.pushViewController(formVC, animated: true)
+    }
+}
+
+//MARK: - Textfield Delegate
+
+extension RedeemMerchantViewController:  UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        formDetails.points = textField.text!
     }
 }

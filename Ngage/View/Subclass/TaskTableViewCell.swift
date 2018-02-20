@@ -69,7 +69,7 @@ class TaskTableViewCell: UITableViewCell {
 
         }
         title.text = task.info
-        labelReward.text = task.rewardInfo
+        labelReward.text = "\(task.reward)pts"
         rightIcon.layer.cornerRadius = 20
         leftIcon.layer.cornerRadius = 15
     }

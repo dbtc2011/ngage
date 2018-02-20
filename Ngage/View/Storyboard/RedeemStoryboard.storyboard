@@ -599,7 +599,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0o7-mx-dNV">
-                                <rect key="frame" x="41" y="198.5" width="292" height="270"/>
+                                <rect key="frame" x="41" y="183.5" width="292" height="300"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample_picture" translatesAutoresizingMaskIntoConstraints="NO" id="4Qj-qq-WL8">
                                         <rect key="frame" x="111" y="15" width="70" height="70"/>
@@ -609,16 +609,16 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Redeem from &lt;merchant&gt; or send as a gift to a friend?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvc-3B-nnh">
-                                        <rect key="frame" x="12" y="95" width="268" height="45"/>
+                                        <rect key="frame" x="12" y="95" width="268" height="65"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="lCA-CU-nde"/>
+                                            <constraint firstAttribute="height" constant="65" id="lCA-CU-nde"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not refundable and should only be sent to prepaid numbers." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o85-tf-Ldh">
-                                        <rect key="frame" x="12" y="148" width="268" height="52"/>
+                                        <rect key="frame" x="12" y="168" width="268" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="uJn-k1-Qa4"/>
                                         </constraints>
@@ -627,7 +627,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxX-6C-Tat">
-                                        <rect key="frame" x="150.5" y="220" width="81" height="35"/>
+                                        <rect key="frame" x="150.5" y="250" width="81" height="35"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <state key="normal" title="Send">
@@ -638,7 +638,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OB-Sc-xuV">
-                                        <rect key="frame" x="60" y="220" width="81" height="35"/>
+                                        <rect key="frame" x="60" y="250" width="81" height="35"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="BUk-Ie-Ipv"/>
@@ -655,7 +655,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="270" id="0qc-lM-9j7"/>
+                                    <constraint firstAttribute="height" constant="300" id="0qc-lM-9j7"/>
                                     <constraint firstItem="fxX-6C-Tat" firstAttribute="width" secondItem="5OB-Sc-xuV" secondAttribute="width" id="7da-Xg-GPg"/>
                                     <constraint firstAttribute="trailing" secondItem="o85-tf-Ldh" secondAttribute="trailing" constant="12" id="AAC-Z6-BcT"/>
                                     <constraint firstItem="4Qj-qq-WL8" firstAttribute="centerX" secondItem="0o7-mx-dNV" secondAttribute="centerX" id="B7o-X8-18o"/>
@@ -809,6 +809,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pUZ-up-LTC" id="UWU-7Y-HLY"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pts." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mE-LN-zvv">
                                 <rect key="frame" x="240" y="393" width="42" height="21"/>
@@ -913,15 +916,15 @@
                                             <constraint firstAttribute="height" constant="1" id="GAq-9L-yKY"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h1R-2a-oYn">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="160" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h1R-2a-oYn">
                                         <rect key="frame" x="20" y="82" width="302" height="475"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" id="dpd-KW-Drt">
-                                                <rect key="frame" x="0.0" y="28" width="302" height="150"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" id="dpd-KW-Drt" customClass="MerchantLocationTableViewCell" customModule="Ngage_PH" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="302" height="160"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dpd-KW-Drt" id="M1l-jz-J2a">
-                                                    <rect key="frame" x="0.0" y="0.0" width="302" height="150"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="302" height="160"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alabang Town Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="rUe-Te-Fih">
@@ -945,11 +948,13 @@ Muntinlupa</string>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0923) 705-2281" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJU-8d-do0">
-                                                            <rect key="frame" x="15" y="110" width="272" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJU-8d-do0">
+                                                            <rect key="frame" x="15" y="110" width="272" height="40"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="jop-eB-ccO"/>
+                                                                <constraint firstAttribute="height" constant="40" id="jop-eB-ccO"/>
                                                             </constraints>
+                                                            <string key="text">(0923) 705-2281
+(0923) 705-2281</string>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -967,6 +972,11 @@ Muntinlupa</string>
                                                         <constraint firstItem="rUe-Te-Fih" firstAttribute="leading" secondItem="M1l-jz-J2a" secondAttribute="leadingMargin" id="cj1-Ld-MVq"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="lblAddress" destination="NlB-cV-OVP" id="wYl-j4-vxv"/>
+                                                    <outlet property="lblContactNumbers" destination="vJU-8d-do0" id="1AI-Py-HAi"/>
+                                                    <outlet property="lblTitle" destination="rUe-Te-Fih" id="46F-0t-BpV"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -1231,6 +1241,10 @@ Muntinlupa</string>
                                     <constraint firstAttribute="trailing" secondItem="dbS-RK-Lsq" secondAttribute="trailing" constant="8" id="xZq-g0-Ymp"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="S5l-dc-k7N">
+                                <rect key="frame" x="169" y="325" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.25358551620000003" blue="0.57720652059999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.25358551620000003" blue="0.57720652059999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1252,8 +1266,10 @@ Muntinlupa</string>
                             <constraint firstItem="FsU-5g-UFE" firstAttribute="height" secondItem="sjt-J5-dsO" secondAttribute="height" id="gJ5-ab-YXS"/>
                             <constraint firstItem="hCX-ae-yKD" firstAttribute="leading" secondItem="thf-QR-LWX" secondAttribute="leadingMargin" constant="4" id="ibe-15-bNX"/>
                             <constraint firstItem="sjt-J5-dsO" firstAttribute="leading" secondItem="EkM-Dv-Sbr" secondAttribute="leading" constant="20" id="kU2-eK-DWm"/>
+                            <constraint firstItem="S5l-dc-k7N" firstAttribute="centerX" secondItem="EkM-Dv-Sbr" secondAttribute="centerX" id="p9E-FL-9wD"/>
                             <constraint firstItem="sjt-J5-dsO" firstAttribute="top" secondItem="hCX-ae-yKD" secondAttribute="bottom" constant="20" id="qGd-4e-ZCR"/>
                             <constraint firstItem="OJG-Ef-DXD" firstAttribute="trailing" secondItem="IkX-AN-dcn" secondAttribute="trailing" id="sHU-zd-i3X"/>
+                            <constraint firstItem="S5l-dc-k7N" firstAttribute="centerY" secondItem="EkM-Dv-Sbr" secondAttribute="centerY" id="wFA-DK-BfS"/>
                             <constraint firstItem="PYy-OX-6BJ" firstAttribute="top" secondItem="EkM-Dv-Sbr" secondAttribute="top" constant="4" id="ylf-H5-FUa"/>
                             <constraint firstItem="hCX-ae-yKD" firstAttribute="top" secondItem="cmR-DT-h3X" secondAttribute="bottom" constant="17" id="zUs-ga-UCy"/>
                         </constraints>
@@ -1261,6 +1277,7 @@ Muntinlupa</string>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="S5l-dc-k7N" id="JLM-HF-ev0"/>
                         <outlet property="btnBack" destination="nak-V3-HhO" id="ieR-sD-TUW"/>
                         <outlet property="btnNext" destination="3om-eW-OU7" id="8Ke-16-NTX"/>
                         <outlet property="lblConvertedPoints" destination="OJG-Ef-DXD" id="fYx-c7-sOP"/>

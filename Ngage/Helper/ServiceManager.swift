@@ -129,5 +129,22 @@ final class RegisterService: RequestManager {
         }
     }
     
+    class func orderProcess(merchant: MerchantRedeemableModel, redeemDetails: RedeemMerchantForm, success: @escaping CompletionBlock) {
+        let user = UserModel().mainUser()
+        var previousPoints = 0
+        var itemPoints = 0
+        if let points = Int(user.points) {
+            previousPoints = points
+        }
+        if let points = Int(redeemDetails.points) {
+            itemPoints = points
+        }
+        let currentPoints = previousPoints - itemPoints
+        
+        let parameters = ["merchantid": merchant.id, "sendername": user.name, "sendermobile": user.mobileNumber, "senderemail": user.emailAddress, "recipientname": redeemDetails.fullName, "recipientmobile": redeemDetails.mobileNumber, "recipientemail": redeemDetails.emailAddress, "FBID": user.facebookId, "Prev_Points": previousPoints, "Current_Points": currentPoints, "Points": itemPoints, "MerchantName": merchant.name] as [String : Any]
+        perform(task: .orderProcess(parameters)) { (result, error) in
+            success(result, error)
+        }
+    }
 }
 
