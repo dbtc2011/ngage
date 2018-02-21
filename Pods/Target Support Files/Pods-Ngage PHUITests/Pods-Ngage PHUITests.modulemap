@@ -1,0 +1,6 @@
+framework module Pods_Ngage_PHUITests {
+  umbrella header "Pods-Ngage PHUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

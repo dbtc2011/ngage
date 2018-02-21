@@ -1,6 +1,0 @@
-framework module Pods_Ngage {
-  umbrella header "Pods-Ngage-umbrella.h"
-
-  export *
-  module * { export * }
-}

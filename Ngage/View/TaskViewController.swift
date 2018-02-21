@@ -27,7 +27,24 @@ class TaskViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        tasks = mission.tasks.reversed()
+        var shouldSetEnabled = false
+        var arrayCounter = 0
+        var tempTasks : [TaskModel] = []
+        for taskReversed in mission.tasks {
+            var taskToAdd = taskReversed
+            if taskReversed.state == 0 {
+                if arrayCounter == 0 || shouldSetEnabled {
+                    taskToAdd.state = 1
+                    shouldSetEnabled = false
+                }
+            }else if taskReversed.state == 2 {
+                shouldSetEnabled = true
+            }
+            arrayCounter = arrayCounter + 1
+            tempTasks.append(taskToAdd)
+        }
+        tasks = tempTasks.reversed()
+        tableView.reloadData()
         setupUI()
         // Do any additional setup after loading the view.
     }
@@ -55,7 +72,6 @@ class TaskViewController: UIViewController {
     }
     //MARK: - Functions
     func setupUI() {
-        
         self.progress.setProgress(value: 0, animationDuration: 1)
         if mission.imageTask!.data != nil {
             if let imageData = UIImage(data: mission.imageTask!.data!) {
@@ -108,16 +124,15 @@ class TaskViewController: UIViewController {
     }
     
     func installTask(task: TaskModel) {
-        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
-        if let controller = storyBoard.instantiateViewController(withIdentifier: "InstallTaskViewController") as? InstallTaskViewController {
-            controller.task = task
-            controller.mission = mission
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+//        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
+//        if let controller = storyBoard.instantiateViewController(withIdentifier: "InstallTaskViewController") as? InstallTaskViewController {
+//            controller.task = task
+//            controller.mission = mission
+//            self.navigationController?.pushViewController(controller, animated: true)
+//        }
     }
     
     func didFinishTask(task: TaskModel) {
-        
         print("Finished task \(task.info)")
     }
     

@@ -1,0 +1,6 @@
+framework module Pods_Ngage_PHTests {
+  umbrella header "Pods-Ngage PHTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

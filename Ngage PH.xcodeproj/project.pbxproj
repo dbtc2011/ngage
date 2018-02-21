@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		096AE424CA2512F7B44FA95B /* Pods_Ngage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0191F275C93C0A87A443C57B /* Pods_Ngage.framework */; };
+		0CB701D0587EC310F79A142A /* Pods_Ngage_PHTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D350C087C9B0882E1EC0F9 /* Pods_Ngage_PHTests.framework */; };
 		4994B0BD3E4BAF9D60EB6542 /* Pods_NgageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */; };
 		5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003679920270770007E693A /* WebViewTaskViewController.swift */; };
 		50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50141F57202CC6630082EF2B /* AudioPlayerView.swift */; };
@@ -58,6 +59,7 @@
 		50DF519320303B6B00F16FB4 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DF519220303B6B00F16FB4 /* AVKit.framework */; };
 		50DF519520303BEA00F16FB4 /* VideoPlayerTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF519420303BEA00F16FB4 /* VideoPlayerTaskViewController.swift */; };
 		50DF519720303FE200F16FB4 /* CameraTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF519620303FE200F16FB4 /* CameraTask.swift */; };
+		50E8E761203D86680010686C /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E8E760203D86680010686C /* TimeInterval.swift */; };
 		50E9D824202F63570018A3E5 /* QuestionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9D823202F63570018A3E5 /* QuestionsModel.swift */; };
 		50ED77F0203A1529004CAA74 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED77EF203A1529004CAA74 /* HistoryViewController.swift */; };
 		50F15E182022000700A3E589 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F15E172022000700A3E589 /* OnboardingViewController.swift */; };
@@ -87,6 +89,8 @@
 		8CE69F5C2039381200BE3806 /* RedeemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE69F5B2039381200BE3806 /* RedeemViewController.swift */; };
 		8CF7451E2029F8C400C44C06 /* MarketPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */; };
 		8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */; };
+		B6E758D4424A5900794F2FD0 /* Pods_Ngage_PH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A58246AB9DB2ED12F63B2C /* Pods_Ngage_PH.framework */; };
+		C0600F5CA5D5B9BEA29645F3 /* Pods_Ngage_PHUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A091758B73D85735DF581BC /* Pods_Ngage_PHUITests.framework */; };
 		D726018ECEDF3F36F0A99D6C /* Pods_NgageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +115,8 @@
 		0191F275C93C0A87A443C57B /* Pods_Ngage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ngage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1634997F46C90DB1903E090C /* Pods-NgageTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NgageTests/Pods-NgageTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2104C45A66AF35AF536B3938 /* Pods-NgageUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NgageUITests/Pods-NgageUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2365158872058F8EA095768C /* Pods-Ngage PH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PH.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PH/Pods-Ngage PH.debug.xcconfig"; sourceTree = "<group>"; };
+		3A7195ED201B500B9CCE568C /* Pods-Ngage PHTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500367902026FA77007E693A /* Ngage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ngage-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 		50DF519220303B6B00F16FB4 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		50DF519420303BEA00F16FB4 /* VideoPlayerTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerTaskViewController.swift; sourceTree = "<group>"; };
 		50DF519620303FE200F16FB4 /* CameraTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTask.swift; sourceTree = "<group>"; };
+		50E8E760203D86680010686C /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		50E9D823202F63570018A3E5 /* QuestionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsModel.swift; sourceTree = "<group>"; };
 		50ED77EF203A1529004CAA74 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		50F15E172022000700A3E589 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +187,7 @@
 		50FC56DF201BADF80015D4C5 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		586FB7E2959E8ACDCF4078B7 /* Pods-Ngage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage/Pods-Ngage.debug.xcconfig"; sourceTree = "<group>"; };
 		59F4CF8D427844D6EDE6CFD8 /* Pods-NgageUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NgageUITests/Pods-NgageUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		60D350C087C9B0882E1EC0F9 /* Pods_Ngage_PHTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ngage_PHTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C3FC42039DDFF000EBEEC /* RedeemMerchantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemMerchantViewController.swift; sourceTree = "<group>"; };
 		8C3C3FC62039E66C000EBEEC /* MerchantLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLocationsViewController.swift; sourceTree = "<group>"; };
 		8C3C3FC92039E95E000EBEEC /* RedeemStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RedeemStoryboard.storyboard; sourceTree = "<group>"; };
@@ -203,7 +211,13 @@
 		8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPageViewController.swift; sourceTree = "<group>"; };
 		8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMarketTableViewController.swift; sourceTree = "<group>"; };
 		8EE64851D4D24F7D9D371790 /* Pods-NgageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NgageTests/Pods-NgageTests.release.xcconfig"; sourceTree = "<group>"; };
+		957088CEB8432F737F17C010 /* Pods-Ngage PHUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHUITests/Pods-Ngage PHUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		975CCAF7BD881ED68C6DD212 /* Pods-Ngage PH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PH.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PH/Pods-Ngage PH.release.xcconfig"; sourceTree = "<group>"; };
+		9A091758B73D85735DF581BC /* Pods_Ngage_PHUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ngage_PHUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8A58246AB9DB2ED12F63B2C /* Pods_Ngage_PH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ngage_PH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAEEEA30556FD08E1DF705E3 /* Pods-Ngage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage/Pods-Ngage.release.xcconfig"; sourceTree = "<group>"; };
+		D18F56628567470784E86F54 /* Pods-Ngage PHTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC4AE8178C6EA52452032B29 /* Pods-Ngage PHUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHUITests/Pods-Ngage PHUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +230,7 @@
 				506C347820385413004E651C /* StoreKit.framework in Frameworks */,
 				096AE424CA2512F7B44FA95B /* Pods_Ngage.framework in Frameworks */,
 				506C34762038540D004E651C /* GameKit.framework in Frameworks */,
+				B6E758D4424A5900794F2FD0 /* Pods_Ngage_PH.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4994B0BD3E4BAF9D60EB6542 /* Pods_NgageTests.framework in Frameworks */,
+				0CB701D0587EC310F79A142A /* Pods_Ngage_PHTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D726018ECEDF3F36F0A99D6C /* Pods_NgageUITests.framework in Frameworks */,
+				C0600F5CA5D5B9BEA29645F3 /* Pods_Ngage_PHUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +264,12 @@
 				8EE64851D4D24F7D9D371790 /* Pods-NgageTests.release.xcconfig */,
 				59F4CF8D427844D6EDE6CFD8 /* Pods-NgageUITests.debug.xcconfig */,
 				2104C45A66AF35AF536B3938 /* Pods-NgageUITests.release.xcconfig */,
+				2365158872058F8EA095768C /* Pods-Ngage PH.debug.xcconfig */,
+				975CCAF7BD881ED68C6DD212 /* Pods-Ngage PH.release.xcconfig */,
+				D18F56628567470784E86F54 /* Pods-Ngage PHTests.debug.xcconfig */,
+				3A7195ED201B500B9CCE568C /* Pods-Ngage PHTests.release.xcconfig */,
+				957088CEB8432F737F17C010 /* Pods-Ngage PHUITests.debug.xcconfig */,
+				DC4AE8178C6EA52452032B29 /* Pods-Ngage PHUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -261,6 +284,9 @@
 				0191F275C93C0A87A443C57B /* Pods_Ngage.framework */,
 				3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */,
 				41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */,
+				B8A58246AB9DB2ED12F63B2C /* Pods_Ngage_PH.framework */,
+				60D350C087C9B0882E1EC0F9 /* Pods_Ngage_PHTests.framework */,
+				9A091758B73D85735DF581BC /* Pods_Ngage_PHUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -370,6 +396,7 @@
 				50A41D612025C5BC0062A287 /* Color.swift */,
 				5078EA662029FD0C00E35591 /* Button.swift */,
 				50366C82202C95E800AA9B1A /* View.swift */,
+				50E8E760203D86680010686C /* TimeInterval.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -652,7 +679,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ngage/Pods-Ngage-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ngage PH/Pods-Ngage PH-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1C91268E197E9EFA964D91EC /* [CP] Copy Pods Resources */ = {
@@ -667,7 +694,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NgageTests/Pods-NgageTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		24A72E9C4CF8C929C2754651 /* [CP] Embed Pods Frameworks */ = {
@@ -682,7 +709,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NgageUITests/Pods-NgageUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ngage PHUITests/Pods-Ngage PHUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4442580317FFCAF44606703E /* [CP] Embed Pods Frameworks */ = {
@@ -697,7 +724,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NgageTests/Pods-NgageTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		676AB3930B4DE02A008302FB /* [CP] Copy Pods Resources */ = {
@@ -712,7 +739,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NgageUITests/Pods-NgageUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ngage PHUITests/Pods-Ngage PHUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6F88F4257773F2E6D52F5F42 /* [CP] Check Pods Manifest.lock */ = {
@@ -742,7 +769,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ngage/Pods-Ngage-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ngage PH/Pods-Ngage PH-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CA80786FF9F9DD2D1C4E554E /* [CP] Check Pods Manifest.lock */ = {
@@ -803,6 +830,7 @@
 				50A9C0F220389B8B00F46DE8 /* InstallTaskViewController.swift in Sources */,
 				8C3C3FC72039E66C000EBEEC /* MerchantLocationsViewController.swift in Sources */,
 				506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */,
+				50E8E761203D86680010686C /* TimeInterval.swift in Sources */,
 				50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				50FA4AF9203CB236006CC8BD /* TimeManager.swift in Sources */,
@@ -1009,7 +1037,7 @@
 		};
 		501AE452201849490088983A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 586FB7E2959E8ACDCF4078B7 /* Pods-Ngage.debug.xcconfig */;
+			baseConfigurationReference = 2365158872058F8EA095768C /* Pods-Ngage PH.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1032,7 +1060,7 @@
 		};
 		501AE453201849490088983A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BAEEEA30556FD08E1DF705E3 /* Pods-Ngage.release.xcconfig */;
+			baseConfigurationReference = 975CCAF7BD881ED68C6DD212 /* Pods-Ngage PH.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1054,7 +1082,7 @@
 		};
 		501AE455201849490088983A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1634997F46C90DB1903E090C /* Pods-NgageTests.debug.xcconfig */;
+			baseConfigurationReference = D18F56628567470784E86F54 /* Pods-Ngage PHTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1071,7 +1099,7 @@
 		};
 		501AE456201849490088983A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EE64851D4D24F7D9D371790 /* Pods-NgageTests.release.xcconfig */;
+			baseConfigurationReference = 3A7195ED201B500B9CCE568C /* Pods-Ngage PHTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1088,7 +1116,7 @@
 		};
 		501AE458201849490088983A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59F4CF8D427844D6EDE6CFD8 /* Pods-NgageUITests.debug.xcconfig */;
+			baseConfigurationReference = 957088CEB8432F737F17C010 /* Pods-Ngage PHUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1104,7 +1132,7 @@
 		};
 		501AE459201849490088983A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2104C45A66AF35AF536B3938 /* Pods-NgageUITests.release.xcconfig */;
+			baseConfigurationReference = DC4AE8178C6EA52452032B29 /* Pods-Ngage PHUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

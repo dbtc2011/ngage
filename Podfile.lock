@@ -27,6 +27,7 @@ PODS:
   - FBSDKShareKit (4.29.0):
     - FBSDKCoreKit
   - KYDrawerController (2.0.4)
+  - PKHUD (4.2.3)
   - SwiftyJSON (3.1.4)
   - UICircularProgressRing (1.7.5)
 
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - KYDrawerController (~> 2.0)
+  - PKHUD (~> 4.0)
   - SwiftyJSON (~> 3.0)
   - UICircularProgressRing
 
@@ -51,9 +53,10 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 56a057ca6822535ea0faa25f57a7c41edb697fd4
   FBSDKShareKit: 18a2cd118aef11dd657fe7e8b64bae5c719088b2
   KYDrawerController: cf5839877c442132123e9d482f458821026defdf
+  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   UICircularProgressRing: b35e45dc82aac8009d038ef4d2e19718675df2bd
 
-PODFILE CHECKSUM: 45a3bede3556103edea3cd06aa32f5c303b2f31a
+PODFILE CHECKSUM: 6cfe356d905845826d0810dcb9a8c37866f7502e
 
 COCOAPODS: 1.2.1

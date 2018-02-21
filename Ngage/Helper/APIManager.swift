@@ -60,7 +60,7 @@ enum Router : URLRequestConvertible {
         static let insertRecord = "svc/api/INSERTRecord"
         static let uploadPicture = "svc/api/Upload"
         static let validateMission = "svc/api/MaxUser/{MissionID}"
-        static let getServerTime = "api/ServerTime"
+        static let getServerTime = "svc/api/ServerTime"
         static let getMaxMission = "api/GetMaxMission"
         static let redeem = "svc/api/Redeem"
         static let getHistory = "svc/api/History/{FBID}"

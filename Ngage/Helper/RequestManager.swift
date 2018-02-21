@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import UIKit
+import PKHUD
 
 enum Task {
     case register(Parameters)
@@ -115,32 +117,46 @@ class RequestManager {
         }()
         
         reqTask.perform({ (response) in
-            
+            PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
+            if !PKHUD.sharedHUD.isVisible {
+                PKHUD.sharedHUD.show()
+            }
             let responseJSON = JSON(response)
             print(responseJSON as Any)
             
             if let error = responseJSON["Message"].string {
+                if PKHUD.sharedHUD.isVisible {
+                    DispatchQueue.main.async {
+                        PKHUD.sharedHUD.hide(afterDelay: 0.5) { success in
+                            // Completion Handler
+                            
+                        }
+                    }
+                }
                 completion(nil, NSError(domain: "Ngage", code: 500, userInfo: [NSLocalizedDescriptionKey: error]))
             }else {
+                if PKHUD.sharedHUD.isVisible {
+                    DispatchQueue.main.async {
+                        PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+                            // Completion Handler
+                            
+                        }
+                    }
+                }
                 completion(responseJSON, nil)
+                
             }
-//            if let error = mapError(from: responseJSON) {
-//                // show error if needed
-//
-//                completion(nil, error)
-//            } else {
-//
-//                let results = responseJSON["results"]
-//
-//                if results != JSON.null {
-//                    completion(results, nil)
-//                } else {
-//
-//                    completion(nil, error)
-//                }
-//            }
+
         }) { (error) in
             // show error if needed
+            if PKHUD.sharedHUD.isVisible {
+                DispatchQueue.main.async {
+                    PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+                        // Completion Handler
+                        
+                    }
+                }
+            }
             print(error.code)
             completion(nil, error)
         }

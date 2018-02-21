@@ -69,11 +69,19 @@ class TaskTableViewCell: UITableViewCell {
 
         }
         title.text = task.info
-        labelReward.text = "\(task.reward)pts"
+        labelReward.text = getRewardWithUOM(reward: task.reward)
         rightIcon.layer.cornerRadius = 20
         leftIcon.layer.cornerRadius = 15
     }
     
+    func getRewardWithUOM(reward: String) -> String {
+        
+        if reward == "0" || reward == "1" {
+            return "\(reward)pt"
+        }else {
+            return "\(reward)pts"
+        }
 
-
+    }
+    
 }

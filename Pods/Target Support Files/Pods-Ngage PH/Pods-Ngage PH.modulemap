@@ -1,0 +1,6 @@
+framework module Pods_Ngage_PH {
+  umbrella header "Pods-Ngage PH-umbrella.h"
+
+  export *
+  module * { export * }
+}
