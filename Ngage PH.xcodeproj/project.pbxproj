@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		096AE424CA2512F7B44FA95B /* Pods_Ngage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0191F275C93C0A87A443C57B /* Pods_Ngage.framework */; };
 		0CB701D0587EC310F79A142A /* Pods_Ngage_PHTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D350C087C9B0882E1EC0F9 /* Pods_Ngage_PHTests.framework */; };
 		4994B0BD3E4BAF9D60EB6542 /* Pods_NgageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */; };
 		5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003679920270770007E693A /* WebViewTaskViewController.swift */; };
@@ -89,7 +88,6 @@
 		8CE69F5C2039381200BE3806 /* RedeemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE69F5B2039381200BE3806 /* RedeemViewController.swift */; };
 		8CF7451E2029F8C400C44C06 /* MarketPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7451D2029F8C400C44C06 /* MarketPageViewController.swift */; };
 		8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */; };
-		B6E758D4424A5900794F2FD0 /* Pods_Ngage_PH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A58246AB9DB2ED12F63B2C /* Pods_Ngage_PH.framework */; };
 		C0600F5CA5D5B9BEA29645F3 /* Pods_Ngage_PHUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A091758B73D85735DF581BC /* Pods_Ngage_PHUITests.framework */; };
 		D726018ECEDF3F36F0A99D6C /* Pods_NgageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */; };
 /* End PBXBuildFile section */
@@ -228,9 +226,7 @@
 				50DF519320303B6B00F16FB4 /* AVKit.framework in Frameworks */,
 				50DF519120303B6100F16FB4 /* AVFoundation.framework in Frameworks */,
 				506C347820385413004E651C /* StoreKit.framework in Frameworks */,
-				096AE424CA2512F7B44FA95B /* Pods_Ngage.framework in Frameworks */,
 				506C34762038540D004E651C /* GameKit.framework in Frameworks */,
-				B6E758D4424A5900794F2FD0 /* Pods_Ngage_PH.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

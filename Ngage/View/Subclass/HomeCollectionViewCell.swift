@@ -12,6 +12,7 @@ protocol HomeCollectionViewCellDelegate {
 }
 
 class HomeCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var buttonWidth: NSLayoutConstraint!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var viewButtonContainer: UIView!
@@ -35,4 +36,18 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBAction func didTapStart(_ sender: UIButton) {
         delegate?.homeDidTapStart(tag: self.tag)
     }
+    
+    func updateTime() {
+        var time = ""
+        let newDate = Date()
+        let difference = Double(newDate.timeIntervalSince(TimeManager.sharedInstance.currentDate))
+        let serverCounter = Double(TimeManager.sharedInstance.midnightDate.timeIntervalSince(TimeManager.sharedInstance.serverDate))
+        let timeRemaining = serverCounter - difference
+        let timeInterval = TimeInterval(exactly: timeRemaining)
+        time = timeInterval!.hoursMinutesSecondMS
+        buttonWidth.constant = 200
+        button.setTitle(time, for: UIControlState.normal)
+    }
 }
+
+

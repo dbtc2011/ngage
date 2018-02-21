@@ -18,10 +18,8 @@ class HomeViewController: DrawerFrontViewController {
         super.viewDidLoad()
         setUIColor(color: UIColor.lightGray)
         setupUI()
-//        getMission()
+        getMission()
         
-        TimeManager.sharedInstance.setTimer()
-
         // Do any additional setup after loading the view.
     }
 
@@ -146,6 +144,7 @@ extension HomeViewController : UICollectionViewDataSource {
         cell.delegate = self
         let mission = self.user.missions[indexPath.row]
         cell.setupContents(mission: mission)
+        cell.updateTime()
         if mission.imageTask!.state == DowloadingImageState.new {
             let url = URL(string: mission.imageUrl)
             mission.imageTask!.downloadTask = self.downloadsSession!.downloadTask(with: url!)
@@ -160,6 +159,12 @@ extension HomeViewController : UICollectionViewDataSource {
 }
 
 extension HomeViewController : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        let collectionViewCell = cell as! HomeCollectionViewCell
+        collectionViewCell.updateTime()
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height-50)
     }

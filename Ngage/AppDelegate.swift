@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        print("DID FINISH LAUNCH")
+        
         if CoreDataManager.sharedInstance.getMainUser() != nil {
             let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
             let controller = storyboard.instantiateInitialViewController()
@@ -35,10 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        print("DID ENTER FOREGROUND")
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        print("DID BECOME ACTIVE")
+        TimeManager.sharedInstance.setTimer()
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

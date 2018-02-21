@@ -47,6 +47,7 @@ class RequestManager {
     }
     
     private class func invoke(task: Task, completion: @escaping CompletionBlock) {
+        var shouldShowLoading = true
         let reqTask: RequestTask = {
             
             switch task {
@@ -78,6 +79,7 @@ class RequestManager {
                 return RequestTask(urlRequest: Router.validateMission(parameter: parameters))
                 
             case let .getServerTime(parameters):
+                shouldShowLoading = false
                 return RequestTask(urlRequest: Router.getServerTime(parameter: parameters))
                 
             case let .getMaxMission(parameters):
@@ -118,7 +120,7 @@ class RequestManager {
         
         reqTask.perform({ (response) in
             PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
-            if !PKHUD.sharedHUD.isVisible {
+            if !PKHUD.sharedHUD.isVisible && shouldShowLoading {
                 PKHUD.sharedHUD.show()
             }
             let responseJSON = JSON(response)

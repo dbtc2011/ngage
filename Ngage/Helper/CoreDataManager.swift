@@ -235,7 +235,6 @@ class CoreDataManager: NSObject {
             
             for result in missionResults! {
                 var mission = MissionModel()
-    
                 mission.code = Int(result.code)
                 mission.userId = result.userId ?? ""
                 mission.brand = result.brand ?? ""

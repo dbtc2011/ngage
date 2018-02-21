@@ -9,16 +9,20 @@
 import Foundation
 import SwiftyJSON
 
+protocol TimeManagerDelegate {
+    func timeManagerUpdating(time : String)
+}
 class TimeManager: NSObject {
     
     static let sharedInstance = TimeManager()
     private var currentDay : String = ""
     private var currentTime : String = ""
-    private var midnightDate : Date!
-    private var currentDate : Date!
-    private var currentCounter : Double!
-    var timeRemaining : String = ""
+    var midnightDate : Date!
+    var currentDate : Date!
+    var serverDate : Date!
     var startedMissionCode : Int = 0
+    private var timeRemaining = ""
+    
     
     func setTimer() {
         RegisterService.getServerTime() { (result, error) in
@@ -39,40 +43,21 @@ class TimeManager: NSObject {
         }
     }
     
-    func logDate() {
-
+    private func logDate() {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 //        formatter.locale = Locale(identifier: "en_US_POSIX")
         let timeMidnight = "\(currentDay)T00:00:00 +0000"
         if let date = formatter.date(from: timeMidnight) {
             midnightDate = Calendar.current.date(byAdding: .day, value: 1, to: date)!
-            print("Midnight Date = \(date)")
-            if let serverDate = formatter.date(from: timeRemaining) {
-                currentDate = serverDate
-                currentCounter = Double(midnightDate.timeIntervalSince(currentDate))
-                runTimer()
+            if let serverDates = formatter.date(from: timeRemaining) {
+                serverDate = serverDates
+                currentDate = Date()
             }
         }
-        print("Time = \(timeRemaining)")
-        
     }
     
-    func runTimer() {
-        let timeInterval = TimeInterval(exactly: currentCounter)
-        print(timeInterval!.hoursMinutesSecondMS)
-        self.timeRemaining = timeInterval!.hoursMinutesSecondMS
-        if currentCounter <= 0 {
-            
-        }else {
-            currentCounter = currentCounter - 1
-            let when = DispatchTime.now() + 1.0
-            DispatchQueue.main.asyncAfter(deadline: when) {
-                self.runTimer()
-            }
-        }
-//        let timeInterval =
-    }
+  
 }
 
 
