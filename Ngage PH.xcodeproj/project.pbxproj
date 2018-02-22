@@ -68,6 +68,7 @@
 		50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DA201BAAC70015D4C5 /* DrawerViewController.swift */; };
 		50FC56DD201BACFD0015D4C5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DC201BACFD0015D4C5 /* NavigationController.swift */; };
 		50FC56E0201BADF80015D4C5 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC56DF201BADF80015D4C5 /* Util.swift */; };
+		76C0E44B2634857E8E5E161C /* Pods_Ngage_PH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A58246AB9DB2ED12F63B2C /* Pods_Ngage_PH.framework */; };
 		8C3C3FC52039DDFF000EBEEC /* RedeemMerchantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FC42039DDFF000EBEEC /* RedeemMerchantViewController.swift */; };
 		8C3C3FC72039E66C000EBEEC /* MerchantLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FC62039E66C000EBEEC /* MerchantLocationsViewController.swift */; };
 		8C3C3FCA2039E95E000EBEEC /* RedeemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C3FC92039E95E000EBEEC /* RedeemStoryboard.storyboard */; };
@@ -227,6 +228,7 @@
 				50DF519120303B6100F16FB4 /* AVFoundation.framework in Frameworks */,
 				506C347820385413004E651C /* StoreKit.framework in Frameworks */,
 				506C34762038540D004E651C /* GameKit.framework in Frameworks */,
+				76C0E44B2634857E8E5E161C /* Pods_Ngage_PH.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,11 +17,15 @@ class TimeManager: NSObject {
     static let sharedInstance = TimeManager()
     private var currentDay : String = ""
     private var currentTime : String = ""
+    private var timeRemaining = ""
+    var hasStartedMission = false
+    var hasFinishedFirstTask = false
+    var shouldEditMission = false
     var midnightDate : Date!
     var currentDate : Date!
     var serverDate : Date!
-    var startedMissionCode : Int = 0
-    private var timeRemaining = ""
+    var startedMissionCode : Int = 15
+    
     
     
     func setTimer() {

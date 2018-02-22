@@ -27,4 +27,6 @@ struct MissionModel {
     var startDate = ""
     var title = ""
     var tasks = [TaskModel]()
+    
+    var state : MissionState = MissionState.enabled
 }

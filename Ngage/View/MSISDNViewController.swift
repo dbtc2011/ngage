@@ -60,6 +60,11 @@ class MSISDNViewController: UIViewController {
                 if let userRegistration = result!["user_registration"].dictionary {
                     if let statusCode = userRegistration["StatusCode"]?.int {
                         if statusCode == 2 {
+                            if let missionsStarted = userRegistration["MissionStarted"]?.array {
+                                if missionsStarted.count == 0 {
+                                    TimeManager.sharedInstance.shouldEditMission = true
+                                }
+                            }
                             if CoreDataManager.sharedInstance.getMainUser() == nil {
                                 CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
                                     DispatchQueue.main.async {
@@ -72,12 +77,17 @@ class MSISDNViewController: UIViewController {
                                 })
                             } else {
                                 DispatchQueue.main.async {
-                                    self.performSegue(withIdentifier: "goToPinVerification", sender: self)
+                                    let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
+                                    let controller = storyBoard.instantiateInitialViewController()
+                                    self.present(controller!, animated: true, completion: {
+                                        
+                                    })
                                 }
                             }
                             
                         }else {
                             // Show Error
+                            TimeManager.sharedInstance.shouldEditMission = true
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "goToPinVerification", sender: self)
                             }

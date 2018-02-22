@@ -8,10 +8,13 @@
 
 import UIKit
 import SwiftyJSON
+
 class HomeViewController: DrawerFrontViewController {
+    var shouldReloadData = false
     var downloadsSession: URLSession?
     var user = UserModel().mainUser()
     var selectedIndex = 0
+    var shouldReloadTime = false
     @IBOutlet weak var buttonDrawer: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
@@ -25,7 +28,17 @@ class HomeViewController: DrawerFrontViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        shouldReloadTime = true
+        reloadTime()
+        if shouldReloadData == true {
+            getMission()
+        }
         self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shouldReloadTime = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,16 +61,54 @@ class HomeViewController: DrawerFrontViewController {
         navigationController?.navigationBar.barTintColor = color
     }
     
+    func reloadTime() {
+        
+        if shouldReloadTime && TimeManager.sharedInstance.hasStartedMission {
+            if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 0)) as? HomeCollectionViewCell {
+                 cell.updateTime()
+                
+            }
+            
+            if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex-1, section: 0)) as? HomeCollectionViewCell {
+                cell.updateTime()
+                
+            }
+            
+            if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex+1, section: 0)) as? HomeCollectionViewCell {
+                cell.updateTime()
+                
+            }
+            
+            if TimeManager.sharedInstance.hasStartedMission {
+                let when = DispatchTime.now() + 1.0
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                    self.reloadTime()
+                }
+            }
+            
+        }
+        
+        
+    }
+    
+    //MARK: - API
+    
     func getMission() {
         RegisterService.getMissionList(fbid: self.user.facebookId) { (result, error) in
             print(result)
             print(error as Any)
             if error == nil {
+                self.shouldReloadData = false
                 if let missions = result?["missions"].array {
                     self.user.missions.removeAll()
                     for mission in missions {
                         var missionModel = MissionModel()
                         missionModel.code = mission["missionCode"].int ?? 0
+                        if TimeManager.sharedInstance.shouldEditMission {
+                            if missionModel.code != 1 {
+                                missionModel.state = MissionState.locked
+                            }
+                        }
                         missionModel.colorPrimary = mission["missionPrimaryColor"].string ?? ""
                         missionModel.colorSecondary = mission["missionSecondaryColor"].string ?? ""
                         missionModel.colorBackground = mission["missionBackground"].string ?? ""
@@ -77,6 +128,15 @@ class HomeViewController: DrawerFrontViewController {
                             for task in tasks {
                                 var taskModel = TaskModel()
                                 taskModel.state = task["taskState"].int ?? 0
+                                taskModel.info = task["taskInfo"].string ?? ""
+                                if missionModel.code == 1 {
+                                    if taskModel.info == "Hobbies and Interests" && taskModel.state == 2 {
+                                        TimeManager.sharedInstance.hasFinishedFirstTask = true
+                                        missionModel.state = MissionState.completed
+                                    }else if TimeManager.sharedInstance.hasFinishedFirstTask {
+                                        taskModel.state = 2
+                                    }
+                                }
                                 taskModel.code = task["taskCode"].int ?? 0
                                 taskModel.instructions = task["taskInstruction"].string ?? ""
                                 taskModel.type = task["taskType"].int ?? 0
@@ -88,13 +148,13 @@ class HomeViewController: DrawerFrontViewController {
                                 taskModel.rewardDetails = task["taskRewardDetails"].string ?? ""
                                 taskModel.isClaimed = task["isClaim"].bool ?? false
                                 taskModel.detail = task["taskDetail"].string ?? ""
-                                taskModel.info = task["taskInfo"].string ?? ""
                                 taskModel.rewardType = "\(task["taskRewardType"].int ?? 0)"
                                 missionModel.tasks.append(taskModel)
                             }
                         }
                         self.user.missions.append(missionModel)
                         if mission == missions.last {
+                            TimeManager.sharedInstance.shouldEditMission = false
                             DispatchQueue.main.async {
                                 self.collectionView.reloadData()
                             }
@@ -125,6 +185,7 @@ class HomeViewController: DrawerFrontViewController {
         
         if let controller = segue.destination as? TaskViewController {
             let mission = self.user.missions[selectedIndex]
+            controller.delegate = self
             controller.mission = mission
         }
     }
@@ -144,7 +205,6 @@ extension HomeViewController : UICollectionViewDataSource {
         cell.delegate = self
         let mission = self.user.missions[indexPath.row]
         cell.setupContents(mission: mission)
-        cell.updateTime()
         if mission.imageTask!.state == DowloadingImageState.new {
             let url = URL(string: mission.imageUrl)
             mission.imageTask!.downloadTask = self.downloadsSession!.downloadTask(with: url!)
@@ -161,9 +221,9 @@ extension HomeViewController : UICollectionViewDataSource {
 extension HomeViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        let collectionViewCell = cell as! HomeCollectionViewCell
-        collectionViewCell.updateTime()
+//
+//        let collectionViewCell = cell as! HomeCollectionViewCell
+//        collectionViewCell.updateTime()
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height-50)
@@ -230,4 +290,18 @@ extension HomeViewController : URLSessionDownloadDelegate {
         }
     
     }
+}
+extension HomeViewController : TaskViewControllerDelegate {
+    func mustReloadData() {
+        shouldReloadData = true
+    }
+    
+    func taskUpdated(tasks: [TaskModel]) {
+        var mission = user.missions[selectedIndex]
+        mission.tasks = tasks.reversed()
+        user.missions[selectedIndex] = mission
+    }
+    
+    
+    
 }

@@ -8,6 +8,9 @@
 
 import UIKit
 import WebKit
+protocol TaskDoneDelegate {
+    func didFinishedTask(task: TaskModel)
+}
 class WebViewTaskViewController: UIViewController {
     
     var webLink: String!
@@ -16,6 +19,7 @@ class WebViewTaskViewController: UIViewController {
     var user = UserModel().mainUser()
     @IBOutlet weak var labelTask: UILabel!
     @IBOutlet weak var webView: WKWebView!
+    var delegate : TaskDoneDelegate?
     
     
     override func viewDidLoad() {
@@ -41,7 +45,9 @@ class WebViewTaskViewController: UIViewController {
     }
 
     func finishedTask() {
-        _ = navigationController?.popViewController(animated: true)
+        delegate?.didFinishedTask(task: task)
+        _ = navigationController?.popViewController(animated: true) as? TaskViewController 
+            
     }
     /*
     // MARK: - Navigation

@@ -14,7 +14,10 @@ import UICircularProgressRing
 enum TaskAppCode : Int {
     case updateProfile = 1
 }
-
+protocol TaskViewControllerDelegate {
+    func taskUpdated(tasks: [TaskModel])
+    func mustReloadData()
+}
 class TaskViewController: UIViewController {
 
     @IBOutlet weak var progress: UICircularProgressRingView!
@@ -23,6 +26,8 @@ class TaskViewController: UIViewController {
     var tasks : [TaskModel] = []
     var user = UserModel().mainUser()
     var selectedTask : TaskModel!
+    var selectedIndex = 0
+    var delegate : TaskViewControllerDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -132,8 +137,31 @@ class TaskViewController: UIViewController {
 //        }
     }
     
+    func adjustTasks() {
+        var finishedTask = selectedTask!
+        finishedTask.state = 2
+        tasks[selectedIndex] = finishedTask
+        if selectedIndex != 0 {
+            var nextTask = tasks[selectedIndex-1]
+            nextTask.state = 1
+            tasks[selectedIndex-1] = nextTask
+        }
+        tableView.reloadData()
+        if mission.code == 1 && selectedIndex == 0 {
+            TimeManager.sharedInstance.hasFinishedFirstTask = true
+            delegate?.mustReloadData()
+        }
+        
+    }
     func didFinishTask(task: TaskModel) {
         print("Finished task \(task.info)")
+        if mission.code != 1 {
+            TimeManager.sharedInstance.setTimer()
+            TimeManager.sharedInstance.hasStartedMission = true
+            TimeManager.sharedInstance.startedMissionCode = mission.code
+        }
+        adjustTasks()
+        
     }
     
     // MARK: - Navigation
@@ -174,6 +202,7 @@ class TaskViewController: UIViewController {
             controller.task = task
             controller.mission = mission
             controller.webLink = url
+            controller.delegate = self
         }else if let controller = segue.destination as? TaskInstructionsViewController {
             controller.mission = mission
             controller.task = task
@@ -181,6 +210,7 @@ class TaskViewController: UIViewController {
     }
     
     @IBAction func backButtonClicked(_ sender: UIButton) {
+        delegate?.taskUpdated(tasks: tasks)
         _ = navigationController?.popViewController(animated: true)
     }
     
@@ -191,6 +221,7 @@ extension TaskViewController : UITableViewDelegate {
         let task = tasks[indexPath.row]
         if task.state == TaskStatus.enabled.rawValue {
             selectedTask = task
+            selectedIndex = indexPath.row
             switch task.type {
             case 1, 2, 12, 13, 14, 15:
                 performSegue(withIdentifier: "webViewTask", sender: task)
@@ -237,3 +268,9 @@ extension TaskViewController : UITableViewDataSource {
     }
 }
 
+
+extension TaskViewController : TaskDoneDelegate {
+    func didFinishedTask(task: TaskModel) {
+        didFinishTask(task: task)
+    }
+}
