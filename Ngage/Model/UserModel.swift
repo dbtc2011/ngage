@@ -18,7 +18,7 @@ struct UserModel {
     var image: Data?
     var mobileNumber = ""
     var name = ""
-    var points = ""
+    var points = "0"
     var birthday = ""
     var location = ""
     

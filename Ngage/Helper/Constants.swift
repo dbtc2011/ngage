@@ -12,4 +12,7 @@ struct Keys {
     static let DeviceID = "DeviceID"
     static let ReferralCode = "ReferralCode"
     static let OperatorID = "OperatorID"
+    static let keyShouldEdit = "app_key_should_edit"
+    static let keyHasStartedMission = "app_key_started_mission"
+    static let keyMissionCode = "app_key_mission_code"
 }

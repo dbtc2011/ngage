@@ -284,7 +284,7 @@
                                             <constraint firstItem="gaH-NK-sX0" firstAttribute="top" secondItem="0z2-4j-zBa" secondAttribute="top" id="zhP-or-Etf"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="button" destination="wJw-2S-eNh" id="eeq-tP-3Km"/>
+                                            <outlet property="button" destination="wJw-2S-eNh" id="ndi-eg-oka"/>
                                             <outlet property="buttonWidth" destination="hOH-CL-F2m" id="pm1-iP-ucw"/>
                                             <outlet property="image" destination="gaH-NK-sX0" id="NeX-Ct-4Ql"/>
                                             <outlet property="viewButtonContainer" destination="y9O-hU-qvr" id="iB8-Gw-66n"/>

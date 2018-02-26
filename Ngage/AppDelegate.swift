@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("DID FINISH LAUNCH")
         
+        UserDefaults.standard.set(false, forKey: Keys.keyShouldEdit)
         if CoreDataManager.sharedInstance.getMainUser() != nil {
             let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
             let controller = storyboard.instantiateInitialViewController()

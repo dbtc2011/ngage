@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 enum CoreDataManagerResult: String {
     case Success = "Success",
          Error = "Error"

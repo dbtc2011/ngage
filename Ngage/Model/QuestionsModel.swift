@@ -32,7 +32,7 @@ class QuestionsModel: NSObject {
             filePath = info["image"].string ?? ""
         }
     }
-    
+
     func getCorrectAnswer() -> Int {
         
         let index = choices.index { (value) -> Bool in

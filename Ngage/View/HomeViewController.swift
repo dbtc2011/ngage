@@ -22,13 +22,15 @@ class HomeViewController: DrawerFrontViewController {
         setUIColor(color: UIColor.lightGray)
         setupUI()
         getMission()
-        
         // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         shouldReloadTime = true
+        if user.missions.count == 0 {
+            shouldReloadTime = false
+        }
         reloadTime()
         if shouldReloadData == true {
             getMission()
@@ -61,42 +63,86 @@ class HomeViewController: DrawerFrontViewController {
         navigationController?.navigationBar.barTintColor = color
     }
     
+    func reloadMissionData() {
+        var missionIndex = 0
+        for mission in user.missions {
+            var missionModel = mission
+            if let hasStarted = UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) as? Bool{
+                if hasStarted {
+                    let missionStarted = UserDefaults.standard.value(forKey: Keys.keyMissionCode) as! Int
+                    if missionModel.code != missionStarted && missionModel.code != 1 {
+                        missionModel.state = MissionState.locked
+                    }
+                }else {
+                    missionModel.state = MissionState.enabled
+                }
+            }
+            var taskCounter = 0
+            var taskIndex = 0
+            for task in mission.tasks {
+                var taskModel = task
+                if taskModel.state == 2 {
+                    taskCounter = taskCounter + 1
+                }
+                if taskCounter == missionModel.tasks.count {
+                    if missionModel.code == 1 {
+                        TimeManager.sharedInstance.hasFinishedFirstTask = true
+                    }
+                    missionModel.state = MissionState.completed
+                }
+                missionModel.tasks[taskIndex] = taskModel
+                taskIndex = taskIndex + 1
+            }
+            if taskCounter > 0 && taskCounter < mission.tasks.count {
+                missionModel.state = MissionState.started
+            }
+            self.user.missions[missionIndex] = missionModel
+            missionIndex = missionIndex + 1
+        }
+    }
     func reloadTime() {
         
-        if shouldReloadTime && TimeManager.sharedInstance.hasStartedMission {
+        if shouldReloadTime {
+            reloadMissionData()
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 0)) as? HomeCollectionViewCell {
-                 cell.updateTime()
+                let mission = self.user.missions[selectedIndex]
+                cell.setupContents(mission: mission)
+                cell.updateTime()
                 
             }
             
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex-1, section: 0)) as? HomeCollectionViewCell {
+                let mission = self.user.missions[selectedIndex-1]
+                cell.setupContents(mission: mission)
                 cell.updateTime()
                 
             }
             
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex+1, section: 0)) as? HomeCollectionViewCell {
+                let mission = self.user.missions[selectedIndex+1]
+                cell.setupContents(mission: mission)
                 cell.updateTime()
                 
             }
             
-            if TimeManager.sharedInstance.hasStartedMission {
-                let when = DispatchTime.now() + 1.0
-                DispatchQueue.main.asyncAfter(deadline: when) {
-                    self.reloadTime()
-                }
+            let when = DispatchTime.now() + 1.0
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                self.reloadTime()
             }
-            
+//            if UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) {
+//                let when = DispatchTime.now() + 1.0
+//                DispatchQueue.main.asyncAfter(deadline: when) {
+//                    self.reloadTime()
+//                }
+//            }
         }
-        
-        
+    
     }
     
     //MARK: - API
     
     func getMission() {
         RegisterService.getMissionList(fbid: self.user.facebookId) { (result, error) in
-            print(result)
-            print(error as Any)
             if error == nil {
                 self.shouldReloadData = false
                 if let missions = result?["missions"].array {
@@ -104,9 +150,16 @@ class HomeViewController: DrawerFrontViewController {
                     for mission in missions {
                         var missionModel = MissionModel()
                         missionModel.code = mission["missionCode"].int ?? 0
-                        if TimeManager.sharedInstance.shouldEditMission {
+                        if TimeManager.sharedInstance.shouldEditMission && !TimeManager.sharedInstance.hasFinishedFirstTask {
                             if missionModel.code != 1 {
                                 missionModel.state = MissionState.locked
+                            }
+                        }else if let hasStarted = UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) as? Bool{
+                            if hasStarted {
+                                let missionStarted = UserDefaults.standard.value(forKey: Keys.keyMissionCode) as! Int
+                                if missionModel.code != missionStarted && missionModel.code != 1 {
+                                    missionModel.state = MissionState.locked
+                                }
                             }
                         }
                         missionModel.colorPrimary = mission["missionPrimaryColor"].string ?? ""
@@ -125,17 +178,19 @@ class HomeViewController: DrawerFrontViewController {
                         missionModel.imageTask = DownloadImageClass(link: missionModel.imageUrl)
                         
                         if let tasks = mission["tasks"].array {
+                            var taskCounter = 0
                             for task in tasks {
                                 var taskModel = TaskModel()
                                 taskModel.state = task["taskState"].int ?? 0
                                 taskModel.info = task["taskInfo"].string ?? ""
-                                if missionModel.code == 1 {
-                                    if taskModel.info == "Hobbies and Interests" && taskModel.state == 2 {
-                                        TimeManager.sharedInstance.hasFinishedFirstTask = true
-                                        missionModel.state = MissionState.completed
-                                    }else if TimeManager.sharedInstance.hasFinishedFirstTask {
-                                        taskModel.state = 2
+                                if taskModel.state == 2 {
+                                    taskCounter = taskCounter + 1
+                                }
+                                if taskCounter == tasks.count {
+                                    if missionModel.code == 1 {
+                                       TimeManager.sharedInstance.hasFinishedFirstTask = true
                                     }
+                                    missionModel.state = MissionState.completed
                                 }
                                 taskModel.code = task["taskCode"].int ?? 0
                                 taskModel.instructions = task["taskInstruction"].string ?? ""
@@ -151,11 +206,15 @@ class HomeViewController: DrawerFrontViewController {
                                 taskModel.rewardType = "\(task["taskRewardType"].int ?? 0)"
                                 missionModel.tasks.append(taskModel)
                             }
+                            if taskCounter > 0 && taskCounter < tasks.count {
+                                missionModel.state = MissionState.started
+                            }
                         }
                         self.user.missions.append(missionModel)
                         if mission == missions.last {
                             TimeManager.sharedInstance.shouldEditMission = false
                             DispatchQueue.main.async {
+                                self.shouldReloadTime = true
                                 self.collectionView.reloadData()
                             }
                         }
@@ -299,9 +358,15 @@ extension HomeViewController : TaskViewControllerDelegate {
     func taskUpdated(tasks: [TaskModel]) {
         var mission = user.missions[selectedIndex]
         mission.tasks = tasks.reversed()
+        if let task = tasks.first {
+            if task.state == 2 {
+                mission.state = MissionState.completed
+            }
+        }else if let task = tasks.last {
+            if task.state == 2 {
+                mission.state = MissionState.started
+            }
+        }
         user.missions[selectedIndex] = mission
     }
-    
-    
-    
 }

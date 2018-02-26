@@ -25,6 +25,12 @@ class DrawerViewController: UIViewController {
         //dummy data
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        user = UserModel().mainUser()
+        tblMenu.reloadData()
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

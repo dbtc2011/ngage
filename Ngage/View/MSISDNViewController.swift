@@ -37,6 +37,7 @@ class MSISDNViewController: UIViewController {
     }
     
     func registerUser() {
+        UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
         let name = user.name.components(separatedBy: " ")
         var firstName = ""
         var lastName = ""
@@ -60,9 +61,15 @@ class MSISDNViewController: UIViewController {
                 if let userRegistration = result!["user_registration"].dictionary {
                     if let statusCode = userRegistration["StatusCode"]?.int {
                         if statusCode == 2 {
+                            self.user.points = "\(userRegistration["Points"]?.int ?? 0)"
                             if let missionsStarted = userRegistration["MissionStarted"]?.array {
                                 if missionsStarted.count == 0 {
                                     TimeManager.sharedInstance.shouldEditMission = true
+                                }else {
+                                    if let missionCode = missionsStarted[0].int {
+                                        UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
+                                        UserDefaults.standard.set(missionCode, forKey: Keys.keyMissionCode)
+                                    }
                                 }
                             }
                             if CoreDataManager.sharedInstance.getMainUser() == nil {
@@ -76,13 +83,16 @@ class MSISDNViewController: UIViewController {
                                     }
                                 })
                             } else {
-                                DispatchQueue.main.async {
-                                    let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
-                                    let controller = storyBoard.instantiateInitialViewController()
-                                    self.present(controller!, animated: true, completion: {
-                                        
-                                    })
-                                }
+                                CoreDataManager.sharedInstance.updateUserPoints(withPoints: self.user.points, completionHandler: { (result) in
+                                    DispatchQueue.main.async {
+                                        let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
+                                        let controller = storyBoard.instantiateInitialViewController()
+                                        self.present(controller!, animated: true, completion: {
+                                            
+                                        })
+                                    }
+                                })
+                                
                             }
                             
                         }else {
@@ -102,10 +112,7 @@ class MSISDNViewController: UIViewController {
             }
             print("Result = \(String(describing: result))")
             print("error = \(String(describing: error))")
-            
         }
-        
-        
     }
     
 

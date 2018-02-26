@@ -24,9 +24,6 @@ class TimeManager: NSObject {
     var midnightDate : Date!
     var currentDate : Date!
     var serverDate : Date!
-    var startedMissionCode : Int = 15
-    
-    
     
     func setTimer() {
         RegisterService.getServerTime() { (result, error) in
@@ -56,12 +53,11 @@ class TimeManager: NSObject {
             midnightDate = Calendar.current.date(byAdding: .day, value: 1, to: date)!
             if let serverDates = formatter.date(from: timeRemaining) {
                 serverDate = serverDates
+                midnightDate = serverDate.addingTimeInterval(5)
                 currentDate = Date()
             }
         }
     }
-    
-  
 }
 
 

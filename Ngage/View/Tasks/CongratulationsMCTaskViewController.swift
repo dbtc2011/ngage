@@ -21,6 +21,8 @@ class CongratulationsMCTaskViewController: UIViewController {
     @IBOutlet weak var labelTotal: UILabel!
     var correctAnswer = 0
     var wrongAnswer = 0
+    var answers : String!
+    var correctAnswers : String!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -35,7 +37,7 @@ class CongratulationsMCTaskViewController: UIViewController {
     
     func setupUI() {
         view.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
-        if task.type != 17 {
+        if task.type == 8 {
             imgTimer.image = #imageLiteral(resourceName: "img_wave")
         }
         button.layer.cornerRadius = 25
@@ -49,6 +51,7 @@ class CongratulationsMCTaskViewController: UIViewController {
     @IBAction func okButtonClicked(_ sender: UIButton) {
         if let controller = navigationController?.viewControllers[1] as? TaskViewController {
             _ = navigationController?.popToViewController(controller, animated: true)
+            controller.quizDidSet(answers: answers, correctAnswers: correctAnswers)
             controller.didFinishTask(task: task)
         }
     }

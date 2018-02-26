@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 import Alamofire
+import SwiftyJSON
+
+enum UploadPhotoStatus : Int {
+    case failed = 0, success = 1, forApproval = 2
+}
 
 
 extension TaskViewController {
@@ -75,8 +80,6 @@ extension TaskViewController : UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            print("Selected image = \(chosenImage)")
-            
             let parameters = [
                 "MissionID": "\(mission.code)",
                 "TaskID": "\(selectedTask.code)",
@@ -84,9 +87,7 @@ extension TaskViewController : UIImagePickerControllerDelegate {
             ]
             
             Alamofire.upload(multipartFormData: { (multipartFormData) in
-//                multipartFormData.append(UIImageJPEGRepresentation(chosenImage, 1)!, withName: "file", fileName: "ios-upload.jpeg", mimeType: "image/jpeg")
-//                multipartFormData.append(UIImageJPEGRepresentation(chosenImage, 1)!, withName: "file")
-                multipartFormData.append(UIImageJPEGRepresentation(chosenImage, 1)!, withName: "file", mimeType: "Photo")
+                multipartFormData.append(UIImageJPEGRepresentation(chosenImage, 0.7)!, withName: "file", fileName: "ios.jpg", mimeType: "image/jpeg")
                 for (key, value) in parameters {
                     multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
                 }
@@ -102,6 +103,14 @@ extension TaskViewController : UIImagePickerControllerDelegate {
                     upload.responseJSON { response in
                         //print response.result
                         print(response)
+                        let responseJSON : JSON? = JSON(response)
+                        if let uploaded = responseJSON!["uploaded"].dictionary {
+                            if let status = uploaded["Status"]?.string {
+                                if status == "FOR APPROVAL" || status == "SUCCESS" {
+                                    self.didFinishTask(task: self.selectedTask)
+                                }
+                            }
+                        }
                     }
                     
                 case .failure(let encodingError):

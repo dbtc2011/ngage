@@ -24,6 +24,9 @@ class VideoTaskViewController: UIViewController {
     @IBOutlet weak var playerContainer: UIView!
     var playerRateBeforeSeek: Float = 0
     
+    var contentID : String = ""
+    var contentDuration : String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +63,7 @@ class VideoTaskViewController: UIViewController {
                                                                         self.observeTime(elapsedTime: elapsedTime)
                                                                         let time : Float64 = CMTimeGetSeconds(self.player!.currentTime())
                                                                         let maxTime : Float64 = CMTimeGetSeconds(self.player!.currentItem!.duration)
+                                                                        self.contentDuration = "\(Int(maxTime))"
                                                                         self.playerSlider.maximumValue = Float(maxTime)
                                                                         self.playerSlider.value = Float ( time )
                                                                         
@@ -77,6 +81,7 @@ class VideoTaskViewController: UIViewController {
                 if let content = result["content"].array {
                     if let dictionaryContent = content[0].dictionary {
                         self.currentPath = dictionaryContent["ContentData"]?.string ?? ""
+                        self.contentID = dictionaryContent["ContentID"]?.string ?? ""
                         self.playVideo()
                     }
                 }
@@ -93,6 +98,7 @@ class VideoTaskViewController: UIViewController {
             print("Should stop")
             if let controller = navigationController?.viewControllers[1] as? TaskViewController {
                 _ = navigationController?.popToViewController(controller, animated: true)
+                controller.setContent(id: contentID, duration: contentDuration)
                 controller.didFinishTask(task: task)
             }
         }

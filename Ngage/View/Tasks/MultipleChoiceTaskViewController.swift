@@ -37,6 +37,10 @@ class MultipleChoiceTaskViewController: UIViewController {
     var playerView : TaskNameThatSountPlayerView?
     var correctAnswer = 0
     var wrongAnswer = 0
+    var correctAnswers = ""
+    var answers = ""
+    var questionNumber = 1
+    var isAudio = false
     
     var divider : CGFloat {
         return 100.0/CGFloat(maxTime)
@@ -78,8 +82,9 @@ class MultipleChoiceTaskViewController: UIViewController {
         button4.setAsDefault()
         setupNameThatSound()
         setupQuestionaire()
+        
         switch task.type {
-        case 17:
+        case 17, 7:
             scheduleTimer()
         default:
             maxTime = 10
@@ -120,10 +125,14 @@ class MultipleChoiceTaskViewController: UIViewController {
         
     }
     func setupQuestionaire() {
+        if questionNumber != 1 {
+            correctAnswers = correctAnswers + ","
+        }
         
         let question = questions[currentQuestion]
         currentPath = question.filePath
         correctTag = question.getCorrectAnswer() + 1
+        correctAnswers = correctAnswers + question.answer
         if question.isLogo {
             let imageUrl = URL(string: currentPath)
             self.getDataFromUrl(url: imageUrl!, completion: { (data, response, error) in
@@ -142,7 +151,7 @@ class MultipleChoiceTaskViewController: UIViewController {
         }
         
         UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
-            if self.task.type != 17 {
+            if self.task.type == 8 {
                 self.playerView!.buttonWidth.constant = 42
                 self.progressView.setProgress(value: 100.0, animationDuration: 1)
                 self.labelTimer.text = "\(self.maxTime)"
@@ -187,7 +196,6 @@ class MultipleChoiceTaskViewController: UIViewController {
         })
     }
     func submitTask() {
-        
         finishedTask()
     }
     
@@ -201,6 +209,9 @@ class MultipleChoiceTaskViewController: UIViewController {
     }
     
     func finishedTask() {
+        if timeLimit != nil {
+            timeLimit!.invalidate()
+        }
         self.player = nil
         performSegue(withIdentifier: "congratulations", sender: self)
 //        _ = self.navigationController?.popViewController(animated: true)
@@ -241,6 +252,8 @@ class MultipleChoiceTaskViewController: UIViewController {
             controller.mission = mission
             controller.correctAnswer = correctAnswer
             controller.wrongAnswer = wrongAnswer
+            controller.correctAnswers = correctAnswers
+            controller.answers = answers
         }
     }
     
@@ -248,7 +261,7 @@ class MultipleChoiceTaskViewController: UIViewController {
         finishedTask()
     }
     @IBAction func answerButtonClicked(_ sender: UIButton) {
-        if task.type != 17 {
+        if task.type == 8 {
             if player == nil {
                 view.isUserInteractionEnabled = false
                 UIView.animate(withDuration: 1, animations: {
@@ -266,6 +279,10 @@ class MultipleChoiceTaskViewController: UIViewController {
             player = nil
         }
         
+        if questionNumber != 1 {
+            answers = answers + ","
+        }
+        answers = answers + (sender.titleLabel?.text ?? "")
         if sender.tag == correctTag {
             correctAnswer = correctAnswer + 1
         }else {
@@ -276,6 +293,7 @@ class MultipleChoiceTaskViewController: UIViewController {
         button3.animateUsing(tag: correctTag)
         button4.animateUsing(tag: correctTag)
         
+        questionNumber = questionNumber + 1
         answerdQuestion()
     }
     

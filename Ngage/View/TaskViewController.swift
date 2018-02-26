@@ -28,6 +28,13 @@ class TaskViewController: UIViewController {
     var selectedTask : TaskModel!
     var selectedIndex = 0
     var delegate : TaskViewControllerDelegate?
+    var quizAnswers: String!
+    var quizCorrectAnswers: String!
+    
+    var contentID : String = ""
+    var contentDuration : String = ""
+    
+    var customView : CustomModalView?
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -37,14 +44,16 @@ class TaskViewController: UIViewController {
         var tempTasks : [TaskModel] = []
         for taskReversed in mission.tasks {
             var taskToAdd = taskReversed
-            if taskReversed.state == 0 {
-                if arrayCounter == 0 || shouldSetEnabled {
-                    taskToAdd.state = 1
-                    shouldSetEnabled = false
-                }
-            }else if taskReversed.state == 2 {
-                shouldSetEnabled = true
+            if shouldSetEnabled && taskReversed.state == 0{
+                taskToAdd.state = 1
+                shouldSetEnabled = false
             }
+            if taskReversed.state == 2 {
+                shouldSetEnabled = true
+            }else if taskReversed.state == 0 && arrayCounter == 0 {
+                taskToAdd.state = 1
+            }
+            
             arrayCounter = arrayCounter + 1
             tempTasks.append(taskToAdd)
         }
@@ -138,6 +147,7 @@ class TaskViewController: UIViewController {
     }
     
     func adjustTasks() {
+        
         var finishedTask = selectedTask!
         finishedTask.state = 2
         tasks[selectedIndex] = finishedTask
@@ -153,14 +163,104 @@ class TaskViewController: UIViewController {
         }
         
     }
+    
+    func quizDidSet(answers: String, correctAnswers: String) {
+        quizAnswers = answers
+        quizCorrectAnswers = correctAnswers
+    }
+    
+    func setContent(id: String, duration : String) {
+        contentID = id
+        contentDuration = duration
+    }
     func didFinishTask(task: TaskModel) {
         print("Finished task \(task.info)")
+        UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
+        UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
         if mission.code != 1 {
             TimeManager.sharedInstance.setTimer()
             TimeManager.sharedInstance.hasStartedMission = true
-            TimeManager.sharedInstance.startedMissionCode = mission.code
+            UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
+//            TimeManager.sharedInstance.startedMissionCode = mission.code
         }
-        adjustTasks()
+        
+        switch task.type {
+        case 1, 2:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "0", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+            
+        case 3:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: task.contentId, SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+        case 5, 6, 10:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+            
+        case 3 :
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: contentID, SubContentID: "0", Answer: "", CorrectAnswer: "", WatchType: "video", WatchTime: contentDuration, DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+        case 7, 8, 17:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            print("Answers = \(quizAnswers)")
+            print("Correct Answers = \(quizCorrectAnswers)")
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: quizAnswers, CorrectAnswer: quizCorrectAnswers, WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+            quizCorrectAnswers = ""
+            quizAnswers = ""
+        default:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+        }
+        
+//        adjustTasks()
+    }
+    
+    func openTask() {
+        switch self.selectedTask.type {
+        case 1, 2, 12, 13, 14, 15:
+            performSegue(withIdentifier: "webViewTask", sender: self.selectedTask)
+        case 3:
+            playVideo(task: self.selectedTask)
+        case 5:
+            facebookShare(task: self.selectedTask)
+        case 6:
+            openContactList(task: self.selectedTask)
+        case 7, 8, 17:
+            openQuestionaireWithMusic(task: self.selectedTask)
+        case 9:
+            installTask(task: self.selectedTask)
+            
+        case 10:
+            showPhotoPopOver()
+            
+        default:
+            break
+        }
+    }
+    func submitTask(missionID: String, taskID: String, tasktype: String, FBID: String, ContentID: String, SubContentID: String, Answer: String, CorrectAnswer: String, WatchType: String, WatchTime: String, DeviceID: String, TaskStatus: String, Current_Points: String, Points: String, Prev_Points: String) {
+        
+        RegisterService.insertRecord(missionID: missionID, taskID: taskID, tasktype: tasktype, FBID: FBID, ContentID: ContentID, SubContentID: SubContentID, Answer: Answer, CorrectAnswer: CorrectAnswer, WatchType: WatchType, WatchTime: WatchTime, DeviceID: DeviceID, TaskStatus: TaskStatus, Current_Points: Current_Points, Points: Points, Prev_Points
+        : Prev_Points) { (result, error) in
+            
+            if error == nil {
+                if let statusCode = result!["StatusCode"].int {
+                    if statusCode == 2 {
+                        if let points = result!["Points"].int {
+                            CoreDataManager.sharedInstance.updateUserPoints(withPoints: "\(points)", completionHandler: { (coreResult) in
+                                DispatchQueue.main.async {
+                                    self.contentDuration = ""
+                                    self.contentID = ""
+                                    self.adjustTasks()
+                                }
+                            })
+                        }
+                    }else {
+                        //show alert
+                    }
+                }
+            }else {
+                // Show alert
+            }
+        }
         
     }
     
@@ -222,33 +322,17 @@ extension TaskViewController : UITableViewDelegate {
         if task.state == TaskStatus.enabled.rawValue {
             selectedTask = task
             selectedIndex = indexPath.row
-            switch task.type {
-            case 1, 2, 12, 13, 14, 15:
-                performSegue(withIdentifier: "webViewTask", sender: task)
-            case 3:
-                playVideo(task: task)
-            case 5:
-                facebookShare(task: task)
-                
-            case 6:
-                openContactList(task: task)
-                
-            case 7, 8, 17:
-                openQuestionaireWithMusic(task: task)
-                
-            case 9:
-                installTask(task: task)
-                
-            case 10:
-                showPhotoPopOver()
-                
-            default:
-                break
-            }
+            openTask()
+//            if customView == nil {
+//                customView = CustomModalView.instanceFromNib()
+//                customView?.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+//                customView!.delegate = self
+//                customView!.setupContent(value: task.instructions)
+//                UIApplication.shared.keyWindow!.addSubview(customView!)
+//            }
         }
         
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65.0
     }
@@ -272,5 +356,13 @@ extension TaskViewController : UITableViewDataSource {
 extension TaskViewController : TaskDoneDelegate {
     func didFinishedTask(task: TaskModel) {
         didFinishTask(task: task)
+    }
+}
+
+extension TaskViewController : CustomModalViewDelegate {
+    func didTapOkayButton() {
+        customView!.removeFromSuperview()
+        customView = nil
+        openTask()
     }
 }
