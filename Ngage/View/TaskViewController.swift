@@ -149,6 +149,25 @@ class TaskViewController: UIViewController {
     func setContent(id: String, duration : String) {
         contentID = id
         contentDuration = duration
+        if selectedTask.type == 16 {
+            let when = DispatchTime.now() + 0.3
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                self.facebookShare(task: self.selectedTask)
+            }
+        }else {
+            didFinishTask(task: selectedTask)
+        }
+    }
+    
+    func cameraTaskFinished(taskCamera: TaskModel) {
+        if taskCamera.type == 11 {
+            let when = DispatchTime.now() + 0.3
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                self.facebookShare(task: taskCamera)
+            }
+        }else {
+            didFinishTask(task: taskCamera)
+        }
     }
     func didFinishTask(task: TaskModel) {
         print("Finished task \(task.info)")
@@ -185,6 +204,7 @@ class TaskViewController: UIViewController {
             submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: quizAnswers, CorrectAnswer: quizCorrectAnswers, WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
             quizCorrectAnswers = ""
             quizAnswers = ""
+            
         default:
             let totalPoint = Int(user.points)! + Int(task.reward)!
             submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
@@ -199,7 +219,7 @@ class TaskViewController: UIViewController {
         switch self.selectedTask.type {
         case 1, 2, 12, 13, 14, 15:
             performSegue(withIdentifier: "webViewTask", sender: self.selectedTask)
-        case 3:
+        case 3, 16:
             playVideo(task: self.selectedTask)
         case 5:
             facebookShare(task: self.selectedTask)
@@ -210,7 +230,7 @@ class TaskViewController: UIViewController {
         case 9:
             installTask(task: self.selectedTask)
             
-        case 10:
+        case 10, 11:
             showPhotoPopOver()
             
         default:

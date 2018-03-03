@@ -19,16 +19,20 @@ protocol HomeCollectionViewCellDelegate {
 
 class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var buttonWidth: NSLayoutConstraint!
+    @IBOutlet weak var buttonLock: UIButton!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var viewButtonContainer: UIView!
     private var state = MissionState.enabled
     private var missionCode : Int = 0
+    @IBOutlet weak var lockContainerView: UIView!
     var delegate : HomeCollectionViewCellDelegate?
     
     func setupContents(mission : MissionModel) {
         missionCode = mission.code
         state = mission.state
+        lockContainerView.isHidden = true
+        buttonLock.isHidden = true
         self.buttonWidth.constant = 200
         button.layer.cornerRadius = 5
         button.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
@@ -46,11 +50,17 @@ class HomeCollectionViewCell: UICollectionViewCell {
         case .locked:
             self.button.setTitle("LOCKED", for: UIControlState.normal)
             button.isUserInteractionEnabled = false
+            buttonLock.isHidden = false
+            lockContainerView.isHidden = false
+            buttonLock.setImage(UIImage(named: "ic_lock"), for: UIControlState.normal)
             updateTime()
             
         case .expired:
             self.button.setTitle("EXPIRED", for: UIControlState.normal)
             button.isUserInteractionEnabled = false
+            lockContainerView.isHidden = false
+            buttonLock.isHidden = false
+            buttonLock.setImage(UIImage(named: "ic_expire"), for: UIControlState.normal)
             
         case .soon:
             self.button.setTitle("COMING SOON", for: UIControlState.normal)
@@ -78,10 +88,15 @@ class HomeCollectionViewCell: UICollectionViewCell {
         // Dont proceed if mission code is 0 (First mission) or mission is expired or mission is not yet started
         if (!UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) || missionCode == UserDefaults.standard.value(forKey: Keys.keyMissionCode) as! Int || missionCode == 1) {
             return
-        }else if (state != MissionState.enabled && state != MissionState.locked) {
+        }else if (state == MissionState.completed) {
             return
         }
+        
         button.isUserInteractionEnabled = false
+        buttonLock.isHidden = false
+        lockContainerView.isHidden = false
+        buttonLock.setImage(UIImage(named: "ic_lock"), for: UIControlState.normal)
+       
         var time = ""
         let newDate = Date()
         let difference = Double(newDate.timeIntervalSince(TimeManager.sharedInstance.currentDate))

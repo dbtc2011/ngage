@@ -129,9 +129,8 @@ class RequestManager {
             if let error = responseJSON["Message"].string {
                 if PKHUD.sharedHUD.isVisible {
                     DispatchQueue.main.async {
-                        PKHUD.sharedHUD.hide(afterDelay: 0.5) { success in
+                        PKHUD.sharedHUD.hide(afterDelay: 0.0) { success in
                             // Completion Handler
-                            
                         }
                     }
                 }
@@ -139,9 +138,8 @@ class RequestManager {
             }else {
                 if PKHUD.sharedHUD.isVisible {
                     DispatchQueue.main.async {
-                        PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+                        PKHUD.sharedHUD.hide(afterDelay: 0.0) { success in
                             // Completion Handler
-                            
                         }
                     }
                 }

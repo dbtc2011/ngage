@@ -102,12 +102,16 @@ extension TaskViewController : UIImagePickerControllerDelegate {
                     
                     upload.responseJSON { response in
                         //print response.result
-                        print(response)
-                        let responseJSON : JSON? = JSON(response)
-                        if let uploaded = responseJSON!["uploaded"].dictionary {
-                            if let status = uploaded["Status"]?.string {
-                                if status == "FOR APPROVAL" || status == "SUCCESS" {
-                                    self.didFinishTask(task: self.selectedTask)
+                        print("Response")
+        
+                        let responseJSON : JSON? = JSON(response.result.value!)
+                        print(responseJSON ?? "Cannot parse!")
+                        if let uploads = responseJSON!["uploaded"].array {
+                            if let uploaded = uploads[0].dictionary {
+                                if let status = uploaded["Status"]?.string {
+                                    if status == "FOR APPROVAL" || status == "SUCCESS" {
+                                        self.cameraTaskFinished(taskCamera: self.selectedTask)
+                                    }
                                 }
                             }
                         }

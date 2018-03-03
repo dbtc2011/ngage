@@ -51,6 +51,7 @@ class VideoTaskViewController: UIViewController {
 
     func playVideo() {
         var fileURL = currentPath.replacingOccurrences(of: "http", with: "https")
+        fileURL = fileURL.replacingOccurrences(of: "httpss", with: "https")
         fileURL = fileURL.replacingOccurrences(of: " ", with: "%20")
         if let url = URL(string: fileURL) {
             let playerItem = AVPlayerItem(url: url)
@@ -63,9 +64,9 @@ class VideoTaskViewController: UIViewController {
                                                                         self.observeTime(elapsedTime: elapsedTime)
                                                                         let time : Float64 = CMTimeGetSeconds(self.player!.currentTime())
                                                                         let maxTime : Float64 = CMTimeGetSeconds(self.player!.currentItem!.duration)
-//                                                                        self.contentDuration = "\(Int(maxTime))"
-//                                                                        self.playerSlider.maximumValue = Float(maxTime)
-//                                                                        self.playerSlider.value = Float ( time )
+                                                                        self.contentDuration = "\(Int(maxTime))"
+                                                                        self.playerSlider.maximumValue = Float(maxTime)
+                                                                        self.playerSlider.value = Float ( time )
                                                                         
                 } as AnyObject
             setupUI()
@@ -99,7 +100,6 @@ class VideoTaskViewController: UIViewController {
             if let controller = navigationController?.viewControllers[1] as? TaskViewController {
                 _ = navigationController?.popToViewController(controller, animated: true)
                 controller.setContent(id: contentID, duration: contentDuration)
-                controller.didFinishTask(task: task)
             }
         }
     }

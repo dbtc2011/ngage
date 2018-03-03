@@ -49,6 +49,7 @@ class FBShareTaskViewController: UIViewController {
                     if let dictionary = contents[0].dictionary {
                         var urlString = dictionary["URL"]?.string ?? ""
                         urlString = urlString.replacingOccurrences(of: "http", with: "https")
+                        urlString = urlString.replacingOccurrences(of: "httpss", with: "https")
                         if let url = URL(string: urlString) {
                             self.urlLink = url
                             self.webview.load(URLRequest(url: url))

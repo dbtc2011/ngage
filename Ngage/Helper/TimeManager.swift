@@ -27,6 +27,7 @@ class TimeManager: NSObject {
     var shouldSaveDate = false
     
     func setTimer() {
+        
         if hasStartedMission == false {
             // should not call time?
         }
@@ -39,6 +40,14 @@ class TimeManager: NSObject {
                     self.currentDay = dateTimeComponents[0]
                     self.currentTime = dateTimeComponents[1]
                     self.timeRemaining = dateComponents[0] + " +0000"
+                    if !self.shouldSaveDate {
+                        if let lastMissionString = UserDefaults.standard.string(forKey: Keys.MissionStartDate) {
+                            let arrayLastMission = lastMissionString.components(separatedBy: "T")
+                            if self.currentDay != arrayLastMission[0] {
+                                UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
+                            }
+                        }
+                    }
                     self.logDate()
                 }
                 
