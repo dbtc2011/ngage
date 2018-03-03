@@ -403,6 +403,18 @@ class SingleMarketTableViewController: UITableViewController {
         default:
              cell.lblSubtitle.text = ""
         }
+        
+        var userPoints = 0
+        if let points = Int(user.points) {
+            userPoints = points
+        }
+        
+        cell.btnRedeem.isEnabled = true
+        cell.btnRedeem.backgroundColor = UIColor().setColorUsingHex(hex: "0066A8").withAlphaComponent(1.0)
+        if userPoints < redeemable.pointsRequired {
+            cell.btnRedeem.isEnabled = false
+            cell.btnRedeem.backgroundColor = UIColor().setColorUsingHex(hex: "0066A8").withAlphaComponent(0.5)
+        }
 
         return cell
     }
