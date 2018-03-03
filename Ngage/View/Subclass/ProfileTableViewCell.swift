@@ -26,6 +26,7 @@ class ProfileTableViewCell: UITableViewCell {
         imgProfile.layer.borderColor = UIColor.white.cgColor
         imgProfile.layer.borderWidth = 1.0
         imgProfile.layer.cornerRadius = imgProfile.frame.height/2
+        imgProfile.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,7 +37,11 @@ class ProfileTableViewCell: UITableViewCell {
     
     func setProfileInfo(withUserModel user: UserModel) {
         lblFullName.text = user.name.capitalized
-        
+        if let data = user.image {
+            imgProfile.image = UIImage(data: data)
+        }else if let data = UserDefaults.standard.value(forKeyPath: "profile_image") as? Data {
+            imgProfile.image = UIImage(data: data)
+        }
         if let points = Int(user.points) {
             var textPoints = user.points
             if points > 0 {

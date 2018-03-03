@@ -78,6 +78,7 @@ class OnboardingViewController: UIViewController {
                                 }
                                 print("Download Finished")
                                 self.user.image = data
+                                UserDefaults.standard.setValue(data, forKey: "profile_image")
                                 DispatchQueue.main.async {
                                     self.goToLogin()
                                 }
