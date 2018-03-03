@@ -60,7 +60,7 @@ final class RegisterService: RequestManager {
     
     class func insertRecord(missionID: String, taskID: String, tasktype: String, FBID: String, ContentID: String, SubContentID: String, Answer: String, CorrectAnswer: String, WatchType: String, WatchTime: String, DeviceID: String, TaskStatus: String, Current_Points: String, Points: String, Prev_Points: String, success: @escaping CompletionBlock) {
         let user = UserModel().mainUser()
-        let parameter = ["missionID": missionID, "taskID": taskID, "tasktype": tasktype, "FBID": FBID, "ContentID": ContentID, "SubContentID" : SubContentID, "Answer": Answer, CorrectAnswer: CorrectAnswer, "WatchType": WatchType, "WatchTime": WatchTime, "DeviceID": user.deviceID, "TaskStatus": TaskStatus]
+        let parameter = ["missionID": missionID, "taskID": taskID, "tasktype": tasktype, "FBID": FBID, "ContentID": ContentID, "SubContentID" : SubContentID, "Answer": Answer, "CorrectAnswer": CorrectAnswer, "WatchType": WatchType, "WatchTime": WatchTime, "DeviceID": user.deviceID, "TaskStatus": TaskStatus]
         perform(task: .insertRecord(parameter)) { (result, error) in
             success(result, error)
         }

@@ -125,7 +125,7 @@ class RequestManager {
             }
             let responseJSON = JSON(response)
             print(responseJSON as Any)
-            
+            print(task)
             if let error = responseJSON["Message"].string {
                 if PKHUD.sharedHUD.isVisible {
                     DispatchQueue.main.async {
