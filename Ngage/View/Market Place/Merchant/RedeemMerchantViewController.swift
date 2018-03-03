@@ -20,14 +20,14 @@ class RedeemMerchantViewController: UIViewController {
 
     //MARK: - Properties
     
-    @IBOutlet weak var imgPoweredBy: UIImageView! //remove when correct image is available
-    @IBOutlet weak var imgGift: UIImageView! //remove when correct image is available
-    
     @IBOutlet weak var txtPointsToConvert: UITextField!
     @IBOutlet weak var lblEquivalentInPeso: UILabel!
     
     @IBOutlet weak var btnLocations: UIButton!
     @IBOutlet weak var btnContinue: UIButton!
+    
+    @IBOutlet var bgOuter1: UIView!
+    @IBOutlet var bgOuter2: UIView!
     
     var redeemable: MerchantRedeemableModel!
     var formDetails = RedeemMerchantForm()
@@ -52,9 +52,8 @@ class RedeemMerchantViewController: UIViewController {
         
         addDoneButtonKeyboardAccessory(forTextfield: txtPointsToConvert)
         
-        //remove when correct image is available
-        imgPoweredBy.layer.cornerRadius = imgPoweredBy.frame.width/2
-        imgGift.layer.cornerRadius = imgGift.frame.width/2
+        bgOuter1.layer.cornerRadius = bgOuter1.frame.width/2
+        bgOuter2.layer.cornerRadius = bgOuter2.frame.width/2
         
         btnLocations.layer.cornerRadius = 5.0
         btnContinue.layer.cornerRadius = 5.0

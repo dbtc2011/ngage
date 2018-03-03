@@ -80,7 +80,7 @@ class HomeViewController: DrawerFrontViewController {
             var taskCounter = 0
             var taskIndex = 0
             for task in mission.tasks {
-                var taskModel = task
+                let taskModel = task
                 if taskModel.state == 2 {
                     taskCounter = taskCounter + 1
                 }

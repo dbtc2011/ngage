@@ -17,7 +17,6 @@ class RedeemMerchantFormViewController: UIViewController {
     
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var tblForm: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnNext: UIButton!
@@ -70,7 +69,6 @@ class RedeemMerchantFormViewController: UIViewController {
     
     private func displayAlert(withMessage message: String) {
         DispatchQueue.main.async {
-            self.activityIndicator.stopAnimating()
             self.btnNext.isEnabled = true
             
             let alert = UIAlertController(title: "Ngage", message: message, preferredStyle: .alert)
@@ -82,8 +80,6 @@ class RedeemMerchantFormViewController: UIViewController {
     //MARK: - API
     
     private func redeemFromMerchant() {
-        activityIndicator.startAnimating()
-        
         RegisterService.orderProcess(merchant: redeemable, redeemDetails: formDetails) { (json, error) in
             guard error == nil else {
                 self.displayAlert(withMessage: error!.localizedDescription)
