@@ -203,7 +203,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSv-NV-xaT">
                                                     <rect key="frame" x="281" y="21" width="60" height="60"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.31372549020000001" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="Bhc-bl-gSt"/>
                                                         <constraint firstAttribute="width" constant="60" id="zGY-Fk-cYk"/>
