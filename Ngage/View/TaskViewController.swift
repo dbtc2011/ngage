@@ -27,6 +27,7 @@ class TaskViewController: UIViewController {
     var user = UserModel().mainUser()
     var selectedTask : TaskModel!
     var selectedIndex = 0
+    var completedTask = 0
     var delegate : TaskViewControllerDelegate?
     var quizAnswers: String!
     var quizCorrectAnswers: String!
@@ -34,11 +35,12 @@ class TaskViewController: UIViewController {
     var contentID : String = ""
     var contentDuration : String = ""
     
-    var customView : CustomModalView?
+    @IBOutlet weak var customView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        completedTask = 0
         var shouldSetEnabled = false
         var arrayCounter = 0
         var tempTasks : [TaskModel] = []
@@ -47,8 +49,11 @@ class TaskViewController: UIViewController {
             if shouldSetEnabled && taskReversed.state == 0{
                 taskToAdd.state = 1
                 shouldSetEnabled = false
+            }else if shouldSetEnabled && taskReversed.state == 1 {
+                shouldSetEnabled = false
             }
             if taskReversed.state == 2 {
+                completedTask = completedTask + 1
                 shouldSetEnabled = true
             }else if taskReversed.state == 0 && arrayCounter == 0 {
                 taskToAdd.state = 1
@@ -72,6 +77,10 @@ class TaskViewController: UIViewController {
         UIViewController.attemptRotationToDeviceOrientation()
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        adjustProgressBar()
+    }
     
     override var shouldAutorotate: Bool {
         return true
@@ -85,15 +94,127 @@ class TaskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     //MARK: - Functions
+    func adjustProgressBar() {
+        var currentProgress = 100.0/CGFloat(tasks.count)
+        currentProgress = currentProgress * CGFloat(completedTask)
+        progress.setProgress(value: currentProgress, animationDuration: 0.4)
+    }
     func setupUI() {
+        customView.isHidden = true
+        customView.backgroundColor = UIColor.clear
         self.progress.setProgress(value: 0, animationDuration: 1)
         if mission.imageTask!.data != nil {
             if let imageData = UIImage(data: mission.imageTask!.data!) {
                 backgroundImage.image = imageData
                 
             }
+        }else {
+            backgroundImage.image = UIImage(named: "img_splash")
         }
         backgroundImage.addBlurEffect()
+    }
+    func showSuccessModal(totalPoints: Int) {
+        customView.isHidden = false
+        let modalView = Bundle.main.loadNibNamed("SuccessTaskModalView", owner: self, options: nil)?.first as! SuccessTaskModalView
+        modalView.delegate = self
+        modalView.setupContents(pointsTotal: "\(totalPoints)pts", pointsEarned: Int(selectedTask.reward)!)
+        modalView.bounds = customView.bounds
+        modalView.frame.origin = CGPoint(x: 0, y: 0)
+        customView.addSubview(modalView)
+    }
+    
+    func adjustTasks() {
+        adjustProgressBar()
+        var finishedTask = selectedTask!
+        finishedTask.state = 2
+        tasks[selectedIndex] = finishedTask
+        if selectedIndex != 0 {
+            var nextTask = tasks[selectedIndex-1]
+            nextTask.state = 1
+            tasks[selectedIndex-1] = nextTask
+        }
+        tableView.reloadData()
+        if mission.code == 1 && selectedIndex == 0 {
+            TimeManager.sharedInstance.hasFinishedFirstTask = true
+            delegate?.mustReloadData()
+        }
+    }
+    
+    func quizDidSet(answers: String, correctAnswers: String) {
+        quizAnswers = answers
+        quizCorrectAnswers = correctAnswers
+    }
+    
+    func setContent(id: String, duration : String) {
+        contentID = id
+        contentDuration = duration
+    }
+    func didFinishTask(task: TaskModel) {
+        print("Finished task \(task.info)")
+        UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
+        UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
+        if mission.code != 1 {
+            TimeManager.sharedInstance.hasStartedMission = true
+            
+            TimeManager.sharedInstance.shouldSaveDate = true
+            TimeManager.sharedInstance.setTimer()
+            UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
+            //            TimeManager.sharedInstance.startedMissionCode = mission.code
+        }
+        
+        switch task.type {
+        case 1, 2:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "0", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+            
+        case 3:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: task.contentId, SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+        case 5, 6, 10:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+            
+        case 3 :
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: contentID, SubContentID: "0", Answer: "", CorrectAnswer: "", WatchType: "video", WatchTime: contentDuration, DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+        case 7, 8, 17:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            print("Answers = \(quizAnswers)")
+            print("Correct Answers = \(quizCorrectAnswers)")
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: quizAnswers, CorrectAnswer: quizCorrectAnswers, WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+            quizCorrectAnswers = ""
+            quizAnswers = ""
+        default:
+            let totalPoint = Int(user.points)! + Int(task.reward)!
+            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+        }
+        
+        //        adjustTasks()
+    }
+    
+    
+    //MARK: - Open tasks
+    func openTask() {
+        switch self.selectedTask.type {
+        case 1, 2, 12, 13, 14, 15:
+            performSegue(withIdentifier: "webViewTask", sender: self.selectedTask)
+        case 3:
+            playVideo(task: self.selectedTask)
+        case 5:
+            facebookShare(task: self.selectedTask)
+        case 6:
+            openContactList(task: self.selectedTask)
+        case 7, 8, 17:
+            openQuestionaireWithMusic(task: self.selectedTask)
+        case 9:
+            installTask(task: self.selectedTask)
+            
+        case 10:
+            showPhotoPopOver()
+            
+        default:
+            break
+        }
     }
     
     func facebookShare(task: TaskModel) {
@@ -146,96 +267,7 @@ class TaskViewController: UIViewController {
 //        }
     }
     
-    func adjustTasks() {
-        
-        var finishedTask = selectedTask!
-        finishedTask.state = 2
-        tasks[selectedIndex] = finishedTask
-        if selectedIndex != 0 {
-            var nextTask = tasks[selectedIndex-1]
-            nextTask.state = 1
-            tasks[selectedIndex-1] = nextTask
-        }
-        tableView.reloadData()
-        if mission.code == 1 && selectedIndex == 0 {
-            TimeManager.sharedInstance.hasFinishedFirstTask = true
-            delegate?.mustReloadData()
-        }
-        
-    }
-    
-    func quizDidSet(answers: String, correctAnswers: String) {
-        quizAnswers = answers
-        quizCorrectAnswers = correctAnswers
-    }
-    
-    func setContent(id: String, duration : String) {
-        contentID = id
-        contentDuration = duration
-    }
-    func didFinishTask(task: TaskModel) {
-        print("Finished task \(task.info)")
-        UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
-        UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
-        if mission.code != 1 {
-            TimeManager.sharedInstance.setTimer()
-            TimeManager.sharedInstance.hasStartedMission = true
-            UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
-//            TimeManager.sharedInstance.startedMissionCode = mission.code
-        }
-        
-        switch task.type {
-        case 1, 2:
-            let totalPoint = Int(user.points)! + Int(task.reward)!
-            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "0", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
-            
-        case 3:
-            let totalPoint = Int(user.points)! + Int(task.reward)!
-            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: task.contentId, SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
-        case 5, 6, 10:
-            let totalPoint = Int(user.points)! + Int(task.reward)!
-            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
-            
-        case 3 :
-            let totalPoint = Int(user.points)! + Int(task.reward)!
-            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: contentID, SubContentID: "0", Answer: "", CorrectAnswer: "", WatchType: "video", WatchTime: contentDuration, DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
-        case 7, 8, 17:
-            let totalPoint = Int(user.points)! + Int(task.reward)!
-            print("Answers = \(quizAnswers)")
-            print("Correct Answers = \(quizCorrectAnswers)")
-            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: quizAnswers, CorrectAnswer: quizCorrectAnswers, WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
-            quizCorrectAnswers = ""
-            quizAnswers = ""
-        default:
-            let totalPoint = Int(user.points)! + Int(task.reward)!
-            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
-        }
-        
-//        adjustTasks()
-    }
-    
-    func openTask() {
-        switch self.selectedTask.type {
-        case 1, 2, 12, 13, 14, 15:
-            performSegue(withIdentifier: "webViewTask", sender: self.selectedTask)
-        case 3:
-            playVideo(task: self.selectedTask)
-        case 5:
-            facebookShare(task: self.selectedTask)
-        case 6:
-            openContactList(task: self.selectedTask)
-        case 7, 8, 17:
-            openQuestionaireWithMusic(task: self.selectedTask)
-        case 9:
-            installTask(task: self.selectedTask)
-            
-        case 10:
-            showPhotoPopOver()
-            
-        default:
-            break
-        }
-    }
+    //MARK: - API
     func submitTask(missionID: String, taskID: String, tasktype: String, FBID: String, ContentID: String, SubContentID: String, Answer: String, CorrectAnswer: String, WatchType: String, WatchTime: String, DeviceID: String, TaskStatus: String, Current_Points: String, Points: String, Prev_Points: String) {
         
         RegisterService.insertRecord(missionID: missionID, taskID: taskID, tasktype: tasktype, FBID: FBID, ContentID: ContentID, SubContentID: SubContentID, Answer: Answer, CorrectAnswer: CorrectAnswer, WatchType: WatchType, WatchTime: WatchTime, DeviceID: DeviceID, TaskStatus: TaskStatus, Current_Points: Current_Points, Points: Points, Prev_Points
@@ -249,7 +281,8 @@ class TaskViewController: UIViewController {
                                 DispatchQueue.main.async {
                                     self.contentDuration = ""
                                     self.contentID = ""
-                                    self.adjustTasks()
+                                    self.showSuccessModal(totalPoints: points)
+                                    
                                 }
                             })
                         }
@@ -261,7 +294,6 @@ class TaskViewController: UIViewController {
                 // Show alert
             }
         }
-        
     }
     
     // MARK: - Navigation
@@ -322,16 +354,14 @@ extension TaskViewController : UITableViewDelegate {
         if task.state == TaskStatus.enabled.rawValue {
             selectedTask = task
             selectedIndex = indexPath.row
-            openTask()
-//            if customView == nil {
-//                customView = CustomModalView.instanceFromNib()
-//                customView?.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-//                customView!.delegate = self
-//                customView!.setupContent(value: task.instructions)
-//                UIApplication.shared.keyWindow!.addSubview(customView!)
-//            }
+            customView.isHidden = false
+            let modalView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
+            modalView.delegate = self
+            modalView.setupContent(value: task.instructions)
+            modalView.bounds = customView.bounds
+            modalView.frame.origin = CGPoint(x: 0, y: 0)
+            customView.addSubview(modalView)
         }
-        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65.0
@@ -360,9 +390,12 @@ extension TaskViewController : TaskDoneDelegate {
 }
 
 extension TaskViewController : CustomModalViewDelegate {
-    func didTapOkayButton() {
-        customView!.removeFromSuperview()
-        customView = nil
-        openTask()
+    func didTapOkayButton(tag: Int) {
+        customView.isHidden = true
+        if tag == 1 {
+            openTask()
+        }else if tag == 2 {
+            adjustTasks()
+        }
     }
 }

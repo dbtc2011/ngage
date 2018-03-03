@@ -24,8 +24,12 @@ class TimeManager: NSObject {
     var midnightDate : Date!
     var currentDate : Date!
     var serverDate : Date!
+    var shouldSaveDate = false
     
     func setTimer() {
+        if hasStartedMission == false {
+            // should not call time?
+        }
         RegisterService.getServerTime() { (result, error) in
             if error == nil {
                 print("SERVER TIME:")
@@ -52,8 +56,11 @@ class TimeManager: NSObject {
         if let date = formatter.date(from: timeMidnight) {
             midnightDate = Calendar.current.date(byAdding: .day, value: 1, to: date)!
             if let serverDates = formatter.date(from: timeRemaining) {
+                if shouldSaveDate {
+                    UserDefaults.standard.setValue(timeRemaining, forKey: Keys.MissionStartDate)
+                    shouldSaveDate = false
+                }
                 serverDate = serverDates
-                midnightDate = serverDate.addingTimeInterval(5)
                 currentDate = Date()
             }
         }

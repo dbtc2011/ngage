@@ -505,6 +505,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpw-N5-Rd2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -512,6 +516,7 @@
                             <constraint firstAttribute="trailing" secondItem="e36-pg-Ofb" secondAttribute="trailing" constant="10" id="6qJ-4d-iXD"/>
                             <constraint firstItem="noP-s9-rXG" firstAttribute="top" secondItem="Jjo-iF-H1R" secondAttribute="bottom" constant="185" id="8Z8-Q3-BJJ"/>
                             <constraint firstItem="GJR-1t-evo" firstAttribute="height" secondItem="oz7-KJ-id2" secondAttribute="height" id="9xf-hf-kUr"/>
+                            <constraint firstAttribute="trailing" secondItem="zpw-N5-Rd2" secondAttribute="trailing" id="AwY-rt-LNh"/>
                             <constraint firstItem="HNM-bh-bQj" firstAttribute="centerX" secondItem="7Hs-42-m7W" secondAttribute="centerX" id="BHp-QW-Znn"/>
                             <constraint firstItem="e36-pg-Ofb" firstAttribute="top" secondItem="noP-s9-rXG" secondAttribute="bottom" constant="60" id="D7N-32-mzW"/>
                             <constraint firstItem="oz7-KJ-id2" firstAttribute="leading" secondItem="7Hs-42-m7W" secondAttribute="leading" constant="10" id="HG3-ZL-T86"/>
@@ -519,11 +524,14 @@
                             <constraint firstItem="zNK-ea-BZt" firstAttribute="top" secondItem="HNM-bh-bQj" secondAttribute="bottom" constant="8" id="Js2-Th-jKk"/>
                             <constraint firstItem="GJR-1t-evo" firstAttribute="top" secondItem="oz7-KJ-id2" secondAttribute="top" id="JvW-As-tMM"/>
                             <constraint firstItem="oz7-KJ-id2" firstAttribute="top" secondItem="Jjo-iF-H1R" secondAttribute="bottom" id="QZw-pO-XiX"/>
+                            <constraint firstItem="zpw-N5-Rd2" firstAttribute="top" secondItem="7Hs-42-m7W" secondAttribute="top" id="RWy-e6-hdl"/>
                             <constraint firstItem="HNM-bh-bQj" firstAttribute="top" secondItem="GJR-1t-evo" secondAttribute="bottom" constant="5" id="Rr5-kf-7lH"/>
+                            <constraint firstItem="zpw-N5-Rd2" firstAttribute="leading" secondItem="7Hs-42-m7W" secondAttribute="leading" id="UM0-bv-qDt"/>
                             <constraint firstItem="zNK-ea-BZt" firstAttribute="leading" secondItem="7Hs-42-m7W" secondAttribute="leading" id="UNy-kf-1JW"/>
                             <constraint firstItem="noP-s9-rXG" firstAttribute="leading" secondItem="7Hs-42-m7W" secondAttribute="leading" id="WuY-ac-IZ7"/>
                             <constraint firstItem="DDX-bc-UB4" firstAttribute="top" secondItem="7Hs-42-m7W" secondAttribute="top" id="c26-sx-6cD"/>
                             <constraint firstItem="zNK-ea-BZt" firstAttribute="top" secondItem="noP-s9-rXG" secondAttribute="bottom" constant="-20" id="d6f-Kx-leD"/>
+                            <constraint firstItem="rmC-QN-isH" firstAttribute="top" secondItem="zpw-N5-Rd2" secondAttribute="bottom" id="eSZ-ce-7Xu"/>
                             <constraint firstItem="rmC-QN-isH" firstAttribute="top" secondItem="e36-pg-Ofb" secondAttribute="bottom" constant="10" id="gBD-cl-jlt"/>
                             <constraint firstItem="e36-pg-Ofb" firstAttribute="leading" secondItem="7Hs-42-m7W" secondAttribute="leading" constant="10" id="gGq-Fu-V0F"/>
                             <constraint firstItem="GJR-1t-evo" firstAttribute="leading" secondItem="oz7-KJ-id2" secondAttribute="trailing" constant="10" id="moR-Kd-bdu"/>
@@ -536,6 +544,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="backgroundImage" destination="DDX-bc-UB4" id="ZGl-M3-Fvj"/>
+                        <outlet property="customView" destination="zpw-N5-Rd2" id="HBL-BV-4ej"/>
                         <outlet property="progress" destination="HNM-bh-bQj" id="jZT-18-vQu"/>
                         <outlet property="tableView" destination="e36-pg-Ofb" id="pB9-XN-ZwQ"/>
                         <segue destination="MSb-1h-2pa" kind="show" identifier="webViewTask" id="wn3-DQ-CfI"/>

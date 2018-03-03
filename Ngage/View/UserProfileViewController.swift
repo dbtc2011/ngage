@@ -28,14 +28,6 @@ class UserProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setupInterface()
-        
-        //dummy data
-        user.name = "Mark Angeles"
-        user.birthday = "05/06/1990"
-        user.gender = "male"
-        user.emailAddress = "mark_angeles@gmail.com"
-        user.mobileNumber = "09123456789"
-        user.location = "San Juan"
     }
 
     override func didReceiveMemoryWarning() {

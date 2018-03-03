@@ -9,10 +9,11 @@
 import UIKit
 
 protocol CustomModalViewDelegate {
-    func didTapOkayButton()
+    func didTapOkayButton(tag: Int)
 }
 class CustomModalView: UIView {
 
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var labelContent: UILabel!
     var delegate : CustomModalViewDelegate?
@@ -29,22 +30,17 @@ class CustomModalView: UIView {
                                         owner: nil,
                                         options: nil)?.first as! CustomModalView
     }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     func setupContent(value: String) {
-        containerView.layer.cornerRadius = 20
+        self.backgroundColor = UIColor.clear
+        containerView.layer.cornerRadius = 10
+        button.layer.cornerRadius = 5
         labelContent.text = value
     }
     
     //MARK: - Action
     @IBAction func buttonClicked(_ sender: UIButton) {
-        delegate?.didTapOkayButton()
+        delegate?.didTapOkayButton(tag: 1)
     }
     
 }

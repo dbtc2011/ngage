@@ -30,6 +30,8 @@
 		503A59712043228000EB4687 /* CustomModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 503A59702043228000EB4687 /* CustomModalView.xib */; };
 		503E62D4201A1CD900363D80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E62D3201A1CD900363D80 /* HomeViewController.swift */; };
 		503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */; };
+		50426ECF204AC77D00F2D3B9 /* SuccessTaskModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50426ECE204AC77D00F2D3B9 /* SuccessTaskModalView.xib */; };
+		50426ED1204AC79900F2D3B9 /* SuccessTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50426ED0204AC79900F2D3B9 /* SuccessTaskModalView.swift */; };
 		506B09CF20234AFC0017C481 /* PinVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */; };
 		506C34712037FD05004E651C /* TaskInstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C34702037FD05004E651C /* TaskInstructionsViewController.swift */; };
 		506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C347220381679004E651C /* CongratulationsMCTaskViewController.swift */; };
@@ -147,6 +149,8 @@
 		503A59702043228000EB4687 /* CustomModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomModalView.xib; sourceTree = "<group>"; };
 		503E62D3201A1CD900363D80 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		50426ECE204AC77D00F2D3B9 /* SuccessTaskModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessTaskModalView.xib; sourceTree = "<group>"; };
+		50426ED0204AC79900F2D3B9 /* SuccessTaskModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessTaskModalView.swift; sourceTree = "<group>"; };
 		506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationViewController.swift; sourceTree = "<group>"; };
 		506C34702037FD05004E651C /* TaskInstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInstructionsViewController.swift; sourceTree = "<group>"; };
 		506C347220381679004E651C /* CongratulationsMCTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsMCTaskViewController.swift; sourceTree = "<group>"; };
@@ -389,6 +393,8 @@
 				8C4EC037203B0200006A71A5 /* MerchantLocationTableViewCell.swift */,
 				503A596E2043227200EB4687 /* CustomModalView.swift */,
 				503A59702043228000EB4687 /* CustomModalView.xib */,
+				50426ECE204AC77D00F2D3B9 /* SuccessTaskModalView.xib */,
+				50426ED0204AC79900F2D3B9 /* SuccessTaskModalView.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -646,6 +652,7 @@
 				50DF518F203015FC00F16FB4 /* TaskNameThatSoundView.xib in Resources */,
 				501AE437201849490088983A /* LaunchScreen.storyboard in Resources */,
 				503A59712043228000EB4687 /* CustomModalView.xib in Resources */,
+				50426ECF204AC77D00F2D3B9 /* SuccessTaskModalView.xib in Resources */,
 				501AE434201849490088983A /* Assets.xcassets in Resources */,
 				50141F5A202CC67F0082EF2B /* AudioPlayerView.xib in Resources */,
 				509B0FA52019A77000DC0F21 /* HomeStoryboard.storyboard in Resources */,
@@ -841,6 +848,7 @@
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				50FA4AF9203CB236006CC8BD /* TimeManager.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
+				50426ED1204AC79900F2D3B9 /* SuccessTaskModalView.swift in Sources */,
 				50E9D824202F63570018A3E5 /* QuestionsModel.swift in Sources */,
 				8CE69F5C2039381200BE3806 /* RedeemViewController.swift in Sources */,
 				5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */,

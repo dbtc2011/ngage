@@ -28,7 +28,7 @@ struct UserModel {
     var refferedBy = ""
     var referralCode = ""
     var operatorID = ""
-    var deviceID = "23213123131"
+    var deviceID = ""
 }
 
 extension UserModel {
@@ -45,6 +45,10 @@ extension UserModel {
             userModel.points = user.points ?? ""
             userModel.referralCode = String(userModel.facebookId.characters.prefix(4) + userModel.mobileNumber.characters.suffix(4))
             UserDefaults.standard.set(userModel.referralCode, forKey: Keys.ReferralCode)
+    
+            if let token = UserDefaults.standard.string(forKey: Keys.DeviceID) {
+                userModel.deviceID = token
+            }
             return userModel
         }
         return UserModel()

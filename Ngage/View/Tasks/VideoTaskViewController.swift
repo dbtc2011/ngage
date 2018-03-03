@@ -63,9 +63,9 @@ class VideoTaskViewController: UIViewController {
                                                                         self.observeTime(elapsedTime: elapsedTime)
                                                                         let time : Float64 = CMTimeGetSeconds(self.player!.currentTime())
                                                                         let maxTime : Float64 = CMTimeGetSeconds(self.player!.currentItem!.duration)
-                                                                        self.contentDuration = "\(Int(maxTime))"
-                                                                        self.playerSlider.maximumValue = Float(maxTime)
-                                                                        self.playerSlider.value = Float ( time )
+//                                                                        self.contentDuration = "\(Int(maxTime))"
+//                                                                        self.playerSlider.maximumValue = Float(maxTime)
+//                                                                        self.playerSlider.value = Float ( time )
                                                                         
                 } as AnyObject
             setupUI()
