@@ -54,13 +54,13 @@ class DrawerViewController: UIViewController {
 
 extension DrawerViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         guard indexPath.section > 0 else { return }
         
         if let drawer = parent as? KYDrawerController {
             drawer.setDrawerState(.closed, animated: true)
         }
-        
-        tableView.deselectRow(at: indexPath, animated: true)
         
         var identifier = "MarketNavigation"
         var storyboard = "Main"
@@ -169,31 +169,38 @@ extension DrawerViewController : UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "drawerCell") as! DrawerTableViewCell
         var title = ""
-        let image = #imageLiteral(resourceName: "ic_menu")
+        var image = UIImage()
         
         switch indexPath.row {
         case 0:
             if indexPath.section == 1 {
                 title = "Home"
+                image = #imageLiteral(resourceName: "ic_action_home")
             } else {
                 title = "About Us"
+                image = #imageLiteral(resourceName: "ic_action_about_us")
             }
             
         case 1:
             if indexPath.section == 1 {
                 title = "Market Place"
+                image = #imageLiteral(resourceName: "ic_action_rewards")
             } else {
                 title = "Private Policy"
+                image = #imageLiteral(resourceName: "ic_action_private_policy")
             }
             
         case 2:
             title = "Profile"
+            image = #imageLiteral(resourceName: "ic_action_profile")
             
         case 3:
             title = "Notifications"
+            image = #imageLiteral(resourceName: "ic_action_achievements")
             
         default:
             title = "History"
+            image = #imageLiteral(resourceName: "ic_action_history")
         }
         
         cell.setup(withTitle: title, withImage: image)

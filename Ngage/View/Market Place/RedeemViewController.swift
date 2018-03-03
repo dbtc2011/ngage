@@ -133,7 +133,10 @@ class RedeemViewController: UIViewController {
             })
             
         case .Ringtone:
-            var fileURL = redeemable.filePath.replacingOccurrences(of: "http", with: "https")
+            var fileURL = redeemable.filePath
+            if !fileURL.contains("https") {
+                fileURL = fileURL.replacingOccurrences(of: "http", with: "https")
+            }
             fileURL = fileURL.replacingOccurrences(of: " ", with: "%20")
             if let url = URL(string: fileURL) {
                 self.activityIndicator.stopAnimating()
@@ -142,11 +145,10 @@ class RedeemViewController: UIViewController {
                 let asset = AVURLAsset(url: url)
                 audioDuration = CMTimeGetSeconds(asset.duration)
                 audioInterval = Double(viewLine.frame.width)/audioDuration
-                self.enableTimer()
                 
                 self.player = AVPlayer(url: url)
-                self.player!.play()
             }
+            
         default:
             break
         }
@@ -233,12 +235,14 @@ class RedeemViewController: UIViewController {
             case .Ringtone:
                 let fileComponents = serviceRedeemable.filePath.components(separatedBy: "/")
                 
-                var fileURL = serviceRedeemable.filePath.replacingOccurrences(of: "http", with: "https")
+                var fileURL = serviceRedeemable.filePath
+                if !fileURL.contains("https") {
+                    fileURL = fileURL.replacingOccurrences(of: "http", with: "https")
+                }
                 fileURL = fileURL.replacingOccurrences(of: " ", with: "%20")
                 if let url = URL(string: fileURL), let data = NSData(contentsOf: url) {
                     let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                     let fileURL = documentsDirectoryURL.appendingPathComponent(fileComponents.last!)
-                    print(fileURL)
                     
                     let success = data.write(to: fileURL, atomically: true)
                     if success {
@@ -278,8 +282,6 @@ class RedeemViewController: UIViewController {
             
             self.delegate.didSuccessfullyRedeem()
         }
-        
-        
     }
     
     @IBAction func didClose(_ sender: UIButton) {
@@ -288,5 +290,18 @@ class RedeemViewController: UIViewController {
         }
         
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didPlayRingtone(_ sender: UIButton) {
+        guard player != nil else { return }
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            self.player!.play()
+            enableTimer()
+        } else {
+            self.player!.pause()
+            disableTimer()
+        }
     }
 }

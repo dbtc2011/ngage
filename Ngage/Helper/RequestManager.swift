@@ -48,6 +48,7 @@ class RequestManager {
     
     private class func invoke(task: Task, completion: @escaping CompletionBlock) {
         var shouldShowLoading = true
+        
         let reqTask: RequestTask = {
             
             switch task {
@@ -118,11 +119,12 @@ class RequestManager {
             
         }()
         
+        PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
+        if !PKHUD.sharedHUD.isVisible && shouldShowLoading {
+            PKHUD.sharedHUD.show()
+        }
+        
         reqTask.perform({ (response) in
-            PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
-            if !PKHUD.sharedHUD.isVisible && shouldShowLoading {
-                PKHUD.sharedHUD.show()
-            }
             let responseJSON = JSON(response)
             print(responseJSON as Any)
             print(task)

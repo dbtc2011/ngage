@@ -17,12 +17,12 @@ class PinVerificationViewController: UIViewController {
     @IBOutlet weak var buttonVerify: UIButton!
     @IBOutlet weak var buttonResend: UIButton!
     @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
-        // Do any additional setup after loading the view.
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -32,7 +32,10 @@ class PinVerificationViewController: UIViewController {
     func setupUI() {
         buttonResend.layer.cornerRadius = 10
         buttonVerify.layer.cornerRadius = 10
+        
+        labelPleaseWait.text = labelPleaseWait.text?.replacingOccurrences(of: "{number}", with: user.mobileNumber)
     }
+    
     func requestPin() {
         self.buttonResend.isEnabled = false
         self.buttonVerify.isEnabled = false
