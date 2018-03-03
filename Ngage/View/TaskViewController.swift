@@ -124,6 +124,7 @@ class TaskViewController: UIViewController {
     }
     
     func adjustTasks() {
+        completedTask = completedTask + 1
         adjustProgressBar()
         var finishedTask = selectedTask!
         finishedTask.state = 2
@@ -392,6 +393,9 @@ extension TaskViewController : TaskDoneDelegate {
 extension TaskViewController : CustomModalViewDelegate {
     func didTapOkayButton(tag: Int) {
         customView.isHidden = true
+        for views in customView.subviews {
+            views.removeFromSuperview()
+        }
         if tag == 1 {
             openTask()
         }else if tag == 2 {
