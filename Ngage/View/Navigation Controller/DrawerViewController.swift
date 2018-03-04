@@ -39,7 +39,7 @@ class DrawerViewController: UIViewController {
     
     //MARK: - Methods
     
-    func showViewController(withIdentifier identifier: String, fromStoryboard storyboard: String) {
+    func showViewController(withIdentifier identifier: String, fromStoryboard storyboard: String, link: String) {
         let storyboard = UIStoryboard(name: storyboard, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
         
@@ -48,7 +48,13 @@ class DrawerViewController: UIViewController {
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
         view.window!.layer.add(transition, forKey: kCATransition)
-        present(viewController, animated: false, completion: nil)
+        if let controller = viewController as? DrawerWebViewController {
+            controller.webLink = link
+            present(controller, animated: false, completion: nil)
+        }else {
+            present(viewController, animated: false, completion: nil)
+        }
+        
     }
 }
 
@@ -61,7 +67,7 @@ extension DrawerViewController : UITableViewDelegate {
         if let drawer = parent as? KYDrawerController {
             drawer.setDrawerState(.closed, animated: true)
         }
-        
+        var link = ""
         var identifier = "MarketNavigation"
         var storyboard = "Main"
         
@@ -69,7 +75,12 @@ extension DrawerViewController : UITableViewDelegate {
         case 0:
             if indexPath.section == 1 {
                 return
-            } else {
+            } else if indexPath.section == 2 {
+                identifier = "DrawerWebViewController"
+                storyboard = "HomeStoryboard"
+                link = "https://ngage.ph/tos_ngage.html"
+                
+            }else {
                 return
             }
             
@@ -77,7 +88,12 @@ extension DrawerViewController : UITableViewDelegate {
             if indexPath.section == 1 {
                 identifier = "MarketNavigation"
                 storyboard = "RedeemStoryboard"
-            } else {
+            } else if indexPath.section == 2 {
+                identifier = "DrawerWebViewController"
+                storyboard = "HomeStoryboard"
+                link = "https://ngage.ph/privacy_policy_ngage.html"
+                
+            }else {
                 return
             }
             
@@ -92,7 +108,7 @@ extension DrawerViewController : UITableViewDelegate {
         default:
             return
         }
-        self.showViewController(withIdentifier: identifier, fromStoryboard: storyboard)
+        self.showViewController(withIdentifier: identifier, fromStoryboard: storyboard, link: link)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -74,6 +74,10 @@ class TimeManager: NSObject {
             }
         }
     }
+    
+    func resetTimeStamp() {
+        UserDefaults.standard.setValue(timeRemaining, forKey: Keys.MissionStartDate)
+    }
 }
 
 

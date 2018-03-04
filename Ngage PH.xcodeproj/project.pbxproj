@@ -32,6 +32,7 @@
 		503E62D7201A1D9600363D80 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */; };
 		50426ECF204AC77D00F2D3B9 /* SuccessTaskModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50426ECE204AC77D00F2D3B9 /* SuccessTaskModalView.xib */; };
 		50426ED1204AC79900F2D3B9 /* SuccessTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50426ED0204AC79900F2D3B9 /* SuccessTaskModalView.swift */; };
+		5049CA39204BC5CA006E71BB /* DrawerWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5049CA38204BC5CA006E71BB /* DrawerWebViewController.swift */; };
 		506B09CF20234AFC0017C481 /* PinVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */; };
 		506C34712037FD05004E651C /* TaskInstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C34702037FD05004E651C /* TaskInstructionsViewController.swift */; };
 		506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C347220381679004E651C /* CongratulationsMCTaskViewController.swift */; };
@@ -151,6 +152,7 @@
 		503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		50426ECE204AC77D00F2D3B9 /* SuccessTaskModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessTaskModalView.xib; sourceTree = "<group>"; };
 		50426ED0204AC79900F2D3B9 /* SuccessTaskModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessTaskModalView.swift; sourceTree = "<group>"; };
+		5049CA38204BC5CA006E71BB /* DrawerWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerWebViewController.swift; sourceTree = "<group>"; };
 		506B09CE20234AFC0017C481 /* PinVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationViewController.swift; sourceTree = "<group>"; };
 		506C34702037FD05004E651C /* TaskInstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInstructionsViewController.swift; sourceTree = "<group>"; };
 		506C347220381679004E651C /* CongratulationsMCTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsMCTaskViewController.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */,
 				506C3479203854B1004E651C /* ContactListViewController.swift */,
 				50ED77EF203A1529004CAA74 /* HistoryViewController.swift */,
+				5049CA38204BC5CA006E71BB /* DrawerWebViewController.swift */,
 				8CF7451F2029FD4D00C44C06 /* Market Place */,
 				5003679820270720007E693A /* Tasks */,
 				50FC56D9201BAA330015D4C5 /* Navigation Controller */,
@@ -879,6 +882,7 @@
 				509C3918201BB20A0015A35B /* DrawerFrontViewController.swift in Sources */,
 				50C1259A201F03FA0051D3E8 /* LoginViewController.swift in Sources */,
 				8C3C3FD02039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift in Sources */,
+				5049CA39204BC5CA006E71BB /* DrawerWebViewController.swift in Sources */,
 				50FC56E0201BADF80015D4C5 /* Util.swift in Sources */,
 				8C3C3FC52039DDFF000EBEEC /* RedeemMerchantViewController.swift in Sources */,
 				50814938201A2A4600D66514 /* MarketButtonCollectionViewCell.swift in Sources */,

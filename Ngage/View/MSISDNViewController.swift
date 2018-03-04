@@ -69,6 +69,7 @@ class MSISDNViewController: UIViewController {
                                     if let missionCode = missionsStarted[0].int {
                                         UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
                                         UserDefaults.standard.set(missionCode, forKey: Keys.keyMissionCode)
+                                        TimeManager.sharedInstance.resetTimeStamp()
                                     }
                                 }
                             }
