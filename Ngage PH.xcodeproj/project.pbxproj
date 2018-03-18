@@ -1064,6 +1064,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7R395RP3E5;
 				INFOPLIST_FILE = Ngage/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zedph.Ngage;
 				PRODUCT_NAME = "Ngage PH";
@@ -1087,6 +1088,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7R395RP3E5;
 				INFOPLIST_FILE = Ngage/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zedph.Ngage;
 				PRODUCT_NAME = "Ngage PH";

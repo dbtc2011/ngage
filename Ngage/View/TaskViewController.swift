@@ -160,20 +160,21 @@ class TaskViewController: UIViewController {
     }
     
     func cameraTaskFinished(taskCamera: TaskModel) {
-        if taskCamera.type == 11 {
-            let when = DispatchTime.now() + 0.3
-            DispatchQueue.main.asyncAfter(deadline: when) {
-                self.facebookShare(task: taskCamera)
-            }
-        }else {
-            didFinishTask(task: taskCamera)
-        }
+//        if taskCamera.type == 11 {
+//            let when = DispatchTime.now() + 0.3
+//            DispatchQueue.main.asyncAfter(deadline: when) {
+//                self.facebookShare(task: taskCamera)
+//            }
+//        }else {
+//            didFinishTask(task: taskCamera)
+//        }
+        didFinishTask(task: taskCamera)
     }
     func didFinishTask(task: TaskModel) {
         print("Finished task \(task.info)")
-        UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
-        UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
         if mission.code != 1 {
+            UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
+            UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
             TimeManager.sharedInstance.hasStartedMission = true
             
             TimeManager.sharedInstance.shouldSaveDate = true

@@ -39,6 +39,40 @@ class TaskTableViewCell: UITableViewCell {
         containerView.layer.shadowOffset = CGSize(width: 0, height: 2)
         containerView.layer.shadowOpacity = 0.2
         containerView.backgroundColor = UIColor.white
+        
+        taskIcon.layer.masksToBounds = true
+        taskIcon.clipsToBounds = true
+        
+        switch task.type {
+        case 1:
+            taskIcon.image = UIImage(named: "ic_task_profile")
+        case 2:
+            taskIcon.image = UIImage(named: "ic_task_survey")
+        case 3:
+            taskIcon.image = UIImage(named: "ic_task_watch")
+        case 4:
+            taskIcon.image = UIImage(named: "ic_task_game")
+        case 5:
+            taskIcon.image = UIImage(named: "ic_task_share")
+        case 6:
+            taskIcon.image = UIImage(named: "ic_task_invitesms")
+        case 7:
+            taskIcon.image = UIImage(named: "ic_task_quiz")
+        case 8:
+            taskIcon.image = UIImage(named: "ic_task_tone")
+        case 9:
+            taskIcon.image = UIImage(named: "ic_task_invitesms")
+        case 10:
+            taskIcon.image = UIImage(named: "ic_task_uploadphoto")
+        case 11:
+            taskIcon.image = UIImage(named: "ic_task_upload_share")
+        case 16:
+            taskIcon.image = UIImage(named: "ic_task_watch_share")
+        case 17:
+            taskIcon.image = UIImage(named: "ic_task_quiz")
+        default:
+            taskIcon.image = UIImage(named: "ic_task_profile")
+        }
         switch task.state {
         case TaskStatus.enabled.rawValue:
             rightIcon.image = UIImage(named: "ic_reward_enabled")
@@ -53,7 +87,7 @@ class TaskTableViewCell: UITableViewCell {
             leftIcon.backgroundColor = UIColor.lightGray
             taskIcon.backgroundColor = UIColor.lightGray
             title.textColor = UIColor.lightGray
-            
+            taskIcon.layer.cornerRadius = 5
         case TaskStatus.done.rawValue:
             rightIcon.image = UIImage(named: "ic_reward_done")
             leftIcon.image = UIImage(named: "ic_task_done")
@@ -62,7 +96,7 @@ class TaskTableViewCell: UITableViewCell {
             leftIcon.clipsToBounds = true
             containerView.backgroundColor = color
             title.textColor = UIColor.white
-            taskIcon.backgroundColor = UIColor.white
+            taskIcon.backgroundColor = color
             
         default:
             rightIcon.image = UIImage(named: "ic_reward_disabled")
@@ -72,6 +106,7 @@ class TaskTableViewCell: UITableViewCell {
         labelReward.text = getRewardWithUOM(reward: task.reward)
         rightIcon.layer.cornerRadius = 20
         leftIcon.layer.cornerRadius = 15
+        
     }
     
     func getRewardWithUOM(reward: String) -> String {

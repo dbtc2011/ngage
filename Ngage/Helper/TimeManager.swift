@@ -43,10 +43,14 @@ class TimeManager: NSObject {
                     if !self.shouldSaveDate {
                         if let lastMissionString = UserDefaults.standard.string(forKey: Keys.MissionStartDate) {
                             let arrayLastMission = lastMissionString.components(separatedBy: "T")
+                            print("Day to check = \(self.currentDay) = \(arrayLastMission[0])")
                             if self.currentDay != arrayLastMission[0] {
                                 UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
                             }
+                        }else {
+                            UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
                         }
+                        
                     }
                     self.logDate()
                 }

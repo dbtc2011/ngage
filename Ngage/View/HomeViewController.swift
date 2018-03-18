@@ -68,16 +68,7 @@ class HomeViewController: DrawerFrontViewController {
         var missionIndex = 0
         for mission in user.missions {
             var missionModel = mission
-            if let hasStarted = UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) as? Bool{
-                if hasStarted {
-                    let missionStarted = UserDefaults.standard.value(forKey: Keys.keyMissionCode) as! Int
-                    if missionModel.code != missionStarted && missionModel.code != 1 {
-                        missionModel.state = MissionState.locked
-                    }
-                }else {
-                    missionModel.state = MissionState.enabled
-                }
-            }
+            missionModel = self.lockMissionForStarter(mission: missionModel)
             var taskCounter = 0
             var taskIndex = 0
             for task in mission.tasks {
@@ -145,11 +136,6 @@ class HomeViewController: DrawerFrontViewController {
                     for mission in missions {
                         var missionModel = MissionModel()
                         missionModel.code = mission["missionCode"].int ?? 0
-                        if TimeManager.sharedInstance.shouldEditMission && !TimeManager.sharedInstance.hasFinishedFirstTask {
-                            if missionModel.code != 1 {
-                                missionModel.state = MissionState.locked
-                            }
-                        }
                         missionModel.colorPrimary = mission["missionPrimaryColor"].string ?? ""
                         missionModel.colorSecondary = mission["missionSecondaryColor"].string ?? ""
                         missionModel.colorBackground = mission["missionBackground"].string ?? ""
@@ -199,14 +185,8 @@ class HomeViewController: DrawerFrontViewController {
                             }
                             
                         }
-                        if let hasStarted = UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) as? Bool{
-                            if hasStarted {
-                                let missionStarted = UserDefaults.standard.value(forKey: Keys.keyMissionCode) as! Int
-                                if missionModel.code != missionStarted && missionModel.code != 1 {
-                                    missionModel.state = MissionState.locked
-                                }
-                            }
-                        }
+                        
+                        missionModel = self.lockMissionForStarter(mission: missionModel)
                         self.user.missions.append(missionModel)
                         if mission == missions.last {
                             TimeManager.sharedInstance.shouldEditMission = false
@@ -228,6 +208,28 @@ class HomeViewController: DrawerFrontViewController {
             }
         }
     
+    }
+    
+    func lockMissionForStarter(mission: MissionModel) -> MissionModel {
+        var newMission = mission
+        if let hasStarted = UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) as? Bool{
+            if hasStarted {
+                let missionStarted = UserDefaults.standard.value(forKey: Keys.keyMissionCode) as! Int
+                if newMission.code != missionStarted && newMission.code != 1 {
+                    newMission.state = MissionState.locked
+                }
+            }else {
+                if !TimeManager.sharedInstance.hasFinishedFirstTask && newMission.code != 1 {
+                    newMission.state = MissionState.locked
+                    print("Mission should lock = \(newMission.brand)")
+                }
+            }
+        }else {
+            if !TimeManager.sharedInstance.hasFinishedFirstTask && newMission.code != 1 {
+                newMission.state = MissionState.locked
+            }
+        }
+        return newMission
     }
     
     //MARK: - Button action
@@ -268,6 +270,7 @@ extension HomeViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "missionCell", for: indexPath) as! HomeCollectionViewCell
         cell.delegate = self
         let mission = self.user.missions[indexPath.row]
+        print("Mission state = \(mission.state)")
         cell.setupContents(mission: mission)
         if mission.imageTask!.state == DowloadingImageState.new {
             let url = URL(string: mission.imageUrl)
