@@ -22,13 +22,14 @@ class ReferralCodeViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        buttonEnter.layer.cornerRadius = 10.0
+        buttonEnter.layer.cornerRadius = 27.0
+        view.isOpaque = false
+        view.backgroundColor = UIColor.clear
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.navigationController?.isNavigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +37,9 @@ class ReferralCodeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 
     
     // MARK: - Navigation
@@ -48,6 +52,12 @@ class ReferralCodeViewController: UIViewController {
         
     }
  
+    @IBAction func backClicked(_ sender: UIButton) {
+    
+        self.dismiss(animated: true) {
+            
+        }
+    }
     @IBAction func backButtonClicked(_ sender: UIBarButtonItem) {
         
         _ = navigationController?.popViewController(animated: true)
@@ -56,7 +66,9 @@ class ReferralCodeViewController: UIViewController {
     @IBAction func enterButtonClicked(_ sender: UIButton) {
     
         delegate?.didEnterReferredBy(value: textField.text ?? "")
-        _ = navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true) {
+            
+        }
     }
     
     @IBAction func didTapView(_ sender: UITapGestureRecognizer) {

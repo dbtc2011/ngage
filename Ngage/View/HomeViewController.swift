@@ -17,6 +17,9 @@ class HomeViewController: DrawerFrontViewController {
     var shouldReloadTime = true
     @IBOutlet weak var buttonDrawer: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var buttonTutorial: UIButton!
+    @IBOutlet weak var viewTutorial: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setUIColor(color: UIColor.lightGray)
@@ -62,6 +65,13 @@ class HomeViewController: DrawerFrontViewController {
         self.collectionView.backgroundColor = color
         Util.setNavigationBar(color: color)
         navigationController?.navigationBar.barTintColor = color
+    }
+    
+    func setupTutorial() {
+        viewTutorial.isHidden = false
+        buttonTutorial.layer.cornerRadius = 5
+        buttonTutorial.backgroundColor = UIColor().setColorUsingHex(hex: user.missions[0].colorBackground)
+        buttonTutorial.isUserInteractionEnabled = false
     }
     
     func reloadMissionData() {
@@ -196,13 +206,12 @@ class HomeViewController: DrawerFrontViewController {
                                 let when = DispatchTime.now() + 1.0
                                 DispatchQueue.main.asyncAfter(deadline: when) {
                                     self.reloadTime()
+                                    self.setupTutorial()
                                 }
                             }
                         }
                     }
-                    
                 }
-                
             }else {
                 
             }
@@ -221,7 +230,6 @@ class HomeViewController: DrawerFrontViewController {
             }else {
                 if !TimeManager.sharedInstance.hasFinishedFirstTask && newMission.code != 1 {
                     newMission.state = MissionState.locked
-                    print("Mission should lock = \(newMission.brand)")
                 }
             }
         }else {
@@ -238,6 +246,9 @@ class HomeViewController: DrawerFrontViewController {
         
     }
     
+    @IBAction func tutorialTap(_ sender: UITapGestureRecognizer) {
+        viewTutorial.isHidden = true
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var buttonOK: UIButton!
     @IBOutlet weak var buttonReferral: UIButton!
+    @IBOutlet weak var imgProfile: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -33,18 +34,30 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     
     func setupView() {
         name.text = user.name
         email.text = user.emailAddress
-        buttonOK.layer.cornerRadius = 10
-        buttonReferral.layer.cornerRadius = 10
+        buttonOK.layer.cornerRadius = 27
+        buttonReferral.layer.cornerRadius = 27
+        imgProfile.backgroundColor = UIColor(red: 0.0/255.0, green: 114.0/255.0, blue: 241.0/255.0, alpha: 1)
+        
+        if let data = user.image {
+            imgProfile.image = UIImage(data: data)
+            imgProfile.contentMode = UIViewContentMode.scaleAspectFill
+        }else if let data = UserDefaults.standard.value(forKeyPath: "profile_image") as? Data {
+            imgProfile.image = UIImage(data: data)
+            imgProfile.contentMode = UIViewContentMode.scaleAspectFill
+        }
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? ReferralCodeViewController {
-            
             controller.delegate = self
             controller.user = self.user
             
@@ -70,6 +83,7 @@ extension LoginViewController : ReferralCodeViewControllerDelegate {
     
     func didEnterReferredBy(value: String) {
         self.user.refferedBy = value
+        buttonReferral.setTitle(value, for: UIControlState.normal)
     }
 }
 

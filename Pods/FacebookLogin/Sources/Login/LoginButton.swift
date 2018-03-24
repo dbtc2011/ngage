@@ -35,7 +35,7 @@ import FBSDKLoginKit
  */
 public class LoginButton: UIView {
 
-  fileprivate var sdkLoginButton: FBSDKLoginButton
+  public var sdkLoginButton: FBSDKLoginButton
 
   /// Delegate of the login button that can handle the result, logout events.
   public var delegate: LoginButtonDelegate?

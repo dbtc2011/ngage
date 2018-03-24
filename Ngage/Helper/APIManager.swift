@@ -37,7 +37,7 @@ enum Router : URLRequestConvertible {
         if Util.environment == Environment.dev {
             return "https://ph.ngage.ph"
         }else {
-            return "https://ph.ngage.ph"
+            return "https://ngage.ph"
         }
     }
     

@@ -16,19 +16,18 @@ class MSISDNViewController: UIViewController {
     @IBOutlet weak var buttonCarrier: UIButton!
     @IBOutlet weak var buttonSubmit: UIButton!
     
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        buttonSubmit.layer.cornerRadius = 10
-        buttonCarrier.layer.cornerRadius = 10
+        buttonSubmit.layer.cornerRadius = 27 
+        buttonCarrier.layer.cornerRadius = 15
         buttonCarrier.layer.borderWidth = 0.5
         buttonCarrier.layer.borderColor = UIColor.lightGray.cgColor
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.navigationController?.isNavigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +35,11 @@ class MSISDNViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    //MARK: - Methods
     func registerUser() {
         UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
         let name = user.name.components(separatedBy: " ")
@@ -75,33 +79,24 @@ class MSISDNViewController: UIViewController {
                             }
                             if CoreDataManager.sharedInstance.getMainUser() == nil {
                                 CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
-                                    DispatchQueue.main.async {
-                                        let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
-                                        let controller = storyBoard.instantiateInitialViewController()
-                                        self.present(controller!, animated: true, completion: {
-                                            
-                                        })
-                                    }
+                                    // Success
+//                                    self.goToMain()
+                                    self.goToTutorial()
                                 })
                             } else {
                                 CoreDataManager.sharedInstance.updateUserPoints(withPoints: self.user.points, completionHandler: { (result) in
-                                    DispatchQueue.main.async {
-                                        let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
-                                        let controller = storyBoard.instantiateInitialViewController()
-                                        self.present(controller!, animated: true, completion: {
-                                            
-                                        })
-                                    }
+                                    self.goToTutorial()
                                 })
                                 
                             }
                             
                         }else {
-                            // Show Error
+                            
                             TimeManager.sharedInstance.shouldEditMission = true
-                            DispatchQueue.main.async {
-                                self.performSegue(withIdentifier: "goToPinVerification", sender: self)
-                            }
+                            self.goToTutorial()
+//                            DispatchQueue.main.async {
+//                                self.performSegue(withIdentifier: "goToPinVerification", sender: self)
+//                            }
                         }
                     }else {
                         // Show error
@@ -125,9 +120,24 @@ class MSISDNViewController: UIViewController {
         if let controller = segue.destination as? PinVerificationViewController {
             print("Should go to pin verification")
             controller.user = self.user
+        }else if let controller = segue.destination as? TutorialViewController {
+            
         }
     }
     
+    func goToMain() {
+        DispatchQueue.main.async {
+            let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
+            let controller = storyBoard.instantiateInitialViewController()
+            self.present(controller!, animated: true, completion: {
+                
+            })
+        }
+    }
+    func goToTutorial() {
+        //goToTutorial
+        performSegue(withIdentifier: "goToTutorial", sender: self)
+    }
     
     //MARK: - Button Action
     @IBAction func backButtonClicked(_ sender: UIBarButtonItem) {

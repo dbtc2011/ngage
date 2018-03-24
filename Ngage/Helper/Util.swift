@@ -14,7 +14,7 @@ enum Environment {
 }
 struct Util {
     
-    static let environment = Environment.dev
+    static let environment = Environment.prod
     static func setNavigationBar(color : UIColor) {
         UITabBar.appearance().backgroundColor = color
         UINavigationBar.appearance().backgroundColor = color

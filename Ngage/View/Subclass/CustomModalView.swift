@@ -13,6 +13,8 @@ protocol CustomModalViewDelegate {
 }
 class CustomModalView: UIView {
 
+    @IBOutlet weak var containerHeight: NSLayoutConstraint!
+    @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var labelContent: UILabel!

@@ -43,9 +43,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
                 
             }
         }
-        image.layer.cornerRadius = 12
-        image.layer.masksToBounds = true
-        image.clipsToBounds = true
         switch state {
         case .locked:
             self.button.setTitle("LOCKED", for: UIControlState.normal)
@@ -78,6 +75,9 @@ class HomeCollectionViewCell: UICollectionViewCell {
             self.button.setTitle("START", for: UIControlState.normal)
             button.isUserInteractionEnabled = true
         }
+        self.clipsToBounds = true
+        contentView.clipsToBounds = true
+        super.layoutSubviews()
     }
     
     @IBAction func didTapStart(_ sender: UIButton) {
@@ -111,6 +111,9 @@ class HomeCollectionViewCell: UICollectionViewCell {
         DispatchQueue.main.async {
             self.buttonWidth.constant = 200
             self.button.setTitle(time, for: UIControlState.normal)
+            self.image.layer.cornerRadius = 15
+            self.image.layer.masksToBounds = true
+            self.image.clipsToBounds = true
             
         }
         

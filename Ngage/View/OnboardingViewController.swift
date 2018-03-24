@@ -20,15 +20,19 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var imageThird: UIImageView!
     var loginButton : LoginButton!
     
-    
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    //MARK: - Override
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
 
@@ -41,10 +45,11 @@ class OnboardingViewController: UIViewController {
         // Add a custom login button to your app
         loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
         loginButton.delegate = self
-        loginButton.frame.size.width = 220
-        loginButton.frame.size.height = 50
+        loginButton.frame.size.width = UIScreen.main.bounds.size.width - 40
+        loginButton.frame.size.height = 60
+        loginButton.sdkLoginButton.setTitle("Login with Facebook", for: UIControlState.normal)
         loginButton.center = view.center
-        loginButton.frame.origin.y = UIScreen.main.bounds.size.height - 90
+        loginButton.frame.origin.y = UIScreen.main.bounds.size.height - 80
         loginButton.isHidden = true
         view.addSubview(loginButton)
         
