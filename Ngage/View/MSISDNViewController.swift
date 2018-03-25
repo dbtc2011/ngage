@@ -66,7 +66,8 @@ class MSISDNViewController: UIViewController {
             }else {
                 if let userRegistration = result!["user_registration"].dictionary {
                     if let statusCode = userRegistration["StatusCode"]?.int {
-                        if statusCode == 2 {
+                        if statusCode == 2 || statusCode == 4
+                        {
                             self.user.points = "\(userRegistration["Points"]?.int ?? 0)"
                             if let missionsStarted = userRegistration["MissionStarted"]?.array {
                                 if missionsStarted.count == 0 {
@@ -93,12 +94,15 @@ class MSISDNViewController: UIViewController {
                             }
                             
                         }else {
-                            
+//                            CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
+//                                // Success
+//                                //                                    self.goToMain()
+//                                self.goToTutorial()
+//                            })
                             TimeManager.sharedInstance.shouldEditMission = true
-                            self.goToTutorial()
-//                            DispatchQueue.main.async {
-//                                self.performSegue(withIdentifier: "goToPinVerification", sender: self)
-//                            }
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "goToPinVerification", sender: self)
+                            }
                         }
                     }else {
                         // Show error
@@ -138,6 +142,12 @@ class MSISDNViewController: UIViewController {
     }
     func goToTutorial() {
         //goToTutorial
+        if let hasFinishedTutorial = UserDefaults.standard.bool(forKey: Keys.hasFinishedTutorial) as? Bool {
+            if hasFinishedTutorial {
+                goToMain()
+                return
+            }
+        }
         performSegue(withIdentifier: "goToTutorial", sender: self)
     }
     

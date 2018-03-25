@@ -22,6 +22,7 @@ class HomeViewController: DrawerFrontViewController {
     @IBOutlet weak var viewTutorial: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         setUIColor(color: UIColor.lightGray)
         setupUI()
         getMission()
@@ -68,6 +69,7 @@ class HomeViewController: DrawerFrontViewController {
     }
     
     func setupTutorial() {
+        UserDefaults.standard.set(true, forKey: Keys.hasFinishedTutorial)
         viewTutorial.isHidden = false
         buttonTutorial.layer.cornerRadius = 5
         buttonTutorial.backgroundColor = UIColor().setColorUsingHex(hex: user.missions[0].colorBackground)
@@ -206,6 +208,11 @@ class HomeViewController: DrawerFrontViewController {
                                 let when = DispatchTime.now() + 1.0
                                 DispatchQueue.main.asyncAfter(deadline: when) {
                                     self.reloadTime()
+                                    if let hasFinished = UserDefaults.standard.bool(forKey: Keys.hasFinishedTutorial) as? Bool {
+                                        if hasFinished {
+                                            return
+                                        }
+                                    }
                                     self.setupTutorial()
                                 }
                             }

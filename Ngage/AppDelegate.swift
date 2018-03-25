@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Enable or disable features based on authorization.
         }
         application.registerForRemoteNotifications()
-        
         UserDefaults.standard.set(false, forKey: Keys.keyShouldEdit)
         if CoreDataManager.sharedInstance.getMainUser() != nil {
             let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)

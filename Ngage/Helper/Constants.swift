@@ -17,4 +17,5 @@ struct Keys {
     static let MissionStartDate = "mission_start_date"
     static let keyMissionCode = "app_key_mission_code"
     static let MissionShouldSaveDate = "mission_should_save_date"
+    static let hasFinishedTutorial = "has_finished_tutorial"
 }
