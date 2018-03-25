@@ -15,6 +15,9 @@ class SingleMarketTableViewController: UITableViewController {
     var market: MarketModel!
     var selectedRedeemable: RedeemableModel!
     
+    var filteredRedeemables: [RedeemableModel]!
+    var filteredNonRedeemables: [RedeemableModel]!
+    
     var user: UserModel!
     
     //MARK: - View Life Cycle
@@ -145,9 +148,7 @@ class SingleMarketTableViewController: UITableViewController {
                 }
             }
             
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.filterRedeemables() 
         }
     }
     
@@ -194,9 +195,7 @@ class SingleMarketTableViewController: UITableViewController {
                 }
             }
             
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.filterRedeemables()
         }
     }
     
@@ -285,9 +284,7 @@ class SingleMarketTableViewController: UITableViewController {
                 }
             }
             
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.filterRedeemables()
         }
     }
     
@@ -331,6 +328,31 @@ class SingleMarketTableViewController: UITableViewController {
         }
     }
     
+    private func filterRedeemables() {
+        DispatchQueue.main.async {
+            guard self.market.redeemables != nil else {
+                self.tableView.reloadData()
+                
+                return
+            }
+            
+            var userPoints = 0
+            if let points = Int(self.user.points) {
+                userPoints = points
+            }
+            
+            self.filteredRedeemables = self.market.redeemables.filter ({
+                $0.pointsRequired <= userPoints
+            })
+        
+            self.filteredNonRedeemables = self.market.redeemables.filter ({
+                $0.pointsRequired > userPoints
+            })
+            
+            self.tableView.reloadData()
+        }
+    }
+    
     //MARK: - IBAction Delegate
     
     @IBAction func didRedeem(_ sender: UIButton) {
@@ -359,13 +381,29 @@ class SingleMarketTableViewController: UITableViewController {
     //MARK: Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        guard market.redeemables != nil else { return 0 }
+        
+        var section = 0
+        
+        if filteredRedeemables.count > 0 {
+            section += 1
+        }
+        
+        if filteredNonRedeemables.count > 0 {
+            section += 1
+        }
+        
+        return section
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard market.redeemables != nil else { return 0 }
         
-        return market.redeemables.count
+        if section == 0 && filteredRedeemables.count > 0 {
+            return filteredRedeemables.count
+        }
+        
+        return filteredNonRedeemables.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -404,16 +442,14 @@ class SingleMarketTableViewController: UITableViewController {
              cell.lblSubtitle.text = ""
         }
         
-        var userPoints = 0
-        if let points = Int(user.points) {
-            userPoints = points
-        }
-        
-        cell.btnRedeem.isEnabled = true
-        cell.btnRedeem.backgroundColor = UIColor().setColorUsingHex(hex: "0066A8").withAlphaComponent(1.0)
-        if userPoints < redeemable.pointsRequired {
+        if indexPath.section == 0 && filteredRedeemables.count > 0 {
+            cell.btnRedeem.isEnabled = true
+            cell.btnRedeem.backgroundColor = UIColor().setColorUsingHex(hex: "0066A8")
+            cell.viewContent.backgroundColor = UIColor.white
+        } else {
             cell.btnRedeem.isEnabled = false
-            cell.btnRedeem.backgroundColor = UIColor().setColorUsingHex(hex: "0066A8").withAlphaComponent(0.5)
+            cell.btnRedeem.backgroundColor = UIColor().setColorUsingHex(hex: "bcbcbc")
+            cell.viewContent.backgroundColor = UIColor().setColorUsingHex(hex: "e0e0e0")
         }
 
         return cell
@@ -430,6 +466,27 @@ class SingleMarketTableViewController: UITableViewController {
         
         selectedRedeemable = market.redeemables[indexPath.row]
         presentRedeemVC(withIdentifier: "redeemMerchant", withServiceType: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 && filteredRedeemables.count > 0 {
+            return nil
+        }
+        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        headerView.backgroundColor = UIColor().setColorUsingHex(hex: "36B1ED")
+        
+        let label = UILabel(frame: CGRect(x: 10, y: 0, width: headerView.frame.width - 20, height: 40))
+        label.text = "Collect more points to redeem one of these rewards"
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        headerView.addSubview(label)
+        
+        return headerView
     }
 }
 

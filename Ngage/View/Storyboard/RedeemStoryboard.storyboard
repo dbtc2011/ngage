@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -36,7 +37,7 @@
             </objects>
             <point key="canvasLocation" x="-780" y="768"/>
         </scene>
-        <!--Market Place-->
+        <!--Market View Controller-->
         <scene sceneID="nCn-5U-H2W">
             <objects>
                 <viewController id="3ox-Fc-ro1" customClass="MarketViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
@@ -122,8 +123,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l9O-dL-6E2"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Market Place" id="xPX-dN-SX9">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="zgW-i9-L2g">
+                    <navigationItem key="navigationItem" id="xPX-dN-SX9">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="zgW-i9-L2g">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="backClicked:" destination="3ox-Fc-ro1" id="hpO-8E-BHX"/>
                             </connections>
@@ -1317,6 +1319,7 @@ Muntinlupa</string>
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="32" height="32"/>
         <image name="ic_app_logo_circle" width="70" height="70"/>
         <image name="ic_arrow_right" width="30" height="30"/>
         <image name="ic_gift_blue" width="70" height="78"/>

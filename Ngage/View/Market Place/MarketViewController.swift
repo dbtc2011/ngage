@@ -26,6 +26,8 @@ class MarketViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupInterface()
+        
         initializeMarkets()
     }
     
@@ -41,6 +43,17 @@ class MarketViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
+    private func setupInterface() {
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: self.navigationController!.navigationBar.frame.height))
+        titleLabel.text = "Market Place"
+        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 20.0)
+        titleLabel.textColor = UIColor.white
+        
+        self.navigationItem.titleView = titleLabel
+        self.navigationController!.navigationBar.barTintColor = UIColor().setColorUsingHex(hex: "015C9B")
+    }
     
     private func initializeMarkets() {
         let servicesTypes: [ServicesType] = [.Ringtone, .Wallpaper]

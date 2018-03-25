@@ -8,6 +8,15 @@
 
 import UIKit
 
+extension UITableViewCell {
+    func enable(on: Bool) {
+        for view in contentView.subviews {
+            view.isUserInteractionEnabled = on
+            view.alpha = on ? 1 : 0.5
+        }
+    }
+}
+
 class RedeemableTableViewCell: UITableViewCell {
 
     //MARK: - Properties

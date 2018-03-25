@@ -60,7 +60,9 @@ class MSISDNViewController: UIViewController {
         RegisterService.register(fbid: user.facebookId, fName: firstName, lName: lastName, gender: user.gender, email: user.emailAddress, referralCode: user.referralCode, msisdn: user.mobileNumber, operatorID: user.operatorID, refferedBy: user.refferedBy) { (result, error) in
             
             if error != nil {
-                // Show error
+                let alertController = UIAlertController(title: "Ngage PH", message: error!.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }else {
                 if let userRegistration = result!["user_registration"].dictionary {
                     if let statusCode = userRegistration["StatusCode"]?.int {
@@ -120,7 +122,7 @@ class MSISDNViewController: UIViewController {
         if let controller = segue.destination as? PinVerificationViewController {
             print("Should go to pin verification")
             controller.user = self.user
-        }else if let controller = segue.destination as? TutorialViewController {
+        } else if let controller = segue.destination as? TutorialViewController {
             
         }
     }
@@ -145,10 +147,15 @@ class MSISDNViewController: UIViewController {
     }
     
     @IBAction func submitButtonClicked(_ sender: UIButton) {
+        guard textField.text!.count > 0 else { return }
+        guard self.user.operatorID != "" else { return }
+        
         registerUser()
     }
     
     @IBAction func carrierButtonClicked(_ sender: UIButton) {
+        self.view.endEditing(true)
+        
         ActionSheetStringPicker.show(withTitle: "Operator ID", rows: ["Globe/TM", "Smart/TNT", "Sun"], initialSelection: 0, doneBlock: { (picker, index, value) in
             switch index {
             case 0 :
