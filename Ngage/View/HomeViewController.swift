@@ -14,6 +14,7 @@ class HomeViewController: DrawerFrontViewController {
     var downloadsSession: URLSession?
     var user = UserModel().mainUser()
     var selectedIndex = 0
+    var finishedMission = 0
     var shouldReloadTime = true
     @IBOutlet weak var buttonDrawer: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -23,7 +24,17 @@ class HomeViewController: DrawerFrontViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        setUIColor(color: UIColor.lightGray)
+        var profileImage: UIImage?
+        if let data = user.image {
+            profileImage = UIImage(data: data)
+        }else if let data = UserDefaults.standard.value(forKeyPath: "profile_image") as? Data {
+            profileImage = UIImage(data: data)
+        }
+        if profileImage != nil {
+            view.backgroundColor = UIColor(patternImage: profileImage!)
+            view.contentMode = UIViewContentMode.scaleAspectFit
+        }
+        self.collectionView.backgroundColor = UIColor.clear
         setupUI()
         getMission()
         // Do any additional setup after loading the view.
@@ -78,6 +89,7 @@ class HomeViewController: DrawerFrontViewController {
     
     func reloadMissionData() {
         var missionIndex = 0
+        finishedMission = 0
         for mission in user.missions {
             var missionModel = mission
             missionModel = self.lockMissionForStarter(mission: missionModel)
@@ -93,6 +105,7 @@ class HomeViewController: DrawerFrontViewController {
                         TimeManager.sharedInstance.hasFinishedFirstTask = true
                     }
                     missionModel.state = MissionState.completed
+                    finishedMission = finishedMission + 1
                 }
                 missionModel.tasks[taskIndex] = taskModel
                 taskIndex = taskIndex + 1
@@ -108,21 +121,21 @@ class HomeViewController: DrawerFrontViewController {
     func reloadTime() {
         if shouldReloadTime {
             reloadMissionData()
-            if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 0)) as? HomeCollectionViewCell {
+            if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 1)) as? HomeCollectionViewCell {
                 let mission = self.user.missions[selectedIndex]
                 cell.setupContents(mission: mission)
                 cell.updateTime()
                 
             }
             
-            if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex-1, section: 0)) as? HomeCollectionViewCell {
+            if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex-1, section: 1)) as? HomeCollectionViewCell {
                 let mission = self.user.missions[selectedIndex-1]
                 cell.setupContents(mission: mission)
                 cell.updateTime()
                 
             }
             
-            if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex+1, section: 0)) as? HomeCollectionViewCell {
+            if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex+1, section: 1)) as? HomeCollectionViewCell {
                 let mission = self.user.missions[selectedIndex+1]
                 cell.setupContents(mission: mission)
                 cell.updateTime()
@@ -208,6 +221,7 @@ class HomeViewController: DrawerFrontViewController {
                                 let when = DispatchTime.now() + 1.0
                                 DispatchQueue.main.asyncAfter(deadline: when) {
                                     self.reloadTime()
+                                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: UICollectionViewScrollPosition.left, animated: false)
                                     if let hasFinished = UserDefaults.standard.bool(forKey: Keys.hasFinishedTutorial) as? Bool {
                                         if hasFinished {
                                             return
@@ -276,15 +290,23 @@ class HomeViewController: DrawerFrontViewController {
 extension HomeViewController : UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
         return self.user.missions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
+            cell.setupUI(mission: finishedMission)
+            return cell
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "missionCell", for: indexPath) as! HomeCollectionViewCell
         cell.delegate = self
         let mission = self.user.missions[indexPath.row]
@@ -329,6 +351,21 @@ extension HomeViewController : UIScrollViewDelegate {
         print("Scroll view = \(scrollView.contentOffset)")
         let index = scrollView.contentOffset.x/self.view.frame.size.width
         selectedIndex = Int(index)
+        if selectedIndex == 0 {
+            
+            var profileImage: UIImage?
+            if let data = user.image {
+                profileImage = UIImage(data: data)
+            }else if let data = UserDefaults.standard.value(forKeyPath: "profile_image") as? Data {
+                profileImage = UIImage(data: data)
+            }
+            if profileImage != nil {
+                view.backgroundColor = UIColor(patternImage: profileImage!)
+            }
+            self.collectionView.backgroundColor = UIColor.clear
+            return
+        }
+        selectedIndex = selectedIndex - 1
         let color = UIColor().setColorUsingHex(hex: self.user.missions[selectedIndex].colorBackground)
         self.setUIColor(color: color)
         
@@ -358,7 +395,7 @@ extension HomeViewController : URLSessionDownloadDelegate {
                     mission.imageTask!.state = DowloadingImageState.done
                     mission.imageTask!.data = data
                     self.user.missions[index!.hashValue] = mission
-                    let indexPath = IndexPath(item: index!.hashValue, section: 0)
+                    let indexPath = IndexPath(item: index!.hashValue, section: 1)
                     DispatchQueue.main.async {
                         let color = UIColor().setColorUsingHex(hex: self.user.missions[self.selectedIndex].colorBackground)
                         self.setUIColor(color: color)

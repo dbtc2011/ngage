@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0CB701D0587EC310F79A142A /* Pods_Ngage_PHTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D350C087C9B0882E1EC0F9 /* Pods_Ngage_PHTests.framework */; };
+		352496A6206AA0990088AF1A /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352496A5206AA0990088AF1A /* ProfileCollectionViewCell.swift */; };
 		35DFC6892066959B00F749E0 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFC6882066959A00F749E0 /* TutorialViewController.swift */; };
 		4994B0BD3E4BAF9D60EB6542 /* Pods_NgageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */; };
 		5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003679920270770007E693A /* WebViewTaskViewController.swift */; };
@@ -121,6 +122,7 @@
 		1634997F46C90DB1903E090C /* Pods-NgageTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NgageTests/Pods-NgageTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2104C45A66AF35AF536B3938 /* Pods-NgageUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NgageUITests/Pods-NgageUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2365158872058F8EA095768C /* Pods-Ngage PH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PH.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PH/Pods-Ngage PH.debug.xcconfig"; sourceTree = "<group>"; };
+		352496A5206AA0990088AF1A /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		35DFC6882066959A00F749E0 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		3A7195ED201B500B9CCE568C /* Pods-Ngage PHTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				503E62D6201A1D9600363D80 /* HomeCollectionViewCell.swift */,
+				352496A5206AA0990088AF1A /* ProfileCollectionViewCell.swift */,
 				50814937201A2A4600D66514 /* MarketButtonCollectionViewCell.swift */,
 				509C391B201BB6EA0015A35B /* DrawerTableViewCell.swift */,
 				8C47287A2022074400589594 /* ProfileTableViewCell.swift */,
@@ -851,6 +854,7 @@
 				506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */,
 				50E8E761203D86680010686C /* TimeInterval.swift in Sources */,
 				50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */,
+				352496A6206AA0990088AF1A /* ProfileCollectionViewCell.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
 				50FA4AF9203CB236006CC8BD /* TimeManager.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,

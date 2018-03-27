@@ -89,9 +89,12 @@ class TaskTableViewCell: UITableViewCell {
             rightIcon.image = UIImage(named: "ic_reward_disabled")
             leftIcon.image = nil
             leftIcon.backgroundColor = UIColor.lightGray
-            taskIcon.backgroundColor = UIColor.lightGray
             title.textColor = UIColor.lightGray
             taskIcon.layer.cornerRadius = 5
+            containerView.backgroundColor = UIColor.white
+            taskIcon.backgroundColor = UIColor.white
+            taskIcon.image = taskIcon.image!.withRenderingMode(.alwaysTemplate)
+            taskIcon.tintColor = UIColor.lightGray
         case TaskStatus.done.rawValue:
             rightIcon.image = UIImage(named: "ic_reward_done")
             leftIcon.image = UIImage(named: "ic_task_done")

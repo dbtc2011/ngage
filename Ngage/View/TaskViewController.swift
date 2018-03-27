@@ -311,7 +311,7 @@ class TaskViewController: UIViewController {
                         }
                     }else {
                         //show alert
-                        let alertController = UIAlertController(title: "Ngage PH", message: error!.localizedDescription, preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Ngage PH", message: "Something went wrong!", preferredStyle: .alert)
                         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                         self.present(alertController, animated: true, completion: nil)
                     }
