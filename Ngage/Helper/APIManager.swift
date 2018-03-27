@@ -51,13 +51,13 @@ enum Router : URLRequestConvertible {
     }
     
     struct Endpoint {
-        static let register = "svc/api/Registration"
+        static let register = "svc/api/Registration2"
         static let validateRegistration = "svc/api/ValidateREG"
         static let sendPinCode = "svc/api/SendPincode"
         static let resendVerificationCode = "svc/api/ResendPinCode/{FBID}"
         static let getMission = "svc/api/GetMission"
-        static let getTaskContent = "svc/api/GETContent"
-        static let insertRecord = "svc/api/INSERTRecord"
+        static let getTaskContent = "svc/api/GETContent3"
+        static let insertRecord = "svc/api/INSERTRecord2"
         static let uploadPicture = "svc/api/Upload"
         static let validateMission = "svc/api/MaxUser/{MissionID}"
         static let getServerTime = "svc/api/ServerTime"

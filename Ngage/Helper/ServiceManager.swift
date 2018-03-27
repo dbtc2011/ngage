@@ -16,7 +16,7 @@ final class RegisterService: RequestManager {
         let user = UserModel().mainUser()
         let long = ""
         let lat = ""
-        let parameter = ["FBID" : fbid, "FName": fName, "LName": lName, "Gender": gender, "Email": email, "ReferralCode": referralCode, "DeviceID": user.deviceID, "Msisdn": msisdn, "Lat": lat, "LLong": long, "OperatorID": operatorID, "ReferredBy": refferedBy, "ltype" : "1"]
+        let parameter = ["FBID" : fbid, "FName": fName, "LName": lName, "Gender": gender, "Email": email, "ReferralCode": referralCode, "DeviceID": user.deviceID, "Msisdn": msisdn, "Lat": lat, "LLong": long, "OperatorID": operatorID, "ReferredBy": refferedBy, "ltype" : "3"]
         perform(task: .register(parameter)) { (result, error) in
             print("Result = \(String(describing: result))")
             success(result, error)

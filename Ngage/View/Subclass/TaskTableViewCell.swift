@@ -78,8 +78,12 @@ class TaskTableViewCell: UITableViewCell {
             rightIcon.image = UIImage(named: "ic_reward_enabled")
             leftIcon.image = nil
             leftIcon.backgroundColor = color
-            taskIcon.backgroundColor = color
+            //ic_task_interest_48x48
             title.textColor = color
+            containerView.backgroundColor = UIColor.white
+            taskIcon.backgroundColor = UIColor.white
+            taskIcon.image = taskIcon.image!.withRenderingMode(.alwaysTemplate)
+            taskIcon.tintColor = color
 
         case TaskStatus.disabled.rawValue:
             rightIcon.image = UIImage(named: "ic_reward_disabled")
@@ -106,6 +110,8 @@ class TaskTableViewCell: UITableViewCell {
         labelReward.text = getRewardWithUOM(reward: task.reward)
         rightIcon.layer.cornerRadius = 20
         leftIcon.layer.cornerRadius = 15
+        
+        
         
     }
     

@@ -184,7 +184,7 @@ class HomeViewController: DrawerFrontViewController {
                                 taskModel.reward = "\(task["taskReward"].int ?? 0)"
                                 taskModel.title = task["taskTitle"].string ?? ""
                                 taskModel.rewardInfo = task["taskRewardInfo"].string ?? ""
-                                taskModel.contentId = task["taskContentID"].string ?? ""
+                                taskModel.contentId = task["taskContentID"].string ?? "1"
                                 taskModel.isReward = "\(task["isReward"].int ?? 0)"
                                 taskModel.rewardDetails = task["taskRewardDetails"].string ?? ""
                                 taskModel.isClaimed = task["isClaim"].bool ?? false

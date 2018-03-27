@@ -33,8 +33,8 @@ class PinVerificationViewController: UIViewController {
     }
     
     func setupUI() {
-        buttonResend.layer.cornerRadius = 10
-        buttonVerify.layer.cornerRadius = 10
+        buttonResend.layer.cornerRadius = 27
+        buttonVerify.layer.cornerRadius = 27
         
         labelPleaseWait.text = labelPleaseWait.text?.replacingOccurrences(of: "{number}", with: user.mobileNumber)
     }
@@ -51,22 +51,37 @@ class PinVerificationViewController: UIViewController {
         }
     }
     
+    func goToMain() {
+        DispatchQueue.main.async {
+            let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
+            let controller = storyBoard.instantiateInitialViewController()
+            self.present(controller!, animated: true, completion: {
+                
+            })
+        }
+    }
+    func goToTutorial() {
+        //goToTutorial
+        if let hasFinishedTutorial = UserDefaults.standard.bool(forKey: Keys.hasFinishedTutorial) as? Bool {
+            if hasFinishedTutorial {
+                goToMain()
+                return
+            }
+        }
+        performSegue(withIdentifier: "goToTutorial", sender: self)
+    }
+    
     func validatePin() {
         RegisterService.validateRegistration(fbid: user.facebookId, pCode: textField.text!, mobileNumber: user.mobileNumber) { (result, error) in
             
             if error != nil {
                 // Show error alert
+                let alertController = UIAlertController(title: "Ngage PH", message: error!.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }else {
                 if let _ = result?["user_registration"].dictionary {
-                    CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
-                        DispatchQueue.main.async {
-                            let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
-                            let controller = storyBoard.instantiateInitialViewController()
-                            self.present(controller!, animated: true, completion: {
-                                
-                            })
-                        }
-                    })
+                    self.goToTutorial()
                 }
             }
             print("Result = \(result)")

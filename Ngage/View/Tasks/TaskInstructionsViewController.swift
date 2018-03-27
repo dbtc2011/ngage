@@ -67,8 +67,20 @@ class TaskInstructionsViewController: UIViewController {
                         self.setupUI()
                     }
                     
+                }else {
+                    let alertController = UIAlertController(title: "Ngage PH", message: "Locked Mission Per Day", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                        _ = self.navigationController?.popViewController(animated: true)
+                        
+                    }))
+                    
+                    self.present(alertController, animated: true, completion: nil)
                 }
                 
+            }else {
+                let alertController = UIAlertController(title: "Ngage PH", message: error!.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }

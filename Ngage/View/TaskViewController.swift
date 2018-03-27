@@ -31,6 +31,7 @@ class TaskViewController: UIViewController {
     var delegate : TaskViewControllerDelegate?
     var quizAnswers: String!
     var quizCorrectAnswers: String!
+    @IBOutlet weak var labelTitle: UILabel!
     
     var contentID : String = ""
     var contentDuration : String = ""
@@ -102,6 +103,7 @@ class TaskViewController: UIViewController {
     func setupUI() {
         customView.isHidden = true
         customView.backgroundColor = UIColor.clear
+        labelTitle.text = mission.title
         self.progress.setProgress(value: 0, animationDuration: 1)
         if mission.imageTask!.data != nil {
             if let imageData = UIImage(data: mission.imageTask!.data!) {
@@ -304,16 +306,21 @@ class TaskViewController: UIViewController {
                                     self.contentDuration = ""
                                     self.contentID = ""
                                     self.showSuccessModal(totalPoints: points)
-                                    
                                 }
                             })
                         }
                     }else {
                         //show alert
+                        let alertController = UIAlertController(title: "Ngage PH", message: error!.localizedDescription, preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        self.present(alertController, animated: true, completion: nil)
                     }
                 }
             }else {
                 // Show alert
+                let alertController = UIAlertController(title: "Ngage PH", message: error!.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
@@ -325,12 +332,12 @@ class TaskViewController: UIViewController {
             var url = ""
             switch task.type {
             case 1:
-                url = "https://ph.ngage.ph/web/Home/profile?fbid={fbid}"
+                url = "https://ngage.ph/web/Home/Profile?fbid={fbid}"
                 url = url.replacingOccurrences(of: "{fbid}", with: "\(user.facebookId)")
                 break
                 
             case 2:
-                url = "https://ph.ngage.ph/web/Home/Survey?MID={MID}&TID={TID}&TTyID={TTyID}&CID={CID}&FBID={FBID}&DID={DID}"
+                url = "https://ngage.ph/web/Home/Survey?MID={MID}&TID={TID}&TTyID={TTyID}&CID={CID}&FBID={FBID}&DID={DID}"
                 print("URL = \(url)")
                 url = url.replacingOccurrences(of: "{MID}", with: "\(mission.code)")
                 url = url.replacingOccurrences(of: "{TID}", with: "\(task.code)")
@@ -341,7 +348,7 @@ class TaskViewController: UIViewController {
                 break
                 
             case 12, 13, 14, 15:
-                url = "https://ph.ngage.ph/web/Home/ProfileQuest?MID={MID}&TID={TID}&TTyID={TTyID}&CID={CID}&FBID={FBID}&DID={DID}"
+                url = "https://ngage.ph/web/Home/ProfileQuest?MID={MID}&TID={TID}&TTyID={TTyID}&CID={CID}&FBID={FBID}&DID={DID}"
                 url = url.replacingOccurrences(of: "{MID}", with: "\(mission.code)")
                 url = url.replacingOccurrences(of: "{TID}", with: "\(task.code)")
                 url = url.replacingOccurrences(of: "{TTyID}", with: "\(task.type)")

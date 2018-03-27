@@ -11,7 +11,7 @@ struct TaskModel {
     var missionCode = 0
     
     var info = ""
-    var contentId = ""
+    var contentId = "1"
     var detail = ""
     var instructions = ""
     var isClaimed = false

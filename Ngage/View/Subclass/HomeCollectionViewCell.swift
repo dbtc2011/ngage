@@ -29,12 +29,22 @@ class HomeCollectionViewCell: UICollectionViewCell {
     var delegate : HomeCollectionViewCellDelegate?
     
     func setupContents(mission : MissionModel) {
+        
         missionCode = mission.code
         state = mission.state
         lockContainerView.isHidden = true
         buttonLock.isHidden = true
         self.buttonWidth.constant = 200
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 10
+        image.layer.cornerRadius = 15
+        image.layer.masksToBounds = true
+        image.clipsToBounds = true
+        viewButtonContainer.layer.cornerRadius = 15
+        viewButtonContainer.layer.masksToBounds = true
+        viewButtonContainer.clipsToBounds = true
+        lockContainerView.layer.cornerRadius = 15
+        lockContainerView.clipsToBounds = true
+        lockContainerView.layer.masksToBounds = true
         button.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
         viewButtonContainer.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorSecondary)
         if mission.imageTask!.data != nil {
@@ -50,6 +60,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
             buttonLock.isHidden = false
             lockContainerView.isHidden = false
             buttonLock.setImage(UIImage(named: "ic_lock"), for: UIControlState.normal)
+            buttonLock.contentMode = UIViewContentMode.scaleAspectFit
             updateTime()
             
         case .expired:

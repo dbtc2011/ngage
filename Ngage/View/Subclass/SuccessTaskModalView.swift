@@ -26,11 +26,12 @@ class SuccessTaskModalView: UIView {
     */
 
     func setupContents(pointsTotal : String, pointsEarned: Int) {
-        
-        var earnedValue = "\(pointsEarned)point"
+        let attributes : [String : Any] = [NSAttributedStringKey.font.rawValue : UIFont.systemFont(ofSize: 18), NSAttributedStringKey.foregroundColor.rawValue : UIColor.blue]
+
+        var earnedValue = "\(pointsEarned)\npoint"
         var noteValue = "\(pointsEarned)pt"
         if pointsEarned > 1 {
-            earnedValue = "\(pointsEarned)points"
+            earnedValue = "\(pointsEarned)\npoints"
             noteValue = "\(pointsEarned)pts"
         }
         containerView.layer.cornerRadius = 10
@@ -45,6 +46,21 @@ class SuccessTaskModalView: UIView {
         earnedPoints.layer.cornerRadius = earnedPoints.bounds.size.width/2
         earnedPoints.layer.masksToBounds = true
         earnedPoints.clipsToBounds = true
+        
+        var muttAttString = NSMutableAttributedString(string: earnedPoints.text!)
+        var targetRange = (earnedPoints.text! as NSString).range(of: "\(pointsEarned)")
+        
+        if targetRange.location != NSNotFound {
+            muttAttString.addAttribute(NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue), value: UIFont.systemFont(ofSize: 18), range: targetRange)
+            earnedPoints.attributedText = muttAttString
+        }
+        
+        muttAttString = NSMutableAttributedString(string: note.text!)
+        targetRange = (note.text! as NSString).range(of: "\(noteValue)")
+        if targetRange.location != NSNotFound {
+            muttAttString.addAttribute(NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue), value: UIColor.green, range: targetRange)
+            note.attributedText = muttAttString
+        }
     }
     @IBAction func buttonClicked(_ sender: UIButton) {
         delegate?.didTapOkayButton(tag: 2)
