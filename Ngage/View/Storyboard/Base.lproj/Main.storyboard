@@ -113,11 +113,21 @@
                                     <constraint firstAttribute="width" constant="80" id="k2k-yq-jd5"/>
                                 </constraints>
                             </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybn-5I-9Ig">
+                                <rect key="frame" x="30" y="597" width="315" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="9TJ-X0-6kw"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bMQ-L9-m3c" firstAttribute="bottom" secondItem="bvN-AJ-ZzI" secondAttribute="bottom" constant="80" id="6uZ-4J-nhK"/>
                             <constraint firstItem="bvN-AJ-ZzI" firstAttribute="centerX" secondItem="18O-YT-fmF" secondAttribute="centerX" id="FLy-Np-LZP"/>
+                            <constraint firstItem="ybn-5I-9Ig" firstAttribute="top" secondItem="bvN-AJ-ZzI" secondAttribute="bottom" constant="10" id="YIm-TO-tyW"/>
+                            <constraint firstItem="bMQ-L9-m3c" firstAttribute="trailing" secondItem="ybn-5I-9Ig" secondAttribute="trailing" constant="30" id="aQ6-zh-WA0"/>
+                            <constraint firstItem="ybn-5I-9Ig" firstAttribute="leading" secondItem="bMQ-L9-m3c" secondAttribute="leading" constant="30" id="gq3-9l-Wf7"/>
                             <constraint firstItem="bMQ-L9-m3c" firstAttribute="bottom" secondItem="2vR-kT-rC3" secondAttribute="bottom" id="hFZ-5U-vhi"/>
                             <constraint firstItem="2vR-kT-rC3" firstAttribute="top" secondItem="bMQ-L9-m3c" secondAttribute="top" id="l4K-xk-8vE"/>
                             <constraint firstItem="bMQ-L9-m3c" firstAttribute="trailing" secondItem="2vR-kT-rC3" secondAttribute="trailing" id="lad-mj-jZP"/>

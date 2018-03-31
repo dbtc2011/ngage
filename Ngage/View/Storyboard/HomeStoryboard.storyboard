@@ -790,35 +790,12 @@
                                     <outlet property="delegate" destination="pzV-eB-aU3" id="kPS-wb-NHy"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNM-bh-bQj" customClass="UICircularProgressRingView" customModule="UICircularProgressRing">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNM-bh-bQj">
                                 <rect key="frame" x="117.5" y="55" width="140" height="140"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="HNM-bh-bQj" secondAttribute="height" multiplier="1:1" id="XVc-eK-3j7"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
-                                        <color key="value" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
-                                        <color key="value" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                        <real key="value" value="80"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minValue">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
-                                        <real key="value" value="100"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
-                                        <real key="value" value="270"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpw-N5-Rd2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -861,10 +838,11 @@
                         <outlet property="backgroundImage" destination="DDX-bc-UB4" id="ZGl-M3-Fvj"/>
                         <outlet property="customView" destination="zpw-N5-Rd2" id="HBL-BV-4ej"/>
                         <outlet property="labelTitle" destination="GJR-1t-evo" id="fwO-6x-COu"/>
-                        <outlet property="progress" destination="HNM-bh-bQj" id="jZT-18-vQu"/>
+                        <outlet property="progressView" destination="HNM-bh-bQj" id="H6v-p3-Rs3"/>
                         <outlet property="tableView" destination="e36-pg-Ofb" id="pB9-XN-ZwQ"/>
                         <segue destination="MSb-1h-2pa" kind="show" identifier="webViewTask" id="wn3-DQ-CfI"/>
                         <segue destination="oIh-t3-pE6" kind="show" identifier="taskInstructions" id="uh9-dp-rm7"/>
+                        <segue destination="b9O-aY-54L" kind="presentation" identifier="goToSuccess" modalPresentationStyle="overCurrentContext" id="mfe-XI-Ni8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Is-hC-nXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -969,19 +947,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer the questions as fast as you can." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqS-kJ-xYY">
-                                <rect key="frame" x="25" y="266" width="325" height="83"/>
+                                <rect key="frame" x="25" y="266" width="325" height="83.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have {sec} seconds to answer all the questions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WmM-tk-Y4Z">
-                                <rect key="frame" x="25" y="349" width="325" height="105"/>
+                                <rect key="frame" x="25" y="349.5" width="325" height="105"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcQ-p4-re3">
-                                <rect key="frame" x="25" y="454" width="325" height="105"/>
+                                <rect key="frame" x="25" y="454.5" width="325" height="104.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1442,13 +1420,100 @@
             </objects>
             <point key="canvasLocation" x="933.60000000000002" y="897.30134932533736"/>
         </scene>
+        <!--Tasks Completed View Controller-->
+        <scene sceneID="94j-M5-Nrm">
+            <objects>
+                <viewController id="b9O-aY-54L" customClass="TasksCompletedViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gfP-UO-kah">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iPW-ad-HYt">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_redeem_reward" translatesAutoresizingMaskIntoConstraints="NO" id="G1A-Cy-AEq">
+                                <rect key="frame" x="87" y="40" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="bgY-pS-wGI"/>
+                                    <constraint firstAttribute="width" constant="200" id="kqp-3a-olI"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_confetti" translatesAutoresizingMaskIntoConstraints="NO" id="nJ5-Cg-TgS">
+                                <rect key="frame" x="0.0" y="20" width="375" height="450"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="img_congratulations" translatesAutoresizingMaskIntoConstraints="NO" id="vfE-hA-5fs">
+                                <rect key="frame" x="15" y="255" width="345" height="57"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjH-D6-U9x">
+                                <rect key="frame" x="30" y="581" width="315" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="b0g-YL-v4T"/>
+                                </constraints>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="didTapOKButton:" destination="b9O-aY-54L" eventType="touchUpInside" id="s9E-73-M4o"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDh-Qo-1je">
+                                <rect key="frame" x="37" y="322" width="300" height="249"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="jci-4B-rg0"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="You have just completed all the tasks.  Scratch the image with gift box and redeem your reward">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="18" name="Optima-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nJ5-Cg-TgS" firstAttribute="top" secondItem="hMH-4O-BhT" secondAttribute="top" id="3Td-ef-1Cb"/>
+                            <constraint firstItem="hMH-4O-BhT" firstAttribute="trailing" secondItem="iPW-ad-HYt" secondAttribute="trailing" id="8HI-4z-fCq"/>
+                            <constraint firstItem="HjH-D6-U9x" firstAttribute="leading" secondItem="hMH-4O-BhT" secondAttribute="leading" constant="30" id="B6l-CS-HPG"/>
+                            <constraint firstItem="G1A-Cy-AEq" firstAttribute="top" secondItem="hMH-4O-BhT" secondAttribute="top" constant="20" id="Bcg-wy-JFn"/>
+                            <constraint firstItem="HjH-D6-U9x" firstAttribute="top" secondItem="wDh-Qo-1je" secondAttribute="bottom" constant="10" id="CZe-Oj-5Vx"/>
+                            <constraint firstItem="G1A-Cy-AEq" firstAttribute="centerX" secondItem="gfP-UO-kah" secondAttribute="centerX" id="Csi-Ya-zD8"/>
+                            <constraint firstItem="vfE-hA-5fs" firstAttribute="top" secondItem="G1A-Cy-AEq" secondAttribute="bottom" constant="15" id="Dwf-FL-bah"/>
+                            <constraint firstItem="iPW-ad-HYt" firstAttribute="top" secondItem="hMH-4O-BhT" secondAttribute="top" id="Hzg-Gi-pUq"/>
+                            <constraint firstItem="nJ5-Cg-TgS" firstAttribute="leading" secondItem="hMH-4O-BhT" secondAttribute="leading" id="RAO-l0-XN9"/>
+                            <constraint firstItem="iPW-ad-HYt" firstAttribute="leading" secondItem="hMH-4O-BhT" secondAttribute="leading" id="VlY-WL-1tB"/>
+                            <constraint firstItem="vfE-hA-5fs" firstAttribute="leading" secondItem="hMH-4O-BhT" secondAttribute="leading" constant="15" id="WN8-gB-T3s"/>
+                            <constraint firstItem="wDh-Qo-1je" firstAttribute="centerX" secondItem="gfP-UO-kah" secondAttribute="centerX" id="d3d-tp-w39"/>
+                            <constraint firstItem="hMH-4O-BhT" firstAttribute="bottom" secondItem="HjH-D6-U9x" secondAttribute="bottom" constant="31" id="eaH-qi-aUI"/>
+                            <constraint firstItem="hMH-4O-BhT" firstAttribute="trailing" secondItem="nJ5-Cg-TgS" secondAttribute="trailing" id="fLc-Oj-wIG"/>
+                            <constraint firstItem="wDh-Qo-1je" firstAttribute="top" secondItem="vfE-hA-5fs" secondAttribute="bottom" constant="10" id="gdk-UP-mdU"/>
+                            <constraint firstItem="hMH-4O-BhT" firstAttribute="trailing" secondItem="vfE-hA-5fs" secondAttribute="trailing" constant="15" id="jqz-U6-NTD"/>
+                            <constraint firstItem="hMH-4O-BhT" firstAttribute="bottom" secondItem="iPW-ad-HYt" secondAttribute="bottom" id="p2L-5Y-QFi"/>
+                            <constraint firstItem="hMH-4O-BhT" firstAttribute="trailing" secondItem="HjH-D6-U9x" secondAttribute="trailing" constant="30" id="ysx-ji-UJf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hMH-4O-BhT"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="buttonOk" destination="HjH-D6-U9x" id="oWL-An-tkO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HZ0-JU-L3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1929" y="896"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="25" height="25"/>
         <image name="bg_mission_white" width="1110" height="1546"/>
         <image name="ic_menu" width="48" height="48"/>
+        <image name="img_confetti" width="414" height="450"/>
+        <image name="img_congratulations" width="390" height="57"/>
         <image name="img_doodle_arrow_down" width="148" height="500"/>
         <image name="img_doodle_circle" width="500" height="400"/>
+        <image name="img_redeem_reward" width="908" height="908"/>
         <image name="loading" width="550" height="978"/>
         <image name="sample_picture" width="480" height="312"/>
     </resources>

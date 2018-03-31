@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0CB701D0587EC310F79A142A /* Pods_Ngage_PHTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D350C087C9B0882E1EC0F9 /* Pods_Ngage_PHTests.framework */; };
 		352496A6206AA0990088AF1A /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352496A5206AA0990088AF1A /* ProfileCollectionViewCell.swift */; };
+		359E4F56206FF87700644087 /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359E4F55206FF87700644087 /* CustomProgressView.swift */; };
+		359E4F58206FF88900644087 /* CustomProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359E4F57206FF88900644087 /* CustomProgressView.xib */; };
+		359E4F5E20701D7600644087 /* TasksCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */; };
 		35DFC6892066959B00F749E0 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFC6882066959A00F749E0 /* TutorialViewController.swift */; };
 		4994B0BD3E4BAF9D60EB6542 /* Pods_NgageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */; };
 		5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003679920270770007E693A /* WebViewTaskViewController.swift */; };
@@ -123,6 +126,9 @@
 		2104C45A66AF35AF536B3938 /* Pods-NgageUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NgageUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NgageUITests/Pods-NgageUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2365158872058F8EA095768C /* Pods-Ngage PH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PH.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PH/Pods-Ngage PH.debug.xcconfig"; sourceTree = "<group>"; };
 		352496A5206AA0990088AF1A /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		359E4F55206FF87700644087 /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		359E4F57206FF88900644087 /* CustomProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomProgressView.xib; sourceTree = "<group>"; };
+		359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCompletedViewController.swift; sourceTree = "<group>"; };
 		35DFC6882066959A00F749E0 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		3A7195ED201B500B9CCE568C /* Pods-Ngage PHTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +321,7 @@
 				50A9C0EF20385D3400F46DE8 /* VideoTaskViewController.swift */,
 				50DF519620303FE200F16FB4 /* CameraTask.swift */,
 				5038847A20308ED80042C5A0 /* FBShareTaskViewController.swift */,
+				359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -402,6 +409,8 @@
 				503A59702043228000EB4687 /* CustomModalView.xib */,
 				50426ECE204AC77D00F2D3B9 /* SuccessTaskModalView.xib */,
 				50426ED0204AC79900F2D3B9 /* SuccessTaskModalView.swift */,
+				359E4F55206FF87700644087 /* CustomProgressView.swift */,
+				359E4F57206FF88900644087 /* CustomProgressView.xib */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -662,6 +671,7 @@
 				501AE437201849490088983A /* LaunchScreen.storyboard in Resources */,
 				503A59712043228000EB4687 /* CustomModalView.xib in Resources */,
 				50426ECF204AC77D00F2D3B9 /* SuccessTaskModalView.xib in Resources */,
+				359E4F58206FF88900644087 /* CustomProgressView.xib in Resources */,
 				501AE434201849490088983A /* Assets.xcassets in Resources */,
 				50141F5A202CC67F0082EF2B /* AudioPlayerView.xib in Resources */,
 				509B0FA52019A77000DC0F21 /* HomeStoryboard.storyboard in Resources */,
@@ -769,13 +779,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ngage PHTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B17D7E84B56A228BA46C36A3 /* [CP] Embed Pods Frameworks */ = {
@@ -784,9 +797,40 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Ngage PH/Pods-Ngage PH-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/CircleProgressView/CircleProgressView.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/ScratchCard/ScratchCard.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CircleProgressView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYDrawerController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScratchCard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -799,13 +843,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ngage PH-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FE75F2B99179231016878F34 /* [CP] Check Pods Manifest.lock */ = {
@@ -814,13 +861,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ngage PHUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -853,9 +903,11 @@
 				8C3C3FC72039E66C000EBEEC /* MerchantLocationsViewController.swift in Sources */,
 				506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */,
 				50E8E761203D86680010686C /* TimeInterval.swift in Sources */,
+				359E4F56206FF87700644087 /* CustomProgressView.swift in Sources */,
 				50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */,
 				352496A6206AA0990088AF1A /* ProfileCollectionViewCell.swift in Sources */,
 				509C391C201BB6EA0015A35B /* DrawerTableViewCell.swift in Sources */,
+				359E4F5E20701D7600644087 /* TasksCompletedViewController.swift in Sources */,
 				50FA4AF9203CB236006CC8BD /* TimeManager.swift in Sources */,
 				5020B5D2201C753500A3933F /* AccomplishmentView.swift in Sources */,
 				50426ED1204AC79900F2D3B9 /* SuccessTaskModalView.swift in Sources */,

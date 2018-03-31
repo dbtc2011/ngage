@@ -13,6 +13,8 @@ target 'Ngage PH' do
     pod 'PKHUD', '~> 4.0'
     pod 'SwiftyJSON', '~> 3.0'
     pod 'UICircularProgressRing'
+    pod 'ScratchCard', '~> 1.1.3'
+    pod 'CircleProgressView', '~> 1.0'
 
   # Pods for Ngage
 

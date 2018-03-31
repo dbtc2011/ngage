@@ -10,6 +10,7 @@ import UIKit
 
 import Social
 import UICircularProgressRing
+import ScratchCard
 
 enum TaskAppCode : Int {
     case updateProfile = 1
@@ -20,7 +21,8 @@ protocol TaskViewControllerDelegate {
 }
 class TaskViewController: UIViewController {
 
-    @IBOutlet weak var progress: UICircularProgressRingView!
+   
+    @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var backgroundImage: UIImageView!
     var mission: MissionModel!
     var tasks : [TaskModel] = []
@@ -31,7 +33,10 @@ class TaskViewController: UIViewController {
     var delegate : TaskViewControllerDelegate?
     var quizAnswers: String!
     var quizCorrectAnswers: String!
+    var customProgress: CustomProgressView?
+    var customScratch: ScratchUIView?
     @IBOutlet weak var labelTitle: UILabel!
+    
     
     var contentID : String = ""
     var contentDuration : String = ""
@@ -80,7 +85,7 @@ class TaskViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        adjustProgressBar()
+//        adjustProgressBar()
     }
     
     override var shouldAutorotate: Bool {
@@ -98,13 +103,13 @@ class TaskViewController: UIViewController {
     func adjustProgressBar() {
         var currentProgress = 100.0/CGFloat(tasks.count)
         currentProgress = currentProgress * CGFloat(completedTask)
-        progress.setProgress(value: currentProgress, animationDuration: 0.4)
+        customProgress?.setupContent(currentProgress: Double(currentProgress))
     }
     func setupUI() {
         customView.isHidden = true
         customView.backgroundColor = UIColor.clear
         labelTitle.text = mission.title
-        self.progress.setProgress(value: 0, animationDuration: 1)
+//        self.progress.setProgress(value: 0, animationDuration: 1)
         if mission.imageTask!.data != nil {
             if let imageData = UIImage(data: mission.imageTask!.data!) {
                 backgroundImage.image = imageData
@@ -114,6 +119,25 @@ class TaskViewController: UIViewController {
             backgroundImage.image = UIImage(named: "img_splash")
         }
         backgroundImage.addBlurEffect()
+        setupProgressView()
+    }
+    
+    func setupProgressView() {
+        customProgress = Bundle.main.loadNibNamed("CustomProgressView", owner: self, options: nil)?.first as? CustomProgressView
+        customProgress!.bounds = progressView.bounds
+        customProgress!.frame.origin = CGPoint(x: 0, y: 0)
+        customProgress!.setupProgressColor(color: UIColor().setColorUsingHex(hex: mission.colorBackground))
+        progressView.addSubview(customProgress!)
+        adjustProgressBar()
+    }
+    
+    func setupScratchView() {
+        customProgress!.removeFromSuperview()
+        customProgress = nil
+        UserDefaults.standard.setValue("1pt", forKey: Keys.sratchPoint)
+        customScratch  = ScratchUIView(frame: CGRect(x:0, y:0, width:140, height:140),Coupon: "img_reward_points", MaskImage: "img_scratch_gift", ScratchWidth: CGFloat(40))
+        
+        progressView.addSubview(customScratch!)
     }
     func showSuccessModal(totalPoints: Int) {
         customView.isHidden = false
@@ -140,7 +164,10 @@ class TaskViewController: UIViewController {
         if mission.code == 1 && selectedIndex == 0 {
             TimeManager.sharedInstance.hasFinishedFirstTask = true
             delegate?.mustReloadData()
+        }else if selectedIndex == 0 {
+            performSegue(withIdentifier: "goToSuccess", sender: self.selectedTask)
         }
+        
     }
     
     func quizDidSet(answers: String, correctAnswers: String) {
@@ -367,6 +394,8 @@ class TaskViewController: UIViewController {
         }else if let controller = segue.destination as? TaskInstructionsViewController {
             controller.mission = mission
             controller.task = task
+        }else if let controller = segue.destination as? TasksCompletedViewController {
+            controller.delegate = self
         }
     }
     
@@ -429,5 +458,11 @@ extension TaskViewController : CustomModalViewDelegate {
         }else if tag == 2 {
             adjustTasks()
         }
+    }
+}
+
+extension TaskViewController : TasksCompletedViewControllerDelegate {
+    func didCloseCompletedController() {
+        self.setupScratchView()
     }
 }
