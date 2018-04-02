@@ -14,7 +14,7 @@ class HistoryViewController: UIViewController {
     //MARK: - Properties
 
     var user = UserModel().mainUser()
-    var historyData = [[String: String]]()
+    var historyData = [[String: Any]]()
     
     private var cache: NSCache<AnyObject, AnyObject> = NSCache()
     
@@ -50,9 +50,7 @@ class HistoryViewController: UIViewController {
             if error == nil {
                 if let history = result!["history"].array {
                     for content in history {
-                        let historyContent = ["title": content["TITLE"].string ?? "",
-                                              "image": content["missionImage"].string ?? ""]
-                        self.historyData.append(historyContent)
+                        self.historyData.append(content.dictionaryObject!)
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -89,12 +87,44 @@ extension HistoryViewController : UITableViewDataSource {
         let history = historyData[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell")
         
-        let name = cell?.contentView.viewWithTag(1) as! UILabel
+        let cellTitle = cell?.contentView.viewWithTag(1) as! UILabel
+        cellTitle.textColor = UIColor.black
+        cellTitle.text = history["TrxnType"] as? String ?? ""
+        if cellTitle.text == "EARNED    " {
+            cellTitle.textColor = UIColor.blue
+        }else {
+            cellTitle.textColor = UIColor.green
+        }
+        
+        let points = cell?.contentView.viewWithTag(3) as! UILabel
+        points.textColor = UIColor.black
+        
+        var pointsValue = ""
+        if let point = history["Points"] as? Int {
+            if point > 1 {
+                pointsValue = "\(point) points"
+            }else {
+                pointsValue = "\(point) point"
+            }
+        }
+        points.text = pointsValue
+        
+        let name = cell?.contentView.viewWithTag(4) as! UILabel
         name.textColor = UIColor.black
-        name.text = history["title"] ?? ""
+        name.text = history["TITLE"] as? String ?? ""
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd-yyyy HH:mm"
+        
+        let date = cell?.contentView.viewWithTag(5) as! UILabel
+        date.textColor = UIColor.black
+        date.text = ""
+        if let dtCreated = history["dtCreated"] as? String {
+            date.text = dtCreated
+        }
         
         let image = cell?.contentView.viewWithTag(2) as! UIImageView
-        let strLink = history["image"] ?? ""
+        let strLink = history["missionImage"] as? String ?? ""
         if let link = URL(string: strLink) {
             if (self.cache.object(forKey: link as AnyObject) != nil) {
                 // Use cache

@@ -51,7 +51,7 @@ class SuccessTaskModalView: UIView {
         var targetRange = (earnedPoints.text! as NSString).range(of: "\(pointsEarned)")
         
         if targetRange.location != NSNotFound {
-            muttAttString.addAttribute(NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue), value: UIFont.systemFont(ofSize: 18), range: targetRange)
+            muttAttString.addAttribute(NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue), value: UIFont.boldSystemFont(ofSize: 22), range: targetRange)
             earnedPoints.attributedText = muttAttString
         }
         

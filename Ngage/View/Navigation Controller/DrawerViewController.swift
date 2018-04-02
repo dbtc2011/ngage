@@ -97,11 +97,7 @@ extension DrawerViewController : UITableViewDelegate {
                 return
             }
             
-        case 2:
-            identifier = "ProfileVC"
-            storyboard = "HomeStoryboard"
-            
-        case 4:
+        case 3:
             identifier = "HistoryNavi"
             storyboard = "HomeStoryboard"
             
@@ -168,7 +164,7 @@ extension DrawerViewController : UITableViewDataSource {
             return 1
             
         case 1:
-            return 5
+            return 4
             
         default:
             return 2
@@ -207,10 +203,6 @@ extension DrawerViewController : UITableViewDataSource {
             }
             
         case 2:
-            title = "Profile"
-            image = #imageLiteral(resourceName: "ic_action_profile")
-            
-        case 3:
             title = "Notifications"
             image = #imageLiteral(resourceName: "ic_action_achievements")
             

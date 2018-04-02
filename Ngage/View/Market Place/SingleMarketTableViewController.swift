@@ -474,7 +474,16 @@ class SingleMarketTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 && filteredRedeemables.count > 0 {
-            return nil
+            let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+            headerView.backgroundColor = UIColor().setColorUsingHex(hex: "36B1ED")
+            
+            let label = UILabel(frame: CGRect(x: 10, y: 0, width: headerView.frame.width - 20, height: 40))
+            label.text = "Rewards available to redeem"
+            label.textColor = UIColor.white
+            label.font = UIFont.systemFont(ofSize: 14.0)
+            headerView.addSubview(label)
+            
+            return headerView
         }
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))

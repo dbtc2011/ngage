@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UICircularProgressRing
 import AVFoundation
 import Alamofire
 class MultipleChoiceTaskViewController: UIViewController {
@@ -29,7 +28,6 @@ class MultipleChoiceTaskViewController: UIViewController {
     @IBOutlet weak var labelTimer: UILabel!
     var questions : [QuestionsModel] = []
     var correctTag = 1
-    @IBOutlet weak var progressView: UICircularProgressRingView!
     var timeLimit : Timer?
     var maxTime = 40
     var currentTime : Int!
@@ -152,8 +150,6 @@ class MultipleChoiceTaskViewController: UIViewController {
         
         UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
             if self.task.type == 8 {
-                self.playerView!.buttonWidth.constant = 42
-                self.progressView.setProgress(value: 100.0, animationDuration: 1)
                 self.labelTimer.text = "\(self.maxTime)"
             }
             self.button1.setAsDefault()
@@ -179,17 +175,12 @@ class MultipleChoiceTaskViewController: UIViewController {
                 if self.task.type == 17 {
                     self.submitTask()
                 }else {
-                    self.progressView.setProgress(value: 100.0, animationDuration: 1)
-                    self.labelTimer.text = "\(self.maxTime)"
                     self.player = nil
                     self.answerdQuestion()
                 }
                 return
             }
             DispatchQueue.main.async {
-//                self.progressView.valueIndicator = ""
-                self.currentTime = self.currentTime - 1
-                self.progressView.setProgress(value: self.progressView.currentValue! - self.divider, animationDuration: 1)
                 self.labelTimer.text = "\(self.currentTime!)"
             }
             

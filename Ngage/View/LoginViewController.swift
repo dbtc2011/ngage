@@ -82,6 +82,9 @@ class LoginViewController: UIViewController {
 extension LoginViewController : ReferralCodeViewControllerDelegate {
     
     func didEnterReferredBy(value: String) {
+        if value == "" {
+            return
+        }
         self.user.refferedBy = value
         buttonReferral.setTitle(value, for: UIControlState.normal)
     }

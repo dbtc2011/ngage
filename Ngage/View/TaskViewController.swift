@@ -36,6 +36,7 @@ class TaskViewController: UIViewController {
     var customProgress: CustomProgressView?
     var customScratch: ScratchUIView?
     @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var backgroundLayer: UIImageView!
     
     
     var contentID : String = ""
@@ -113,12 +114,14 @@ class TaskViewController: UIViewController {
         if mission.imageTask!.data != nil {
             if let imageData = UIImage(data: mission.imageTask!.data!) {
                 backgroundImage.image = imageData
+                backgroundLayer.image = imageData
                 
             }
         }else {
             backgroundImage.image = UIImage(named: "img_splash")
+            backgroundLayer.image = UIImage(named: "img_splash")
         }
-        backgroundImage.addBlurEffect()
+        backgroundLayer.addBlurEffect()
         setupProgressView()
     }
     

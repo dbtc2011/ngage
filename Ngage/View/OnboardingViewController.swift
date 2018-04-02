@@ -20,6 +20,7 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var imageThird: UIImageView!
     var loginButton : LoginButton!
     
+    @IBOutlet weak var login: UIButton!
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,13 @@ class OnboardingViewController: UIViewController {
         
         pageIndicator.currentPage = 0
         pageIndicator.isEnabled = false
+    
+        login.layer.cornerRadius = 8
+        login.imageView?.frame = CGRect(origin: CGPoint(x: 10, y: 10), size: CGSize(width: 40, height: 40))
+        login.isUserInteractionEnabled = false
+        login.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        login.isHidden = true
+        view.bringSubview(toFront: login)
     }
     
     func getFBUserData(){
@@ -113,6 +121,12 @@ class OnboardingViewController: UIViewController {
             controller.user = self.user
         }
     }
+    
+    //MARK: - Button Action
+    @IBAction func loginButtonClicked(_ sender: UIButton) {
+        print("Did login!")
+    }
+    
  
 
 }
@@ -145,8 +159,10 @@ extension OnboardingViewController : UIScrollViewDelegate {
         switch Int(index) {
         case 2:
             self.loginButton.isHidden = false
+            self.login.isHidden = false
         default:
             self.loginButton.isHidden = true
+            self.login.isHidden = true
         }
     }
 }

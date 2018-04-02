@@ -35,7 +35,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         lockContainerView.isHidden = true
         buttonLock.isHidden = true
         self.buttonWidth.constant = 200
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 13
         image.layer.cornerRadius = 15
         image.layer.masksToBounds = true
         image.clipsToBounds = true

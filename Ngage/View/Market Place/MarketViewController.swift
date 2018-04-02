@@ -142,6 +142,19 @@ extension MarketViewController: UICollectionViewDataSource {
     }
 }
 
+//MARK: - ScrollView Delegate
+extension MarketViewController : UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let index = scrollView.contentOffset.x/self.view.frame.size.width
+        print("Index = \(index)")
+        if let marketPageVC = self.childViewControllers.first as? MarketPageViewController {
+            marketPageVC.selectedHeaderIndex = Int(index)
+            marketPageVC.updateSelectedPageViewController()
+        }
+        
+    }
+}
+
 //MARK: Flow Layout
 
 extension MarketViewController: UICollectionViewDelegateFlowLayout {

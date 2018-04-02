@@ -21,38 +21,22 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TfK-lg-Wsl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="270"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcw-Tf-tve" customClass="UICircularProgressRingView" customModule="UICircularProgressRing">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcw-Tf-tve">
                                         <rect key="frame" x="137" y="10" width="100" height="100"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_timer" translatesAutoresizingMaskIntoConstraints="NO" id="xjF-bW-cMV">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            </imageView>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="8cC-Ry-iwN"/>
                                             <constraint firstAttribute="width" constant="100" id="Lrc-LY-Z7v"/>
+                                            <constraint firstItem="xjF-bW-cMV" firstAttribute="centerX" secondItem="pcw-Tf-tve" secondAttribute="centerX" id="Mj2-Sb-nWf"/>
+                                            <constraint firstItem="xjF-bW-cMV" firstAttribute="centerY" secondItem="pcw-Tf-tve" secondAttribute="centerY" id="dKr-yp-m1O"/>
+                                            <constraint firstItem="xjF-bW-cMV" firstAttribute="width" secondItem="pcw-Tf-tve" secondAttribute="width" id="lcC-7s-iKT"/>
+                                            <constraint firstItem="xjF-bW-cMV" firstAttribute="height" secondItem="pcw-Tf-tve" secondAttribute="height" id="ypG-bj-flo"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
-                                                <color key="value" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
-                                                <color key="value" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                <real key="value" value="100"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="minValue">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
-                                                <real key="value" value="270"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullCircle" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
-                                                <real key="value" value="100"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
-                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJh-bh-1hD">
                                         <rect key="frame" x="187" y="60.5" width="0.0" height="0.0"/>
@@ -152,7 +136,8 @@
                         <viewLayoutGuide key="safeArea" id="EnT-5z-SKC"/>
                     </view>
                     <navigationItem key="navigationItem" title="Ngage" id="8Gz-kW-2Mn">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="M0M-W9-PEw">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="M0M-W9-PEw">
+                            <inset key="imageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <connections>
                                 <action selector="backButtonClicked:" destination="KPG-cb-A6K" id="lCb-37-zL6"/>
                             </connections>
@@ -164,7 +149,6 @@
                         <outlet property="button3" destination="uUv-gE-PAp" id="LJ6-Jr-5fc"/>
                         <outlet property="button4" destination="osL-Es-XJT" id="eOg-20-NQT"/>
                         <outlet property="labelTimer" destination="IJh-bh-1hD" id="mBk-tP-emr"/>
-                        <outlet property="progressView" destination="pcw-Tf-tve" id="rYo-Hp-F76"/>
                         <outlet property="viewContainer" destination="j2c-N5-pd1" id="Th4-vn-neg"/>
                         <outlet property="viewHeader" destination="TfK-lg-Wsl" id="IP6-Ym-JUM"/>
                         <outlet property="viewQuestioniare" destination="W8D-9R-eFg" id="FMI-KE-Jx0"/>
@@ -391,7 +375,8 @@
                         <viewLayoutGuide key="safeArea" id="om6-pm-gSy"/>
                     </view>
                     <navigationItem key="navigationItem" title="Ngage" id="gO2-iw-Gv6">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="0bm-Ga-c0x">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="0bm-Ga-c0x">
+                            <inset key="imageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <connections>
                                 <action selector="didTapBack:" destination="K9x-qe-rY1" id="A2u-49-FY7"/>
                             </connections>
@@ -495,7 +480,8 @@
                         <viewLayoutGuide key="safeArea" id="YS0-VT-pzA"/>
                     </view>
                     <navigationItem key="navigationItem" title="Ngage" id="cJO-cm-YHL">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="BGH-eg-urW">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="BGH-eg-urW">
+                            <inset key="imageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <connections>
                                 <action selector="backButtonClicked:" destination="1De-67-mqo" id="z4K-LS-kdW"/>
                             </connections>
@@ -520,7 +506,9 @@
             <objects>
                 <avPlayerViewController storyboardIdentifier="VideoPlayerTaskViewController" videoGravity="AVLayerVideoGravityResizeAspect" id="DV1-Bl-uew" customClass="VideoPlayerTaskViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Ngage" id="BVL-Vg-WAi">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="b1o-QD-ses"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" id="b1o-QD-ses">
+                            <inset key="imageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </barButtonItem>
                     </navigationItem>
                 </avPlayerViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNM-Ta-AIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -660,7 +648,9 @@
                         <viewLayoutGuide key="safeArea" id="BQg-MR-9fi"/>
                     </view>
                     <navigationItem key="navigationItem" title="Ngage" id="Yn7-a2-Qi5">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="J7b-Yp-DUd"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" id="J7b-Yp-DUd">
+                            <inset key="imageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbo-NO-BMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -685,6 +675,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="25" height="25"/>
         <image name="ic_quiz_correct" width="46" height="46"/>
         <image name="ic_quiz_wrong" width="46" height="46"/>
         <image name="img_confetti" width="414" height="450"/>

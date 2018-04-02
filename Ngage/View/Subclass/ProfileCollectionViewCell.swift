@@ -16,6 +16,7 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var points: UILabel!
     @IBOutlet weak var missions: UILabel!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var imageLayer: UIImageView!
     
     func setupUI(mission: Int) {
         let user = UserModel().mainUser()
@@ -35,6 +36,10 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         image.layer.cornerRadius = 15
         image.layer.masksToBounds = true
         image.clipsToBounds = true
+        
+        imageLayer.layer.cornerRadius = 15
+        imageLayer.layer.masksToBounds = true
+        imageLayer.clipsToBounds = true
     }
     
     

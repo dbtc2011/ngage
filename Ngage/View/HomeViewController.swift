@@ -23,20 +23,10 @@ class HomeViewController: DrawerFrontViewController {
     @IBOutlet weak var viewTutorial: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        var profileImage: UIImage?
-        if let data = user.image {
-            profileImage = UIImage(data: data)
-        }else if let data = UserDefaults.standard.value(forKeyPath: "profile_image") as? Data {
-            profileImage = UIImage(data: data)
-        }
-        if profileImage != nil {
-            view.backgroundColor = UIColor(patternImage: profileImage!)
-            view.contentMode = UIViewContentMode.scaleAspectFit
-        }
-        self.collectionView.backgroundColor = UIColor.clear
+        setupBackgroundProfile()
         setupUI()
         getMission()
+        collectionView.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -72,6 +62,36 @@ class HomeViewController: DrawerFrontViewController {
 //        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
     }
     
+    func setupBackgroundProfile() {
+        if let imageView = view.viewWithTag(13) as? UIImageView {
+            return
+        }
+        self.removeProfileBackground()
+        self.collectionView.backgroundColor = UIColor.clear
+        var profileImage: UIImage?
+        if let data = user.image {
+            profileImage = UIImage(data: data)
+        }else if let data = UserDefaults.standard.value(forKeyPath: "profile_image") as? Data {
+            profileImage = UIImage(data: data)
+        }
+        if profileImage != nil {
+            DispatchQueue.main.async {
+                let backgroundImageView = UIImageView()
+                backgroundImageView.frame = self.view.bounds
+                backgroundImageView.image = profileImage!
+                backgroundImageView.contentMode = UIViewContentMode.scaleAspectFill
+                backgroundImageView.tag = 13
+                
+                let imageDark = UIImageView()
+                imageDark.frame = self.view.bounds
+                imageDark.backgroundColor = UIColor.black
+                imageDark.alpha = 0.6
+                backgroundImageView.addSubview(imageDark)
+                
+                self.view.insertSubview(backgroundImageView, at: 0)
+            }
+        }
+    }
     func setUIColor(color : UIColor) {
         self.view.backgroundColor = color
         self.collectionView.backgroundColor = color
@@ -79,6 +99,11 @@ class HomeViewController: DrawerFrontViewController {
         navigationController?.navigationBar.barTintColor = color
     }
     
+    func removeProfileBackground() {
+        if let imageView = view.viewWithTag(13) as? UIImageView {
+            imageView.removeFromSuperview()
+        }
+    }
     func setupTutorial() {
         UserDefaults.standard.set(true, forKey: Keys.hasFinishedTutorial)
         viewTutorial.isHidden = false
@@ -150,7 +175,6 @@ class HomeViewController: DrawerFrontViewController {
     }
     
     //MARK: - API
-    
     func getMission() {
         RegisterService.getMissionList(fbid: self.user.facebookId) { (result, error) in
             self.shouldReloadTime = true
@@ -221,6 +245,7 @@ class HomeViewController: DrawerFrontViewController {
                                 let when = DispatchTime.now() + 1.0
                                 DispatchQueue.main.asyncAfter(deadline: when) {
                                     self.reloadTime()
+                                    self.removeProfileBackground()
                                     self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: UICollectionViewScrollPosition.left, animated: false)
                                     if let hasFinished = UserDefaults.standard.bool(forKey: Keys.hasFinishedTutorial) as? Bool {
                                         if hasFinished {
@@ -344,6 +369,15 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout {
 }
 extension HomeViewController : UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 {
+            return
+        }
+        self.performSegue(withIdentifier: "taskPage", sender: self)
+        
+    }
+    
 }
 
 extension HomeViewController : UIScrollViewDelegate {
@@ -352,19 +386,11 @@ extension HomeViewController : UIScrollViewDelegate {
         let index = scrollView.contentOffset.x/self.view.frame.size.width
         selectedIndex = Int(index)
         if selectedIndex == 0 {
-            
-            var profileImage: UIImage?
-            if let data = user.image {
-                profileImage = UIImage(data: data)
-            }else if let data = UserDefaults.standard.value(forKeyPath: "profile_image") as? Data {
-                profileImage = UIImage(data: data)
-            }
-            if profileImage != nil {
-                view.backgroundColor = UIColor(patternImage: profileImage!)
-            }
-            self.collectionView.backgroundColor = UIColor.clear
+            setupBackgroundProfile()
             return
         }
+        
+        self.removeProfileBackground()
         selectedIndex = selectedIndex - 1
         let color = UIColor().setColorUsingHex(hex: self.user.missions[selectedIndex].colorBackground)
         self.setUIColor(color: color)
