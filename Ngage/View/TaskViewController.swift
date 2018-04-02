@@ -18,6 +18,7 @@ enum TaskAppCode : Int {
 protocol TaskViewControllerDelegate {
     func taskUpdated(tasks: [TaskModel])
     func mustReloadData()
+    func mustShowMarketPlaceAds()
 }
 class TaskViewController: UIViewController {
 
@@ -30,11 +31,13 @@ class TaskViewController: UIViewController {
     var selectedTask : TaskModel!
     var selectedIndex = 0
     var completedTask = 0
+    var taskPoint = ""
     var delegate : TaskViewControllerDelegate?
     var quizAnswers: String!
     var quizCorrectAnswers: String!
     var customProgress: CustomProgressView?
     var customScratch: ScratchUIView?
+    var didShowSuccessRedeem = false
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var backgroundLayer: UIImageView!
     
@@ -123,6 +126,7 @@ class TaskViewController: UIViewController {
         }
         backgroundLayer.addBlurEffect()
         setupProgressView()
+//        setupScratchView()
     }
     
     func setupProgressView() {
@@ -135,18 +139,34 @@ class TaskViewController: UIViewController {
     }
     
     func setupScratchView() {
-        customProgress!.removeFromSuperview()
-        customProgress = nil
+        if customProgress != nil {
+            customProgress!.removeFromSuperview()
+            customProgress = nil
+        }
         UserDefaults.standard.setValue("1pt", forKey: Keys.sratchPoint)
         customScratch  = ScratchUIView(frame: CGRect(x:0, y:0, width:140, height:140),Coupon: "img_reward_points", MaskImage: "img_scratch_gift", ScratchWidth: CGFloat(40))
-        
+        customScratch!.delegate = self
         progressView.addSubview(customScratch!)
     }
-    func showSuccessModal(totalPoints: Int) {
+    func showSuccessModal(totalPoints: String) {
         customView.isHidden = false
         let modalView = Bundle.main.loadNibNamed("SuccessTaskModalView", owner: self, options: nil)?.first as! SuccessTaskModalView
         modalView.delegate = self
-        modalView.setupContents(pointsTotal: "\(totalPoints)pts", pointsEarned: Int(selectedTask.reward)!)
+        modalView.setupContents(pointsTotal: "\(totalPoints)pts", pointsEarned: Int(self.taskPoint)!)
+        modalView.bounds = customView.bounds
+        modalView.frame.origin = CGPoint(x: 0, y: 0)
+        customView.addSubview(modalView)
+    }
+    
+    func showSuccessRedeemModal() {
+        didShowSuccessRedeem = true
+        customView.isHidden = false
+        let modalView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
+        modalView.delegate = self
+        modalView.tag = 13
+        modalView.icon.image = UIImage(named: "ic_app_logo_circle")
+        modalView.setupContent(value: "Congratulations!\nYou have been rewarded with \(self.taskPoint) Points for completing \(mission.title)")
+        modalView.button.setTitle("Ok", for: UIControlState.normal)
         modalView.bounds = customView.bounds
         modalView.frame.origin = CGPoint(x: 0, y: 0)
         customView.addSubview(modalView)
@@ -168,6 +188,7 @@ class TaskViewController: UIViewController {
             TimeManager.sharedInstance.hasFinishedFirstTask = true
             delegate?.mustReloadData()
         }else if selectedIndex == 0 {
+            delegate?.mustShowMarketPlaceAds()
             performSegue(withIdentifier: "goToSuccess", sender: self.selectedTask)
         }
         
@@ -294,12 +315,6 @@ class TaskViewController: UIViewController {
     func openQuestionaireWithMusic(task: TaskModel) {
         selectedTask = task
         performSegue(withIdentifier: "taskInstructions", sender: task)
-//        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
-//        if let controller = storyBoard.instantiateViewController(withIdentifier: "MultipleChoiceTaskViewController") as? MultipleChoiceTaskViewController {
-//            controller.task = task
-//            controller.mission = mission
-//            self.navigationController?.pushViewController(controller, animated: true)
-//        }
         
     }
 
@@ -321,6 +336,12 @@ class TaskViewController: UIViewController {
 //        }
     }
     
+    func scratchMoved(_ view: ScratchUIView) {
+        if self.customScratch!.getScratchPercent() > 0.5 && !self.didShowSuccessRedeem {
+            self.showSuccessRedeemModal()
+        }
+    }
+    
     //MARK: - API
     func submitTask(missionID: String, taskID: String, tasktype: String, FBID: String, ContentID: String, SubContentID: String, Answer: String, CorrectAnswer: String, WatchType: String, WatchTime: String, DeviceID: String, TaskStatus: String, Current_Points: String, Points: String, Prev_Points: String) {
         
@@ -331,11 +352,12 @@ class TaskViewController: UIViewController {
                 if let statusCode = result!["StatusCode"].int {
                     if statusCode == 2 {
                         if let points = result!["Points"].int {
+                            self.taskPoint = "\(points - Int(self.user.points)!)"
                             CoreDataManager.sharedInstance.updateUserPoints(withPoints: "\(points)", completionHandler: { (coreResult) in
                                 DispatchQueue.main.async {
                                     self.contentDuration = ""
                                     self.contentID = ""
-                                    self.showSuccessModal(totalPoints: points)
+                                    self.showSuccessModal(totalPoints: "\(points)")
                                 }
                             })
                         }
@@ -417,6 +439,7 @@ extension TaskViewController : UITableViewDelegate {
             selectedIndex = indexPath.row
             customView.isHidden = false
             let modalView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
+            modalView.tag = 1
             modalView.delegate = self
             modalView.setupContent(value: task.instructions)
             modalView.bounds = customView.bounds
@@ -450,6 +473,7 @@ extension TaskViewController : TaskDoneDelegate {
     }
 }
 
+// MARK: - Custom Modal View Delegate
 extension TaskViewController : CustomModalViewDelegate {
     func didTapOkayButton(tag: Int) {
         customView.isHidden = true
@@ -460,6 +484,8 @@ extension TaskViewController : CustomModalViewDelegate {
             openTask()
         }else if tag == 2 {
             adjustTasks()
+        }else if tag == 13 {
+            
         }
     }
 }
@@ -467,5 +493,16 @@ extension TaskViewController : CustomModalViewDelegate {
 extension TaskViewController : TasksCompletedViewControllerDelegate {
     func didCloseCompletedController() {
         self.setupScratchView()
+    }
+}
+
+//MARK: - Scratch view Delegate
+extension TaskViewController : ScratchUIViewDelegate {
+    
+    func scratchEnded(_ view: ScratchUIView) {
+        
+        if self.customScratch!.getScratchPercent() > 50.0 && !self.didShowSuccessRedeem {
+            self.showSuccessRedeemModal()
+        }
     }
 }

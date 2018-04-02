@@ -42,7 +42,7 @@ class CustomModalView: UIView {
     
     //MARK: - Action
     @IBAction func buttonClicked(_ sender: UIButton) {
-        delegate?.didTapOkayButton(tag: 1)
+        delegate?.didTapOkayButton(tag: self.tag)
     }
     
 }

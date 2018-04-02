@@ -25,6 +25,7 @@ class VideoPlayerTaskViewController: AVPlayerViewController {
     
     func playVideo() {
         var fileURL = currentPath.replacingOccurrences(of: "http", with: "https")
+        fileURL = fileURL.replacingOccurrences(of: "httpss", with: "https")
         fileURL = fileURL.replacingOccurrences(of: " ", with: "%20")
         if let url = URL(string: fileURL) {
             self.player = AVPlayer(url: url)

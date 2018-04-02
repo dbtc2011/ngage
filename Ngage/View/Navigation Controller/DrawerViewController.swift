@@ -97,6 +97,14 @@ extension DrawerViewController : UITableViewDelegate {
                 return
             }
             
+        case 2 :
+            if indexPath.section == 1 {
+                identifier = "NotificationNavi"
+                storyboard = "HomeStoryboard"
+            } else {
+                return
+            }
+           
         case 3:
             identifier = "HistoryNavi"
             storyboard = "HomeStoryboard"

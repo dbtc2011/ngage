@@ -112,6 +112,7 @@ class MultipleChoiceTaskViewController: UIViewController {
     func playSong() {
         print(currentPath)
         var fileURL = currentPath.replacingOccurrences(of: "http", with: "https")
+        fileURL = fileURL.replacingOccurrences(of: "httpss", with: "https")
         fileURL = fileURL.replacingOccurrences(of: " ", with: "%20")
         if let url = URL(string: fileURL) {
             player = AVPlayer(url: url)
@@ -176,6 +177,7 @@ class MultipleChoiceTaskViewController: UIViewController {
                     self.submitTask()
                 }else {
                     self.player = nil
+                    self.playerView?.buttonWidth.constant = 42
                     self.answerdQuestion()
                 }
                 return
@@ -224,6 +226,8 @@ class MultipleChoiceTaskViewController: UIViewController {
                 playerView!.imageLogo.isHidden = false
                 playerView!.imageLogo.backgroundColor = UIColor.clear
             }
+        }else if task.type == 8 {
+            playerView!.buttonWidth.constant = 42
         }
         viewContainer.addSubview(playerView!)
     }
@@ -268,6 +272,7 @@ class MultipleChoiceTaskViewController: UIViewController {
             if timeLimit != nil {
                 timeLimit!.invalidate()
             }
+            playerView?.buttonWidth.constant = 42
             player = nil
         }
         

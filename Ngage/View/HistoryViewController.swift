@@ -35,7 +35,7 @@ class HistoryViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = UIColor(red: 39.0/255.0, green: 120.0/255.0, blue: 206.0/255.0, alpha: 1)
         navigationController?.isNavigationBarHidden = false
-//        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
     }
 
     override func didReceiveMemoryWarning() {
@@ -116,13 +116,13 @@ extension HistoryViewController : UITableViewDataSource {
         name.text = history["TITLE"] as? String ?? ""
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM-dd-yyyy HH:mm"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
         let date = cell?.contentView.viewWithTag(5) as! UILabel
         date.textColor = UIColor.black
         date.text = ""
         if let dtCreated = history["dtCreated"] as? String {
-            date.text = dtCreated
+            date.text = dtCreated.replacingOccurrences(of: "T", with: " - ")
         }
         
         let image = cell?.contentView.viewWithTag(2) as! UIImageView

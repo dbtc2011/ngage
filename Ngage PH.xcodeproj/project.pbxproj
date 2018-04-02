@@ -14,6 +14,9 @@
 		359E4F5E20701D7600644087 /* TasksCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */; };
 		359E4F622071FBA500644087 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359E4F612071FBA500644087 /* GoogleService-Info.plist */; };
 		35DFC6892066959B00F749E0 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFC6882066959A00F749E0 /* TutorialViewController.swift */; };
+		35EEFF5F20729D67001573F1 /* MarketPlaceAdsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEFF5E20729D67001573F1 /* MarketPlaceAdsView.swift */; };
+		35EEFF6120729D79001573F1 /* MarketPlaceAdsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EEFF6020729D79001573F1 /* MarketPlaceAdsView.xib */; };
+		35EEFF632072B1DD001573F1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEFF622072B1DD001573F1 /* NotificationViewController.swift */; };
 		4994B0BD3E4BAF9D60EB6542 /* Pods_NgageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */; };
 		5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003679920270770007E693A /* WebViewTaskViewController.swift */; };
 		50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50141F57202CC6630082EF2B /* AudioPlayerView.swift */; };
@@ -132,6 +135,9 @@
 		359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCompletedViewController.swift; sourceTree = "<group>"; };
 		359E4F612071FBA500644087 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35DFC6882066959A00F749E0 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		35EEFF5E20729D67001573F1 /* MarketPlaceAdsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPlaceAdsView.swift; sourceTree = "<group>"; };
+		35EEFF6020729D79001573F1 /* MarketPlaceAdsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketPlaceAdsView.xib; sourceTree = "<group>"; };
+		35EEFF622072B1DD001573F1 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		3A7195ED201B500B9CCE568C /* Pods-Ngage PHTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -414,6 +420,8 @@
 				50426ED0204AC79900F2D3B9 /* SuccessTaskModalView.swift */,
 				359E4F55206FF87700644087 /* CustomProgressView.swift */,
 				359E4F57206FF88900644087 /* CustomProgressView.xib */,
+				35EEFF5E20729D67001573F1 /* MarketPlaceAdsView.swift */,
+				35EEFF6020729D79001573F1 /* MarketPlaceAdsView.xib */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -445,6 +453,7 @@
 				8C7C4B6620270C1C00795264 /* UserProfileViewController.swift */,
 				506C3479203854B1004E651C /* ContactListViewController.swift */,
 				50ED77EF203A1529004CAA74 /* HistoryViewController.swift */,
+				35EEFF622072B1DD001573F1 /* NotificationViewController.swift */,
 				5049CA38204BC5CA006E71BB /* DrawerWebViewController.swift */,
 				8CF7451F2029FD4D00C44C06 /* Market Place */,
 				5003679820270720007E693A /* Tasks */,
@@ -671,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50DF518F203015FC00F16FB4 /* TaskNameThatSoundView.xib in Resources */,
+				35EEFF6120729D79001573F1 /* MarketPlaceAdsView.xib in Resources */,
 				501AE437201849490088983A /* LaunchScreen.storyboard in Resources */,
 				503A59712043228000EB4687 /* CustomModalView.xib in Resources */,
 				50426ECF204AC77D00F2D3B9 /* SuccessTaskModalView.xib in Resources */,
@@ -890,6 +900,7 @@
 			files = (
 				5038847C203098690042C5A0 /* UserModel.swift in Sources */,
 				50ED77F0203A1529004CAA74 /* HistoryViewController.swift in Sources */,
+				35EEFF5F20729D67001573F1 /* MarketPlaceAdsView.swift in Sources */,
 				506B09CF20234AFC0017C481 /* PinVerificationViewController.swift in Sources */,
 				501AE42F201849490088983A /* ViewController.swift in Sources */,
 				8CF7451E2029F8C400C44C06 /* MarketPageViewController.swift in Sources */,
@@ -945,6 +956,7 @@
 				50C8B009201F32230014DCEF /* APIManager.swift in Sources */,
 				8CDE8497201F69C400C525A4 /* Ngage.xcdatamodeld in Sources */,
 				8CCD9CE8202C961C000D887F /* RedeemableModel.swift in Sources */,
+				35EEFF632072B1DD001573F1 /* NotificationViewController.swift in Sources */,
 				8C3C3FCE2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift in Sources */,
 				50F15E1C2022172600A3E589 /* MSISDNViewController.swift in Sources */,
 				509C3918201BB20A0015A35B /* DrawerFrontViewController.swift in Sources */,

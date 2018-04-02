@@ -16,8 +16,10 @@ class HomeViewController: DrawerFrontViewController {
     var selectedIndex = 0
     var finishedMission = 0
     var shouldReloadTime = true
+    var shouldShowMarketAds = false
     @IBOutlet weak var buttonDrawer: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    var marketAds: MarketPlaceAdsView?
     
     @IBOutlet weak var buttonTutorial: UIButton!
     @IBOutlet weak var viewTutorial: UIView!
@@ -33,6 +35,7 @@ class HomeViewController: DrawerFrontViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         shouldReloadTime = true
+        showMarketAds()
         if user.missions.count == 0 {
             shouldReloadTime = false
         }
@@ -60,6 +63,29 @@ class HomeViewController: DrawerFrontViewController {
         buttonDrawer.addTarget(self, action: #selector(toggleDrawer(_:)), for: UIControlEvents.touchUpInside)
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_menu"), style: .plain, target: self, action: #selector(toggleDrawer(_:)))
 //        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+    }
+    
+    func showMarketAds() {
+        if !shouldShowMarketAds {
+            return
+        }
+        shouldShowMarketAds = false
+        user = UserModel().mainUser()
+        marketAds = Bundle.main.loadNibNamed("MarketPlaceAdsView", owner: self, options: nil)?.first as? MarketPlaceAdsView
+        marketAds!.delegate = self
+        marketAds!.setupContent(points: user.points, title: "Lets get started")
+        marketAds!.bounds = UIScreen.main.bounds
+//        modalView.frame.origin = CGPoint(x: 0, y: 0)
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubview(marketAds!)
+        }
+    }
+    
+    func removeMarketAds() {
+        if self.marketAds != nil {
+            self.marketAds!.removeFromSuperview()
+            self.marketAds = nil
+        }
     }
     
     func setupBackgroundProfile() {
@@ -444,6 +470,10 @@ extension HomeViewController : TaskViewControllerDelegate {
         shouldReloadData = true
     }
     
+    func mustShowMarketPlaceAds() {
+        shouldShowMarketAds = true
+    }
+    
     func taskUpdated(tasks: [TaskModel]) {
         var mission = user.missions[selectedIndex]
         mission.tasks = tasks.reversed()
@@ -458,4 +488,24 @@ extension HomeViewController : TaskViewControllerDelegate {
         }
         user.missions[selectedIndex] = mission
     }
+}
+
+extension HomeViewController : MarketPlaceAdsViewDelegate {
+    
+    func marketPlaceDidClose() {
+        self.removeMarketAds()
+    }
+    
+    func marketPlaceShouldOpenMarketPlace() {
+        self.removeMarketAds()
+        let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MarketNavigation")
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(viewController, animated: false, completion: nil)
+    }
+    
 }

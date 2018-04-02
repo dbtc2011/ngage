@@ -241,6 +241,7 @@
                                             <constraint firstAttribute="width" constant="50" id="NfO-k9-D4p"/>
                                             <constraint firstAttribute="height" constant="30" id="mh6-xs-OoB"/>
                                         </constraints>
+                                        <inset key="contentEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="back"/>
                                         <connections>
                                             <action selector="backButtonClicked:" destination="7Kw-av-RRe" eventType="touchUpInside" id="8ca-nn-P5v"/>
@@ -889,6 +890,7 @@
                                             <constraint firstAttribute="width" constant="50" id="Q8V-d6-UBm"/>
                                             <constraint firstAttribute="height" constant="30" id="aI1-m8-zaP"/>
                                         </constraints>
+                                        <inset key="contentEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="back"/>
                                         <connections>
                                             <action selector="backButtonClicked:" destination="MSb-1h-2pa" eventType="touchUpInside" id="Yjk-QQ-WBl"/>
@@ -966,19 +968,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer the questions as fast as you can." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqS-kJ-xYY">
-                                <rect key="frame" x="25" y="266" width="325" height="83"/>
+                                <rect key="frame" x="25" y="266" width="325" height="83.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have {sec} seconds to answer all the questions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WmM-tk-Y4Z">
-                                <rect key="frame" x="25" y="349" width="325" height="105"/>
+                                <rect key="frame" x="25" y="349.5" width="325" height="105"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcQ-p4-re3">
-                                <rect key="frame" x="25" y="454" width="325" height="105"/>
+                                <rect key="frame" x="25" y="454.5" width="325" height="104.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1559,11 +1561,67 @@
             </objects>
             <point key="canvasLocation" x="1929" y="896"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lhL-oC-8ke">
+            <objects>
+                <navigationController storyboardIdentifier="NotificationNavi" id="pf8-WK-wZJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cU7-Ri-4tb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="o1l-aa-0ZA" kind="relationship" relationship="rootViewController" id="zr9-7j-ucj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NjE-9R-k8w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="1623"/>
+        </scene>
+        <!--Notification-->
+        <scene sceneID="A6o-cq-IDH">
+            <objects>
+                <viewController storyboardIdentifier="NotificationViewController" id="o1l-aa-0ZA" customClass="NotificationViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l87-7O-NwX"/>
+                        <viewControllerLayoutGuide type="bottom" id="wiG-Mx-lVy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aE6-vK-OGh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_no_notification" translatesAutoresizingMaskIntoConstraints="NO" id="EdY-Sb-Ifz">
+                                <rect key="frame" x="107.5" y="223.5" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="0l7-Rz-Wxi"/>
+                                    <constraint firstAttribute="width" constant="180" id="OZj-ox-nIn"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EdY-Sb-Ifz" firstAttribute="centerX" secondItem="aE6-vK-OGh" secondAttribute="centerX" constant="10" id="Dz6-fk-9f0"/>
+                            <constraint firstItem="EdY-Sb-Ifz" firstAttribute="centerY" secondItem="aE6-vK-OGh" secondAttribute="centerY" constant="-20" id="pwF-ca-p3v"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notification" id="yHr-pR-IpX">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="G87-GQ-xDj">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="o1l-aa-0ZA" id="EW2-uf-XK2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uZ4-oO-s5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="934" y="1622"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="25" height="25"/>
         <image name="bg_mission_white" width="1110" height="1546"/>
         <image name="ic_menu" width="48" height="48"/>
+        <image name="ic_no_notification" width="192" height="196"/>
         <image name="img_confetti" width="414" height="450"/>
         <image name="img_congratulations" width="390" height="57"/>
         <image name="img_doodle_arrow_down" width="148" height="500"/>
