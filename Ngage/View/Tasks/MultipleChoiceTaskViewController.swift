@@ -182,7 +182,9 @@ class MultipleChoiceTaskViewController: UIViewController {
             }
             DispatchQueue.main.async {
                 self.labelTimer.text = "\(self.currentTime!)"
+                print("Time = \(self.currentTime!)")
             }
+            self.currentTime = self.currentTime - 1
             
         })
     }
@@ -263,7 +265,6 @@ class MultipleChoiceTaskViewController: UIViewController {
                 return
             }
             
-            
             if timeLimit != nil {
                 timeLimit!.invalidate()
             }
@@ -279,11 +280,12 @@ class MultipleChoiceTaskViewController: UIViewController {
         }else {
             wrongAnswer = wrongAnswer + 1
         }
-        button1.animateUsing(tag: correctTag)
-        button2.animateUsing(tag: correctTag)
-        button3.animateUsing(tag: correctTag)
-        button4.animateUsing(tag: correctTag)
-        
+        sender.animateUsing(tag: correctTag)
+        if sender.tag != correctTag {
+            if let buttonCorrect = viewQuestioniare.viewWithTag(correctTag) as? UIButton {
+                buttonCorrect.animateUsing(tag: correctTag)
+            }
+        }
         questionNumber = questionNumber + 1
         answerdQuestion()
     }

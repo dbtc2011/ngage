@@ -12,6 +12,7 @@
 		359E4F56206FF87700644087 /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359E4F55206FF87700644087 /* CustomProgressView.swift */; };
 		359E4F58206FF88900644087 /* CustomProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359E4F57206FF88900644087 /* CustomProgressView.xib */; };
 		359E4F5E20701D7600644087 /* TasksCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */; };
+		359E4F622071FBA500644087 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359E4F612071FBA500644087 /* GoogleService-Info.plist */; };
 		35DFC6892066959B00F749E0 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFC6882066959A00F749E0 /* TutorialViewController.swift */; };
 		4994B0BD3E4BAF9D60EB6542 /* Pods_NgageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */; };
 		5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003679920270770007E693A /* WebViewTaskViewController.swift */; };
@@ -129,6 +130,7 @@
 		359E4F55206FF87700644087 /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		359E4F57206FF88900644087 /* CustomProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomProgressView.xib; sourceTree = "<group>"; };
 		359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCompletedViewController.swift; sourceTree = "<group>"; };
+		359E4F612071FBA500644087 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35DFC6882066959A00F749E0 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		3A7195ED201B500B9CCE568C /* Pods-Ngage PHTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NgageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,6 +364,7 @@
 				8CDE8492201F69C400C525A4 /* Resources */,
 				501AE433201849490088983A /* Assets.xcassets */,
 				501AE435201849490088983A /* LaunchScreen.storyboard */,
+				359E4F612071FBA500644087 /* GoogleService-Info.plist */,
 				501AE438201849490088983A /* Info.plist */,
 			);
 			path = Ngage;
@@ -672,6 +675,7 @@
 				503A59712043228000EB4687 /* CustomModalView.xib in Resources */,
 				50426ECF204AC77D00F2D3B9 /* SuccessTaskModalView.xib in Resources */,
 				359E4F58206FF88900644087 /* CustomProgressView.xib in Resources */,
+				359E4F622071FBA500644087 /* GoogleService-Info.plist in Resources */,
 				501AE434201849490088983A /* Assets.xcassets in Resources */,
 				50141F5A202CC67F0082EF2B /* AudioPlayerView.xib in Resources */,
 				509B0FA52019A77000DC0F21 /* HomeStoryboard.storyboard in Resources */,
@@ -808,11 +812,13 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ScratchCard/ScratchCard.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -826,11 +832,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYDrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScratchCard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

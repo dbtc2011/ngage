@@ -33,9 +33,9 @@ class HistoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        navigationController?.navigationBar.barTintColor = UIColor(red: 39.0/255.0, green: 120.0/255.0, blue: 206.0/255.0, alpha: 1)
         navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.barTintColor = UIColor.white
+//        navigationController?.navigationBar.barTintColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,9 +91,11 @@ extension HistoryViewController : UITableViewDataSource {
         cellTitle.textColor = UIColor.black
         cellTitle.text = history["TrxnType"] as? String ?? ""
         if cellTitle.text == "EARNED    " {
-            cellTitle.textColor = UIColor.blue
-        }else {
             cellTitle.textColor = UIColor.green
+        }else if cellTitle.text == "REDEEM    "{
+            cellTitle.textColor = UIColor.red
+        }else {
+            cellTitle.textColor = UIColor.blue
         }
         
         let points = cell?.contentView.viewWithTag(3) as! UILabel
