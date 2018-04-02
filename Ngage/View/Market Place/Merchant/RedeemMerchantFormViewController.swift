@@ -97,19 +97,19 @@ class RedeemMerchantFormViewController: UIViewController {
                 return
             }
             
-            if let points = resultDict!["Points"], let casted = points.string {
-                CoreDataManager.sharedInstance.updateUserPoints(withPoints: casted, completionHandler: { (result) in
-                    if result == .Error {
-                        print(CoreDataManager.sharedInstance.errorDescription)
-                    }
-                })
-            }
-            
             if let statusCode = resultDict!["statusCode"], let castedStatusCode = statusCode.int {
                 var alertMessage = "Successfully redeemed item"
                 if castedStatusCode != 200 {
                     if let status = resultDict!["status"], let castedStatus = status.string {
                         alertMessage = castedStatus
+                    }
+                } else {
+                    if let points = resultDict!["Points"], let casted = points.string {
+                        CoreDataManager.sharedInstance.updateUserPoints(withPoints: casted, completionHandler: { (result) in
+                            if result == .Error {
+                                print(CoreDataManager.sharedInstance.errorDescription)
+                            }
+                        })
                     }
                 }
                 
@@ -175,13 +175,16 @@ extension RedeemMerchantFormViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             infoCell.lblInfo.text = "Full Name:"
+            infoCell.txtInfo.text = formDetails.fullName
             
         case 1:
             infoCell.lblInfo.text = "Mobile:"
             infoCell.txtInfo.keyboardType = .numberPad
+            infoCell.txtInfo.text = formDetails.mobileNumber
             
         default:
             infoCell.lblInfo.text = "Email Address:"
+            infoCell.txtInfo.text = formDetails.emailAddress
         }
         
         addDoneButtonKeyboardAccessory(forTextfield: infoCell.txtInfo)

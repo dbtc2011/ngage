@@ -226,6 +226,7 @@ class CoreDataManager: NSObject {
                 user.mobileNumber = result.mobileNumber ?? ""
                 user.name = result.name ?? ""
                 user.points = result.points ?? ""
+                user.operatorID = result.operatorID ?? ""
                 
                 convertedResults.append(user as AnyObject)
             }
@@ -299,6 +300,9 @@ class CoreDataManager: NSObject {
         entity.mobileNumber = model.mobileNumber
         entity.name = model.name
         entity.points = model.points
+        entity.operatorID = model.operatorID
+        
+        print(model.operatorID)
     }
     
     private func saveModelAsMissionEntity(withModel model: MissionModel) {

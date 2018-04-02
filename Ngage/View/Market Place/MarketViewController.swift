@@ -19,7 +19,10 @@ class MarketViewController: UIViewController {
                                 "MOBILE LEGENDS", "FOOD", "SHOP", "HEALTH & WELLNESS",
                                 "TRAVEL & LEISURE", "SERVICES"]
     private var markets = [MarketModel]()
-    private var selectedMarket: MarketModel!
+    
+    private let user = UserModel().mainUser()
+    
+    var selectedMarket: MarketModel!
     
     //MARK: - View Life Cycle
     
@@ -102,7 +105,34 @@ class MarketViewController: UIViewController {
             marketPageVC.markets = markets
             marketPageVC.initPageViewControllers(withNumberOfControllers: markets.count)
             
+            var defaultIndex = 0
+            switch user.operatorID {
+            case "51502": //Globe
+                defaultIndex = 3
+            case "51503": //Smart
+                defaultIndex = 2
+            case "51505": //Sun
+                defaultIndex = 4
+            default:
+                break
+            }
+            
+            marketPageVC.selectedHeaderIndex = defaultIndex
+            marketPageVC.updateSelectedPageViewController()
+            
+            //update and animate collection view
+            selectHeader(atIndex: defaultIndex)
         }
+    }
+    
+    func selectHeader(atIndex index: Int) {
+        selectedMarket = markets[index]
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+        
+        guard index < markets.count - 1 else { return }
+        
+        let indexPath = IndexPath(row: index + 1, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     //MARK: - IBAction Delegate
@@ -142,19 +172,6 @@ extension MarketViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK: - ScrollView Delegate
-extension MarketViewController : UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let index = scrollView.contentOffset.x/self.view.frame.size.width
-        print("Index = \(index)")
-        if let marketPageVC = self.childViewControllers.first as? MarketPageViewController {
-            marketPageVC.selectedHeaderIndex = Int(index)
-            marketPageVC.updateSelectedPageViewController()
-        }
-        
-    }
-}
-
 //MARK: Flow Layout
 
 extension MarketViewController: UICollectionViewDelegateFlowLayout {
@@ -183,13 +200,6 @@ extension MarketViewController: UICollectionViewDelegate {
         }
         
         //update and animate collection view
-        selectedMarket = markets[indexPath.row]
-        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
-        
-        let index = indexPath.row
-        guard index < markets.count - 1 else { return }
-        
-        let indexPath = IndexPath(row: index + 1, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        selectHeader(atIndex: indexPath.row)
     }
 }

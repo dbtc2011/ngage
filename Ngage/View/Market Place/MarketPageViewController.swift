@@ -46,6 +46,7 @@ class MarketPageViewController: UIPageViewController {
         }
         
         dataSource = self
+        delegate = self
         
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
@@ -76,16 +77,13 @@ extension MarketPageViewController: UIPageViewControllerDataSource {
             return nil
         }
         
-        if selectedHeaderIndex != viewControllerIndex {
-            selectedHeaderIndex = viewControllerIndex
-        }
-        
         let previousIndex = viewControllerIndex - 1
         guard previousIndex >= 0 else {
             return nil
         }
         
-        guard orderedViewControllers.count > previousIndex else {
+        let orderedViewControllersCount = orderedViewControllers.count
+        guard orderedViewControllersCount > previousIndex else {
             return nil
         }
         
@@ -97,21 +95,26 @@ extension MarketPageViewController: UIPageViewControllerDataSource {
             return nil
         }
         
-        if selectedHeaderIndex != viewControllerIndex {
-            selectedHeaderIndex = viewControllerIndex
-        }
-        
         let nextIndex = viewControllerIndex + 1
         let orderedViewControllersCount = orderedViewControllers.count
-        
-        guard orderedViewControllersCount != nextIndex else {
-            return nil
-        }
         
         guard orderedViewControllersCount > nextIndex else {
             return nil
         }
         
         return orderedViewControllers[nextIndex]
+    }
+}
+
+extension MarketPageViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let viewController = pendingViewControllers.first else { return }
+        
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else { return }
+        if let marketVC = self.parent as? MarketViewController {
+            selectedHeaderIndex = viewControllerIndex
+            print(selectedHeaderIndex)
+            marketVC.selectHeader(atIndex: selectedHeaderIndex)
+        }
     }
 }
