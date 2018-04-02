@@ -301,7 +301,6 @@ class CoreDataManager: NSObject {
         entity.name = model.name
         entity.points = model.points
         entity.operatorID = model.operatorID
-        
         print(model.operatorID)
     }
     
