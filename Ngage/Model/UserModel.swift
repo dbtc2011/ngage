@@ -43,6 +43,7 @@ extension UserModel {
             userModel.age = user.age ?? ""
             userModel.gender = user.gender ?? ""
             userModel.points = user.points ?? ""
+            userModel.operatorID = user.operatorID ?? ""
             userModel.referralCode = String(userModel.facebookId.characters.prefix(4) + userModel.mobileNumber.characters.suffix(4))
             UserDefaults.standard.set(userModel.referralCode, forKey: Keys.ReferralCode)
     

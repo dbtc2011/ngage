@@ -30,12 +30,20 @@ class RedeemMerchantViewController: UIViewController {
     @IBOutlet var bgOuter2: UIView!
     
     var redeemable: MerchantRedeemableModel!
-    var formDetails = RedeemMerchantForm()
+    var user: UserModel?
+    
+    private var formDetails = RedeemMerchantForm()
     
     //MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let user = user {
+            formDetails.fullName = user.name
+            formDetails.mobileNumber = user.mobileNumber
+            formDetails.emailAddress = user.emailAddress
+        }
         
         setupInterface()
     }

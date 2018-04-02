@@ -64,26 +64,6 @@ class SingleMarketTableViewController: UITableViewController {
         textField.inputAccessoryView = keyboardToolbar
     }
     
-    private func didRedeemLoadList() {
-        let alert = UIAlertController(title: "Ngage", message: "Input mobile number", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "639xxxxxxxxx"
-            textField.keyboardType = .numberPad
-            self.addDoneButtonKeyboardAccessory(forTextfield: textField)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        
-        let redeemAction = UIAlertAction(title: "Redeem", style: .default) { (action) in
-            let textField = alert.textFields![0]
-            self.redeemLoadListMarketRedeemable(withMobileNumber: textField.text!)
-        }
-        alert.addAction(redeemAction)
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     private func presentRedeemVC(withIdentifier identifier: String, withServiceType type: ServicesType?) {
         let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: Bundle.main)
         let redeemVC = storyboard.instantiateViewController(withIdentifier: identifier) as! RedeemViewController
@@ -97,6 +77,17 @@ class SingleMarketTableViewController: UITableViewController {
         }
         
         self.present(redeemVC, animated: true, completion: nil)
+    }
+    
+    private func updateUserPoints() {
+        let userPoints = (Int(user.points) != nil) ? Int(user.points)! : 0
+        let currentPoints = userPoints - selectedRedeemable.pointsRequired
+        
+        CoreDataManager.sharedInstance.updateUserPoints(withPoints: "\(currentPoints)", completionHandler: { (result) in
+            if result == .Error {
+                print(CoreDataManager.sharedInstance.errorDescription)
+            }
+        })
     }
     
     //MARK: - API
@@ -304,26 +295,30 @@ class SingleMarketTableViewController: UITableViewController {
             let resultDict = json!.dictionary
             guard resultDict != nil else { return }
             
-            if let points = resultDict!["Points"], let casted = points.string {
-                CoreDataManager.sharedInstance.updateUserPoints(withPoints: casted, completionHandler: { (result) in
-                    if result == .Error {
-                        print(CoreDataManager.sharedInstance.errorDescription)
-                    }
-                })
-            }
-            
             if let statusCode = resultDict!["statusCode"], let castedStatusCode = statusCode.int {
-                var alertMessage = "Successfully redeemed item"
-                if castedStatusCode != 200 {
+                guard castedStatusCode == 200 else {
                     if let status = resultDict!["status"], let castedStatus = status.string {
-                        alertMessage = castedStatus
+                        let alert = UIAlertController(title: "Ngage", message: castedStatus, preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                        alert.addAction(okAction)
+                        
+                        self.present(alert, animated: true, completion: nil)
                     }
+                    
+                    return
+                }
+            
+                if let points = resultDict!["Points"], let casted = points.string {
+                    CoreDataManager.sharedInstance.updateUserPoints(withPoints: casted, completionHandler: { (result) in
+                        if result == .Error {
+                            print(CoreDataManager.sharedInstance.errorDescription)
+                        }
+                    })
+                } else {
+                    self.updateUserPoints()
                 }
                 
-                let alert = UIAlertController(title: "Ngage", message: alertMessage, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                alert.addAction(okAction)
-                self.present(alert, animated: true, completion: nil)
+                self.presentRedeemVC(withIdentifier: "redeemSuccessful", withServiceType: nil)
             }
         }
     }
@@ -360,7 +355,7 @@ class SingleMarketTableViewController: UITableViewController {
         
         switch market.marketType {
         case .LoadList:
-            didRedeemLoadList()
+            presentRedeemVC(withIdentifier: "redeemLoad", withServiceType: nil)
             
         case .Services:
             let serviceMarket = market as! ServiceMarketModel
@@ -443,11 +438,11 @@ class SingleMarketTableViewController: UITableViewController {
         }
         
         if indexPath.section == 0 && filteredRedeemables.count > 0 {
-            cell.btnRedeem.isEnabled = true
+            cell.isUserInteractionEnabled = true
             cell.btnRedeem.backgroundColor = UIColor().setColorUsingHex(hex: "0066A8")
             cell.viewContent.backgroundColor = UIColor.white
         } else {
-            cell.btnRedeem.isEnabled = false
+            cell.isUserInteractionEnabled = false
             cell.btnRedeem.backgroundColor = UIColor().setColorUsingHex(hex: "bcbcbc")
             cell.viewContent.backgroundColor = UIColor().setColorUsingHex(hex: "e0e0e0")
         }
@@ -504,14 +499,46 @@ extension SingleMarketTableViewController: RedeemViewControllerDelegate {
     func didSuccessfullyRedeem() {
         switch selectedRedeemable {
         case is ServiceRedeemableModel:
+            self.updateUserPoints()
             presentRedeemVC(withIdentifier: "redeemSuccessful", withServiceType: nil)
             
         case is MerchantRedeemableModel:
             let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: Bundle.main)
             let redeemMerchantVC = storyboard.instantiateViewController(withIdentifier: "convertMerchantPoints") as! RedeemMerchantViewController
             redeemMerchantVC.redeemable = selectedRedeemable as! MerchantRedeemableModel
+            redeemMerchantVC.user = user
             
             self.navigationController?.pushViewController(redeemMerchantVC, animated: true)
+            
+        case is LoadListRedeemableModel:
+            redeemLoadListMarketRedeemable(withMobileNumber: user.mobileNumber)
+            
+        default:
+            break
+        }
+    }
+    
+    func willSendToAFriend() {
+        switch selectedRedeemable {
+        case is MerchantRedeemableModel:
+            let storyboard = UIStoryboard(name: "RedeemStoryboard", bundle: Bundle.main)
+            let redeemMerchantVC = storyboard.instantiateViewController(withIdentifier: "convertMerchantPoints") as! RedeemMerchantViewController
+            redeemMerchantVC.redeemable = selectedRedeemable as! MerchantRedeemableModel
+            
+            self.navigationController?.pushViewController(redeemMerchantVC, animated: true)
+            
+        case is LoadListRedeemableModel:
+            presentRedeemVC(withIdentifier: "redeemLoadForAFriend", withServiceType: nil)
+            
+        default:
+            break
+        }
+    }
+    
+    func didSendLoadToAFriend(withMobileNumber mobile: String) {
+        switch selectedRedeemable {
+        case is LoadListRedeemableModel:
+            redeemLoadListMarketRedeemable(withMobileNumber: mobile)
             
         default:
             break

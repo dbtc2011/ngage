@@ -12,6 +12,8 @@ import AVKit
 
 protocol RedeemViewControllerDelegate {
     func didSuccessfullyRedeem()
+    func willSendToAFriend()
+    func didSendLoadToAFriend(withMobileNumber mobile: String)
 }
 
 class RedeemViewController: UIViewController {
@@ -35,6 +37,8 @@ class RedeemViewController: UIViewController {
     @IBOutlet weak var viewLine: UIView!
     @IBOutlet weak var viewTrack: UIView!
     
+    @IBOutlet weak var txtMobileNumber: UITextField!
+    
     var redeemable: RedeemableModel!
     var serviceType: ServicesType!
     
@@ -57,6 +61,16 @@ class RedeemViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            if let view = touch.view {
+                if view == self.view {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     //MARK: - Methods
@@ -99,6 +113,16 @@ class RedeemViewController: UIViewController {
             viewTrack.layer.cornerRadius = viewTrack.frame.width/2
         }
         
+        if txtMobileNumber != nil {
+            let keyboardToolbar = UIToolbar()
+            keyboardToolbar.sizeToFit()
+            let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self.view, action: #selector(UIView.endEditing(_:)))
+            keyboardToolbar.items = [flexBarButton, doneBarButton]
+            
+            txtMobileNumber.inputAccessoryView = keyboardToolbar
+        }
+        
         switch redeemable {
         case is ServiceRedeemableModel:
             let serviceRedeemable = redeemable as! ServiceRedeemableModel
@@ -109,6 +133,10 @@ class RedeemViewController: UIViewController {
             
         case is MerchantRedeemableModel:
             lblMerchant.text = lblMerchant.text?.replacingOccurrences(of: "<merchant>", with: redeemable.name)
+            btnRedeem.isEnabled = true
+            
+        case is LoadListRedeemableModel:
+            lblMerchant.text = lblMerchant.text?.replacingOccurrences(of: "<load>", with: redeemable.name)
             btnRedeem.isEnabled = true
             
         default:
@@ -181,6 +209,25 @@ class RedeemViewController: UIViewController {
         } else {
             self.delegate.didSuccessfullyRedeem()
         }
+    }
+    
+    private func willSendLoadToAFriend() {
+        guard let mobileNumber = txtMobileNumber.text else {
+            return
+        }
+        
+        guard mobileNumber.count == 11 else {
+            let alert = UIAlertController(title: "Ngage", message: "Input a valid mobile number", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            alert.addAction(okAction)
+            
+            self.presentingViewController!.present(alert, animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+            
+            return
+        }
+        
+        delegate.didSendLoadToAFriend(withMobileNumber: mobileNumber)
     }
     
     //MARK: - Timer
@@ -277,10 +324,16 @@ class RedeemViewController: UIViewController {
             default:
                 break
             }
-        } else if let _ = redeemable as? MerchantRedeemableModel  {
+        } else {
             self.dismiss(animated: true, completion: nil)
             
-            self.delegate.didSuccessfullyRedeem()
+            if sender.tag == 0 {
+                self.delegate.didSuccessfullyRedeem()
+            } else if sender.tag == 1 {
+                self.delegate.willSendToAFriend()
+            } else {
+                self.willSendLoadToAFriend()
+            }
         }
     }
     
