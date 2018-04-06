@@ -9,6 +9,7 @@
 import UIKit
 import FacebookLogin
 import FBSDKLoginKit
+import UserNotifications
 
 class OnboardingViewController: UIViewController {
 
@@ -24,6 +25,14 @@ class OnboardingViewController: UIViewController {
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UNUserNotificationCenter.current().getDeliveredNotifications { (notifications) in
+            print("Notifications = \(notifications)")
+        }
+        
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notifications) in
+            print("Pending Notifications = \(notifications)")
+        }
         setupView()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +57,7 @@ class OnboardingViewController: UIViewController {
         loginButton.delegate = self
         loginButton.frame.size.width = UIScreen.main.bounds.size.width - 40
         loginButton.frame.size.height = 60
-        loginButton.sdkLoginButton.setTitle("Login with Facebook", for: UIControlState.normal)
+//        loginButton.sdkLoginButton.setTitle("Login with Facebook", for: UIControlState.normal)
         loginButton.center = view.center
         loginButton.frame.origin.y = UIScreen.main.bounds.size.height - 80
         loginButton.isHidden = true

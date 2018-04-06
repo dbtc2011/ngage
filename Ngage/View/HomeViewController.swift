@@ -140,6 +140,7 @@ class HomeViewController: DrawerFrontViewController {
     
     func reloadMissionData() {
         var missionIndex = 0
+        var shouldLockMissions = false
         finishedMission = 0
         for mission in user.missions {
             var missionModel = mission
@@ -157,6 +158,9 @@ class HomeViewController: DrawerFrontViewController {
                     }
                     missionModel.state = MissionState.completed
                     finishedMission = finishedMission + 1
+                }
+                if TimeManager.sharedInstance.hasFinishedFirstTask == false && missionIndex != 0 {
+                    taskModel.state = 0
                 }
                 missionModel.tasks[taskIndex] = taskModel
                 taskIndex = taskIndex + 1
