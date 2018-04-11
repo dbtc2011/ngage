@@ -9,7 +9,7 @@
 import UIKit
 import ActionSheetPicker_3_0
 
-class MSISDNViewController: UIViewController {
+class MSISDNViewController: MainViewController {
 
     var user : UserModel!
     @IBOutlet weak var textField: UITextField!
@@ -41,6 +41,7 @@ class MSISDNViewController: UIViewController {
     
     //MARK: - Methods
     func registerUser() {
+        showSpinner()
         UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
         let name = user.name.components(separatedBy: " ")
         var firstName = ""
@@ -58,15 +59,13 @@ class MSISDNViewController: UIViewController {
         user.referralCode = String(user.facebookId.characters.prefix(4) + user.mobileNumber.characters.suffix(4))
         UserDefaults.standard.set(user.referralCode, forKey: Keys.ReferralCode)
         RegisterService.register(fbid: user.facebookId, fName: firstName, lName: lastName, gender: user.gender, email: user.emailAddress, referralCode: user.referralCode, msisdn: user.mobileNumber, operatorID: user.operatorID, refferedBy: user.refferedBy) { (result, error) in
-            
+            self.hideSpinner()
             if error != nil {
-                let alertController = UIAlertController(title: "Ngage PH", message: error!.localizedDescription, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
+                self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
             }else {
                 if let userRegistration = result!["user_registration"].dictionary {
                     if let statusCode = userRegistration["StatusCode"]?.int {
-                        if statusCode == 2 || statusCode == 4
+                        if statusCode == 2 || statusCode == 8
                         {
                             self.user.points = "\(userRegistration["Points"]?.int ?? 0)"
                             if let missionsStarted = userRegistration["MissionStarted"]?.array {
@@ -93,21 +92,20 @@ class MSISDNViewController: UIViewController {
                                 
                             }
                             
-                        }else {
-//                            CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
-//                                // Success
-//                                //                                    self.goToMain()
-//                                self.goToTutorial()
-//                            })
+                        }else if statusCode == 9{
                             TimeManager.sharedInstance.shouldEditMission = true
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "goToPinVerification", sender: self)
                             }
+                        }else {
+                            self.presentDefaultAlertWithMessage(message: "Registration failed!")
                         }
                     }else {
                         // Show error
+                        self.presentDefaultAlertWithMessage(message: "Registration failed!")
                     }
                 }else {
+                    self.presentDefaultAlertWithMessage(message: "Registration failed!")
                     // Show error
                 }
                 
@@ -116,9 +114,7 @@ class MSISDNViewController: UIViewController {
             print("error = \(String(describing: error))")
         }
     }
-    
 
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

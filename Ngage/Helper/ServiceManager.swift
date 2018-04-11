@@ -147,5 +147,13 @@ final class RegisterService: RequestManager {
         }
     }
     
+    class func redeemPoints(FBID: String, MissionID: String, TaskID: String, Prev_Pointegers: String, Current_Pointegers: String, Pointegers: String, success: @escaping CompletionBlock) {
+        
+        let parameters = ["FBID": FBID, "MissionID": MissionID, "TaskID": TaskID, "Prev_Pointegers": Prev_Pointegers, "Current_Pointegers": Current_Pointegers, "Pointegers": Pointegers]
+        perform(task: .redeem(parameters)) { (result, error) in
+            success(result, error)
+        }
+    }
+    
 }
 

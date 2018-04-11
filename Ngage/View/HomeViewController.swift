@@ -70,7 +70,7 @@ class HomeViewController: DrawerFrontViewController {
             return
         }
         shouldShowMarketAds = false
-        user = UserModel().mainUser()
+        user.points = UserModel().mainUser().points
         marketAds = Bundle.main.loadNibNamed("MarketPlaceAdsView", owner: self, options: nil)?.first as? MarketPlaceAdsView
         marketAds!.delegate = self
         marketAds!.setupContent(points: user.points, title: "Lets get started")
@@ -148,7 +148,7 @@ class HomeViewController: DrawerFrontViewController {
             var taskCounter = 0
             var taskIndex = 0
             for task in mission.tasks {
-                let taskModel = task
+                var taskModel = task
                 if taskModel.state == 2 {
                     taskCounter = taskCounter + 1
                 }
@@ -206,7 +206,9 @@ class HomeViewController: DrawerFrontViewController {
     
     //MARK: - API
     func getMission() {
+        showSpinner()
         RegisterService.getMissionList(fbid: self.user.facebookId) { (result, error) in
+            self.hideSpinner()
             self.shouldReloadTime = true
             if error == nil {
                 self.shouldReloadData = false
@@ -289,7 +291,7 @@ class HomeViewController: DrawerFrontViewController {
                     }
                 }
             }else {
-                
+                self.getMission()
             }
         }
     
@@ -364,6 +366,8 @@ extension HomeViewController : UICollectionViewDataSource {
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "missionCell", for: indexPath) as! HomeCollectionViewCell
         cell.delegate = self
+        print("Index = \(indexPath.row)")
+        print("Count = \(self.user.missions.count)")
         let mission = self.user.missions[indexPath.row]
         print("Mission state = \(mission.state)")
         cell.setupContents(mission: mission)

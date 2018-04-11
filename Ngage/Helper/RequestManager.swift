@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import UIKit
-import PKHUD
 
 enum Task {
     case register(Parameters)
@@ -47,7 +46,6 @@ class RequestManager {
     }
     
     private class func invoke(task: Task, completion: @escaping CompletionBlock) {
-        var shouldShowLoading = true
         
         let reqTask: RequestTask = {
             
@@ -80,7 +78,6 @@ class RequestManager {
                 return RequestTask(urlRequest: Router.validateMission(parameter: parameters))
                 
             case let .getServerTime(parameters):
-                shouldShowLoading = false
                 return RequestTask(urlRequest: Router.getServerTime(parameter: parameters))
                 
             case let .getMaxMission(parameters):
@@ -119,46 +116,24 @@ class RequestManager {
             
         }()
         
-        PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
-        if !PKHUD.sharedHUD.isVisible && shouldShowLoading {
-            PKHUD.sharedHUD.show()
-        }
+        
         
         reqTask.perform({ (response) in
             let responseJSON = JSON(response)
             print(responseJSON as Any)
             print(task)
             if let error = responseJSON["Message"].string {
-                if PKHUD.sharedHUD.isVisible {
-                    DispatchQueue.main.async {
-                        PKHUD.sharedHUD.hide(afterDelay: 0.0) { success in
-                            // Completion Handler
-                        }
-                    }
-                }
+                
                 completion(nil, NSError(domain: "Ngage", code: 500, userInfo: [NSLocalizedDescriptionKey: error]))
             }else {
-                if PKHUD.sharedHUD.isVisible {
-                    DispatchQueue.main.async {
-                        PKHUD.sharedHUD.hide(afterDelay: 0.0) { success in
-                            // Completion Handler
-                        }
-                    }
-                }
+                
                 completion(responseJSON, nil)
                 
             }
 
         }) { (error) in
             // show error if needed
-            if PKHUD.sharedHUD.isVisible {
-                DispatchQueue.main.async {
-                    PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
-                        // Completion Handler
-                        
-                    }
-                }
-            }
+
             print(error.code)
             completion(nil, error)
         }

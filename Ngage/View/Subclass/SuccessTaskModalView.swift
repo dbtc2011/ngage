@@ -16,6 +16,7 @@ class SuccessTaskModalView: UIView {
     @IBOutlet weak var totalPoints: UILabel!
     @IBOutlet weak var earnedContainer: UIView!
     @IBOutlet weak var earnedPoints: UILabel!
+    var selectedTask: TaskModel!
     var delegate : CustomModalViewDelegate?
     /*
     // Only override draw() if you perform custom drawing.
@@ -37,7 +38,14 @@ class SuccessTaskModalView: UIView {
         containerView.layer.cornerRadius = 10
         earnedPoints.text = earnedValue
         note.text = note.text!.replacingOccurrences(of: "{point}", with: noteValue)
-        totalPoints.text = totalPoints.text!.replacingOccurrences(of: "{point}", with: pointsTotal)
+        if self.selectedTask.code == 6 {
+            totalPoints.text = totalPoints.text!.replacingOccurrences(of: "Your total point is {point}", with: "")
+            earnedPoints.text = "2\npts"
+            note.text = "You will earn an additional 2pts for every successful referral."
+        }else {
+            totalPoints.text = totalPoints.text!.replacingOccurrences(of: "{point}", with: pointsTotal)
+        }
+        
         button.layer.cornerRadius = 22
         earnedContainer.layer.cornerRadius = earnedContainer.bounds.size.width/2
         earnedContainer.layer.masksToBounds = true

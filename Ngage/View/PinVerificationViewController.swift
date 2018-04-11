@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-class PinVerificationViewController: UIViewController {
+class PinVerificationViewController: MainViewController {
     
     var user: UserModel!
     var pinCode = ""
@@ -60,6 +60,7 @@ class PinVerificationViewController: UIViewController {
             })
         }
     }
+
     func goToTutorial() {
         //goToTutorial
         if let hasFinishedTutorial = UserDefaults.standard.bool(forKey: Keys.hasFinishedTutorial) as? Bool {
@@ -71,17 +72,37 @@ class PinVerificationViewController: UIViewController {
         performSegue(withIdentifier: "goToTutorial", sender: self)
     }
     
-    func validatePin() {
-        RegisterService.validateRegistration(fbid: user.facebookId, pCode: textField.text!, mobileNumber: user.mobileNumber) { (result, error) in
+    func saveUserModel() {
+        if CoreDataManager.sharedInstance.getMainUser() == nil {
+            CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.user as AnyObject, completionHandler: { (result) in
+                self.goToTutorial()
+            })
+        } else {
+            self.goToTutorial()
             
+        }
+    }
+    
+    func validatePin() {
+        self.showSpinner()
+        RegisterService.validateRegistration(fbid: user.facebookId, pCode: textField.text!, mobileNumber: user.mobileNumber) { (result, error) in
+            self.hideSpinner()
             if error != nil {
                 // Show error alert
-                let alertController = UIAlertController(title: "Ngage PH", message: error!.localizedDescription, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
+                self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
             }else {
-                if let _ = result?["user_registration"].dictionary {
-                    self.goToTutorial()
+                if let userRegistration = result?["user_registration"].dictionary {
+                    if let statusCode = userRegistration["StatusCode"]?.int {
+                        if statusCode == 2 {
+                            self.saveUserModel()
+                        }else {
+                            self.presentDefaultAlertWithMessage(message: "Registration failed!")
+                        }
+                    }else {
+                        self.presentDefaultAlertWithMessage(message: "Registration failed!")
+                    }
+                }else {
+                    self.presentDefaultAlertWithMessage(message: "Registration failed!")
                 }
             }
             print("Result = \(result)")

@@ -20,9 +20,9 @@ protocol TaskViewControllerDelegate {
     func mustReloadData()
     func mustShowMarketPlaceAds()
 }
-class TaskViewController: UIViewController {
+class TaskViewController: MainViewController {
 
-   
+    //MARK: - Properties
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var backgroundImage: UIImageView!
     var mission: MissionModel!
@@ -40,14 +40,12 @@ class TaskViewController: UIViewController {
     var didShowSuccessRedeem = false
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var backgroundLayer: UIImageView!
-    
-    
     var contentID : String = ""
     var contentDuration : String = ""
-    
     @IBOutlet weak var customView: UIView!
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         completedTask = 0
@@ -103,6 +101,7 @@ class TaskViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     //MARK: - Functions
     func adjustProgressBar() {
         var currentProgress = 100.0/CGFloat(tasks.count)
@@ -143,7 +142,13 @@ class TaskViewController: UIViewController {
             customProgress!.removeFromSuperview()
             customProgress = nil
         }
-        UserDefaults.standard.setValue("1pt", forKey: Keys.sratchPoint)
+        var scratchPoint = self.taskPoint
+        if scratchPoint == "0" || scratchPoint == "1" {
+            scratchPoint = scratchPoint + "pt"
+        }else {
+            scratchPoint = scratchPoint + "pts"
+        }
+        UserDefaults.standard.setValue(scratchPoint, forKey: Keys.sratchPoint)
         customScratch  = ScratchUIView(frame: CGRect(x:0, y:0, width:140, height:140),Coupon: "img_reward_points", MaskImage: "img_scratch_gift", ScratchWidth: CGFloat(40))
         customScratch!.delegate = self
         progressView.addSubview(customScratch!)
@@ -151,6 +156,7 @@ class TaskViewController: UIViewController {
     func showSuccessModal(totalPoints: String) {
         customView.isHidden = false
         let modalView = Bundle.main.loadNibNamed("SuccessTaskModalView", owner: self, options: nil)?.first as! SuccessTaskModalView
+        modalView.selectedTask = self.selectedTask
         modalView.delegate = self
         modalView.setupContents(pointsTotal: "\(totalPoints)pts", pointsEarned: Int(self.taskPoint)!)
         modalView.bounds = customView.bounds
@@ -343,16 +349,48 @@ class TaskViewController: UIViewController {
     }
     
     //MARK: - API
+    
+    func getRewardPoints() {
+        showSpinner()
+        var previous = ""
+        let pointeg = user.points
+        switch self.selectedTask.code {
+        case 6 :
+            previous = pointeg
+            
+        default :
+            previous = "\(Int(self.user.points)! - Int(self.taskPoint)!)"
+        }
+        RegisterService.redeemPoints(FBID: user.facebookId, MissionID: "\(mission.code)", TaskID: "\(self.selectedTask.code)", Prev_Pointegers: previous, Current_Pointegers: pointeg, Pointegers: pointeg) { (result, error) in
+            self.hideSpinner()
+            print(result)
+            print(error)
+            if error != nil {
+                self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
+            }else {
+                self.setupScratchView()
+            }
+            
+        }
+    }
     func submitTask(missionID: String, taskID: String, tasktype: String, FBID: String, ContentID: String, SubContentID: String, Answer: String, CorrectAnswer: String, WatchType: String, WatchTime: String, DeviceID: String, TaskStatus: String, Current_Points: String, Points: String, Prev_Points: String) {
-        
+        self.showSpinner()
+        self.user.points = UserModel().mainUser().points
         RegisterService.insertRecord(missionID: missionID, taskID: taskID, tasktype: tasktype, FBID: FBID, ContentID: ContentID, SubContentID: SubContentID, Answer: Answer, CorrectAnswer: CorrectAnswer, WatchType: WatchType, WatchTime: WatchTime, DeviceID: DeviceID, TaskStatus: TaskStatus, Current_Points: Current_Points, Points: Points, Prev_Points
         : Prev_Points) { (result, error) in
-            
+            self.hideSpinner()
             if error == nil {
                 if let statusCode = result!["StatusCode"].int {
                     if statusCode == 2 {
                         if let points = result!["Points"].int {
-                            self.taskPoint = "\(points - Int(self.user.points)!)"
+                            switch self.selectedTask.code {
+                            case 1, 2, 7, 8, 17 :
+                                self.taskPoint = self.selectedTask.reward
+                                
+                            default :
+                                self.taskPoint = "\(points - Int(self.user.points)!)"
+                            }
+                            
                             CoreDataManager.sharedInstance.updateUserPoints(withPoints: "\(points)", completionHandler: { (coreResult) in
                                 DispatchQueue.main.async {
                                     self.contentDuration = ""
@@ -363,19 +401,17 @@ class TaskViewController: UIViewController {
                         }
                     }else {
                         //show alert
-                        let alertController = UIAlertController(title: "Ngage PH", message: "Something went wrong!", preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                        self.present(alertController, animated: true, completion: nil)
+                        self.presentDefaultAlertWithMessage(message: "Something went wrong!")
                     }
                 }
             }else {
                 // Show alert
-                let alertController = UIAlertController(title: "Ngage PH", message: error!.localizedDescription, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
+                self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
             }
         }
     }
+    
+    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -492,7 +528,7 @@ extension TaskViewController : CustomModalViewDelegate {
 
 extension TaskViewController : TasksCompletedViewControllerDelegate {
     func didCloseCompletedController() {
-        self.setupScratchView()
+        self.getRewardPoints()
     }
 }
 
