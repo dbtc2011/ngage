@@ -50,7 +50,7 @@ class TaskInstructionsViewController: UIViewController {
         view.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
         labalQuiz.text = task.info
         thirdInstruction.text = task.instructions
-        buttonStart.layer.cornerRadius = 25
+        buttonStart.layer.cornerRadius = 27
         buttonStart.layer.borderWidth = 2
         buttonStart.layer.borderColor = UIColor.white.cgColor
     }

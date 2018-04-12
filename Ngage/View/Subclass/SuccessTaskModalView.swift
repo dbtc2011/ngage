@@ -27,7 +27,7 @@ class SuccessTaskModalView: UIView {
     */
 
     func setupContents(pointsTotal : String, pointsEarned: Int) {
-        let attributes : [String : Any] = [NSAttributedStringKey.font.rawValue : UIFont.systemFont(ofSize: 18), NSAttributedStringKey.foregroundColor.rawValue : UIColor.blue]
+//        let attributes : [String : Any] = [NSAttributedStringKey.font.rawValue : UIFont.boldSystemFont(ofSize: 30), NSAttributedStringKey.foregroundColor.rawValue : UIColor.blue]
 
         var earnedValue = "\(pointsEarned)\npoint"
         var noteValue = "\(pointsEarned)pt"
@@ -59,7 +59,7 @@ class SuccessTaskModalView: UIView {
         var targetRange = (earnedPoints.text! as NSString).range(of: "\(pointsEarned)")
         
         if targetRange.location != NSNotFound {
-            muttAttString.addAttribute(NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue), value: UIFont.boldSystemFont(ofSize: 22), range: targetRange)
+            muttAttString.addAttribute(NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue), value: UIFont.boldSystemFont(ofSize: 36), range: targetRange)
             earnedPoints.attributedText = muttAttString
         }
         

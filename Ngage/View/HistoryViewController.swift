@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class HistoryViewController: UIViewController {
+class HistoryViewController: MainViewController {
     
     //MARK: - Properties
 
@@ -46,7 +46,11 @@ class HistoryViewController: UIViewController {
     //MARK: - Methods
     
     func getData() {
+        showSpinner()
+        
         RegisterService.getHistory(fbid: user.facebookId) { (result, error) in
+            self.hideSpinner()
+            
             if error == nil {
                 if let history = result!["history"].array {
                     for content in history {
@@ -57,7 +61,7 @@ class HistoryViewController: UIViewController {
                     }
                 }
             } else {
-                print(error!.localizedDescription)
+                self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
             }
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RedeemMerchantFormViewController: UIViewController {
+class RedeemMerchantFormViewController: MainViewController {
 
     //MARK: - Properties
     
@@ -67,33 +67,28 @@ class RedeemMerchantFormViewController: UIViewController {
         textField.inputAccessoryView = keyboardToolbar
     }
     
-    private func displayAlert(withMessage message: String) {
-        DispatchQueue.main.async {
-            self.btnNext.isEnabled = true
-            
-            let alert = UIAlertController(title: "Ngage", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alert, animated: true)
-        }
-    }
-    
     //MARK: - API
     
     private func redeemFromMerchant() {
+        showSpinner()
+        
         RegisterService.orderProcess(merchant: redeemable, redeemDetails: formDetails) { (json, error) in
             guard error == nil else {
-                self.displayAlert(withMessage: error!.localizedDescription)
+                self.hideSpinner()
+                self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
                 return
             }
             
             guard json != nil else {
-                self.displayAlert(withMessage: "An error has occured")
+                self.hideSpinner()
+                self.presentDefaultAlertWithMessage(message: "An error has occured")
                 return
             }
             
             let resultDict = json!.dictionary
             guard resultDict != nil else {
-                self.displayAlert(withMessage: "An error has occured")
+                self.hideSpinner()
+                self.presentDefaultAlertWithMessage(message: "An error has occured")
                 return
             }
             
@@ -113,7 +108,8 @@ class RedeemMerchantFormViewController: UIViewController {
                     }
                 }
                 
-                self.displayAlert(withMessage: alertMessage)
+                self.hideSpinner()
+                self.presentDefaultAlertWithMessage(message: "An error has occured")
             }
         }
     }
@@ -129,7 +125,7 @@ class RedeemMerchantFormViewController: UIViewController {
         sender.isEnabled = false
         
         guard formDetails.fullName != "" && formDetails.emailAddress != "" && formDetails.mobileNumber != "" else {
-            displayAlert(withMessage: "Incomplete input")
+            self.presentDefaultAlertWithMessage(message: "Incomplete input")
                     
             return
         }

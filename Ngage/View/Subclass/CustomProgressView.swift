@@ -40,7 +40,7 @@ class CustomProgressView: UIView {
     
     func setupContent(currentProgress: Double) {
         progressLabel.text = "\(Int(currentProgress))%"
-        progressView.setProgress(currentProgress, animated: false)
+        progressView.setProgress(currentProgress/100, animated: false)
         print("Animate progress view!")
     }
 

@@ -195,4 +195,12 @@ extension MSISDNViewController : UITextFieldDelegate {
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newText = textField.text! + string
+        if newText.count <= 11 {
+            return true
+        }
+        return false
+    }
+    
 }

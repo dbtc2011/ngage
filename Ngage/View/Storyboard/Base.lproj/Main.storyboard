@@ -278,7 +278,7 @@
                                             <constraint firstAttribute="height" constant="30" id="daZ-mk-YWX"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="&lt;">
+                                        <state key="normal" image="back">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -300,34 +300,27 @@
                                     <constraint firstAttribute="height" constant="160" id="K1Z-nB-1Fl"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="193-QU-jtq">
-                                <rect key="frame" x="0.0" y="240" width="375" height="44.5"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="ENTER REFERRAL CODE">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="19" name=".SFNSDisplay"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER REFERRAL CODE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="193-QU-jtq">
+                                <rect key="frame" x="0.0" y="240" width="375" height="57.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XGu-Oo-apK">
-                                <rect key="frame" x="107.5" y="314" width="160" height="30"/>
+                                <rect key="frame" x="107.5" y="327" width="160" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="kxB-7x-uec"/>
                                     <constraint firstAttribute="height" constant="30" id="uGI-aU-ymC"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <outlet property="delegate" destination="ZpE-Iy-b4g" id="I5T-Gl-TmV"/>
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tv6-6s-rO4">
-                                <rect key="frame" x="107.5" y="345" width="160" height="1"/>
+                                <rect key="frame" x="107.5" y="358" width="160" height="1"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="3iC-wR-y4x"/>
@@ -425,6 +418,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="S9C-xz-ZdC" id="XkG-pM-n4w"/>
+                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WnU-Qv-yZ6">
                                 <rect key="frame" x="87.5" y="330" width="199.5" height="1"/>
@@ -532,40 +528,40 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-tR-Nca">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_pincode" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-tR-Nca">
                                 <rect key="frame" x="112.5" y="50" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="2be-c4-D5k"/>
                                     <constraint firstAttribute="width" constant="150" id="kut-cm-R23"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PIN VERIFICATION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIN-SU-Rg0">
-                                <rect key="frame" x="30" y="230" width="315" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PINCODE VERIFICATION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIN-SU-Rg0">
+                                <rect key="frame" x="30" y="230" width="315" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
+                                <color key="textColor" red="0.1529411765" green="0.47219381890000001" blue="0.80714518229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait... We will send you the code in this number {number}. Input the code below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nV-gV-UdG">
-                                <rect key="frame" x="30" y="261" width="315" height="31.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="30" y="269" width="315" height="57.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                <color key="textColor" red="0.1529411765" green="0.47219381890000001" blue="0.80714518229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KtK-Fh-N1T">
-                                <rect key="frame" x="87.5" y="312.5" width="200" height="30"/>
+                                <rect key="frame" x="87.5" y="346.5" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ps3-rc-Lgd"/>
                                     <constraint firstAttribute="width" constant="200" id="wkC-7g-biD"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <outlet property="delegate" destination="PWQ-pQ-bcW" id="kN6-H4-6ve"/>
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWu-HE-uvH">
-                                <rect key="frame" x="87.5" y="343.5" width="200" height="1"/>
+                                <rect key="frame" x="87.5" y="377.5" width="200" height="1"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="fZG-kg-qav"/>
@@ -730,6 +726,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="25" height="25"/>
         <image name="bg_new_tutorial" width="414" height="736"/>
         <image name="ic_arrow_down" width="18" height="24"/>
         <image name="ic_facebook" width="52" height="52"/>
@@ -737,13 +734,14 @@
         <image name="img_background_reward_02" width="1440" height="2560"/>
         <image name="img_dial" width="200" height="275"/>
         <image name="img_logo" width="300" height="323"/>
+        <image name="img_pincode" width="300" height="276"/>
         <image name="img_top_blue" width="414" height="272"/>
         <image name="intro_01" width="550" height="978"/>
         <image name="intro_02" width="550" height="978"/>
         <image name="intro_03" width="550" height="978"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HdP-Bo-YzU"/>
-        <segue reference="kY7-yh-uEs"/>
+        <segue reference="X1s-Cw-Wuc"/>
+        <segue reference="CxY-jf-esJ"/>
     </inferredMetricsTieBreakers>
 </document>

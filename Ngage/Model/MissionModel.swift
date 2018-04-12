@@ -20,7 +20,7 @@ struct MissionModel {
     var imageTask : DownloadImageClass?
     var isClaimed = false
     var pointsRequiredToUnlock = ""
-    var reward = ""
+    var reward = "0"
     var rewardDetails = ""
     var rewardInfo = ""
     var rewardType = ""

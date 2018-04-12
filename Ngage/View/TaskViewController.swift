@@ -45,6 +45,8 @@ class TaskViewController: MainViewController {
     @IBOutlet weak var customView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var labelCompleted: UILabel!
+    
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +75,11 @@ class TaskViewController: MainViewController {
         tasks = tempTasks.reversed()
         tableView.reloadData()
         setupUI()
+        if completedTask == mission.tasks.count {
+            setupCompleted()
+        }else {
+            setupProgressView()
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -104,8 +111,10 @@ class TaskViewController: MainViewController {
     
     //MARK: - Functions
     func adjustProgressBar() {
+        
         var currentProgress = 100.0/CGFloat(tasks.count)
         currentProgress = currentProgress * CGFloat(completedTask)
+        print("Progress=\(currentProgress)")
         customProgress?.setupContent(currentProgress: Double(currentProgress))
     }
     func setupUI() {
@@ -124,8 +133,6 @@ class TaskViewController: MainViewController {
             backgroundLayer.image = UIImage(named: "img_splash")
         }
         backgroundLayer.addBlurEffect()
-        setupProgressView()
-//        setupScratchView()
     }
     
     func setupProgressView() {
@@ -137,12 +144,30 @@ class TaskViewController: MainViewController {
         adjustProgressBar()
     }
     
+    func setupCompleted() {
+        //ic_reward_redeem
+        for view in progressView.subviews {
+            view.removeFromSuperview()
+        }
+        customProgress = nil
+        labelCompleted.isHidden = true
+        let imageScratch = UIImageView(frame: CGRect(x: 0, y: 0, width: 140, height: 140))
+        imageScratch.contentMode = .scaleAspectFit
+        imageScratch.image = UIImage(named: "img_reward_points")
+        progressView.addSubview(imageScratch)
+        
+        let imageRedeem = UIImageView(frame: CGRect(x: (140/2)-(117/2), y: (140/2)-(76/2), width: 117, height: 76))
+        imageRedeem.contentMode = .scaleAspectFit
+        imageRedeem.image = UIImage(named: "ic_reward_redeem")
+        progressView.addSubview(imageRedeem)
+        
+    }
     func setupScratchView() {
         if customProgress != nil {
             customProgress!.removeFromSuperview()
             customProgress = nil
         }
-        var scratchPoint = self.taskPoint
+        var scratchPoint = mission.reward
         if scratchPoint == "0" || scratchPoint == "1" {
             scratchPoint = scratchPoint + "pt"
         }else {
@@ -171,7 +196,7 @@ class TaskViewController: MainViewController {
         modalView.delegate = self
         modalView.tag = 13
         modalView.icon.image = UIImage(named: "ic_app_logo_circle")
-        modalView.setupContent(value: "Congratulations!\nYou have been rewarded with \(self.taskPoint) Points for completing \(mission.title)")
+        modalView.setupContent(value: "Congratulations!\nYou have been rewarded with \(mission.reward) Points for completing \(mission.title)")
         modalView.button.setTitle("Ok", for: UIControlState.normal)
         modalView.bounds = customView.bounds
         modalView.frame.origin = CGPoint(x: 0, y: 0)
@@ -193,6 +218,8 @@ class TaskViewController: MainViewController {
         if mission.code == 1 && selectedIndex == 0 {
             TimeManager.sharedInstance.hasFinishedFirstTask = true
             delegate?.mustReloadData()
+            delegate?.mustShowMarketPlaceAds()
+            performSegue(withIdentifier: "goToSuccess", sender: self.selectedTask)
         }else if selectedIndex == 0 {
             delegate?.mustShowMarketPlaceAds()
             performSegue(withIdentifier: "goToSuccess", sender: self.selectedTask)
@@ -352,19 +379,11 @@ class TaskViewController: MainViewController {
     
     func getRewardPoints() {
         showSpinner()
-        var previous = ""
-        let pointeg = user.points
-        switch self.selectedTask.code {
-        case 6 :
-            previous = pointeg
-            
-        default :
-            previous = "\(Int(self.user.points)! - Int(self.taskPoint)!)"
-        }
-        RegisterService.redeemPoints(FBID: user.facebookId, MissionID: "\(mission.code)", TaskID: "\(self.selectedTask.code)", Prev_Pointegers: previous, Current_Pointegers: pointeg, Pointegers: pointeg) { (result, error) in
+        let previous = user.points
+        let pointeg = "\(Int(user.points)! + Int(mission.reward)!)"
+        
+        RegisterService.redeemPoints(FBID: user.facebookId, MissionID: "\(mission.code)", TaskID: "\(self.selectedTask.code)", Prev_Pointegers: previous, Current_Pointegers: pointeg, Pointegers: mission.reward) { (result, error) in
             self.hideSpinner()
-            print(result)
-            print(error)
             if error != nil {
                 self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
             }else {

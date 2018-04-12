@@ -16,7 +16,7 @@ protocol RedeemViewControllerDelegate {
     func didSendLoadToAFriend(withMobileNumber mobile: String)
 }
 
-class RedeemViewController: UIViewController {
+class RedeemViewController: MainViewController {
     
     //MARK: - Properties
     

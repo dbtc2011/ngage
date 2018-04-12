@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class SingleMarketTableViewController: UITableViewController {
 
@@ -35,6 +36,34 @@ class SingleMarketTableViewController: UITableViewController {
     }
     
     //MARK: - Methods
+
+    private func presentDefaultAlertWithMessage(message: String) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Ngage PH", message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    private func showSpinner() {
+        DispatchQueue.main.async {
+            PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
+            
+            if !PKHUD.sharedHUD.isVisible {
+                PKHUD.sharedHUD.show()
+            }
+        }
+    }
+    
+    private func hideSpinner() {
+        if PKHUD.sharedHUD.isVisible {
+            DispatchQueue.main.async {
+                PKHUD.sharedHUD.hide(afterDelay: 0.0) { success in
+                    // Completion Handler
+                }
+            }
+        }
+    }
     
     private func initializeMarketRedeemables() {
         guard market.redeemables == nil else { return }
@@ -93,17 +122,27 @@ class SingleMarketTableViewController: UITableViewController {
     //MARK: - API
     
     private func fetchServiceMarketRedeemables() {
+        showSpinner()
+        
         let serviceMarket = market as! ServiceMarketModel
         RegisterService.getServicesType(serviceType: serviceMarket.type.rawValue) { (json, error) in
             guard error == nil else {
                 print(error!.description)
+                self.hideSpinner()
                 return
             }
             
-            guard json != nil else { return }
+            guard json != nil else {
+                self.hideSpinner()
+                return
+                
+            }
             
             let services = json!["Services"].array
-            guard services != nil else { return }
+            guard services != nil else {
+                self.hideSpinner()
+                return
+            }
             
             self.market.redeemables = [RedeemableModel]()
             
@@ -144,17 +183,27 @@ class SingleMarketTableViewController: UITableViewController {
     }
     
     private func fetchLoadListMarketRedeemables() {
+        showSpinner()
+        
         let loadListMarket = market as! LoadListMarketModel
         RegisterService.getLoadList(telco: loadListMarket.type.rawValue) { (json, error) in
             guard error == nil else {
                 print(error!.description)
+                self.hideSpinner()
                 return
             }
             
-            guard json != nil else { return }
+            guard json != nil else {
+                self.hideSpinner()
+                return
+                
+            }
             
             let loadList = json!["LoadList"].array
-            guard loadList != nil else { return }
+            guard loadList != nil else {
+                self.hideSpinner()
+                return
+            }
             
             self.market.redeemables = [RedeemableModel]()
             
@@ -191,17 +240,26 @@ class SingleMarketTableViewController: UITableViewController {
     }
     
     private func fetchMerchantMarketRedeemables() {
+        showSpinner()
+        
         let merchantMarket = market as! MerchantMarketModel
         RegisterService.getMerchantList(category: merchantMarket.type.rawValue) { (json, error) in
             guard error == nil else {
                 print(error!.description)
+                self.hideSpinner()
                 return
             }
             
-            guard json != nil else { return }
+            guard json != nil else {
+                self.hideSpinner()
+                return
+            }
             
             let merchants = json!["merchantdetails"].array
-            guard merchants != nil else { return }
+            guard merchants != nil else {
+                self.hideSpinner()
+                return
+            }
             
             self.market.redeemables = [RedeemableModel]()
             
@@ -280,34 +338,41 @@ class SingleMarketTableViewController: UITableViewController {
     }
     
     private func redeemLoadListMarketRedeemable(withMobileNumber mobileNumber: String) {
+        showSpinner()
+        
         let loadListRedeemable = selectedRedeemable as! LoadListRedeemableModel
         let userPoints = (Int(user.points) != nil) ? Int(user.points)! : 0
         let currentPoints = userPoints - loadListRedeemable.pointsRequired
         
-        RegisterService.sendLoadCentral(to: mobileNumber, pcode: loadListRedeemable.code, fbid: user.facebookId, prevPoints: user.points, currentPoint: "\(currentPoints)", points: "\(loadListRedeemable.pointsRequired)") { (json, error) in
+        RegisterService.sendLoadCentral(to: mobileNumber, pcode: loadListRedeemable.code, fbid: user.facebookId, prevPoints: user.points, currentPoint: "\(currentPoints)", points: user.points) { (json, error) in
             guard error == nil else {
                 print(error!.description)
+                self.hideSpinner()
                 return
             }
             
-            guard json != nil else { return }
+            guard json != nil else {
+                self.hideSpinner()
+                return
+            }
             
             let resultDict = json!.dictionary
-            guard resultDict != nil else { return }
+            guard resultDict != nil else {
+                self.hideSpinner()
+                return
+            }
             
             if let statusCode = resultDict!["statusCode"], let castedStatusCode = statusCode.int {
-                guard castedStatusCode == 200 else {
+                
+                if castedStatusCode != 200 {
                     if let status = resultDict!["status"], let castedStatus = status.string {
-                        let alert = UIAlertController(title: "Ngage", message: castedStatus, preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                        alert.addAction(okAction)
+                        self.hideSpinner()
+                        self.presentDefaultAlertWithMessage(message: castedStatus)
                         
-                        self.present(alert, animated: true, completion: nil)
+                        return
                     }
-                    
-                    return
                 }
-            
+                
                 if let points = resultDict!["Points"], let casted = points.string {
                     CoreDataManager.sharedInstance.updateUserPoints(withPoints: casted, completionHandler: { (result) in
                         if result == .Error {
@@ -317,7 +382,8 @@ class SingleMarketTableViewController: UITableViewController {
                 } else {
                     self.updateUserPoints()
                 }
-                
+
+                self.hideSpinner()
                 self.presentRedeemVC(withIdentifier: "redeemSuccessful", withServiceType: nil)
             }
         }
@@ -344,6 +410,7 @@ class SingleMarketTableViewController: UITableViewController {
                 $0.pointsRequired > userPoints
             })
             
+            self.hideSpinner()
             self.tableView.reloadData()
         }
     }

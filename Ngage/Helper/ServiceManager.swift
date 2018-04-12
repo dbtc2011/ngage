@@ -95,7 +95,7 @@ final class RegisterService: RequestManager {
     
     class func sendLoadCentral(to: String, pcode: String, fbid: String, prevPoints: String, currentPoint: String, points: String, success: @escaping CompletionBlock) {
         
-        let parameter = ["To": to, "pcode": pcode, "FBID": pcode, "Prev_Points": prevPoints, "Current_Points" : currentPoint, "Points": points]
+        let parameter = ["To": to, "pcode": pcode, "FBID": fbid, "Prev_Points": prevPoints, "Current_Points" : currentPoint, "Points": points]
         perform(task: .getLoadCentral(parameter)) { (result, error) in
             success(result, error)
         }
@@ -141,7 +141,7 @@ final class RegisterService: RequestManager {
         }
         let currentPoints = previousPoints - itemPoints
         
-        let parameters = ["merchantid": merchant.id, "sendername": user.name, "sendermobile": user.mobileNumber, "senderemail": user.emailAddress, "recipientname": redeemDetails.fullName, "recipientmobile": redeemDetails.mobileNumber, "recipientemail": redeemDetails.emailAddress, "FBID": user.facebookId, "Prev_Points": previousPoints, "Current_Points": currentPoints, "Points": itemPoints, "MerchantName": merchant.name] as [String : Any]
+        let parameters = ["merchantid": merchant.id, "sendername": user.name, "sendermobile": user.mobileNumber, "senderemail": user.emailAddress, "recipientname": redeemDetails.fullName, "recipientmobile": redeemDetails.mobileNumber, "recipientemail": redeemDetails.emailAddress, "FBID": user.facebookId, "Prev_Points": previousPoints, "Current_Points": currentPoints, "Points": previousPoints, "MerchantName": merchant.name] as [String : Any]
         perform(task: .orderProcess(parameters)) { (result, error) in
             success(result, error)
         }

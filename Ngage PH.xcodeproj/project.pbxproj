@@ -14,6 +14,11 @@
 		359E4F5E20701D7600644087 /* TasksCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */; };
 		359E4F622071FBA500644087 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359E4F612071FBA500644087 /* GoogleService-Info.plist */; };
 		35DFC6892066959B00F749E0 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFC6882066959A00F749E0 /* TutorialViewController.swift */; };
+		35E0A374207E6515001E2538 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A36F207E6515001E2538 /* Montserrat-Bold.otf */; };
+		35E0A375207E6515001E2538 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A370207E6515001E2538 /* Montserrat-Light.otf */; };
+		35E0A376207E6515001E2538 /* Montserrat-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A371207E6515001E2538 /* Montserrat-UltraLight.otf */; };
+		35E0A377207E6515001E2538 /* Montserrat-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A372207E6515001E2538 /* Montserrat-Medium.otf */; };
+		35E0A378207E6515001E2538 /* ChewedPenBB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A373207E6515001E2538 /* ChewedPenBB.otf */; };
 		35EEFF5F20729D67001573F1 /* MarketPlaceAdsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEFF5E20729D67001573F1 /* MarketPlaceAdsView.swift */; };
 		35EEFF6120729D79001573F1 /* MarketPlaceAdsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EEFF6020729D79001573F1 /* MarketPlaceAdsView.xib */; };
 		35EEFF632072B1DD001573F1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEFF622072B1DD001573F1 /* NotificationViewController.swift */; };
@@ -135,6 +140,11 @@
 		359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCompletedViewController.swift; sourceTree = "<group>"; };
 		359E4F612071FBA500644087 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35DFC6882066959A00F749E0 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		35E0A36F207E6515001E2538 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
+		35E0A370207E6515001E2538 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
+		35E0A371207E6515001E2538 /* Montserrat-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-UltraLight.otf"; sourceTree = "<group>"; };
+		35E0A372207E6515001E2538 /* Montserrat-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.otf"; sourceTree = "<group>"; };
+		35E0A373207E6515001E2538 /* ChewedPenBB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChewedPenBB.otf; sourceTree = "<group>"; };
 		35EEFF5E20729D67001573F1 /* MarketPlaceAdsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPlaceAdsView.swift; sourceTree = "<group>"; };
 		35EEFF6020729D79001573F1 /* MarketPlaceAdsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketPlaceAdsView.xib; sourceTree = "<group>"; };
 		35EEFF622072B1DD001573F1 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
@@ -315,6 +325,18 @@
 				9A091758B73D85735DF581BC /* Pods_Ngage_PHUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		35E0A36E207E6515001E2538 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				35E0A36F207E6515001E2538 /* Montserrat-Bold.otf */,
+				35E0A370207E6515001E2538 /* Montserrat-Light.otf */,
+				35E0A371207E6515001E2538 /* Montserrat-UltraLight.otf */,
+				35E0A372207E6515001E2538 /* Montserrat-Medium.otf */,
+				35E0A373207E6515001E2538 /* ChewedPenBB.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		5003679820270720007E693A /* Tasks */ = {
@@ -512,6 +534,7 @@
 		8CDE8492201F69C400C525A4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				35E0A36E207E6515001E2538 /* Fonts */,
 				8CDE8493201F69C400C525A4 /* Core Data */,
 			);
 			path = Resources;
@@ -682,13 +705,18 @@
 				50DF518F203015FC00F16FB4 /* TaskNameThatSoundView.xib in Resources */,
 				35EEFF6120729D79001573F1 /* MarketPlaceAdsView.xib in Resources */,
 				501AE437201849490088983A /* LaunchScreen.storyboard in Resources */,
+				35E0A378207E6515001E2538 /* ChewedPenBB.otf in Resources */,
 				503A59712043228000EB4687 /* CustomModalView.xib in Resources */,
 				50426ECF204AC77D00F2D3B9 /* SuccessTaskModalView.xib in Resources */,
+				35E0A375207E6515001E2538 /* Montserrat-Light.otf in Resources */,
 				359E4F58206FF88900644087 /* CustomProgressView.xib in Resources */,
+				35E0A377207E6515001E2538 /* Montserrat-Medium.otf in Resources */,
 				359E4F622071FBA500644087 /* GoogleService-Info.plist in Resources */,
 				501AE434201849490088983A /* Assets.xcassets in Resources */,
 				50141F5A202CC67F0082EF2B /* AudioPlayerView.xib in Resources */,
+				35E0A374207E6515001E2538 /* Montserrat-Bold.otf in Resources */,
 				509B0FA52019A77000DC0F21 /* HomeStoryboard.storyboard in Resources */,
+				35E0A376207E6515001E2538 /* Montserrat-UltraLight.otf in Resources */,
 				8C3C3FCA2039E95E000EBEEC /* RedeemStoryboard.storyboard in Resources */,
 				501AE432201849490088983A /* Main.storyboard in Resources */,
 				5078EA632029F8F900E35591 /* Tasks.storyboard in Resources */,

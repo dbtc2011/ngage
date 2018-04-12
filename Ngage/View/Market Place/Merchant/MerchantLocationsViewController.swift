@@ -17,7 +17,7 @@ struct MerchantLocation {
     var contacts = [String]()
 }
 
-class MerchantLocationsViewController: UIViewController {
+class MerchantLocationsViewController: MainViewController {
 
     //MARK: - Properties
     
@@ -49,31 +49,28 @@ class MerchantLocationsViewController: UIViewController {
         btnOk.layer.cornerRadius = 5.0
     }
     
-    private func displayAlert(withMessage message: String) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Ngage", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alert, animated: true)
-        }
-    }
-    
     //MARK: - API
     
     private func fetchMerchantLocations() {
+        showSpinner()
+        
         RegisterService.getMerchantInfo(merchantID: merchantId) { (json, error) in
             guard error == nil else {
-                self.displayAlert(withMessage: error!.localizedDescription)
+                self.hideSpinner()
+                self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
                 return
             }
             
             guard json != nil else {
-                self.displayAlert(withMessage: "An error has occured")
+                self.hideSpinner()
+                self.presentDefaultAlertWithMessage(message: "An error has occured")
                 return
             }
             
             let resultDict = json!.dictionary
             guard resultDict != nil else {
-                self.displayAlert(withMessage: "An error has occured")
+                self.hideSpinner()
+                self.presentDefaultAlertWithMessage(message: "An error has occured")
                 return
             }
             
@@ -111,9 +108,11 @@ class MerchantLocationsViewController: UIViewController {
                     self.locations.append(merchantLocation)
                 }
                 
+                self.hideSpinner()
                 self.tblLocations.reloadData()
             } else {
-                self.displayAlert(withMessage: "An error has occured")
+                self.hideSpinner()
+                self.presentDefaultAlertWithMessage(message: "An error has occured")
             }
         }
     }

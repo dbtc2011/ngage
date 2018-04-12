@@ -857,6 +857,7 @@
                         <outlet property="backgroundImage" destination="DDX-bc-UB4" id="ZGl-M3-Fvj"/>
                         <outlet property="backgroundLayer" destination="554-R6-38M" id="9Uw-zD-cf2"/>
                         <outlet property="customView" destination="zpw-N5-Rd2" id="HBL-BV-4ej"/>
+                        <outlet property="labelCompleted" destination="noP-s9-rXG" id="92Z-EX-pwx"/>
                         <outlet property="labelTitle" destination="GJR-1t-evo" id="fwO-6x-COu"/>
                         <outlet property="progressView" destination="HNM-bh-bQj" id="H6v-p3-Rs3"/>
                         <outlet property="tableView" destination="e36-pg-Ofb" id="pB9-XN-ZwQ"/>
@@ -957,9 +958,9 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBJ-sq-uxI">
-                                <rect key="frame" x="18" y="599" width="339" height="50"/>
+                                <rect key="frame" x="18" y="594" width="339" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="RMh-tA-7as"/>
+                                    <constraint firstAttribute="height" constant="55" id="RMh-tA-7as"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <state key="normal" title="START"/>
@@ -968,29 +969,29 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer the questions as fast as you can." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqS-kJ-xYY">
-                                <rect key="frame" x="25" y="266" width="325" height="83.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="25" y="280" width="325" height="78"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have {sec} seconds to answer all the questions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WmM-tk-Y4Z">
-                                <rect key="frame" x="25" y="349.5" width="325" height="105"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="25" y="358" width="325" height="98.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcQ-p4-re3">
-                                <rect key="frame" x="25" y="454.5" width="325" height="104.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="25" y="456.5" width="325" height="97.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7G9-jD-487">
-                                <rect key="frame" x="0.0" y="215" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="215" width="375" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="xRP-jM-U8x"/>
+                                    <constraint firstAttribute="height" constant="35" id="xRP-jM-U8x"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
