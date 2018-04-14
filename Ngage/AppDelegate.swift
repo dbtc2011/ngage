@@ -21,12 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("DID FINISH LAUNCH")
         
         FirebaseApp.configure()
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
-            // Enable or disable features based on authorization.
-        }
-        application.registerForRemoteNotifications()
-        
         UserDefaults.standard.set(false, forKey: Keys.keyShouldEdit)
         
         if CoreDataManager.sharedInstance.getMainUser() != nil {
@@ -70,8 +64,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
+        if let refreshedToken = InstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            UserDefaults.standard.setValue(refreshedToken, forKey: Keys.DeviceID)
+        }
+        
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-        UserDefaults.standard.setValue(deviceTokenString, forKey: Keys.DeviceID)
+        
         print("Token = \(deviceTokenString)")
     }
 

@@ -13,7 +13,10 @@ import Alamofire
 final class RegisterService: RequestManager {
     
     class func register(fbid: String, fName: String, lName: String, gender: String, email: String, referralCode: String, msisdn: String, operatorID: String, refferedBy: String, success: @escaping CompletionBlock) {
-        let user = UserModel().mainUser()
+        var user = UserModel().mainUser()
+        if let token = UserDefaults.standard.string(forKey: Keys.DeviceID) {
+            user.deviceID = token
+        }
         let long = ""
         let lat = ""
         let parameter = ["FBID" : fbid, "FName": fName, "LName": lName, "Gender": gender, "Email": email, "ReferralCode": referralCode, "DeviceID": user.deviceID, "Msisdn": msisdn, "Lat": lat, "LLong": long, "OperatorID": operatorID, "ReferredBy": refferedBy, "Itype" : "3"]
@@ -149,7 +152,7 @@ final class RegisterService: RequestManager {
     
     class func redeemPoints(FBID: String, MissionID: String, TaskID: String, Prev_Pointegers: String, Current_Pointegers: String, Pointegers: String, success: @escaping CompletionBlock) {
         
-        let parameters = ["FBID": FBID, "MissionID": MissionID, "TaskID": TaskID, "Prev_Pointegers": Prev_Pointegers, "Current_Pointegers": Current_Pointegers, "Pointegers": Pointegers]
+        let parameters = ["FBID": FBID, "MissionID": MissionID, "TaskID": TaskID, "Prev_Points": Prev_Pointegers, "Current_Points": Current_Pointegers, "Points": Pointegers]
         perform(task: .redeem(parameters)) { (result, error) in
             success(result, error)
         }

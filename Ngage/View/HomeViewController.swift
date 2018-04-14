@@ -25,6 +25,7 @@ class HomeViewController: DrawerFrontViewController {
     @IBOutlet weak var viewTutorial: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupBackgroundProfile()
         setupUI()
         getMission()
@@ -63,6 +64,9 @@ class HomeViewController: DrawerFrontViewController {
         buttonDrawer.addTarget(self, action: #selector(toggleDrawer(_:)), for: UIControlEvents.touchUpInside)
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_menu"), style: .plain, target: self, action: #selector(toggleDrawer(_:)))
 //        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        self.collectionView.register(UINib(nibName:"ProfileCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "profileCell")
+        
+
     }
     
     func showMarketAds() {
@@ -89,6 +93,10 @@ class HomeViewController: DrawerFrontViewController {
     }
     
     func setupBackgroundProfile() {
+        let color = UIColor(red: 22.0/255.0, green: 47.0/255.0, blue: 94.0/255.0, alpha: 1)
+        self.setUIColor(color: color)
+        /*
+         // Fucking waste of time. Change of UI
         if let imageView = view.viewWithTag(13) as? UIImageView {
             return
         }
@@ -117,6 +125,7 @@ class HomeViewController: DrawerFrontViewController {
                 self.view.insertSubview(backgroundImageView, at: 0)
             }
         }
+    */
     }
     func setUIColor(color : UIColor) {
         self.view.backgroundColor = color
@@ -291,7 +300,7 @@ class HomeViewController: DrawerFrontViewController {
                     }
                 }
             }else {
-                self.getMission()
+//                self.getMission()
             }
         }
     
@@ -366,10 +375,7 @@ extension HomeViewController : UICollectionViewDataSource {
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "missionCell", for: indexPath) as! HomeCollectionViewCell
         cell.delegate = self
-        print("Index = \(indexPath.row)")
-        print("Count = \(self.user.missions.count)")
         let mission = self.user.missions[indexPath.row]
-        print("Mission state = \(mission.state)")
         cell.setupContents(mission: mission)
         if mission.imageTask!.state == DowloadingImageState.new {
             let url = URL(string: mission.imageUrl)

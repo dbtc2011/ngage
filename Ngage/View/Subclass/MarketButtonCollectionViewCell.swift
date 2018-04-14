@@ -15,7 +15,7 @@ class MarketButtonCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var viewSelectionIndicator: UIView!
     
-    //MARK: - Methods
+    //MARK: - Methodsw
     
     func setupContent(withTitle title: String) {
         labelTitle.text = title

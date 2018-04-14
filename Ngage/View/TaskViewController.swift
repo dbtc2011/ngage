@@ -379,10 +379,11 @@ class TaskViewController: MainViewController {
     
     func getRewardPoints() {
         showSpinner()
+        user.points = UserModel().mainUser().points
         let previous = user.points
         let pointeg = "\(Int(user.points)! + Int(mission.reward)!)"
         
-        RegisterService.redeemPoints(FBID: user.facebookId, MissionID: "\(mission.code)", TaskID: "\(self.selectedTask.code)", Prev_Pointegers: previous, Current_Pointegers: pointeg, Pointegers: mission.reward) { (result, error) in
+        RegisterService.redeemPoints(FBID: user.facebookId, MissionID: "\(mission.code)", TaskID: "0", Prev_Pointegers: previous, Current_Pointegers: pointeg, Pointegers: mission.reward) { (result, error) in
             self.hideSpinner()
             if error != nil {
                 self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
