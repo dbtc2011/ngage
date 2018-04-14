@@ -23,6 +23,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var viewButtonContainer: UIView!
+    
+    @IBOutlet weak var viewContent: UIView!
     private var state = MissionState.enabled
     private var missionCode : Int = 0
     @IBOutlet weak var lockContainerView: UIView!
@@ -30,21 +32,15 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     func setupContents(mission : MissionModel) {
         
+        viewContent.layer.cornerRadius = 15
+        viewContent.layer.masksToBounds = true
+        viewContent.clipsToBounds = true
         missionCode = mission.code
         state = mission.state
         lockContainerView.isHidden = true
         buttonLock.isHidden = true
         self.buttonWidth.constant = 200
         button.layer.cornerRadius = 13
-        image.layer.cornerRadius = 15
-        image.layer.masksToBounds = true
-        image.clipsToBounds = true
-        viewButtonContainer.layer.cornerRadius = 15
-        viewButtonContainer.layer.masksToBounds = true
-        viewButtonContainer.clipsToBounds = true
-        lockContainerView.layer.cornerRadius = 15
-        lockContainerView.clipsToBounds = true
-        lockContainerView.layer.masksToBounds = true
         button.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
         viewButtonContainer.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorSecondary)
         if mission.imageTask!.data != nil {

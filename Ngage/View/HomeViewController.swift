@@ -65,6 +65,9 @@ class HomeViewController: DrawerFrontViewController {
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_menu"), style: .plain, target: self, action: #selector(toggleDrawer(_:)))
 //        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         self.collectionView.register(UINib(nibName:"ProfileCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "profileCell")
+        self.collectionView.register(UINib(nibName:"HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "missionCell")
+        
+        
         
 
     }
