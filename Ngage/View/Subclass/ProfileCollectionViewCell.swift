@@ -16,6 +16,14 @@ protocol ProfileCollectionViewCellDelegate {
 class ProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewContent: UIView!
     
+    @IBOutlet var redeemLeading: NSLayoutConstraint!
+    @IBOutlet var buttonRedeem: UIButton!
+    
+    @IBOutlet var buttonAboutus: UIButton!
+    @IBOutlet var buttonFAQS: UIButton!
+    @IBOutlet var buttonTerms: UIButton!
+    @IBOutlet var buttonPrivacy: UIButton!
+    
     @IBOutlet weak var viewPoints: UIView!
     @IBOutlet weak var name: UILabel!
     
@@ -56,6 +64,13 @@ class ProfileCollectionViewCell: UICollectionViewCell {
             self.image.layer.cornerRadius = self.image.frame.size.width/2
             self.contentTop.constant = 0-(self.image.frame.size.width/2)
             self.nameTop.constant = (self.image.frame.size.width/2) + 10
+            
+            self.buttonAboutus.layer.cornerRadius = 10
+            self.buttonFAQS.layer.cornerRadius = 10
+            self.buttonTerms.layer.cornerRadius = 10
+            self.buttonPrivacy.layer.cornerRadius = 10
+            
+            self.redeemLeading.constant = 0-(self.buttonRedeem.frame.size.width/2)
             
             self.points.layer.cornerRadius = self.points.bounds.size.width/2
             self.points.layer.borderColor = UIColor.white.cgColor
