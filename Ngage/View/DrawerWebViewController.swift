@@ -49,12 +49,13 @@ class DrawerWebViewController: UIViewController {
     }
     */
     @IBAction func backButtonClicked(_ sender: UIButton) {
-        let transition = CATransition()
-        transition.duration = 0.25
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
-        view.window!.layer.add(transition, forKey: kCATransition)
-        dismiss(animated: false, completion: nil)
+//        let transition = CATransition()
+//        transition.duration = 0.25
+//        transition.type = kCATransitionPush
+//        transition.subtype = kCATransitionFromLeft
+//        view.window!.layer.add(transition, forKey: kCATransition)
+//        dismiss(animated: false, completion: nil)
+        _ = navigationController?.popViewController(animated: true)
     }
     
 }

@@ -65,7 +65,7 @@ class MSISDNViewController: MainViewController {
             }else {
                 if let userRegistration = result!["user_registration"].dictionary {
                     if let statusCode = userRegistration["StatusCode"]?.int {
-                        if statusCode == 2 || statusCode == 8
+                        if statusCode == 2
                         {
                             self.user.points = "\(userRegistration["Points"]?.int ?? 0)"
                             if let missionsStarted = userRegistration["MissionStarted"]?.array {

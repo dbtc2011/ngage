@@ -38,7 +38,6 @@ class DrawerViewController: UIViewController {
     }
     
     //MARK: - Methods
-    
     func showViewController(withIdentifier identifier: String, fromStoryboard storyboard: String, link: String) {
         let storyboard = UIStoryboard(name: storyboard, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
@@ -63,9 +62,10 @@ extension DrawerViewController : UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         guard indexPath.section > 0 else { return }
-        
+        var displayingController: UIViewController?
         if let drawer = parent as? KYDrawerController {
             drawer.setDrawerState(.closed, animated: true)
+            displayingController = drawer.mainViewController
         }
         var link = ""
         var identifier = "MarketNavigation"
@@ -73,16 +73,12 @@ extension DrawerViewController : UITableViewDelegate {
         
         switch indexPath.row {
         case 0:
-            if indexPath.section == 1 {
-                return
-            } else if indexPath.section == 2 {
-                identifier = "DrawerWebViewController"
-                storyboard = "HomeStoryboard"
-                link = "https://ngage.ph/tos_ngage.html"
-                
-            }else {
-                return
+            if indexPath.section == 2 {
+                if let mainConroller = displayingController as? HomeViewController {
+                    mainConroller.getMission()
+                }
             }
+            return
             
         case 1:
             if indexPath.section == 1 {
@@ -175,7 +171,7 @@ extension DrawerViewController : UITableViewDataSource {
             return 4
             
         default:
-            return 2
+            return 1
         }
     }
     
@@ -197,7 +193,7 @@ extension DrawerViewController : UITableViewDataSource {
                 title = "Home"
                 image = #imageLiteral(resourceName: "ic_action_home")
             } else {
-                title = "About Us"
+                title = "Refresh"
                 image = #imageLiteral(resourceName: "ic_action_about_us")
             }
             

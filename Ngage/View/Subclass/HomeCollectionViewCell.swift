@@ -116,12 +116,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         time = timeInterval!.hoursMinutesSecondMS + " REMAINING"
         
         DispatchQueue.main.async {
-            self.buttonWidth.constant = 200
             self.button.setTitle(time, for: UIControlState.normal)
-            self.image.layer.cornerRadius = 15
-            self.image.layer.masksToBounds = true
-            self.image.clipsToBounds = true
-            
         }
         
     }

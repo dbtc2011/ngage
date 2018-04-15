@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 class HomeViewController: DrawerFrontViewController {
-    var shouldReloadData = false
+    public var shouldReloadData = false
     var downloadsSession: URLSession?
     var user = UserModel().mainUser()
     var selectedIndex = 0
@@ -25,7 +25,7 @@ class HomeViewController: DrawerFrontViewController {
     @IBOutlet weak var viewTutorial: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupDataFromCoreData()
         setupBackgroundProfile()
         setupUI()
         getMission()
@@ -59,6 +59,24 @@ class HomeViewController: DrawerFrontViewController {
     }
     //taskPage
     //MARK: - Function
+    func setupDataFromCoreData() {
+        CoreDataManager.sharedInstance.fetchSavedObjects(forEntity: .Mission) { (result, data) in
+            print(data)
+            if let contents = data as? [MissionModel] {
+                for mission in contents {
+                    var missionModel = mission
+                    missionModel.imageTask = DownloadImageClass(link: missionModel.imageUrl)
+                    let taskDatas = CoreDataManager.sharedInstance.fetchTaskForMission(code: mission.code)
+                    for taskData in taskDatas {
+                        missionModel.tasks.append(taskData)
+                    }
+                    self.user.missions.append(missionModel)
+                }
+            }
+            
+        }
+        
+    }
     func setupUI() {
         downloadsSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         buttonDrawer.addTarget(self, action: #selector(toggleDrawer(_:)), for: UIControlEvents.touchUpInside)
@@ -192,7 +210,6 @@ class HomeViewController: DrawerFrontViewController {
                 let mission = self.user.missions[selectedIndex]
                 cell.setupContents(mission: mission)
                 cell.updateTime()
-                
             }
             
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex-1, section: 1)) as? HomeCollectionViewCell {
@@ -216,6 +233,16 @@ class HomeViewController: DrawerFrontViewController {
     
     }
     
+    func openWebPageWithLink(link: String) {
+        let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "DrawerWebViewController")
+        
+        if let controller = viewController as? DrawerWebViewController {
+            controller.webLink = link
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
     //MARK: - API
     func getMission() {
         showSpinner()
@@ -225,8 +252,8 @@ class HomeViewController: DrawerFrontViewController {
             if error == nil {
                 self.shouldReloadData = false
                 if let missions = result?["missions"].array {
-                    self.user.missions.removeAll()
                     for mission in missions {
+                        
                         var missionModel = MissionModel()
                         missionModel.code = mission["missionCode"].int ?? 0
                         missionModel.colorPrimary = mission["missionPrimaryColor"].string ?? ""
@@ -262,6 +289,7 @@ class HomeViewController: DrawerFrontViewController {
                                 taskModel.code = task["taskCode"].int ?? 0
                                 taskModel.instructions = task["taskInstruction"].string ?? ""
                                 taskModel.type = task["taskType"].int ?? 0
+                                taskModel.missionCode = missionModel.code
                                 taskModel.reward = "\(task["taskReward"].int ?? 0)"
                                 taskModel.title = task["taskTitle"].string ?? ""
                                 taskModel.rewardInfo = task["taskRewardInfo"].string ?? ""
@@ -278,9 +306,19 @@ class HomeViewController: DrawerFrontViewController {
                             }
                             
                         }
-                        
                         missionModel = self.lockMissionForStarter(mission: missionModel)
-                        self.user.missions.append(missionModel)
+                        print("Check mission if existing")
+                        if CoreDataManager.sharedInstance.checkMissionExist(code: missionModel.code) {
+                            print("Mission already exist, do not update")
+                        }else {
+                            CoreDataManager.sharedInstance.saveModelToCoreData(withModel: missionModel as AnyObject, completionHandler: { (result) in
+                                
+                            })
+                            self.user.missions.append(missionModel)
+                        }
+                        print(CoreDataManager.sharedInstance.checkMissionExist(code: missionModel.code))
+                        
+                        
                         if mission == missions.last {
                             TimeManager.sharedInstance.shouldEditMission = false
                             DispatchQueue.main.async {
@@ -303,7 +341,7 @@ class HomeViewController: DrawerFrontViewController {
                     }
                 }
             }else {
-//                self.getMission()
+                self.getMission()
             }
         }
     
@@ -356,6 +394,8 @@ class HomeViewController: DrawerFrontViewController {
 
 }
 
+
+
 extension HomeViewController : UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -374,6 +414,7 @@ extension HomeViewController : UICollectionViewDataSource {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCollectionViewCell
             cell.setupUI(mission: finishedMission)
+            cell.delegate = self
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "missionCell", for: indexPath) as! HomeCollectionViewCell
@@ -504,6 +545,9 @@ extension HomeViewController : TaskViewControllerDelegate {
             }
         }
         user.missions[selectedIndex] = mission
+        CoreDataManager.sharedInstance.saveModelToCoreData(withModel: mission as AnyObject) { (result) in
+            
+        }
     }
 }
 
@@ -523,6 +567,23 @@ extension HomeViewController : MarketPlaceAdsViewDelegate {
         transition.subtype = kCATransitionFromRight
         view.window!.layer.add(transition, forKey: kCATransition)
         present(viewController, animated: false, completion: nil)
+    }
+    
+}
+
+extension HomeViewController: ProfileCollectionViewCellDelegate {
+    func profileShouldGetPoints() {
+        
+    }
+    
+    func profileDidSelect(link: String) {
+        switch link {
+        case "about_us":
+            openWebPageWithLink(link: "https://ngage.ph/tos_ngage.html")
+        default:
+            openWebPageWithLink(link: "https://ngage.ph/privacy_policy_ngage.html")
+        }
+        
     }
     
 }

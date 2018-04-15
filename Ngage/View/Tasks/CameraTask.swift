@@ -86,6 +86,7 @@ extension TaskViewController : UIImagePickerControllerDelegate {
                 "FBID": user.facebookId
             ]
             
+            showSpinner()
             Alamofire.upload(multipartFormData: { (multipartFormData) in
                 multipartFormData.append(UIImageJPEGRepresentation(chosenImage, 0.7)!, withName: "file", fileName: "ios.jpg", mimeType: "image/jpeg")
                 for (key, value) in parameters {
@@ -93,6 +94,7 @@ extension TaskViewController : UIImagePickerControllerDelegate {
                 }
             }, to:"https://ph.ngage.ph/svc/api/Upload")
             { (result) in
+                self.hideSpinner()
                 switch result {
                 case .success(let upload, _, _):
                     
@@ -109,7 +111,9 @@ extension TaskViewController : UIImagePickerControllerDelegate {
                         if let uploads = responseJSON!["uploaded"].array {
                             if let uploaded = uploads[0].dictionary {
                                 if let status = uploaded["Status"]?.string {
-                                    if status == "FOR APPROVAL" || status == "SUCCESS" {
+                                    if status == "FOR APPROVAL" {
+                                        self.showModalForPendingReward(message: self.selectedTask.reward)
+                                    }else if status == "SUCCESS" {
                                         self.cameraTaskFinished(taskCamera: self.selectedTask)
                                     }
                                 }

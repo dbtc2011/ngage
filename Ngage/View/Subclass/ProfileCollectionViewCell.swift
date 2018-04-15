@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol ProfileCollectionViewCellDelegate {
+    
+    func profileShouldGetPoints()
+    func profileDidSelect(link: String)
+}
 class ProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewContent: UIView!
     
@@ -26,6 +31,8 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var nameTop: NSLayoutConstraint!
     @IBOutlet weak var contentTop: NSLayoutConstraint!
+    var delegate: ProfileCollectionViewCellDelegate?
+    
     func setupUI(mission: Int) {
         let user = UserModel().mainUser()
         name.text = user.name
@@ -68,15 +75,18 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func aboutUsClicked(_ sender: UIButton) {
+        delegate?.profileDidSelect(link: "about_us")
     }
     
     @IBAction func faqsButtonClicked(_ sender: UIButton) {
-        
+        delegate?.profileDidSelect(link: "faqs")
     }
     
     @IBAction func termsButtonClicked(_ sender: UIButton) {
+        delegate?.profileDidSelect(link: "terms")
     }
     
     @IBAction func privacyButtonClicked(_ sender: UIButton) {
+        delegate?.profileDidSelect(link: "privacy")
     }
 }

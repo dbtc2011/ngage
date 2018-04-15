@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SuccessWithVerifcationView" customModule="Ngage_PH" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZz-4E-K9K">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.3497966609589041" colorSpace="calibratedWhite"/>
+                </view>
+                <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKV-EU-6mc">
+                    <rect key="frame" x="15" y="173.5" width="345" height="320"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhm-ca-J6C">
+                            <rect key="frame" x="15" y="260" width="315" height="45"/>
+                            <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="K6a-p7-VXg"/>
+                                <constraint firstAttribute="height" constant="45" id="YhL-2n-cjr"/>
+                            </constraints>
+                            <state key="normal" title="OK"/>
+                            <connections>
+                                <action selector="didTapOkay:" destination="iN0-l3-epB" eventType="touchUpInside" id="Q73-eD-781"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will receive a notification once the images has been verified and will be rewarded with {point}." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8GC-ff-v7D">
+                            <rect key="frame" x="20" y="145" width="305" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="dbj-rF-B4H"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_quiz_correct" translatesAutoresizingMaskIntoConstraints="NO" id="PgZ-6c-7oU">
+                            <rect key="frame" x="114.5" y="15" width="115" height="115"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="115" id="5H7-UD-gYN"/>
+                                <constraint firstAttribute="height" constant="115" id="Nby-OS-sYg"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.86563570205479456" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Mhm-ca-J6C" secondAttribute="trailing" constant="15" id="43R-uj-QDs"/>
+                        <constraint firstItem="PgZ-6c-7oU" firstAttribute="centerX" secondItem="CKV-EU-6mc" secondAttribute="centerX" id="9Zy-Xb-I8a"/>
+                        <constraint firstItem="PgZ-6c-7oU" firstAttribute="top" secondItem="CKV-EU-6mc" secondAttribute="top" constant="15" id="DvG-Ao-wuQ"/>
+                        <constraint firstAttribute="bottom" secondItem="Mhm-ca-J6C" secondAttribute="bottom" constant="15" id="NNK-OU-rQq"/>
+                        <constraint firstAttribute="bottom" secondItem="Mhm-ca-J6C" secondAttribute="bottom" constant="15" id="UJH-hZ-VvG"/>
+                        <constraint firstItem="Mhm-ca-J6C" firstAttribute="top" secondItem="8GC-ff-v7D" secondAttribute="bottom" constant="15" id="Vm8-qa-3Wl"/>
+                        <constraint firstAttribute="trailing" secondItem="8GC-ff-v7D" secondAttribute="trailing" constant="20" id="Xk8-TF-wSc"/>
+                        <constraint firstItem="8GC-ff-v7D" firstAttribute="leading" secondItem="CKV-EU-6mc" secondAttribute="leading" constant="20" id="al7-5p-Sm1"/>
+                        <constraint firstItem="Mhm-ca-J6C" firstAttribute="leading" secondItem="CKV-EU-6mc" secondAttribute="leading" constant="15" id="cxx-m4-uOe"/>
+                        <constraint firstItem="8GC-ff-v7D" firstAttribute="top" secondItem="PgZ-6c-7oU" secondAttribute="bottom" constant="15" id="mVu-CJ-IJN"/>
+                        <constraint firstAttribute="trailing" secondItem="Mhm-ca-J6C" secondAttribute="trailing" constant="15" id="npE-x7-Ia8"/>
+                        <constraint firstItem="Mhm-ca-J6C" firstAttribute="leading" secondItem="CKV-EU-6mc" secondAttribute="leading" constant="15" id="zy0-JG-bZW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cZz-4E-K9K" secondAttribute="trailing" id="2Nq-yf-0Qv"/>
+                <constraint firstItem="cZz-4E-K9K" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="GTG-wH-iZy"/>
+                <constraint firstItem="cZz-4E-K9K" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Hij-ez-JwW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="CKV-EU-6mc" secondAttribute="trailing" constant="15" id="cKz-6L-hTe"/>
+                <constraint firstItem="CKV-EU-6mc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="pDV-JU-ITa"/>
+                <constraint firstItem="CKV-EU-6mc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="qAo-Ba-B8m"/>
+                <constraint firstAttribute="bottom" secondItem="cZz-4E-K9K" secondAttribute="bottom" id="qDA-GE-rFx"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="button" destination="Mhm-ca-J6C" id="EdS-Mf-FYe"/>
+                <outlet property="content" destination="8GC-ff-v7D" id="3RA-Mj-QO1"/>
+                <outlet property="viewBackground" destination="cZz-4E-K9K" id="98y-db-sA0"/>
+                <outlet property="viewContent" destination="CKV-EU-6mc" id="lDo-DY-eeP"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_quiz_correct" width="46" height="46"/>
+    </resources>
+</document>

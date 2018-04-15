@@ -118,6 +118,30 @@ class CoreDataManager: NSObject {
         return nil
     }
     
+    func checkMissionExist(code: Int) -> Bool {
+        let entityDescription =  NSEntityDescription.entity(forEntityName: "MissionDataModel",
+                                                            in:managedObjectContext)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        fetchRequest.entity = entityDescription
+        let predicate = NSPredicate(format: "code = \(code)")
+        print("Predicate = \(predicate)")
+        fetchRequest.predicate = predicate
+        
+        do {
+            let fetchRawResults = try managedObjectContext.fetch(fetchRequest)
+            if fetchRawResults.count != 0 {
+                print("Count = \(fetchRawResults.count)")
+                return true
+            }
+            return false
+            
+        } catch let error {
+            errorDescription = error.localizedDescription
+        }
+        return true
+    }
+    
+    
     func fetchSavedObjects(forEntity entity: CoreDataEntity,
                            completionHandler: @escaping (_ fetchResult: CoreDataManagerResult,
                             _ results: [AnyObject]?) -> Void) {
@@ -147,6 +171,30 @@ class CoreDataManager: NSObject {
         }
         
         completionHandler(result, fetchedResults)
+    }
+    
+    func fetchTaskForMission(code: Int) -> [TaskModel] {
+        let entityDescription =  NSEntityDescription.entity(forEntityName: "TaskDataModel",
+                                                            in:managedObjectContext)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        fetchRequest.entity = entityDescription
+        let predicate = NSPredicate(format: "missionCode = \(code)")
+        print("Predicate = \(predicate)")
+        fetchRequest.predicate = predicate
+        
+        do {
+            let fetchRawResults = try managedObjectContext.fetch(fetchRequest)
+            if fetchRawResults.count != 0 {
+                if let fetchedResults = convertRawObjectsToModels(forEntity: .Task, withResults: fetchRawResults) as? [TaskModel] {
+                    return fetchedResults
+                }
+            }
+            return []
+            
+        } catch let error {
+            errorDescription = error.localizedDescription
+        }
+        return []
     }
     
     //MARK: Saving
@@ -279,7 +327,7 @@ class CoreDataManager: NSObject {
                 task.title = result.title ?? ""
                 task.type = Int(result.type)
                 
-                convertedResults.append(taskResults as AnyObject)
+                convertedResults.append(task as AnyObject)
             }
         }
         
@@ -302,6 +350,10 @@ class CoreDataManager: NSObject {
         entity.points = model.points
         entity.operatorID = model.operatorID
         print(model.operatorID)
+        
+        for mission in model.missions {
+            self.saveModelAsMissionEntity(withModel: mission)
+        }
     }
     
     private func saveModelAsMissionEntity(withModel model: MissionModel) {
@@ -324,9 +376,14 @@ class CoreDataManager: NSObject {
         entity.rewardType = model.rewardType
         entity.startDate = model.startDate
         entity.title = model.title
+        
+        for task in model.tasks {
+            self.saveModelAsTaskEntity(withModel: task)
+        }
     }
     
     private func saveModelAsTaskEntity(withModel model: TaskModel) {
+        print("Should save Task! \(model.missionCode)")
         let entity = NSEntityDescription.insertNewObject(forEntityName: "TaskDataModel", into: managedObjectContext) as! TaskDataModel
         entity.code = Int64(model.code)
         entity.missionCode = Int64(model.missionCode)

@@ -44,12 +44,18 @@ class TaskViewController: MainViewController {
     var contentDuration : String = ""
     @IBOutlet weak var customView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var viewTutorial: UIView!
+    var shouuldShowTutorial = true
     
     @IBOutlet weak var labelCompleted: UILabel!
     
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if TimeManager.sharedInstance.hasFinishedFirstTask {
+            shouuldShowTutorial = false
+        }
+        viewTutorial.isHidden = true
         completedTask = 0
         var shouldSetEnabled = false
         var arrayCounter = 0
@@ -110,13 +116,7 @@ class TaskViewController: MainViewController {
     }
     
     //MARK: - Functions
-    func adjustProgressBar() {
-        
-        var currentProgress = 100.0/CGFloat(tasks.count)
-        currentProgress = currentProgress * CGFloat(completedTask)
-        print("Progress=\(currentProgress)")
-        customProgress?.setupContent(currentProgress: Double(currentProgress))
-    }
+    
     func setupUI() {
         customView.isHidden = true
         customView.backgroundColor = UIColor.clear
@@ -134,7 +134,14 @@ class TaskViewController: MainViewController {
         }
         backgroundLayer.addBlurEffect()
     }
-    
+    //MARK: - Setup custom progress content
+    func adjustProgressBar() {
+        
+        var currentProgress = 100.0/CGFloat(tasks.count)
+        currentProgress = currentProgress * CGFloat(completedTask)
+        print("Progress=\(currentProgress)")
+        customProgress?.setupContent(currentProgress: Double(currentProgress))
+    }
     func setupProgressView() {
         customProgress = Bundle.main.loadNibNamed("CustomProgressView", owner: self, options: nil)?.first as? CustomProgressView
         customProgress!.bounds = progressView.bounds
@@ -177,7 +184,12 @@ class TaskViewController: MainViewController {
         customScratch  = ScratchUIView(frame: CGRect(x:0, y:0, width:140, height:140),Coupon: "img_reward_points", MaskImage: "img_scratch_gift", ScratchWidth: CGFloat(40))
         customScratch!.delegate = self
         progressView.addSubview(customScratch!)
+        if shouuldShowTutorial {
+            viewTutorial.isHidden = false
+        }
     }
+    
+    //MARK: - Setup custom modal
     func showSuccessModal(totalPoints: String) {
         customView.isHidden = false
         let modalView = Bundle.main.loadNibNamed("SuccessTaskModalView", owner: self, options: nil)?.first as! SuccessTaskModalView
@@ -202,6 +214,18 @@ class TaskViewController: MainViewController {
         modalView.frame.origin = CGPoint(x: 0, y: 0)
         customView.addSubview(modalView)
     }
+    
+    func showModalForPendingReward(message: String) {
+        customView.isHidden = false
+        let modalView = Bundle.main.loadNibNamed("SuccessWithVerifcationView", owner: self, options: nil)?.first as! SuccessWithVerifcationView
+        modalView.setupContent(points: "3")
+        modalView.delegate = self
+        modalView.bounds = customView.bounds
+        modalView.frame.origin = CGPoint(x: 0, y: 0)
+        customView.addSubview(modalView)
+    }
+    
+    //MARK: - Public Functions
     
     func adjustTasks() {
         completedTask = completedTask + 1
@@ -369,6 +393,13 @@ class TaskViewController: MainViewController {
 //        }
     }
     
+    //MARK: - Tap Gesture
+    @IBAction func didTapGesture(_ sender: UITapGestureRecognizer) {
+        viewTutorial.isHidden = true
+    }
+    
+    
+    //MARK: - Scratch View Delegate
     func scratchMoved(_ view: ScratchUIView) {
         if self.customScratch!.getScratchPercent() > 0.5 && !self.didShowSuccessRedeem {
             self.showSuccessRedeemModal()
@@ -388,6 +419,16 @@ class TaskViewController: MainViewController {
             if error != nil {
                 self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
             }else {
+                if let statusCode = result!["StatusCode"].int {
+                    if statusCode == 2 {
+                        if let points = result!["Points"].int {
+                            self.user.points = "\(points)"
+                            CoreDataManager.sharedInstance.updateUserPoints(withPoints: self.user.points, completionHandler: { (result) in
+                                
+                            })
+                        }
+                    }
+                }
                 self.setupScratchView()
             }
             
