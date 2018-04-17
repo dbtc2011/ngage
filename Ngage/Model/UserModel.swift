@@ -21,6 +21,7 @@ struct UserModel {
     var points = "0"
     var birthday = ""
     var location = ""
+    var dateCreated = ""
     
     var missions = [MissionModel]()
     
@@ -43,6 +44,7 @@ extension UserModel {
             userModel.age = user.age ?? ""
             userModel.gender = user.gender ?? ""
             userModel.points = user.points ?? ""
+            userModel.dateCreated = user.startDate ?? ""
             userModel.operatorID = user.operatorID ?? ""
             userModel.referralCode = String(userModel.facebookId.characters.prefix(4) + userModel.mobileNumber.characters.suffix(4))
             UserDefaults.standard.set(userModel.referralCode, forKey: Keys.ReferralCode)

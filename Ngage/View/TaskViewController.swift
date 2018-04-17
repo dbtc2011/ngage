@@ -232,6 +232,7 @@ class TaskViewController: MainViewController {
         adjustProgressBar()
         var finishedTask = selectedTask!
         finishedTask.state = 2
+        finishedTask.reward = self.taskPoint
         tasks[selectedIndex] = finishedTask
         if selectedIndex != 0 {
             var nextTask = tasks[selectedIndex-1]
@@ -444,12 +445,13 @@ class TaskViewController: MainViewController {
                 if let statusCode = result!["StatusCode"].int {
                     if statusCode == 2 {
                         if let points = result!["Points"].int {
+                            print("Task = \(self.selectedTask.code)")
                             switch self.selectedTask.code {
-                            case 1, 2, 7, 8, 17 :
+                            case 7, 8, 17 :
+                                self.taskPoint = "\(points - Int(self.user.points)!)"
+                            default :
                                 self.taskPoint = self.selectedTask.reward
                                 
-                            default :
-                                self.taskPoint = "\(points - Int(self.user.points)!)"
                             }
                             
                             CoreDataManager.sharedInstance.updateUserPoints(withPoints: "\(points)", completionHandler: { (coreResult) in

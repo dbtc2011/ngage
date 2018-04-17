@@ -10,6 +10,7 @@ import UIKit
 import FacebookLogin
 import FBSDKLoginKit
 import UserNotifications
+import Firebase
 
 class OnboardingViewController: UIViewController {
 
@@ -25,6 +26,9 @@ class OnboardingViewController: UIViewController {
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let refreshedToken = InstanceID.instanceID().token() {
+            UserDefaults.standard.setValue(refreshedToken, forKey: Keys.DeviceID)
+        }
         
         UNUserNotificationCenter.current().getDeliveredNotifications { (notifications) in
             print("Notifications = \(notifications)")

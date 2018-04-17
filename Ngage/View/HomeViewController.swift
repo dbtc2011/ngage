@@ -100,7 +100,7 @@ class HomeViewController: DrawerFrontViewController {
         marketAds!.delegate = self
         marketAds!.setupContent(points: user.points, title: "Lets get started")
         marketAds!.bounds = UIScreen.main.bounds
-//        modalView.frame.origin = CGPoint(x: 0, y: 0)
+        marketAds!.frame.origin = CGPoint(x: 0, y: 0)
         if let window = UIApplication.shared.keyWindow {
             window.addSubview(marketAds!)
         }
@@ -250,7 +250,7 @@ class HomeViewController: DrawerFrontViewController {
             self.hideSpinner()
             self.shouldReloadTime = true
             if error == nil {
-                self.shouldReloadData = false
+                
                 if let missions = result?["missions"].array {
                     for mission in missions {
                         
@@ -309,6 +309,11 @@ class HomeViewController: DrawerFrontViewController {
                         missionModel = self.lockMissionForStarter(mission: missionModel)
                         print("Check mission if existing")
                         if CoreDataManager.sharedInstance.checkMissionExist(code: missionModel.code) {
+                            if self.shouldReloadData {
+                                CoreDataManager.sharedInstance.saveModelToCoreData(withModel: missionModel as AnyObject, completionHandler: { (result) in
+                                })
+                            }
+                            
                             print("Mission already exist, do not update")
                         }else {
                             CoreDataManager.sharedInstance.saveModelToCoreData(withModel: missionModel as AnyObject, completionHandler: { (result) in
@@ -317,8 +322,6 @@ class HomeViewController: DrawerFrontViewController {
                             self.user.missions.append(missionModel)
                         }
                         print(CoreDataManager.sharedInstance.checkMissionExist(code: missionModel.code))
-                        
-                        
                         if mission == missions.last {
                             TimeManager.sharedInstance.shouldEditMission = false
                             DispatchQueue.main.async {
@@ -340,6 +343,8 @@ class HomeViewController: DrawerFrontViewController {
                         }
                     }
                 }
+                
+                self.shouldReloadData = false
             }else {
                 self.getMission()
             }
@@ -358,6 +363,8 @@ class HomeViewController: DrawerFrontViewController {
             }else {
                 if !TimeManager.sharedInstance.hasFinishedFirstTask && newMission.code != 1 {
                     newMission.state = MissionState.locked
+                }else {
+                    newMission.state = .enabled
                 }
             }
         }else {
@@ -523,6 +530,7 @@ extension HomeViewController : URLSessionDownloadDelegate {
     
     }
 }
+
 extension HomeViewController : TaskViewControllerDelegate {
     func mustReloadData() {
         shouldReloadData = true

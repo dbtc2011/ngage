@@ -109,7 +109,7 @@ class TaskTableViewCell: UITableViewCell {
             rightIcon.image = UIImage(named: "ic_reward_disabled")
 
         }
-        title.text = task.info
+        title.text = task.title
         labelReward.text = getRewardWithUOM(reward: task.reward)
         rightIcon.layer.cornerRadius = 20
         leftIcon.layer.cornerRadius = 15

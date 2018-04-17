@@ -275,6 +275,7 @@ class CoreDataManager: NSObject {
                 user.name = result.name ?? ""
                 user.points = result.points ?? ""
                 user.operatorID = result.operatorID ?? ""
+                user.dateCreated = result.startDate ?? ""
                 
                 convertedResults.append(user as AnyObject)
             }
@@ -349,6 +350,7 @@ class CoreDataManager: NSObject {
         entity.name = model.name
         entity.points = model.points
         entity.operatorID = model.operatorID
+        entity.startDate = model.dateCreated
         print(model.operatorID)
         
         for mission in model.missions {
@@ -357,25 +359,45 @@ class CoreDataManager: NSObject {
     }
     
     private func saveModelAsMissionEntity(withModel model: MissionModel) {
-        let entity = NSEntityDescription.insertNewObject(forEntityName: "MissionDataModel", into: managedObjectContext) as! MissionDataModel
+        let entityDescription =  NSEntityDescription.entity(forEntityName: "MissionDataModel",
+                                                            in:managedObjectContext)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let predicate = NSPredicate(format: "code = \(model.code)")
+        fetchRequest.entity = entityDescription
+        fetchRequest.predicate = predicate
         
-        entity.code = Int64(model.code)
-        entity.userId = model.userId
-        entity.brand = model.brand
-        entity.colorBackground = model.colorBackground
-        entity.colorPrimary = model.colorPrimary
-        entity.colorSecondary = model.colorSecondary
-        entity.createdBy = model.createdBy
-        entity.endDate = model.endDate
-        entity.imageUrl = model.imageUrl
-        entity.isClaimed = model.isClaimed
-        entity.pointsRequiredToUnlock = model.pointsRequiredToUnlock
-        entity.reward = model.reward
-        entity.rewardDetails = model.rewardDetails
-        entity.rewardInfo = model.rewardInfo
-        entity.rewardType = model.rewardType
-        entity.startDate = model.startDate
-        entity.title = model.title
+        var missionEntity: MissionDataModel!
+        
+        do {
+            let fetchRawResults = try managedObjectContext.fetch(fetchRequest) as! [MissionDataModel]
+            
+            if let entity = fetchRawResults.first {
+                missionEntity = entity
+            } else {
+                missionEntity = NSEntityDescription.insertNewObject(forEntityName: "MissionDataModel", into: managedObjectContext) as! MissionDataModel
+            }
+        } catch let error {
+            errorDescription = error.localizedDescription
+            return
+        }
+        
+        missionEntity.code = Int64(model.code)
+        missionEntity.userId = model.userId
+        missionEntity.brand = model.brand
+        missionEntity.colorBackground = model.colorBackground
+        missionEntity.colorPrimary = model.colorPrimary
+        missionEntity.colorSecondary = model.colorSecondary
+        missionEntity.createdBy = model.createdBy
+        missionEntity.endDate = model.endDate
+        missionEntity.imageUrl = model.imageUrl
+        missionEntity.isClaimed = model.isClaimed
+        missionEntity.pointsRequiredToUnlock = model.pointsRequiredToUnlock
+        missionEntity.reward = model.reward
+        missionEntity.rewardDetails = model.rewardDetails
+        missionEntity.rewardInfo = model.rewardInfo
+        missionEntity.rewardType = model.rewardType
+        missionEntity.startDate = model.startDate
+        missionEntity.title = model.title
         
         for task in model.tasks {
             self.saveModelAsTaskEntity(withModel: task)
@@ -384,20 +406,42 @@ class CoreDataManager: NSObject {
     
     private func saveModelAsTaskEntity(withModel model: TaskModel) {
         print("Should save Task! \(model.missionCode)")
-        let entity = NSEntityDescription.insertNewObject(forEntityName: "TaskDataModel", into: managedObjectContext) as! TaskDataModel
-        entity.code = Int64(model.code)
-        entity.missionCode = Int64(model.missionCode)
-        entity.contentId = model.contentId
-        entity.detail = model.detail
-        entity.instructions = model.instructions
-        entity.isClaimed = model.isClaimed
-        entity.isReward = model.isReward
-        entity.reward = model.reward
-        entity.rewardDetails = model.rewardDetails
-        entity.rewardInfo = model.rewardInfo
-        entity.rewardType = model.rewardType
-        entity.state = Int64(model.state)
-        entity.title = model.title
-        entity.type = Int64(model.type)
+    
+        let entityDescription =  NSEntityDescription.entity(forEntityName: "TaskDataModel",
+                                                            in:managedObjectContext)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let predicate = NSPredicate(format: "code = \(model.code) && missionCode = \(model.missionCode)")
+        fetchRequest.entity = entityDescription
+        fetchRequest.predicate = predicate
+        
+        var taskEntity: TaskDataModel!
+        
+        do {
+            let fetchRawResults = try managedObjectContext.fetch(fetchRequest) as! [TaskDataModel]
+            
+            if let entity = fetchRawResults.first {
+                taskEntity = entity
+            } else {
+                taskEntity = NSEntityDescription.insertNewObject(forEntityName: "TaskDataModel", into: managedObjectContext) as! TaskDataModel
+            }
+        } catch let error {
+            errorDescription = error.localizedDescription
+            return
+        }
+        
+        taskEntity.code = Int64(model.code)
+        taskEntity.missionCode = Int64(model.missionCode)
+        taskEntity.contentId = model.contentId
+        taskEntity.detail = model.detail
+        taskEntity.instructions = model.instructions
+        taskEntity.isClaimed = model.isClaimed
+        taskEntity.isReward = model.isReward
+        taskEntity.reward = model.reward
+        taskEntity.rewardDetails = model.rewardDetails
+        taskEntity.rewardInfo = model.rewardInfo
+        taskEntity.rewardType = model.rewardType
+        taskEntity.state = Int64(model.state)
+        taskEntity.title = model.title
+        taskEntity.type = Int64(model.type)
     }
 }
