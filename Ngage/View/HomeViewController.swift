@@ -209,20 +209,20 @@ class HomeViewController: DrawerFrontViewController {
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 1)) as? HomeCollectionViewCell {
                 let mission = self.user.missions[selectedIndex]
                 cell.setupContents(mission: mission)
-                cell.updateTime()
+                cell.updateTime(mission: mission)
             }
             
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex-1, section: 1)) as? HomeCollectionViewCell {
                 let mission = self.user.missions[selectedIndex-1]
                 cell.setupContents(mission: mission)
-                cell.updateTime()
+                cell.updateTime(mission: mission)
                 
             }
             
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex+1, section: 1)) as? HomeCollectionViewCell {
                 let mission = self.user.missions[selectedIndex+1]
                 cell.setupContents(mission: mission)
-                cell.updateTime()
+                cell.updateTime(mission: mission)
                 
             }
             let when = DispatchTime.now() + 1
@@ -260,6 +260,7 @@ class HomeViewController: DrawerFrontViewController {
                         missionModel.colorSecondary = mission["missionSecondaryColor"].string ?? ""
                         missionModel.colorBackground = mission["missionBackground"].string ?? ""
                         missionModel.startDate = mission["missionStartDate"].string ?? ""
+                        missionModel.endDate = mission["missionEndDate"].string ?? ""
                         missionModel.reward = "\(mission["missionReward"].int ?? 0)"
                         missionModel.isClaimed = mission["isClaim"].bool ?? false
                         missionModel.brand = mission["missionBrand"].string ?? ""

@@ -9,7 +9,8 @@
 import UIKit
 import AVKit
 
-class VideoTaskViewController: UIViewController {
+class VideoTaskViewController: MainViewController {
+    //MARK: - Properties
     var currentPath = ""
     let user = UserModel().mainUser()
     var mission : MissionModel!
@@ -17,6 +18,10 @@ class VideoTaskViewController: UIViewController {
     var player : AVPlayer?
     var playerLayer : AVPlayerLayer!
     var timeObserver : AnyObject!
+    var audioTimer: Timer?
+    
+    var audioDuration = 0.0
+    var currentTime = 0.0
     
     @IBOutlet weak var playerSlider: UISlider!
     @IBOutlet weak var labelTimer: UILabel!
@@ -27,7 +32,7 @@ class VideoTaskViewController: UIViewController {
     var contentID : String = ""
     var contentDuration : String = ""
     
-    
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
@@ -49,35 +54,50 @@ class VideoTaskViewController: UIViewController {
     }
     
 
+    //MARK: - Function
     func playVideo() {
         var fileURL = currentPath.replacingOccurrences(of: "http", with: "https")
         fileURL = fileURL.replacingOccurrences(of: "httpss", with: "https")
         fileURL = fileURL.replacingOccurrences(of: " ", with: "%20")
         if let url = URL(string: fileURL) {
+            
+            let asset = AVURLAsset(url: url)
+            audioDuration = CMTimeGetSeconds(asset.duration)
             let playerItem = AVPlayerItem(url: url)
             self.player = AVPlayer(playerItem: playerItem)
             self.player!.play()
-        
-            let timeInterval: CMTime = CMTimeMakeWithSeconds(1.0, 10)
-            timeObserver = self.player!.addPeriodicTimeObserver(forInterval: timeInterval,
-                                                                       queue: DispatchQueue.main) { (elapsedTime: CMTime) -> Void in
-                                                                        self.observeTime(elapsedTime: elapsedTime)
-                                                                        let time : Float64 = CMTimeGetSeconds(self.player!.currentTime())
-                                                                        let maxTime : Float64 = CMTimeGetSeconds(self.player!.currentItem!.duration)
-                                                                        print("Max Time = \(maxTime)")
-                                                                        self.contentDuration = "\(Int(maxTime))"
-                                                                        self.playerSlider.maximumValue = Float(maxTime)
-                                                                        self.playerSlider.value = Float ( time )
-                                                                        
-                } as AnyObject
+            self.playerSlider.minimumValue = 0
+            self.playerSlider.maximumValue = Float(audioDuration)
+            enableTimer()
             setupUI()
+            self.hideSpinner()
             
         }else {
+            self.hideSpinner()
             print("URL not playable ----> \(fileURL)")
         }
     }
+    
+    //MARK: - Timer
+    private func enableTimer() {
+        disableTimer()
+        audioTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: true)
+    }
+    
+    private func disableTimer() {
+        guard audioTimer != nil else { return }
+        
+        audioTimer!.invalidate()
+        audioTimer = nil
+    }
+    
+    @objc func timerDidFire() {
+        updateTimeLabel()
+    }
     func getData() {
+        showSpinner()
         RegisterService.getTaskContent(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", contentID: task.contentId, FBID: user.facebookId) { (result, error) in
+            
             if let result = result {
                 print("Result = \(result)")
                 if let content = result["content"].array {
@@ -85,17 +105,24 @@ class VideoTaskViewController: UIViewController {
                         self.currentPath = dictionaryContent["ContentData"]?.string ?? ""
                         self.contentID = dictionaryContent["ContentID"]?.string ?? ""
                         self.playVideo()
+                    }else {
+                        self.hideSpinner()
                     }
+                }else {
+                    self.hideSpinner()
                 }
+            }else {
+                self.hideSpinner()
             }
         }
     }
     
-    private func updateTimeLabel(elapsedTime: Float64, duration: Float64) {
-        
-        let timeRemaining: Float64 = CMTimeGetSeconds(self.player!.currentItem!.duration) - elapsedTime
+    private func updateTimeLabel() {
+        let timeTotal: Float64 = CMTimeGetSeconds(self.player!.currentItem!.duration)
+        let timeCurrent: Float64 = CMTimeGetSeconds(self.player!.currentItem!.currentTime())
+        let timeRemaining = timeTotal - timeCurrent
         labelTimer.text = String(format: "%02d:%02d", ((lround(timeRemaining) / 60) % 60), lround(timeRemaining) % 60)
-        playerSlider.value = Float(elapsedTime)
+        playerSlider.value = Float(timeCurrent)
         if labelTimer.text == "00:00" {
             print("Should stop")
             if let controller = navigationController?.viewControllers[1] as? TaskViewController {
@@ -105,12 +132,6 @@ class VideoTaskViewController: UIViewController {
         }
     }
     
-    private func observeTime(elapsedTime: CMTime) {
-        let duration = CMTimeGetSeconds(self.player!.currentItem!.duration)
-        let elapsedTime = CMTimeGetSeconds(elapsedTime)
-        updateTimeLabel(elapsedTime: elapsedTime, duration: duration)
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if player != nil {

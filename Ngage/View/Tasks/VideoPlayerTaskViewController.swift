@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AVKit
+import PKHUD
 
 class VideoPlayerTaskViewController: AVPlayerViewController {
     var currentPath = ""
@@ -16,6 +17,7 @@ class VideoPlayerTaskViewController: AVPlayerViewController {
     var mission : MissionModel!
     var task : TaskModel!
     override func viewDidLoad() {
+        
         getData()
     }
     
@@ -35,7 +37,9 @@ class VideoPlayerTaskViewController: AVPlayerViewController {
         }
     }
     func getData() {
+        showSpinner()
         RegisterService.getTaskContent(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", contentID: task.contentId, FBID: user.facebookId) { (result, error) in
+            self.hideSpinner()
             if let result = result {
                 print("Result = \(result)")
                 if let content = result["content"].array {
@@ -43,6 +47,47 @@ class VideoPlayerTaskViewController: AVPlayerViewController {
                         self.currentPath = dictionaryContent["ContentData"]?.string ?? ""
                         self.playVideo()
                     }
+                }
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+    }
+    
+    override var shouldAutorotate: Bool {
+        
+        return true
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.landscapeLeft
+    }
+    
+    func showSpinner() {
+        PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
+        
+        let imageBG = UIImage(named: "bg_loader")
+        //        PKHUD.sharedHUD.contentView = loaderBG()
+        
+        if !PKHUD.sharedHUD.isVisible {
+            PKHUD.sharedHUD.show()
+        }
+    }
+    
+    func hideSpinner() {
+        if PKHUD.sharedHUD.isVisible {
+            DispatchQueue.main.async {
+                PKHUD.sharedHUD.hide(afterDelay: 0.0) { success in
+                    // Completion Handler
                 }
             }
         }

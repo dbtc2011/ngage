@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import Firebase
 
 final class RegisterService: RequestManager {
     
@@ -16,6 +17,10 @@ final class RegisterService: RequestManager {
         var user = UserModel().mainUser()
         if let token = UserDefaults.standard.string(forKey: Keys.DeviceID) {
             user.deviceID = token
+        }else {
+            if let forceToken = InstanceID.instanceID().token() {
+                user.deviceID = forceToken
+            }
         }
         let long = ""
         let lat = ""

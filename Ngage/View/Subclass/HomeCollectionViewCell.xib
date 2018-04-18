@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,9 +24,41 @@
                         <rect key="frame" x="20" y="20" width="502" height="834"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ODB-U1-HII">
-                                <rect key="frame" x="0.0" y="0.0" width="502" height="625.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="502" height="565.5"/>
                                 <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zme-fg-0LV">
+                                <rect key="frame" x="0.0" y="565.5" width="502" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qqy-ah-P3E">
+                                        <rect key="frame" x="15" y="25" width="472" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="lj8-b4-S4r"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Period" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-O9-S5n">
+                                        <rect key="frame" x="15" y="10" width="92.5" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="Hd0-R4-Zw4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="qqy-ah-P3E" firstAttribute="leading" secondItem="Zme-fg-0LV" secondAttribute="leading" constant="15" id="7I9-OX-ZQe"/>
+                                    <constraint firstItem="QPb-O9-S5n" firstAttribute="top" secondItem="Zme-fg-0LV" secondAttribute="top" constant="10" id="90e-3L-Wbd"/>
+                                    <constraint firstItem="QPb-O9-S5n" firstAttribute="leading" secondItem="Zme-fg-0LV" secondAttribute="leading" constant="15" id="D1U-mr-1Jl"/>
+                                    <constraint firstAttribute="height" constant="60" id="QKx-PD-VDf"/>
+                                    <constraint firstItem="qqy-ah-P3E" firstAttribute="top" secondItem="QPb-O9-S5n" secondAttribute="bottom" id="gOo-bB-hBY"/>
+                                    <constraint firstAttribute="trailing" secondItem="qqy-ah-P3E" secondAttribute="trailing" constant="15" id="kMc-m9-iTu"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7o-hW-dt4">
                                 <rect key="frame" x="0.0" y="625.5" width="502" height="208.5"/>
                                 <subviews>
@@ -70,10 +102,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="D7o-hW-dt4" firstAttribute="top" secondItem="Zme-fg-0LV" secondAttribute="bottom" id="03t-Yv-XVO"/>
                             <constraint firstItem="q5A-Pw-1QP" firstAttribute="height" secondItem="WU7-TF-Hll" secondAttribute="height" id="56F-iX-JH4"/>
                             <constraint firstAttribute="bottom" secondItem="D7o-hW-dt4" secondAttribute="bottom" id="A1a-Ad-dDX"/>
                             <constraint firstItem="q5A-Pw-1QP" firstAttribute="leading" secondItem="WU7-TF-Hll" secondAttribute="leading" id="ATG-fN-TYa"/>
-                            <constraint firstItem="D7o-hW-dt4" firstAttribute="top" secondItem="ODB-U1-HII" secondAttribute="bottom" id="HXV-RK-67q"/>
+                            <constraint firstItem="Zme-fg-0LV" firstAttribute="leading" secondItem="ODB-U1-HII" secondAttribute="leading" id="BhB-Lu-eIM"/>
+                            <constraint firstItem="Zme-fg-0LV" firstAttribute="top" secondItem="ODB-U1-HII" secondAttribute="bottom" id="NdI-tJ-5QS"/>
+                            <constraint firstItem="Zme-fg-0LV" firstAttribute="width" secondItem="ODB-U1-HII" secondAttribute="width" id="NjF-4M-z7t"/>
                             <constraint firstItem="D7o-hW-dt4" firstAttribute="leading" secondItem="WU7-TF-Hll" secondAttribute="leading" id="Wpz-v0-0Ly"/>
                             <constraint firstAttribute="trailing" secondItem="ODB-U1-HII" secondAttribute="trailing" id="aKo-tH-CIy"/>
                             <constraint firstAttribute="trailing" secondItem="D7o-hW-dt4" secondAttribute="trailing" id="dZr-6r-KUP"/>
@@ -99,6 +134,7 @@
                 <outlet property="buttonLock" destination="NPd-O5-aPB" id="F1t-Rc-G6S"/>
                 <outlet property="buttonWidth" destination="JGh-WE-vEZ" id="ozk-xF-EfV"/>
                 <outlet property="image" destination="ODB-U1-HII" id="jzB-WS-5j6"/>
+                <outlet property="labelRemainingPeriod" destination="qqy-ah-P3E" id="1MM-cR-Bxu"/>
                 <outlet property="lockContainerView" destination="q5A-Pw-1QP" id="Z9L-0L-OzT"/>
                 <outlet property="viewButtonContainer" destination="D7o-hW-dt4" id="0yb-7a-hdW"/>
                 <outlet property="viewContent" destination="WU7-TF-Hll" id="OvQ-sA-AaE"/>

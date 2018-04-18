@@ -11,6 +11,7 @@ import UIKit
 import Social
 import UICircularProgressRing
 import ScratchCard
+import Firebase
 
 enum TaskAppCode : Int {
     case updateProfile = 1
@@ -52,6 +53,10 @@ class TaskViewController: MainViewController {
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Device id = \(UserDefaults.standard.value(forKey: Keys.DeviceID))")
+        if let refreshedToken = InstanceID.instanceID().token() {
+            print("Refreshed token = \(refreshedToken)")
+        }
         if TimeManager.sharedInstance.hasFinishedFirstTask {
             shouuldShowTutorial = false
         }
@@ -361,6 +366,7 @@ class TaskViewController: MainViewController {
     }
     
     func playVideo(task: TaskModel) {
+        //VideoPlayerTaskViewController
         
         let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
         if let controller = storyBoard.instantiateViewController(withIdentifier: "VideoTaskViewController") as? VideoTaskViewController {
@@ -368,6 +374,14 @@ class TaskViewController: MainViewController {
             controller.mission = mission
             self.navigationController?.pushViewController(controller, animated: true)
         }
+// 
+//        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
+//        if let controller = storyBoard.instantiateViewController(withIdentifier: "VideoPlayerTaskViewController") as? VideoPlayerTaskViewController {
+//            controller.task = task
+//            controller.mission = mission
+//            self.navigationController?.pushViewController(controller, animated: true)
+//        }
+        
     }
     
     func openQuestionaireWithMusic(task: TaskModel) {
@@ -445,8 +459,7 @@ class TaskViewController: MainViewController {
                 if let statusCode = result!["StatusCode"].int {
                     if statusCode == 2 {
                         if let points = result!["Points"].int {
-                            print("Task = \(self.selectedTask.code)")
-                            switch self.selectedTask.code {
+                            switch self.selectedTask.type {
                             case 7, 8, 17 :
                                 self.taskPoint = "\(points - Int(self.user.points)!)"
                             default :

@@ -24,6 +24,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var viewButtonContainer: UIView!
     
+    @IBOutlet weak var labelRemainingPeriod: UILabel!
     @IBOutlet weak var viewContent: UIView!
     private var state = MissionState.enabled
     private var missionCode : Int = 0
@@ -57,7 +58,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
             lockContainerView.isHidden = false
             buttonLock.setImage(UIImage(named: "ic_lock"), for: UIControlState.normal)
             buttonLock.contentMode = UIViewContentMode.scaleAspectFit
-            updateTime()
+            updateTime(mission: mission)
             
         case .expired:
             self.button.setTitle("EXPIRED", for: UIControlState.normal)
@@ -91,8 +92,27 @@ class HomeCollectionViewCell: UICollectionViewCell {
         delegate?.homeDidTapStart(tag: self.tag)
     }
    
-    func updateTime() {
+    func updateTime(mission: MissionModel) {
         // Dont proceed if mission code is 0 (First mission) or mission is expired or mission is not yet started
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        
+        var time = ""
+        let newDate = Date()
+        let difference = Double(newDate.timeIntervalSince(TimeManager.sharedInstance.currentDate))
+        let serverCounter = Double(TimeManager.sharedInstance.midnightDate.timeIntervalSince(TimeManager.sharedInstance.serverDate))
+        
+        let timeRemaining = serverCounter - difference
+        if timeRemaining <= 0 {
+            UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
+        }
+        let timeInterval = TimeInterval(exactly: timeRemaining)
+        
+        time = timeInterval!.hoursMinutesSecondMS + " REMAINING"
+        if let dateRemaining = formatter.date(from: "2018-05-31T00:00:00") {
+            labelRemainingPeriod.text = timeInterval!.remainingDays(from: TimeManager.sharedInstance.serverDate, to: dateRemaining)
+        }
         if (!UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) || missionCode == UserDefaults.standard.value(forKey: Keys.keyMissionCode) as! Int || missionCode == 1) {
             return
         }else if (state == MissionState.completed) {
@@ -103,22 +123,10 @@ class HomeCollectionViewCell: UICollectionViewCell {
         buttonLock.isHidden = false
         lockContainerView.isHidden = false
         buttonLock.setImage(UIImage(named: "ic_lock"), for: UIControlState.normal)
-       
-        var time = ""
-        let newDate = Date()
-        let difference = Double(newDate.timeIntervalSince(TimeManager.sharedInstance.currentDate))
-        let serverCounter = Double(TimeManager.sharedInstance.midnightDate.timeIntervalSince(TimeManager.sharedInstance.serverDate))
-        let timeRemaining = serverCounter - difference
-        if timeRemaining <= 0 {
-            UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
-        }
-        let timeInterval = TimeInterval(exactly: timeRemaining)
-        time = timeInterval!.hoursMinutesSecondMS + " REMAINING"
         
         DispatchQueue.main.async {
             self.button.setTitle(time, for: UIControlState.normal)
         }
-        
     }
 }
 
