@@ -284,7 +284,9 @@ class CoreDataManager: NSObject {
             let missionResults = results as? [MissionDataModel]
             guard missionResults != nil else { break }
             
-            for result in missionResults! {
+            let sortedResults = missionResults!.sorted(by: { $0.code < $1.code })
+            
+            for result in sortedResults {
                 var mission = MissionModel()
                 mission.code = Int(result.code)
                 mission.userId = result.userId ?? ""
@@ -311,7 +313,9 @@ class CoreDataManager: NSObject {
             let taskResults = results as? [TaskDataModel]
             guard taskResults != nil else { break }
             
-            for result in taskResults! {
+            let sortedResults = taskResults!.sorted(by: { $0.code < $1.code })
+            
+            for result in sortedResults {
                 var task = TaskModel()
                 task.code = Int(result.code)
                 task.missionCode = Int(result.missionCode)

@@ -16,7 +16,7 @@ target 'Ngage PH' do
     pod 'ScratchCard', '~> 1.1.3'
     pod 'CircleProgressView', '~> 1.0'
 pod 'Firebase/Core'
-
+pod 'Firebase/Messaging'
   # Pods for Ngage
 
   target 'Ngage PHTests' do

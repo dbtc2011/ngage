@@ -18,10 +18,9 @@ final class RegisterService: RequestManager {
         if let token = UserDefaults.standard.string(forKey: Keys.DeviceID) {
             user.deviceID = token
         }else {
-            if let forceToken = InstanceID.instanceID().token() {
-                user.deviceID = forceToken
-            }
+            user.deviceID = Messaging.messaging().fcmToken ?? ""
         }
+        
         let long = ""
         let lat = ""
         let parameter = ["FBID" : fbid, "FName": fName, "LName": lName, "Gender": gender, "Email": email, "ReferralCode": referralCode, "DeviceID": user.deviceID, "Msisdn": msisdn, "Lat": lat, "LLong": long, "OperatorID": operatorID, "ReferredBy": refferedBy, "Itype" : "3"]
@@ -159,6 +158,13 @@ final class RegisterService: RequestManager {
         
         let parameters = ["FBID": FBID, "MissionID": MissionID, "TaskID": TaskID, "Prev_Points": Prev_Pointegers, "Current_Points": Current_Pointegers, "Points": Pointegers]
         perform(task: .redeem(parameters)) { (result, error) in
+            success(result, error)
+        }
+    }
+    
+    class func refreshPoints(fbid: String, success: @escaping CompletionBlock) {
+        let parameter = ["{FBID}": fbid]
+        perform(task: .refreshPoints(parameter)) { (result, error) in
             success(result, error)
         }
     }

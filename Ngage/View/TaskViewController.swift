@@ -466,6 +466,8 @@ class TaskViewController: MainViewController {
                                 self.taskPoint = self.selectedTask.reward
                                 
                             }
+                            self.selectedTask.state = 2
+                            self.selectedTask.reward = self.taskPoint
                             
                             CoreDataManager.sharedInstance.updateUserPoints(withPoints: "\(points)", completionHandler: { (coreResult) in
                                 DispatchQueue.main.async {
@@ -473,6 +475,10 @@ class TaskViewController: MainViewController {
                                     self.contentID = ""
                                     self.showSuccessModal(totalPoints: "\(points)")
                                 }
+                            })
+                            
+                            CoreDataManager.sharedInstance.saveModelToCoreData(withModel: self.selectedTask as AnyObject, completionHandler: { (result) in
+                                
                             })
                         }
                     }else {

@@ -20,26 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         print("DID FINISH LAUNCH")
         
-        if #available(iOS 10, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
-            application.registerForRemoteNotifications()
-        }
-            // iOS 9 support
-        else if #available(iOS 9, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-            // iOS 8 support
-        else if #available(iOS 8, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-            // iOS 7 support
-        else {
-            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
         }
         
-        FirebaseApp.configure()
+        application.registerForRemoteNotifications()
         UserDefaults.standard.set(false, forKey: Keys.keyShouldEdit)
         
         if CoreDataManager.sharedInstance.getMainUser() != nil {
@@ -82,17 +77,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        FirebaseApp.configure()
+        Messaging.messaging().isAutoInitEnabled = true
+        Messaging.messaging().delegate = self
+        let token = Messaging.messaging().apnsToken
+        UserDefaults.standard.setValue(token, forKey: Keys.DeviceID)
         
-        if let refreshedToken = InstanceID.instanceID().token() {
-            print("InstanceID token: \(refreshedToken)")
-            UserDefaults.standard.setValue(refreshedToken, forKey: Keys.DeviceID)
-        }
-        
-        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-        
-        print("Token = \(deviceTokenString)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Message has been received = \(userInfo)")
     }
 
+    
 
+}
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
+        UserDefaults.standard.setValue(fcmToken, forKey: Keys.DeviceID)
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Response Message = \(response.notification.request.content.body)")
+    }
+    
 }
 

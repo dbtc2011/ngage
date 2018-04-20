@@ -32,6 +32,7 @@ enum Router : URLRequestConvertible {
     case referralSMS(parameter : Parameters)
     case unlockMission(parameter : Parameters)
     case merchantInfo(parameter : Parameters)
+    case refreshPoints(parameter : Parameters)
 
     var baseURL : String {
         if Util.environment == Environment.dev {
@@ -43,7 +44,8 @@ enum Router : URLRequestConvertible {
     
     var method : HTTPMethod {
         switch self {
-        case .getHistory, .resendVerificationCode, .getLoadList, .getServices, .getServerTime:
+        case .getHistory, .resendVerificationCode, .getLoadList, .getServices, .getServerTime,
+             .refreshPoints:
             return .get
         default:
             return .post
@@ -72,6 +74,7 @@ enum Router : URLRequestConvertible {
         static let referralSMS = "svc/api/WebInviteSMS"
         static let unlockMission = "svc/api/UnlockMission"
         static let merchantInfo = "svc/api/MerchantInfo"
+        static let refreshPoints = "svc/api/Points/{FBID}"
     }
     
     func asURLRequest() throws -> URLRequest {
@@ -140,6 +143,10 @@ enum Router : URLRequestConvertible {
                 
             case let .merchantInfo(parameters):
                 return (Router.Endpoint.merchantInfo, parameters)
+            
+            case let .refreshPoints(parameters):
+                return (Router.Endpoint.refreshPoints, parameters)
+                
             }
         }()
         

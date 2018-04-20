@@ -16,6 +16,8 @@ class HistoryViewController: MainViewController {
     var user = UserModel().mainUser()
     var historyData = [[String: Any]]()
     
+    private var dateFormatter = DateFormatter()
+    
     private var cache: NSCache<AnyObject, AnyObject> = NSCache()
     
     @IBOutlet weak var tableView: UITableView!
@@ -64,6 +66,16 @@ class HistoryViewController: MainViewController {
                 self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
             }
         }
+    }
+    
+    func convertToAnotherDateFormat(withString strDate: String) -> String {
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        if let dateOrigFormat = dateFormatter.date(from: strDate) {
+            dateFormatter.dateFormat = "MMM dd, yyy - hh:mm a"
+            return dateFormatter.string(from: dateOrigFormat)
+        }
+        
+        return ""
     }
     
     //MARK: - IBAction Delegate
@@ -119,14 +131,11 @@ extension HistoryViewController : UITableViewDataSource {
         name.textColor = UIColor.black
         name.text = history["TITLE"] as? String ?? ""
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
         let date = cell?.contentView.viewWithTag(5) as! UILabel
         date.textColor = UIColor.black
         date.text = ""
         if let dtCreated = history["dtCreated"] as? String {
-            date.text = dtCreated.replacingOccurrences(of: "T", with: " - ")
+            date.text = self.convertToAnotherDateFormat(withString: dtCreated)
         }
         
         let image = cell?.contentView.viewWithTag(2) as! UIImageView

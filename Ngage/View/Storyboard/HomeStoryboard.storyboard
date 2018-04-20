@@ -302,6 +302,24 @@
             </objects>
             <point key="canvasLocation" x="129" y="-690"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="W3N-d8-GoK">
+            <objects>
+                <viewController id="mTW-cx-I0L" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R7e-Lb-zr2"/>
+                        <viewControllerLayoutGuide type="bottom" id="uWa-4c-rbF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ayA-e8-Spq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yOm-ps-BMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="-1681"/>
+        </scene>
         <!--Mission-->
         <scene sceneID="cZa-cx-48Z">
             <objects>
@@ -521,6 +539,7 @@
                         <outlet property="collectionView" destination="c4D-TY-Zj9" id="AcN-H9-c2d"/>
                         <outlet property="viewTutorial" destination="ko2-Sy-9jW" id="NeJ-zy-db9"/>
                         <segue destination="pzV-eB-aU3" kind="show" identifier="taskPage" id="skG-7n-9d9"/>
+                        <segue destination="mTW-cx-I0L" kind="show" id="UA2-AH-Vqz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iow-kf-zfW" userLabel="First Responder" sceneMemberID="firstResponder"/>

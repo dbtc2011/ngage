@@ -10,9 +10,10 @@ import UIKit
 
 protocol ProfileCollectionViewCellDelegate {
     
-    func profileShouldGetPoints()
+    func profileShouldGetPoints(withCell cell: ProfileCollectionViewCell)
     func profileDidSelect(link: String)
 }
+
 class ProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewContent: UIView!
     
@@ -89,6 +90,10 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         
     }
     
+    func updatePoints(withPoints points: String) {
+        self.points.text = points
+    }
+    
     @IBAction func aboutUsClicked(_ sender: UIButton) {
         delegate?.profileDidSelect(link: "about_us")
     }
@@ -99,6 +104,10 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     
     @IBAction func termsButtonClicked(_ sender: UIButton) {
         delegate?.profileDidSelect(link: "terms")
+    }
+    
+    @IBAction func reloadButtonClicked(_ sender: UIButton) {
+        delegate?.profileShouldGetPoints(withCell: self)
     }
     
     @IBAction func privacyButtonClicked(_ sender: UIButton) {

@@ -581,14 +581,59 @@ extension HomeViewController : MarketPlaceAdsViewDelegate {
 }
 
 extension HomeViewController: ProfileCollectionViewCellDelegate {
-    func profileShouldGetPoints() {
+    func profileShouldGetPoints(withCell cell: ProfileCollectionViewCell) {
+        showSpinner()
         
+        RegisterService.refreshPoints(fbid: self.user.facebookId) { (json, error) in
+            self.hideSpinner()
+            
+            guard error == nil else {
+                self.presentDefaultAlertWithMessage(message: error!.localizedDescription)
+                return
+            }
+            
+            guard json != nil else {
+                self.presentDefaultAlertWithMessage(message: "Unable to reload points")
+                return
+            }
+            
+            let resultDict = json!.dictionary
+            guard resultDict != nil else {
+                self.presentDefaultAlertWithMessage(message: "Unable to reload points")
+                return
+            }
+            
+            if let statusCode = resultDict!["StatusCode"], let castedStatusCode = statusCode.int {
+                guard castedStatusCode == 2 else {
+                    self.presentDefaultAlertWithMessage(message: "Unable to reload points")
+                    return
+                }
+                
+                if let points = resultDict!["Points"], let casted = points.int {
+                    let strCasted = "\(casted)"
+                    CoreDataManager.sharedInstance.updateUserPoints(withPoints: strCasted, completionHandler: { (result) in
+                        
+                    })
+                    
+                    self.user.points = strCasted
+                    DispatchQueue.main.async {
+                        cell.updatePoints(withPoints: strCasted)
+                    }
+                }
+            }
+        }
     }
     
     func profileDidSelect(link: String) {
         switch link {
         case "about_us":
             openWebPageWithLink(link: "https://ngage.ph/tos_ngage.html")
+        case "faqs":
+            openWebPageWithLink(link: "https://ngage.ph/faq.html")
+        case "terms":
+            openWebPageWithLink(link: "https://ngage.ph/tos_ngage.html")
+        case "privacy":
+            openWebPageWithLink(link: "https://ngage.ph/privacy_policy_ngage.html")
         default:
             openWebPageWithLink(link: "https://ngage.ph/privacy_policy_ngage.html")
         }
