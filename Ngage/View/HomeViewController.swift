@@ -628,7 +628,6 @@ extension HomeViewController: ProfileCollectionViewCellDelegate {
         switch link {
         case "about_us":
             performSegue(withIdentifier: "goToAboutPage", sender: self)
-            openWebPageWithLink(link: "https://ngage.ph/tos_ngage.html")
         case "faqs":
             openWebPageWithLink(link: "https://ngage.ph/faq.html")
         case "terms":

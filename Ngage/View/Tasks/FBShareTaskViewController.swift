@@ -108,3 +108,33 @@ class FBShareTaskViewController: UIViewController {
     }
     
 }
+
+extension TaskViewController {
+    
+    func shareUsingFaceBook() {
+        
+    }
+    
+    func getShareFBData() {
+        RegisterService.getTaskContent(missionID: "\(mission.code)", taskID: "\(self.selectedTask.code)", tasktype: "\(self.selectedTask.type)", contentID: self.selectedTask.contentId, FBID: user.facebookId) { (result, error) in
+            if let result = result {
+                if let contents = result["content"].array {
+                    if let dictionary = contents[0].dictionary {
+                        var urlString = dictionary["URL"]?.string ?? ""
+                        urlString = urlString.replacingOccurrences(of: "http", with: "https")
+                        urlString = urlString.replacingOccurrences(of: "httpss", with: "https")
+                        if let url = URL(string: urlString) {
+//                            self.urlLink = url
+//                            self.webview.load(URLRequest(url: url))
+//                            self.webview.allowsBackForwardNavigationGestures = true
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+    
+    
+}
