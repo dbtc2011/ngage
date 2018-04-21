@@ -36,7 +36,7 @@ class NotificationDetailButtonTableViewCell: UITableViewCell {
     
     //MARK: - IBAction Delegate
     
-    @IBAction func didClickButton(withSender sender: UIButton) {
+    @IBAction func didClickButton(_ sender: UIButton) {
         if sender.tag == 1 {
             delegate.didClickUpdateApplication()
         } else {
