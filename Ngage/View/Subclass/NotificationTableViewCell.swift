@@ -34,7 +34,14 @@ class NotificationTableViewCell: UITableViewCell {
     func setupCell(withNotificationModel notification: NotificationModel) {
         lblTitle.text = notification.title
         lblMessage.text = notification.body
-        lblDate.text = notification.date
+        lblDate.text = ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZZ"
+        if let date = dateFormatter.date(from: notification.date) {
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            lblDate.text = dateFormatter.string(from: date)
+        }
     }
     
 }

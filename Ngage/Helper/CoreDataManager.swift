@@ -369,7 +369,7 @@ class CoreDataManager: NSObject {
                 notif.point = Int(result.point)
                 notif.rewardType = Int(result.rewardType)
                 notif.taskType = Int(result.taskType)
-                notif.notificationType = NotificationType(rawValue: result.notificationType ?? "")
+                notif.notificationType = result.notificationType ?? ""
                 notif.body = result.body ?? ""
                 notif.title = result.title ?? ""
                 notif.date = result.date ?? ""
@@ -519,6 +519,7 @@ class CoreDataManager: NSObject {
         notificationEntity.point = Int64(model.point)
         notificationEntity.body = model.body
         notificationEntity.title = model.title
-        notificationEntity.notificationType = model.notificationType.rawValue
+        notificationEntity.notificationType = model.notificationType
+        notificationEntity.date = model.date
     }
 }

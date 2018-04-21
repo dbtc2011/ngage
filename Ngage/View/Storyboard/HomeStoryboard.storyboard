@@ -1683,10 +1683,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31/1/2018" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjB-Xv-z8g">
-                                                    <rect key="frame" x="282" y="4" width="60" height="21"/>
+                                                    <rect key="frame" x="277" y="4" width="65" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="MPT-J1-S3u"/>
-                                                        <constraint firstAttribute="width" constant="60" id="mkj-XF-GLR"/>
+                                                        <constraint firstAttribute="width" constant="65" id="mkj-XF-GLR"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Montserrat-UltraLight" family="Montserrat" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -1764,7 +1764,7 @@
                     <connections>
                         <outlet property="imgNoData" destination="EdY-Sb-Ifz" id="ZUy-hW-LW4"/>
                         <outlet property="tblNotifications" destination="CwJ-H7-xpL" id="uJq-9Q-PaS"/>
-                        <segue destination="kb5-KL-lxI" kind="show" id="RHt-Hm-evX"/>
+                        <segue destination="kb5-KL-lxI" kind="show" identifier="didSelectNotification" id="RHt-Hm-evX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZ4-oO-s5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1775,7 +1775,7 @@
         <scene sceneID="FCH-8Q-2pT">
             <objects>
                 <tableViewController id="kb5-KL-lxI" customClass="NotificationDetailsTableViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="4u5-2B-6tj">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" id="4u5-2B-6tj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1831,6 +1831,7 @@
                                         <constraint firstItem="elW-Nb-FbP" firstAttribute="top" secondItem="EnU-d4-PdS" secondAttribute="top" constant="10" id="p1v-fz-K4z"/>
                                         <constraint firstItem="ngr-pC-nzw" firstAttribute="leading" secondItem="EnU-d4-PdS" secondAttribute="leading" id="sHk-qq-iCl"/>
                                         <constraint firstAttribute="bottom" secondItem="ngr-pC-nzw" secondAttribute="bottom" id="tjI-kC-a8R"/>
+                                        <constraint firstItem="ngr-pC-nzw" firstAttribute="top" secondItem="elW-Nb-FbP" secondAttribute="bottom" constant="9" id="uRa-D9-Vfe"/>
                                         <constraint firstItem="AYN-pq-x5U" firstAttribute="leading" secondItem="elW-Nb-FbP" secondAttribute="trailing" constant="8" id="wuW-Xd-LhB"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1888,6 +1889,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="7fT-5Z-lpl" firstAttribute="top" secondItem="o28-tj-HHV" secondAttribute="topMargin" constant="4" id="XJZ-7I-ZMk"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7fT-5Z-lpl" secondAttribute="bottom" constant="4" id="oPi-kk-fZI"/>
                                         <constraint firstItem="7fT-5Z-lpl" firstAttribute="centerX" secondItem="o28-tj-HHV" secondAttribute="centerX" id="w4w-xB-f75"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1917,7 +1919,9 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="ia9-TC-lXf" firstAttribute="top" secondItem="4Lp-f9-jNI" secondAttribute="topMargin" constant="4" id="3Gg-cG-kQ7"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ia9-TC-lXf" secondAttribute="bottom" constant="4" id="Ero-LR-Gbf"/>
                                         <constraint firstItem="ia9-TC-lXf" firstAttribute="centerX" secondItem="4Lp-f9-jNI" secondAttribute="centerX" id="XQ4-a6-fe6"/>
+                                        <constraint firstItem="ia9-TC-lXf" firstAttribute="top" secondItem="4Lp-f9-jNI" secondAttribute="topMargin" constant="4" id="qmq-JH-FHj"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1930,6 +1934,15 @@
                             <outlet property="delegate" destination="kb5-KL-lxI" id="CsO-i6-Vja"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="4fo-Sg-28x">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="bTN-qI-fwF">
+                            <connections>
+                                <action selector="didPressBack:" destination="kb5-KL-lxI" id="fU5-By-FGF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u35-ZJ-CtB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

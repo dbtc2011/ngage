@@ -65,6 +65,15 @@ class NotificationViewController: MainViewController {
         
         dismiss(animated: false, completion: nil)
     }
+    
+    //MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? NotificationDetailsTableViewController,
+            let indexPath = sender as? IndexPath {
+            vc.notification = notifications[indexPath.row]
+        }
+    }
 }
 
 extension NotificationViewController: UITableViewDataSource {
@@ -88,5 +97,7 @@ extension NotificationViewController: UITableViewDataSource {
 extension NotificationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "didSelectNotification", sender: indexPath)
     }
 }

@@ -30,6 +30,12 @@ class NotificationDetailHeaderTableViewCell: UITableViewCell {
     //MARK: - Methods
     
     func setDate(withDate date: String) {
-        lblDate.text = date
+        lblDate.text = ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZZZ"
+        if let date = dateFormatter.date(from: date) {
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            lblDate.text = dateFormatter.string(from: date)
+        }
     }
 }

@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum NotificationType: String {
-    case UP = "UP", //Blast All - New Version with Button Update
-    I = "I", //Blast All - with Invite Button
-    Default
-}
-
 class NotificationModel: NSObject {
     
     var id: Int = 0
@@ -23,7 +17,7 @@ class NotificationModel: NSObject {
     var point: Int = 0
     var taskType: Int = 0
     var date: String = ""
-    var notificationType: NotificationType!
+    var notificationType: String = ""
     
     convenience init(id: Int, info: [String: Any]) {
         self.init()
@@ -31,18 +25,15 @@ class NotificationModel: NSObject {
         self.rewardType = info["gcm.notification.reward_type"] as? Int ?? 0
         self.taskType = info["gcm.notification.task_type"] as? Int ?? 0
         self.point = info["gcm.notification.points"] as? Int ?? 0
-        self.notificationType = NotificationType(rawValue: info["gcm.notification.notification_type"] as? String ?? "")
+        self.notificationType = info["gcm.notification.notification_type"] as? String ?? ""
         
         if let notificationContent = info["aps"] as? [String: Any],
             let alert = notificationContent["alert"] as? [String: String] {
-            self.title = alert["title"] as? String ?? ""
-            self.body = alert["body"] as? String ?? ""
+            self.title = alert["title"] ?? ""
+            self.body = alert["body"] ?? ""
         }
         
-        let dateToday = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        self.date = dateFormatter.string(from: dateToday)
+        self.date = "\(NSDate())"
     }
     
     convenience init(data: NotificationDataModel) {
@@ -54,6 +45,6 @@ class NotificationModel: NSObject {
         self.title = data.title ?? ""
         self.body = data.body ?? ""
         self.date = data.date ?? ""
-        self.notificationType = NotificationType(rawValue: data.notificationType ?? "")
+        self.notificationType = data.notificationType ?? ""
     }
 }

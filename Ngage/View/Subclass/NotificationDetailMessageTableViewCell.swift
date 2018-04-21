@@ -37,6 +37,5 @@ class NotificationDetailMessageTableViewCell: UITableViewCell {
         attributedContent.append(NSAttributedString(string: "\n\n\(notification.body)", attributes: bodyAttribute))
         
         lblMessage.attributedText = attributedContent
-        lblMessage.sizeToFit()
     }
 }
