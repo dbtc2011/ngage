@@ -10,8 +10,12 @@ import UIKit
 
 class NotificationDetailHeaderTableViewCell: UITableViewCell {
     
+    //MARK: - Properties
+    
     @IBOutlet weak var lblDate: UILabel!
 
+    //MARK: - View Life Cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,4 +27,9 @@ class NotificationDetailHeaderTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    //MARK: - Methods
+    
+    func setDate(withDate date: String) {
+        lblDate.text = date
+    }
 }

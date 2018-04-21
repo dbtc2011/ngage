@@ -29,6 +29,7 @@
 		4983E452208B38C00018A0EF /* NotificationDetailHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4983E451208B38C00018A0EF /* NotificationDetailHeaderTableViewCell.swift */; };
 		4983E454208B38CC0018A0EF /* NotificationDetailMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4983E453208B38CC0018A0EF /* NotificationDetailMessageTableViewCell.swift */; };
 		4983E456208B38D80018A0EF /* NotificationDetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4983E455208B38D80018A0EF /* NotificationDetailButtonTableViewCell.swift */; };
+		4983E458208B3BB20018A0EF /* NotificationDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4983E457208B3BB20018A0EF /* NotificationDetailsTableViewController.swift */; };
 		4994B0BD3E4BAF9D60EB6542 /* Pods_NgageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C35B8404EBAAA8F1D694A /* Pods_NgageTests.framework */; };
 		5003679A20270770007E693A /* WebViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003679920270770007E693A /* WebViewTaskViewController.swift */; };
 		50141F58202CC6630082EF2B /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50141F57202CC6630082EF2B /* AudioPlayerView.swift */; };
@@ -167,6 +168,7 @@
 		4983E451208B38C00018A0EF /* NotificationDetailHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDetailHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		4983E453208B38CC0018A0EF /* NotificationDetailMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDetailMessageTableViewCell.swift; sourceTree = "<group>"; };
 		4983E455208B38D80018A0EF /* NotificationDetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDetailButtonTableViewCell.swift; sourceTree = "<group>"; };
+		4983E457208B3BB20018A0EF /* NotificationDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDetailsTableViewController.swift; sourceTree = "<group>"; };
 		500367902026FA77007E693A /* Ngage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ngage-Bridging-Header.h"; sourceTree = "<group>"; };
 		5003679920270770007E693A /* WebViewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTaskViewController.swift; sourceTree = "<group>"; };
 		50141F57202CC6630082EF2B /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				506C3479203854B1004E651C /* ContactListViewController.swift */,
 				50ED77EF203A1529004CAA74 /* HistoryViewController.swift */,
 				35EEFF622072B1DD001573F1 /* NotificationViewController.swift */,
+				4983E457208B3BB20018A0EF /* NotificationDetailsTableViewController.swift */,
 				5049CA38204BC5CA006E71BB /* DrawerWebViewController.swift */,
 				8CF7451F2029FD4D00C44C06 /* Market Place */,
 				5003679820270720007E693A /* Tasks */,
@@ -977,6 +980,7 @@
 				503A596F2043227200EB4687 /* CustomModalView.swift in Sources */,
 				50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */,
 				35E3FB84208A588000B62CC5 /* NotificationModel.swift in Sources */,
+				4983E458208B3BB20018A0EF /* NotificationDetailsTableViewController.swift in Sources */,
 				8CDE84B6201F7CA900C525A4 /* TaskModel.swift in Sources */,
 				8C3C3FCC2039F787000EBEEC /* RedeemMerchantFormViewController.swift in Sources */,
 				50A9C0F220389B8B00F46DE8 /* InstallTaskViewController.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="MissionDataModel" representedClassName="MissionDataModel" syncable="YES" codeGenerationType="class">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="code" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -23,6 +23,7 @@
     </entity>
     <entity name="NotificationDataModel" representedClassName="NotificationDataModel" syncable="YES" codeGenerationType="class">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notificationType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="point" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -63,8 +64,8 @@
     </entity>
     <elements>
         <element name="MissionDataModel" positionX="-18" positionY="-243" width="128" height="330"/>
+        <element name="NotificationDataModel" positionX="-18" positionY="-90" width="128" height="165"/>
         <element name="TaskDataModel" positionX="178" positionY="-243" width="128" height="270"/>
         <element name="UserDataModel" positionX="-216" positionY="-243" width="128" height="225"/>
-        <element name="NotificationDataModel" positionX="-18" positionY="-90" width="128" height="150"/>
     </elements>
 </model>

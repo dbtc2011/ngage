@@ -238,7 +238,7 @@ class CoreDataManager: NSObject {
             
         case is NotificationModel:
             let notifModel = model as! NotificationModel
-            saveModelTaskAsNotification(withModel: notifModel)
+            saveModelAsNotificationEntity(withModel: notifModel)
             
         default:
             break
@@ -369,9 +369,10 @@ class CoreDataManager: NSObject {
                 notif.point = Int(result.point)
                 notif.rewardType = Int(result.rewardType)
                 notif.taskType = Int(result.taskType)
-                notif.notifationType = result.notificationType ?? ""
+                notif.notificationType = NotificationType(rawValue: result.notificationType ?? "")
                 notif.body = result.body ?? ""
                 notif.title = result.title ?? ""
+                notif.date = result.date ?? ""
                 convertedResults.append(notif as AnyObject)
             }
         }
@@ -489,8 +490,7 @@ class CoreDataManager: NSObject {
         taskEntity.type = Int64(model.type)
     }
     
-    private func saveModelTaskAsNotification(withModel model: NotificationModel) {
-        
+    private func saveModelAsNotificationEntity(withModel model: NotificationModel) {
         let entityDescription =  NSEntityDescription.entity(forEntityName: "NotificationDataModel",
                                                             in:managedObjectContext)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
@@ -498,28 +498,27 @@ class CoreDataManager: NSObject {
         fetchRequest.entity = entityDescription
         fetchRequest.predicate = predicate
         
-        var taskEntity: NotificationDataModel!
+        var notificationEntity: NotificationDataModel!
         
         do {
             let fetchRawResults = try managedObjectContext.fetch(fetchRequest) as! [NotificationDataModel]
             
             if let entity = fetchRawResults.first {
-                taskEntity = entity
+                notificationEntity = entity
             } else {
-                taskEntity = NSEntityDescription.insertNewObject(forEntityName: "NotificationDataModel", into: managedObjectContext) as! NotificationDataModel
+                notificationEntity = NSEntityDescription.insertNewObject(forEntityName: "NotificationDataModel", into: managedObjectContext) as! NotificationDataModel
             }
         } catch let error {
             errorDescription = error.localizedDescription
             return
         }
         
-        taskEntity.id = Int64(model.id)
-        taskEntity.rewardType = Int64(model.rewardType)
-        taskEntity.taskType = Int64(model.taskType)
-        taskEntity.point = Int64(model.point)
-        taskEntity.body = model.body
-        taskEntity.title = model.title
-        taskEntity.notificationType = model.notifationType
-        
+        notificationEntity.id = Int64(model.id)
+        notificationEntity.rewardType = Int64(model.rewardType)
+        notificationEntity.taskType = Int64(model.taskType)
+        notificationEntity.point = Int64(model.point)
+        notificationEntity.body = model.body
+        notificationEntity.title = model.title
+        notificationEntity.notificationType = model.notificationType.rawValue
     }
 }

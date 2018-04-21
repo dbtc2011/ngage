@@ -10,7 +10,11 @@ import UIKit
 
 class NotificationDetailMessageTableViewCell: UITableViewCell {
 
+    //MARK: - Properties
+    
     @IBOutlet weak var lblMessage: UILabel!
+    
+    //MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +26,17 @@ class NotificationDetailMessageTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    //MARK: - Methods
+    
+    func setContent(withNotificationModel notification: NotificationModel) {
+        let titleAttribute = [NSAttributedStringKey.font: UIFont(name: "Montserrat-Medium", size: 20.0)!]
+        let bodyAttribute = [NSAttributedStringKey.font: UIFont(name: "Montserrat-Light", size: 17.0)!]
+        
+        let attributedContent = NSMutableAttributedString(string: notification.title, attributes: titleAttribute)
+        attributedContent.append(NSAttributedString(string: "\n\n\(notification.body)", attributes: bodyAttribute))
+        
+        lblMessage.attributedText = attributedContent
+        lblMessage.sizeToFit()
+    }
 }

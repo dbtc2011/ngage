@@ -8,19 +8,6 @@
 
 import UIKit
 
-enum NotifcationType: String {
-    case UP = "UP", //Blast All - New Version with Button Update
-         I = "I", //Blast All - with Invite Button
-         Default
-}
-
-struct NotificationModel {
-    var id: NotifcationType!
-    var title = ""
-    var message = ""
-    var date = ""
-}
-
 class NotificationViewController: MainViewController {
 
     //MARK: - Properties
@@ -54,14 +41,6 @@ class NotificationViewController: MainViewController {
     //MARK: - Methods
     
     private func setupMockData() {
-        let notificationUpdate = NotificationModel(id: .UP, title: "Update Available",
-                                                  message: "We will be giving 10 points for each referral so go and tell your friends about Ngage! Thank you!", date: "31/1/2018")
-        let notificationInvite = NotificationModel(id: .I, title: "Invite",
-                                                  message: "Earn more points by inviting your friends to install Ngage and make sure to give them your referral code.", date: "21/4/2018")
-        let notificationDefault = NotificationModel(id: .Default, title: "Announcement",
-                                                  message: "This is just a test default announcement. This is just a test default announcement. This is just a test default announcement. This is just a test default announcement. This is just a test default announcement. This is just a test default announcement. This is just a test default announcement. This is just a test default announcement. This is just a test default announcement. This is just a test default announcement.", date: "01/05/2018")
-        notifications = [notificationUpdate, notificationInvite, notificationDefault]
-        
         tblNotifications.reloadData()
         
         if notifications.count == 0 {

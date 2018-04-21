@@ -8,9 +8,20 @@
 
 import UIKit
 
+protocol NotificationDetailButtonTableViewCellDelegate {
+    func didClickUpdateApplication()
+    func didClickInviteFriends()
+}
+
 class NotificationDetailButtonTableViewCell: UITableViewCell {
 
+    //MARK: - Properties
+    
     @IBOutlet weak var btnAction: UIButton!
+    
+    var delegate: NotificationDetailButtonTableViewCellDelegate!
+    
+    //MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +33,14 @@ class NotificationDetailButtonTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    //MARK: - IBAction Delegate
+    
+    @IBAction func didClickButton(withSender sender: UIButton) {
+        if sender.tag == 1 {
+            delegate.didClickUpdateApplication()
+        } else {
+            delegate.didClickInviteFriends()
+        }
+    }
 }
