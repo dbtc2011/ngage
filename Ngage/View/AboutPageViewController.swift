@@ -10,15 +10,24 @@ import UIKit
 
 class AboutPageViewController: UIViewController {
 
+    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var version: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupUI()
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupUI() {
+        
+        if let versionValue = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            version.text = "Version \(versionValue)"
+        }
     }
     
 
@@ -31,5 +40,13 @@ class AboutPageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    
+    @IBAction func backButtonClicked(_ sender: UIButton) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    @IBAction func termsButtonClicked(_ sender: UIButton) {
+        
+    }
+    
 }
