@@ -79,17 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().isAutoInitEnabled = true
-        let apnsToken = Messaging.messaging().apnsToken
-        print("APNS TOKEN")
-        print(apnsToken)
-        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        let notifModel = NotificationModel()
-        notifModel.id = 101
-        notifModel.body = token
-        
-        
+        Messaging.messaging().apnsToken = deviceToken
         Messaging.messaging().delegate = self
-        
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -102,19 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
-        
-        let notifModel = NotificationModel()
-        notifModel.id = 100
-        notifModel.body = fcmToken
-        CoreDataManager.sharedInstance.saveModelToCoreData(withModel: notifModel as AnyObject) { (result) in
-            
-        }
-        print("FCM Token = \(fcmToken)")
-        print("Instance ID = \(InstanceID.instanceID().token())")
-        
-        CoreDataManager.sharedInstance.saveModelToCoreData(withModel: notifModel as AnyObject) { (result) in
-            
-        }
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
         UserDefaults.standard.setValue(fcmToken, forKey: Keys.DeviceID)
