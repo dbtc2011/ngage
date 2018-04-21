@@ -79,7 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().isAutoInitEnabled = true
-        let apnsToken = Messaging.messaging().apnsToken
+        Messaging.messaging().apnsToken = deviceToken
+        
         print("APNS TOKEN")
         print(apnsToken)
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
