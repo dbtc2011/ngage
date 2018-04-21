@@ -142,7 +142,7 @@ class CoreDataManager: NSObject {
         return true
     }
     
-    func getNotifcationCount() -> Int {
+    func getNotificationCount() -> Int {
         let entityDescription =  NSEntityDescription.entity(forEntityName: "NotificationDataModel",
                                                             in:managedObjectContext)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()

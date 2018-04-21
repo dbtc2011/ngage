@@ -28,12 +28,16 @@ class NotificationModel: NSObject {
     convenience init(id: Int, info: [String: Any]) {
         self.init()
         self.id = id
-        self.title = info["title"] as? String ?? ""
-        self.body = info["body"] as? String ?? ""
-        self.rewardType = info["reward_type"] as? Int ?? 0
-        self.taskType = info["task_type"] as? Int ?? 0
-        self.point = info["point"] as? Int ?? 0
-        self.notificationType = NotificationType(rawValue: info["notification_type"] as? String ?? "")
+        self.rewardType = info["gcm.notification.reward_type"] as? Int ?? 0
+        self.taskType = info["gcm.notification.task_type"] as? Int ?? 0
+        self.point = info["gcm.notification.points"] as? Int ?? 0
+        self.notificationType = NotificationType(rawValue: info["gcm.notification.notification_type"] as? String ?? "")
+        
+        if let notificationContent = info["aps"] as? [String: Any],
+            let alert = notificationContent["alert"] as? [String: String] {
+            self.title = alert["title"] as? String ?? ""
+            self.body = alert["body"] as? String ?? ""
+        }
         
         let dateToday = Date()
         let dateFormatter = DateFormatter()
