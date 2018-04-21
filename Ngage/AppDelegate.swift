@@ -85,6 +85,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("Message has been received = \(userInfo)")
+        
+        let index = CoreDataManager.sharedInstance.getNotificationCount() + 1
+        if let dictInfo = userInfo as? [String: Any] {
+            let notificationModel = NotificationModel(id: index, info: dictInfo)
+            CoreDataManager.sharedInstance.saveModelToCoreData(withModel: notificationModel, completionHandler: { (result) in
+                
+            })
+        }
     }
 
     
@@ -100,16 +108,7 @@ extension AppDelegate: MessagingDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let notifModel = NotificationModel()
-        notifModel.id = CoreDataManager.sharedInstance.getNotifcationCount()
-        notifModel.body = response.notification.request.content.body
-        
-        CoreDataManager.sharedInstance.saveModelToCoreData(withModel: notifModel as AnyObject) { (result) in
-            
-        }
-        
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {        
     }
     
 }

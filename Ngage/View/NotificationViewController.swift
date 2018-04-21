@@ -41,10 +41,16 @@ class NotificationViewController: MainViewController {
     //MARK: - Methods
     
     private func setupMockData() {
-        tblNotifications.reloadData()
-        
-        if notifications.count == 0 {
-            imgNoData.isHidden = false
+        CoreDataManager.sharedInstance.fetchSavedObjects(forEntity: .Notification) { (result, notifications) in
+            if result == .Success {
+                self.notifications = notifications as! [NotificationModel]
+            }
+            
+            self.tblNotifications.reloadData()
+            
+            if self.notifications.count == 0 {
+                self.imgNoData.isHidden = false
+            }
         }
     }
     
