@@ -15,6 +15,7 @@
 		359E4F58206FF88900644087 /* CustomProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359E4F57206FF88900644087 /* CustomProgressView.xib */; };
 		359E4F5E20701D7600644087 /* TasksCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */; };
 		359E4F622071FBA500644087 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359E4F612071FBA500644087 /* GoogleService-Info.plist */; };
+		35B12BD5208B5FCA00AB80A0 /* AboutPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B12BD4208B5FCA00AB80A0 /* AboutPageViewController.swift */; };
 		35DFC6892066959B00F749E0 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFC6882066959A00F749E0 /* TutorialViewController.swift */; };
 		35E0A374207E6515001E2538 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A36F207E6515001E2538 /* Montserrat-Bold.otf */; };
 		35E0A375207E6515001E2538 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A370207E6515001E2538 /* Montserrat-Light.otf */; };
@@ -150,6 +151,7 @@
 		359E4F57206FF88900644087 /* CustomProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomProgressView.xib; sourceTree = "<group>"; };
 		359E4F5D20701D7600644087 /* TasksCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCompletedViewController.swift; sourceTree = "<group>"; };
 		359E4F612071FBA500644087 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		35B12BD4208B5FCA00AB80A0 /* AboutPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPageViewController.swift; sourceTree = "<group>"; };
 		35DFC6882066959A00F749E0 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		35E0A36F207E6515001E2538 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		35E0A370207E6515001E2538 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 			children = (
 				509B0FA32019A74B00DC0F21 /* Storyboard */,
 				503E62D3201A1CD900363D80 /* HomeViewController.swift */,
+				35B12BD4208B5FCA00AB80A0 /* AboutPageViewController.swift */,
 				5020B5CD201C677A00A3933F /* TaskViewController.swift */,
 				50C12599201F03FA0051D3E8 /* LoginViewController.swift */,
 				35DFC6882066959A00F749E0 /* TutorialViewController.swift */,
@@ -1019,6 +1022,7 @@
 				50F15E182022000700A3E589 /* OnboardingViewController.swift in Sources */,
 				503E62D4201A1CD900363D80 /* HomeViewController.swift in Sources */,
 				5081493B201A2CFC00D66514 /* String.swift in Sources */,
+				35B12BD5208B5FCA00AB80A0 /* AboutPageViewController.swift in Sources */,
 				50C8B009201F32230014DCEF /* APIManager.swift in Sources */,
 				8CDE8497201F69C400C525A4 /* Ngage.xcdatamodeld in Sources */,
 				8CCD9CE8202C961C000D887F /* RedeemableModel.swift in Sources */,

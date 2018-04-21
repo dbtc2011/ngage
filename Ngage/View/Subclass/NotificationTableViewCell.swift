@@ -33,8 +33,8 @@ class NotificationTableViewCell: UITableViewCell {
     
     func setupCell(withNotificationModel notification: NotificationModel) {
         lblTitle.text = notification.title
-        lblMessage.text = notification.message
-        lblDate.text = notification.date
+        lblMessage.text = notification.body
+        lblDate.text = ""
     }
     
 }
