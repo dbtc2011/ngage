@@ -21,6 +21,7 @@
 		35E0A376207E6515001E2538 /* Montserrat-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A371207E6515001E2538 /* Montserrat-UltraLight.otf */; };
 		35E0A377207E6515001E2538 /* Montserrat-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A372207E6515001E2538 /* Montserrat-Medium.otf */; };
 		35E0A378207E6515001E2538 /* ChewedPenBB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E0A373207E6515001E2538 /* ChewedPenBB.otf */; };
+		35E3FB84208A588000B62CC5 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E3FB83208A588000B62CC5 /* NotificationModel.swift */; };
 		35EEFF5F20729D67001573F1 /* MarketPlaceAdsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEFF5E20729D67001573F1 /* MarketPlaceAdsView.swift */; };
 		35EEFF6120729D79001573F1 /* MarketPlaceAdsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EEFF6020729D79001573F1 /* MarketPlaceAdsView.xib */; };
 		35EEFF632072B1DD001573F1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEFF622072B1DD001573F1 /* NotificationViewController.swift */; };
@@ -151,6 +152,7 @@
 		35E0A371207E6515001E2538 /* Montserrat-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-UltraLight.otf"; sourceTree = "<group>"; };
 		35E0A372207E6515001E2538 /* Montserrat-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.otf"; sourceTree = "<group>"; };
 		35E0A373207E6515001E2538 /* ChewedPenBB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChewedPenBB.otf; sourceTree = "<group>"; };
+		35E3FB83208A588000B62CC5 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		35EEFF5E20729D67001573F1 /* MarketPlaceAdsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPlaceAdsView.swift; sourceTree = "<group>"; };
 		35EEFF6020729D79001573F1 /* MarketPlaceAdsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketPlaceAdsView.xib; sourceTree = "<group>"; };
 		35EEFF622072B1DD001573F1 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				8CDE84B5201F7CA900C525A4 /* TaskModel.swift */,
 				8CCD9CE5202C95C3000D887F /* MarketModel.swift */,
 				8CCD9CE7202C961C000D887F /* RedeemableModel.swift */,
+				35E3FB83208A588000B62CC5 /* NotificationModel.swift */,
 			);
 			name = Model;
 			path = Ngage/Model;
@@ -961,6 +964,7 @@
 				50A41D622025C5BD0062A287 /* Color.swift in Sources */,
 				503A596F2043227200EB4687 /* CustomModalView.swift in Sources */,
 				50FC56DB201BAAC70015D4C5 /* DrawerViewController.swift in Sources */,
+				35E3FB84208A588000B62CC5 /* NotificationModel.swift in Sources */,
 				8CDE84B6201F7CA900C525A4 /* TaskModel.swift in Sources */,
 				8C3C3FCC2039F787000EBEEC /* RedeemMerchantFormViewController.swift in Sources */,
 				50A9C0F220389B8B00F46DE8 /* InstallTaskViewController.swift in Sources */,

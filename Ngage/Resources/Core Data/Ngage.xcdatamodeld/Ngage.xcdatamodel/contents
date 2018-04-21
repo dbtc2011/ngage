@@ -21,6 +21,15 @@
         <relationship name="missionTask" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskDataModel" inverseName="mission" inverseEntity="TaskDataModel" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserDataModel" inverseName="userMission" inverseEntity="UserDataModel" syncable="YES"/>
     </entity>
+    <entity name="NotificationDataModel" representedClassName="NotificationDataModel" syncable="YES" codeGenerationType="class">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notificationType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="point" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rewardType" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="taskType" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="TaskDataModel" representedClassName="TaskDataModel" syncable="YES" codeGenerationType="class">
         <attribute name="code" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="contentId" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,5 +65,6 @@
         <element name="MissionDataModel" positionX="-18" positionY="-243" width="128" height="330"/>
         <element name="TaskDataModel" positionX="178" positionY="-243" width="128" height="270"/>
         <element name="UserDataModel" positionX="-216" positionY="-243" width="128" height="225"/>
+        <element name="NotificationDataModel" positionX="-18" positionY="-90" width="128" height="150"/>
     </elements>
 </model>
