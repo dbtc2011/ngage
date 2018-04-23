@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 import Firebase
 import FBSDKLoginKit
+import KYDrawerController
 
 @UIApplicationMain
 
@@ -42,6 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: Bundle.main)
             let controller = storyboard.instantiateInitialViewController()
             window?.rootViewController = controller
+        }
+        
+        if let launchOptions = launchOptions,
+            let notification = launchOptions[UIApplicationLaunchOptionsKey.remoteNotification] as? [String: AnyObject] {
+            process(notification: notification, withApplication: application)
         }
         
         return true
@@ -84,21 +90,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("Message has been received = \(userInfo)")
-        
-        guard CoreDataManager.sharedInstance.getMainUser() != nil else { return }
-        
-        if let dictInfo = userInfo as? [String: AnyObject] {
-            let notificationModel = NotificationModel(info: dictInfo)
-            CoreDataManager.sharedInstance.saveModelToCoreData(withModel: notificationModel, completionHandler: { (result) in
-                if let drawer = self.window?.rootViewController as? DrawerViewController {
-                    drawer.showViewController(withIdentifier: "NotificationNavi",
-                                              fromStoryboard: "HomeStoryboard", link: "")
-                }
-            })
+        if let info = userInfo as? [String: AnyObject] {
+            process(notification: info, withApplication: application)
         }
     }
 
+    private func process(notification notificationInfo: [String: AnyObject], withApplication application: UIApplication) {
+        print("Message has been received = \(notificationInfo)")
+        
+        guard CoreDataManager.sharedInstance.getMainUser() != nil else { return }
+        
+        let notificationModel = NotificationModel(info: notificationInfo)
+        CoreDataManager.sharedInstance.saveModelToCoreData(withModel: notificationModel, completionHandler: { (result) in
+            guard application.applicationState != .active else { return }
+            
+            if let parent = self.window?.rootViewController as? KYDrawerController,
+                let drawer = parent.childViewControllers.first as? DrawerViewController {
+                drawer.showViewController(withIdentifier: "NotificationNavi", fromStoryboard: "HomeStoryboard", link: "")
+            }
+        })
+    }
     
 
 }

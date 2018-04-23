@@ -30,6 +30,6 @@ class NotificationDetailHeaderTableViewCell: UITableViewCell {
     //MARK: - Methods
     
     func setDate(withDate date: String) {
-        blDate.text = notification.date.components(separatedBy: " ").first ?? ""
+        lblDate.text = date.components(separatedBy: " ").first ?? ""
     }
 }

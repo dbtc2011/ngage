@@ -23,7 +23,7 @@ class NotificationModel: NSObject {
         self.init()
         self.id = info["NotifID"] as? Int ?? 0
         self.title = info["title"] as? String ?? ""
-        self.body = info["body"] as? String ?? ""
+        self.body = (info["body"] as? String ?? "").replacingOccurrences(of: "<br\\/>", with: "\n")
         self.notificationType = info["Type"] as? String ?? ""
         self.date = info["DTCreated"] as? String ?? ""
         
