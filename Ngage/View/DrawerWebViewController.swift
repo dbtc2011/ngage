@@ -26,12 +26,35 @@ class DrawerWebViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
+     @IBAction func aboutUsClicked(_ sender: UIButton) {
+     delegate?.profileDidSelect(link: "about_us")
+     }
+     
+     @IBAction func faqsButtonClicked(_ sender: UIButton) {
+     delegate?.profileDidSelect(link: "faqs")
+     }
+     
+     @IBAction func termsButtonClicked(_ sender: UIButton) {
+     delegate?.profileDidSelect(link: "terms")
+     }
+     
+     @IBAction func reloadButtonClicked(_ sender: UIButton) {
+     delegate?.profileShouldGetPoints(withCell: self)
+     }
+     
+     @IBAction func privacyButtonClicked(_ sender: UIButton) {
+     delegate?.profileDidSelect(link: "privacy")
+     }
+ */
     func setupUI() {
         print("URL = \(webLink)")
         if webLink.contains("privacy_policy") {
             labelTitle.text = "Privacy Policy"
-        }else {
-            labelTitle.text = "About Us"
+        }else if webLink.contains("faq") {
+            labelTitle.text = "FAQs"
+        }else if webLink.contains("tos_ngage") {
+            labelTitle.text = "Terms and Conditions"
         }
         if let url = URL(string: webLink) {
             webView.load(URLRequest(url: url))

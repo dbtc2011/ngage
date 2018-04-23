@@ -24,28 +24,33 @@ class AboutPageViewController: UIViewController {
     }
     
     func setupUI() {
-        
+
         if let versionValue = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             version.text = "Version \(versionValue)"
         }
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let controller = segue.destination as? DrawerWebViewController {
+            controller.webLink = "https://ngage.ph/tos_ngage.html"
+        }
     }
-    */
+ 
     
     
     @IBAction func backButtonClicked(_ sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }
     @IBAction func termsButtonClicked(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "goToTerms", sender: self)
+        
         
     }
     
