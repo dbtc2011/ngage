@@ -19,21 +19,17 @@ class NotificationModel: NSObject {
     var date: String = ""
     var notificationType: String = ""
     
-    convenience init(id: Int, info: [String: Any]) {
+    convenience init(info: [String: AnyObject]) {
         self.init()
-        self.id = id
-        self.rewardType = info["gcm.notification.reward_type"] as? Int ?? 0
-        self.taskType = info["gcm.notification.task_type"] as? Int ?? 0
-        self.point = info["gcm.notification.points"] as? Int ?? 0
-        self.notificationType = info["gcm.notification.notification_type"] as? String ?? ""
+        self.id = info["NotifID"] as? Int ?? 0
+        self.title = info["title"] as? String ?? ""
+        self.body = info["body"] as? String ?? ""
+        self.notificationType = info["Type"] as? String ?? ""
+        self.date = info["DTCreated"] as? String ?? ""
         
-        if let notificationContent = info["aps"] as? [String: Any],
-            let alert = notificationContent["alert"] as? [String: String] {
-            self.title = alert["title"] ?? ""
-            self.body = alert["body"] ?? ""
-        }
-        
-        self.date = "\(NSDate())"
+        self.rewardType = info["reward_type"] as? Int ?? 0
+        self.taskType = info["task_type"] as? Int ?? 0
+        self.point = info["points"] as? Int ?? 0
     }
     
     convenience init(data: NotificationDataModel) {
