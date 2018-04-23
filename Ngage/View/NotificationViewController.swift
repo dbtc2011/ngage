@@ -22,7 +22,7 @@ class NotificationViewController: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupMockData()
+        setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,7 +40,7 @@ class NotificationViewController: MainViewController {
     
     //MARK: - Methods
     
-    private func setupMockData() {
+    private func setupData() {
         CoreDataManager.sharedInstance.fetchSavedObjects(forEntity: .Notification) { (result, notifications) in
             if result == .Success {
                 self.notifications = notifications as! [NotificationModel]

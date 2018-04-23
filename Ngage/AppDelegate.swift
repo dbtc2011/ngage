@@ -78,8 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        
-        
         Messaging.messaging().isAutoInitEnabled = true
         Messaging.messaging().apnsToken = deviceToken
         Messaging.messaging().delegate = self
@@ -88,11 +86,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("Message has been received = \(userInfo)")
         
-        let index = CoreDataManager.sharedInstance.getNotificationCount() + 1
-        if let dictInfo = userInfo as? [String: Any] {
-            let notificationModel = NotificationModel(id: index, info: dictInfo)
+        guard CoreDataManager.sharedInstance.getMainUser() != nil else { return }
+        
+        if let dictInfo = userInfo as? [String: AnyObject] {
+            let notificationModel = NotificationModel(info: dictInfo)
             CoreDataManager.sharedInstance.saveModelToCoreData(withModel: notificationModel, completionHandler: { (result) in
-                
+                if let drawer = self.window?.rootViewController as? DrawerViewController {
+                    drawer.showViewController(withIdentifier: "NotificationNavi",
+                                              fromStoryboard: "HomeStoryboard", link: "")
+                }
             })
         }
     }
