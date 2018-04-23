@@ -78,6 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        
         Messaging.messaging().isAutoInitEnabled = true
         Messaging.messaging().apnsToken = deviceToken
         Messaging.messaging().delegate = self
