@@ -27,7 +27,7 @@ class TasksCompletedViewController: UIViewController {
         view.isOpaque = false
         view.backgroundColor = UIColor.clear
         buttonOk.layer.cornerRadius = 27
-        buttonOk.backgroundColor = UIColor(red: 122.0/255.0, green: 190.0/255.0, blue: 86.0/255.0, alpha: 1)
+        buttonOk.backgroundColor = UIColor(red: 122.0/255.0, green: 190.0/255.0, blue: 86.0/255.0, alpha: 0.9)
     }
 
     override func didReceiveMemoryWarning() {

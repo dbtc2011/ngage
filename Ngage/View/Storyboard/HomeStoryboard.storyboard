@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ODi-ut-IlV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ODi-ut-IlV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -15,14 +15,6 @@
     <customFonts key="customFonts">
         <array key="ChewedPenBB.otf">
             <string>ChewedPenBB</string>
-        </array>
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-            <string>HelveticaNeue-Medium</string>
-        </array>
-        <array key="HelveticaNeueLights.ttc">
-            <string>HelveticaNeue-Light</string>
-            <string>HelveticaNeue-Thin</string>
         </array>
         <array key="Montserrat-Bold.otf">
             <string>Montserrat-Bold</string>
@@ -359,7 +351,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_background_reward_02" translatesAutoresizingMaskIntoConstraints="NO" id="tbL-kI-h6w">
                                 <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C95-Us-G3H">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_timer" translatesAutoresizingMaskIntoConstraints="NO" id="C95-Us-G3H">
                                 <rect key="frame" x="70" y="90" width="235" height="235"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="C95-Us-G3H" secondAttribute="height" multiplier="1:1" id="5RN-Vu-h5d"/>
@@ -407,11 +399,17 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r2A-95-PGr">
+                                <rect key="frame" x="70" y="90" width="235" height="235"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Njb-KH-aye" firstAttribute="centerX" secondItem="ayA-e8-Spq" secondAttribute="centerX" id="0fv-hL-AaI"/>
                             <constraint firstItem="wUo-sL-jCg" firstAttribute="top" secondItem="6Xm-Q8-O5T" secondAttribute="bottom" constant="20" id="4mu-Kw-ZJR"/>
+                            <constraint firstItem="r2A-95-PGr" firstAttribute="leading" secondItem="C95-Us-G3H" secondAttribute="leading" id="EYM-Rj-6R6"/>
+                            <constraint firstItem="r2A-95-PGr" firstAttribute="top" secondItem="C95-Us-G3H" secondAttribute="top" id="EsM-NL-HFW"/>
+                            <constraint firstItem="r2A-95-PGr" firstAttribute="width" secondItem="C95-Us-G3H" secondAttribute="width" id="Gmt-ud-qx0"/>
                             <constraint firstItem="wUo-sL-jCg" firstAttribute="leading" secondItem="ayA-e8-Spq" secondAttribute="leading" id="J5D-1M-BYl"/>
                             <constraint firstItem="C95-Us-G3H" firstAttribute="top" secondItem="eAs-Ei-omj" secondAttribute="bottom" constant="20" id="S4C-7p-YCj"/>
                             <constraint firstItem="zei-ml-GrK" firstAttribute="leading" secondItem="ayA-e8-Spq" secondAttribute="leading" id="TT8-lF-9fE"/>
@@ -433,6 +431,7 @@
                             <constraint firstItem="pDL-so-35u" firstAttribute="top" secondItem="zei-ml-GrK" secondAttribute="bottom" constant="10" id="xnO-sy-77Y"/>
                             <constraint firstItem="tbL-kI-h6w" firstAttribute="top" secondItem="eAs-Ei-omj" secondAttribute="bottom" id="yE6-LZ-3D9"/>
                             <constraint firstAttribute="trailing" secondItem="wUo-sL-jCg" secondAttribute="trailing" id="yrj-va-jFo"/>
+                            <constraint firstItem="r2A-95-PGr" firstAttribute="height" secondItem="C95-Us-G3H" secondAttribute="height" id="zbU-jp-Fq7"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1963,6 +1962,7 @@
         <image name="img_doodle_arrow_up" width="148" height="500"/>
         <image name="img_doodle_circle" width="500" height="400"/>
         <image name="img_redeem_reward" width="908" height="908"/>
+        <image name="img_timer" width="200" height="200"/>
         <image name="loading" width="550" height="978"/>
         <image name="sample_picture" width="480" height="312"/>
     </resources>
