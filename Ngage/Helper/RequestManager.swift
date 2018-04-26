@@ -124,8 +124,6 @@ class RequestManager {
         
         reqTask.perform({ (response) in
             let responseJSON = JSON(response)
-            print(responseJSON as Any)
-            print(task)
             if let error = responseJSON["Message"].string {
                 
                 completion(nil, NSError(domain: "Ngage", code: 500, userInfo: [NSLocalizedDescriptionKey: error]))
@@ -138,7 +136,6 @@ class RequestManager {
         }) { (error) in
             // show error if needed
 
-            print(error.code)
             completion(nil, error)
         }
     }

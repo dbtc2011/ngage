@@ -153,9 +153,7 @@ enum Router : URLRequestConvertible {
         let url = try baseURL.asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent("\(result.path)"))
         urlRequest.httpMethod = method.rawValue
-        print("method = \(method.rawValue)")
         if method.rawValue == "GET" {
-            print("DID set as Get ------> \(url)")
             var getParameter = result.path
             if let parameters = result.parameters {
                 for key in parameters.keys {
@@ -166,8 +164,6 @@ enum Router : URLRequestConvertible {
             return URLRequest(url: urlPath)
 //            return try URLEncoding.default.encode(urlRequest, with: result.parameters)
         } else {
-            
-            print("DID set as POST ------> \(url)")
             urlRequest.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
             
             if let parameters = result.parameters {

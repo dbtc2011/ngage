@@ -112,7 +112,7 @@ extension TaskViewController : UIImagePickerControllerDelegate {
                             if let uploaded = uploads[0].dictionary {
                                 if let status = uploaded["Status"]?.string {
                                     if status == "FOR APPROVAL" {
-                                        self.showModalForPendingReward(message: self.selectedTask.reward)
+                                        self.showModalForPendingReward(message: "3", type: "normal")
                                     }else if status == "SUCCESS" {
                                         self.cameraTaskFinished(taskCamera: self.selectedTask)
                                     }

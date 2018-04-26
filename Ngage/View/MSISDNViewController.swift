@@ -68,6 +68,7 @@ class MSISDNViewController: MainViewController {
                         if statusCode == 2
                         {
                             self.user.points = "\(userRegistration["Points"]?.int ?? 0)"
+                            self.user.dateCreated = userRegistration["dtCreated"]?.string ?? ""
                             if let missionsStarted = userRegistration["MissionStarted"]?.array {
                                 if missionsStarted.count == 0 {
                                     TimeManager.sharedInstance.shouldEditMission = true
@@ -93,6 +94,7 @@ class MSISDNViewController: MainViewController {
                             }
                             
                         }else if statusCode == 9{
+                            self.user.dateCreated = userRegistration["dtCreated"]?.string ?? ""
                             TimeManager.sharedInstance.shouldEditMission = true
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "goToPinVerification", sender: self)

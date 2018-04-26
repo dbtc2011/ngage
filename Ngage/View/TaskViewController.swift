@@ -53,10 +53,6 @@ class TaskViewController: MainViewController {
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Device id = \(UserDefaults.standard.value(forKey: Keys.DeviceID))")
-        if let refreshedToken = InstanceID.instanceID().token() {
-            print("Refreshed token = \(refreshedToken)")
-        }
         if TimeManager.sharedInstance.hasFinishedFirstTask {
             shouuldShowTutorial = false
         }
@@ -144,7 +140,6 @@ class TaskViewController: MainViewController {
         
         var currentProgress = 100.0/CGFloat(tasks.count)
         currentProgress = currentProgress * CGFloat(completedTask)
-        print("Progress=\(currentProgress)")
         customProgress?.setupContent(currentProgress: Double(currentProgress))
     }
     func setupProgressView() {
@@ -220,10 +215,11 @@ class TaskViewController: MainViewController {
         customView.addSubview(modalView)
     }
     
-    func showModalForPendingReward(message: String) {
+    func showModalForPendingReward(message: String, type: String) {
         customView.isHidden = false
         let modalView = Bundle.main.loadNibNamed("SuccessWithVerifcationView", owner: self, options: nil)?.first as! SuccessWithVerifcationView
-        modalView.setupContent(points: "3")
+        modalView.type = type
+        modalView.setupContent(points: message)
         modalView.delegate = self
         modalView.bounds = customView.bounds
         modalView.frame.origin = CGPoint(x: 0, y: 0)
@@ -287,7 +283,7 @@ class TaskViewController: MainViewController {
         didFinishTask(task: taskCamera)
     }
     func didFinishTask(task: TaskModel) {
-        print("Finished task \(task.info)")
+        
         if mission.code != 1 {
             UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
             UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
@@ -316,8 +312,6 @@ class TaskViewController: MainViewController {
             submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: contentID, SubContentID: "0", Answer: "", CorrectAnswer: "", WatchType: "video", WatchTime: contentDuration, DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
         case 7, 8, 17:
             let totalPoint = Int(user.points)! + Int(task.reward)!
-            print("Answers = \(quizAnswers)")
-            print("Correct Answers = \(quizCorrectAnswers)")
             submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: quizAnswers, CorrectAnswer: quizCorrectAnswers, WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
             quizCorrectAnswers = ""
             quizAnswers = ""
@@ -473,7 +467,14 @@ class TaskViewController: MainViewController {
                                 DispatchQueue.main.async {
                                     self.contentDuration = ""
                                     self.contentID = ""
-                                    self.showSuccessModal(totalPoints: "\(points)")
+                                    
+                                    if self.selectedTask.code == 4 {
+                                        self.showModalForPendingReward(message: "", type: "normal")
+                                    }else if self.selectedTask.code == 5 {
+                                        self.showModalForPendingReward(message: "2", type: "referral")
+                                    }else {
+                                        self.showSuccessModal(totalPoints: "\(points)")
+                                    }
                                 }
                             })
                             
@@ -508,7 +509,6 @@ class TaskViewController: MainViewController {
                 
             case 2:
                 url = "https://ngage.ph/web/Home/Survey?MID={MID}&TID={TID}&TTyID={TTyID}&CID={CID}&FBID={FBID}&DID={DID}"
-                print("URL = \(url)")
                 url = url.replacingOccurrences(of: "{MID}", with: "\(mission.code)")
                 url = url.replacingOccurrences(of: "{TID}", with: "\(task.code)")
                 url = url.replacingOccurrences(of: "{TTyID}", with: "\(task.type)")

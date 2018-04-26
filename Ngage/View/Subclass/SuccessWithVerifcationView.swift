@@ -14,6 +14,7 @@ class SuccessWithVerifcationView: UIView {
     @IBOutlet var viewContent: UIView!
     @IBOutlet var content: UILabel!
     @IBOutlet var button: UIButton!
+    var type = "normal"
     var delegate : CustomModalViewDelegate?
     /*
     // Only override draw() if you perform custom drawing.
@@ -31,6 +32,12 @@ class SuccessWithVerifcationView: UIView {
         }else {
             pointsEarned = pointsEarned + "pts"
         }
+        if points == "" {
+            content.text = "Thank you for completing this task."
+        }
+        if type == "referral" {
+            content.text = "You will earn an additional {point} for every successful referral"
+        }
         content.text = content.text!.replacingOccurrences(of: "{point}", with: pointsEarned)
         let muttAttString = NSMutableAttributedString(string: content.text!)
         let targetRange = (content.text! as NSString).range(of: "\(pointsEarned)")
@@ -38,9 +45,7 @@ class SuccessWithVerifcationView: UIView {
         if targetRange.location != NSNotFound {
             muttAttString.addAttribute(NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue), value: UIColor.green, range: targetRange)
             content.attributedText = muttAttString
-
         }
-
         viewContent.layer.cornerRadius = 10
         button.layer.cornerRadius = 22
     }

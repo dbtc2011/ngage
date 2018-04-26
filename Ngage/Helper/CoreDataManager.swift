@@ -125,13 +125,11 @@ class CoreDataManager: NSObject {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         fetchRequest.entity = entityDescription
         let predicate = NSPredicate(format: "code = \(code)")
-        print("Predicate = \(predicate)")
         fetchRequest.predicate = predicate
         
         do {
             let fetchRawResults = try managedObjectContext.fetch(fetchRequest)
             if fetchRawResults.count != 0 {
-                print("Count = \(fetchRawResults.count)")
                 return true
             }
             return false
@@ -199,7 +197,6 @@ class CoreDataManager: NSObject {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         fetchRequest.entity = entityDescription
         let predicate = NSPredicate(format: "missionCode = \(code)")
-        print("Predicate = \(predicate)")
         fetchRequest.predicate = predicate
         
         do {
@@ -396,8 +393,6 @@ class CoreDataManager: NSObject {
         entity.points = model.points
         entity.operatorID = model.operatorID
         entity.startDate = model.dateCreated
-        print(model.operatorID)
-        
         for mission in model.missions {
             self.saveModelAsMissionEntity(withModel: mission)
         }
@@ -450,7 +445,6 @@ class CoreDataManager: NSObject {
     }
     
     private func saveModelAsTaskEntity(withModel model: TaskModel) {
-        print("Should save Task! \(model.missionCode)")
     
         let entityDescription =  NSEntityDescription.entity(forEntityName: "TaskDataModel",
                                                             in:managedObjectContext)

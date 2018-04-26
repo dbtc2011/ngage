@@ -61,7 +61,6 @@ class HomeViewController: DrawerFrontViewController {
     //MARK: - Function
     func setupDataFromCoreData() {
         CoreDataManager.sharedInstance.fetchSavedObjects(forEntity: .Mission) { (result, data) in
-            print(data)
             if let contents = data as? [MissionModel] {
                 for mission in contents {
                     var missionModel = mission
@@ -322,7 +321,6 @@ class HomeViewController: DrawerFrontViewController {
                             })
                             self.user.missions.append(missionModel)
                         }
-                        print(CoreDataManager.sharedInstance.checkMissionExist(code: missionModel.code))
                         if mission == missions.last {
                             TimeManager.sharedInstance.shouldEditMission = false
                             DispatchQueue.main.async {
@@ -474,7 +472,6 @@ extension HomeViewController : UICollectionViewDelegate {
 
 extension HomeViewController : UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("Scroll view = \(scrollView.contentOffset)")
         let index = scrollView.contentOffset.x/self.view.frame.size.width
         selectedIndex = Int(index)
         if selectedIndex == 0 {
@@ -524,7 +521,6 @@ extension HomeViewController : URLSessionDownloadDelegate {
                 }
                 
             } catch {
-                print(error.localizedDescription)
                 mission.imageTask!.state = DowloadingImageState.new
             }
         }

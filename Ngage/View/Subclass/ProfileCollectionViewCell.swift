@@ -16,6 +16,8 @@ protocol ProfileCollectionViewCellDelegate {
 
 class ProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewContent: UIView!
+    private var dateFormatter = DateFormatter()
+    
     
     @IBOutlet var redeemLeading: NSLayoutConstraint!
     @IBOutlet var buttonRedeem: UIButton!
@@ -59,6 +61,11 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         
         image.layer.masksToBounds = true
         image.clipsToBounds = true
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        if let dateOrigFormat = dateFormatter.date(from: user.dateCreated) {
+            dateFormatter.dateFormat = "MMMM YYYY"
+            date.text = dateFormatter.string(from: dateOrigFormat)
+        }
     
         DispatchQueue.main.async {
             
@@ -82,9 +89,7 @@ class ProfileCollectionViewCell: UICollectionViewCell {
             self.missions.layer.cornerRadius = self.missions.frame.size.width/2
             self.missions.layer.borderColor = UIColor.white.cgColor
             self.missions.layer.borderWidth = 5.0
-            
             self.layoutIfNeeded()
-            
         }
         
         
