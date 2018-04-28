@@ -59,6 +59,9 @@
                                             <constraint firstAttribute="height" constant="150" id="dJx-V5-mO9"/>
                                         </constraints>
                                         <state key="normal" image="ic_lock"/>
+                                        <connections>
+                                            <action selector="didTapLock:" destination="Qim-1o-p9g" eventType="touchUpInside" id="4rk-lA-z25"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.80227953767123283" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

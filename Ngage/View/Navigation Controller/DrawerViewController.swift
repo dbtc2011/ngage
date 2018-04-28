@@ -50,18 +50,12 @@ class DrawerViewController: UIViewController {
         if let controller = viewController as? DrawerWebViewController {
             controller.webLink = link
             present(controller, animated: false, completion: nil)
-        }else {
-            present(viewController, animated: false, completion: nil)
-        }
-        
-    }
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? ReferralCodeViewController {
+        } else if let controller = viewController as? ReferralCodeViewController {
             controller.delegate = self
             controller.user = self.user
-            
+            present(controller, animated: false, completion: nil)
+        } else {
+            present(viewController, animated: false, completion: nil)
         }
     }
 }
@@ -74,6 +68,12 @@ extension DrawerViewController: ReferralCodeViewControllerDelegate {
         self.user.refferedBy = value
         
         CoreDataManager.sharedInstance.updateUserReferredBy(withReferredBy: value) { (result) in
+            self.tblMenu.reloadData()
+            
+            if let drawer = self.parent as? KYDrawerController {
+                drawer.setDrawerState(.opened, animated: true)
+            }
+            
             
         }
     }
@@ -110,7 +110,7 @@ extension DrawerViewController : UITableViewDelegate {
                 identifier = "referralVC"
                 storyboard = "Main"
                 
-            }else {
+            } else {
                 return
             }
             

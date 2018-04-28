@@ -50,6 +50,16 @@ extension UserModel {
             userModel.operatorID = user.operatorID ?? ""
             userModel.referralCode = String(userModel.facebookId.characters.prefix(4) + userModel.mobileNumber.characters.suffix(4))
             userModel.refferedBy = user.referredBy ?? ""
+            
+            if let missions = user.availableMissions {
+                let missionIds = missions.components(separatedBy: "|")
+                for id in missionIds {
+                    if let intId = Int(id) {
+                        userModel.availableMissions.append(intId)
+                    }
+                }
+            }
+            
             UserDefaults.standard.set(userModel.referralCode, forKey: Keys.ReferralCode)
     
             if let token = UserDefaults.standard.string(forKey: Keys.DeviceID) {

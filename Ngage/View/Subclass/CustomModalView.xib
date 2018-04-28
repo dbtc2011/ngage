@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,13 +32,13 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhm-Cv-jth">
-                    <rect key="frame" x="40" y="206" width="295" height="255"/>
+                    <rect key="frame" x="40" y="206.5" width="295" height="254.5"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9D7-s1-bBF">
-                            <rect key="frame" x="77" y="200" width="140" height="35"/>
+                            <rect key="frame" x="42.5" y="199.5" width="100" height="35"/>
                             <color key="backgroundColor" red="0.82745098039999998" green="0.82745098039999998" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="140" id="Zdk-AE-XAh"/>
+                                <constraint firstAttribute="width" constant="100" id="eub-W8-txE"/>
                                 <constraint firstAttribute="height" constant="35" id="x1z-ng-Old"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="17"/>
@@ -50,7 +50,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9F6-tU-bt5">
-                            <rect key="frame" x="30" y="159" width="235" height="21"/>
+                            <rect key="frame" x="30" y="159" width="235" height="20.5"/>
                             <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="17"/>
                             <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -71,20 +71,37 @@
                                 <constraint firstAttribute="width" constant="100" id="qhW-EW-4F0"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJ3-eH-s1s">
+                            <rect key="frame" x="152.5" y="199.5" width="100" height="35"/>
+                            <color key="backgroundColor" red="0.82745098039999998" green="0.82745098039999998" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="feX-io-dJz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="17"/>
+                            <state key="normal">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="buttonClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="h9I-n6-4Wd"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="9D7-s1-bBF" firstAttribute="top" secondItem="9F6-tU-bt5" secondAttribute="bottom" constant="20" id="8nH-iv-64y"/>
+                        <constraint firstItem="9D7-s1-bBF" firstAttribute="centerX" secondItem="rhm-Cv-jth" secondAttribute="centerX" constant="-55" id="FUB-bR-WyJ"/>
                         <constraint firstItem="QdE-NZ-PkV" firstAttribute="leading" secondItem="rhm-Cv-jth" secondAttribute="leading" id="M1E-hm-SPq"/>
                         <constraint firstItem="cX0-gn-k7S" firstAttribute="top" secondItem="rhm-Cv-jth" secondAttribute="top" constant="20" id="MQO-Nw-ViC"/>
                         <constraint firstItem="9F6-tU-bt5" firstAttribute="top" secondItem="QdE-NZ-PkV" secondAttribute="bottom" constant="10" id="MyS-Zd-hh5"/>
                         <constraint firstItem="QdE-NZ-PkV" firstAttribute="leading" secondItem="rhm-Cv-jth" secondAttribute="leading" id="RA7-qy-5m1"/>
+                        <constraint firstItem="vJ3-eH-s1s" firstAttribute="height" secondItem="9D7-s1-bBF" secondAttribute="height" id="RE6-al-JgD"/>
+                        <constraint firstItem="vJ3-eH-s1s" firstAttribute="top" secondItem="9D7-s1-bBF" secondAttribute="top" id="Tgp-Cz-nrW"/>
                         <constraint firstAttribute="trailing" secondItem="9F6-tU-bt5" secondAttribute="trailing" constant="30" id="ZAh-4Z-kbq"/>
                         <constraint firstAttribute="trailing" secondItem="QdE-NZ-PkV" secondAttribute="trailing" id="f6i-2x-FGX"/>
                         <constraint firstItem="9F6-tU-bt5" firstAttribute="leading" secondItem="rhm-Cv-jth" secondAttribute="leading" constant="30" id="fDZ-4y-Edr"/>
                         <constraint firstAttribute="bottom" secondItem="9D7-s1-bBF" secondAttribute="bottom" constant="20" id="fQy-63-zqP"/>
                         <constraint firstItem="cX0-gn-k7S" firstAttribute="centerX" secondItem="rhm-Cv-jth" secondAttribute="centerX" id="lfi-1w-kPd"/>
-                        <constraint firstItem="9D7-s1-bBF" firstAttribute="centerX" secondItem="rhm-Cv-jth" secondAttribute="centerX" id="pWF-MO-MtZ"/>
+                        <constraint firstItem="vJ3-eH-s1s" firstAttribute="leading" secondItem="9D7-s1-bBF" secondAttribute="trailing" constant="10" id="oUh-B5-cZx"/>
                         <constraint firstItem="QdE-NZ-PkV" firstAttribute="top" secondItem="cX0-gn-k7S" secondAttribute="bottom" constant="5" id="wpP-Dq-3VH"/>
                         <constraint firstAttribute="trailing" secondItem="QdE-NZ-PkV" secondAttribute="trailing" id="ze0-B0-9sr"/>
                     </constraints>
@@ -103,9 +120,14 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="button" destination="9D7-s1-bBF" id="0iK-RE-z0p"/>
+                <outlet property="buttonCenterConstraint" destination="FUB-bR-WyJ" id="yAT-pd-T2P"/>
+                <outlet property="buttonExtra" destination="vJ3-eH-s1s" id="qeI-b9-NIA"/>
                 <outlet property="containerView" destination="rhm-Cv-jth" id="rL6-Gh-aN0"/>
+                <outlet property="extraWidthConstraint" destination="feX-io-dJz" id="W9j-uR-pPd"/>
                 <outlet property="icon" destination="cX0-gn-k7S" id="9RD-Pn-420"/>
                 <outlet property="labelContent" destination="9F6-tU-bt5" id="Ujp-WK-MVO"/>
+                <outlet property="labelTitle" destination="QdE-NZ-PkV" id="3GG-he-Hfp"/>
+                <outlet property="titleHeightConstraint" destination="Myq-pM-KMQ" id="AHT-gW-CVB"/>
             </connections>
         </view>
     </objects>

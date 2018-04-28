@@ -20,6 +20,7 @@ class HomeViewController: DrawerFrontViewController {
     @IBOutlet weak var buttonDrawer: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     var marketAds: MarketPlaceAdsView?
+    var customAlertView: CustomModalView?
     
     @IBOutlet weak var buttonTutorial: UIButton!
     @IBOutlet weak var viewTutorial: UIView!
@@ -35,6 +36,9 @@ class HomeViewController: DrawerFrontViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let newUser = UserModel().mainUser()
+        self.user.points = newUser.points
+        self.user.availableMissions = newUser.availableMissions
         shouldReloadTime = true
         showMarketAds()
         if user.missions.count == 0 {
@@ -83,10 +87,6 @@ class HomeViewController: DrawerFrontViewController {
 //        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         self.collectionView.register(UINib(nibName:"ProfileCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "profileCell")
         self.collectionView.register(UINib(nibName:"HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "missionCell")
-        
-        
-        
-
     }
     
     func showMarketAds() {
@@ -102,6 +102,37 @@ class HomeViewController: DrawerFrontViewController {
         marketAds!.frame.origin = CGPoint(x: 0, y: 0)
         if let window = UIApplication.shared.keyWindow {
             window.addSubview(marketAds!)
+        }
+    }
+    
+    func showCustomAlertWith(message: String, tag: Int) {
+        customAlertView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
+        customAlertView!.delegate = self
+        customAlertView!.tag = tag
+        customAlertView!.icon.image = UIImage(named: "ic_app_logo_circle")
+        customAlertView!.setupContent(value: message)
+        customAlertView!.button.setTitle("Ok", for: UIControlState.normal)
+        customAlertView!.bounds = UIScreen.main.bounds
+        customAlertView!.frame.origin = CGPoint(x: 0, y: 0)
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubview(customAlertView!)
+        }
+    }
+    
+    func showPopupBeforeUnlockingMission() {
+        customAlertView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
+        customAlertView!.delegate = self
+        customAlertView!.tag = 1
+        customAlertView!.buttonExtra.setTitle("Cancel", for: UIControlState.normal)
+        customAlertView?.buttonExtra.tag = 1
+        customAlertView?.button.tag = 2
+        customAlertView!.icon.image = UIImage(named: "ic_app_logo_circle")
+        customAlertView!.setupContent(value: "This mission require 10 points to unlock. Unlock mission?")
+        customAlertView!.button.setTitle("Unlock", for: UIControlState.normal)
+        customAlertView!.bounds = UIScreen.main.bounds
+        customAlertView!.frame.origin = CGPoint(x: 0, y: 0)
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubview(customAlertView!)
         }
     }
     
@@ -355,9 +386,10 @@ class HomeViewController: DrawerFrontViewController {
         var newMission = mission
         if let hasStarted = UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) as? Bool{
             if hasStarted {
-                let missionStarted = UserDefaults.standard.value(forKey: Keys.keyMissionCode) as! Int
-                if newMission.code != missionStarted && newMission.code != 1 {
+                if !user.availableMissions.contains(newMission.code) && newMission.code != 1 {
                     newMission.state = MissionState.locked
+                }else {
+                    newMission.state = .enabled
                 }
             }else {
                 if !TimeManager.sharedInstance.hasFinishedFirstTask && newMission.code != 1 {
@@ -470,6 +502,7 @@ extension HomeViewController : UICollectionViewDelegate {
     
 }
 
+
 extension HomeViewController : UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = scrollView.contentOffset.x/self.view.frame.size.width
@@ -490,6 +523,50 @@ extension HomeViewController : HomeCollectionViewCellDelegate {
     
     func homeDidTapStart(tag: Int) {
         self.performSegue(withIdentifier: "taskPage", sender: self)
+    }
+    
+    func homeDidTapLock(tag: Int) {
+        if TimeManager.sharedInstance.hasFinishedFirstTask {
+            if user.points.convertToInt() >= 10 {
+                self.showPopupBeforeUnlockingMission()
+            }else {
+                self.showCustomAlertWith(message: "This mission require 10 points to unlock.", tag: 1)
+            }
+        }else {
+            self.showCustomAlertWith(message: "You have to first complete Let's get started to unlock this mission", tag: 1)
+        }
+    }
+}
+
+//MARK: - Custom Alert Delegate
+extension HomeViewController : CustomModalViewDelegate {
+    func didTapOkayButton(tag: Int) {
+        if customAlertView != nil {
+            customAlertView!.removeFromSuperview()
+            customAlertView = nil
+        }
+        if tag == 2 {
+            let mission = user.missions[selectedIndex]
+            showSpinner()
+            RegisterService.unlockMission(fbid: user.facebookId, mission: "\(mission.code)") { (result, error) in
+                self.hideSpinner()
+                print("Unlock mission")
+                if let statusCode = result?["StatusCode"].int, statusCode == 2 {
+                    CoreDataManager.sharedInstance.addToUserAvailableMissions(withMissionCode: mission.code, completionHandler: { (result) in
+                        self.user.availableMissions = UserModel().mainUser().availableMissions
+                    })
+                    if let points = result?["Points"].int {
+                        
+                        CoreDataManager.sharedInstance.updateUserPoints(withPoints: "\(points)") { (result) in
+                            self.user.points = "\(points)"
+                        }
+                    }
+                    
+                }else {
+                    
+                }
+            }
+        }
     }
 }
 

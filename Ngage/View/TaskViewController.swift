@@ -207,6 +207,7 @@ class TaskViewController: MainViewController {
         let modalView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
         modalView.delegate = self
         modalView.tag = 13
+        modalView.button.tag = 13
         modalView.icon.image = UIImage(named: "ic_app_logo_circle")
         modalView.setupContent(value: "Congratulations!\nYou have been rewarded with \(mission.reward) Points for completing \(mission.title)")
         modalView.button.setTitle("Ok", for: UIControlState.normal)
@@ -292,7 +293,9 @@ class TaskViewController: MainViewController {
             TimeManager.sharedInstance.shouldSaveDate = true
             TimeManager.sharedInstance.setTimer()
             UserDefaults.standard.set(mission.code, forKey: Keys.keyMissionCode)
-            //            TimeManager.sharedInstance.startedMissionCode = mission.code
+            CoreDataManager.sharedInstance.addToUserAvailableMissions(withMissionCode: self.mission.code) { (result) in
+                
+            }
         }
         
         switch task.type {
@@ -463,6 +466,11 @@ class TaskViewController: MainViewController {
                             self.selectedTask.state = 2
                             self.selectedTask.reward = self.taskPoint
                             
+                            if !self.user.availableMissions.contains(self.mission.code) {
+                                CoreDataManager.sharedInstance.addToUserAvailableMissions(withMissionCode: self.mission.code, completionHandler: { (result) in
+                                    
+                                })
+                            }
                             CoreDataManager.sharedInstance.updateUserPoints(withPoints: "\(points)", completionHandler: { (coreResult) in
                                 DispatchQueue.main.async {
                                     self.contentDuration = ""
@@ -558,6 +566,7 @@ extension TaskViewController : UITableViewDelegate {
             customView.isHidden = false
             let modalView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
             modalView.tag = 1
+            modalView.button.tag = 1
             modalView.delegate = self
             modalView.setupContent(value: task.instructions)
             modalView.bounds = customView.bounds

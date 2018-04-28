@@ -73,10 +73,15 @@ class MSISDNViewController: MainViewController {
                                 if missionsStarted.count == 0 {
                                     TimeManager.sharedInstance.shouldEditMission = true
                                 }else {
-                                    if let missionCode = missionsStarted[0].int {
-                                        UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
-                                        UserDefaults.standard.set(missionCode, forKey: Keys.keyMissionCode)
-                                        TimeManager.sharedInstance.resetTimeStamp()
+                                    for missionObject in missionsStarted {
+                                        if let missionCode = missionObject.int {
+                                            UserDefaults.standard.set(true, forKey: Keys.keyHasStartedMission)
+                                            UserDefaults.standard.set(missionCode, forKey: Keys.keyMissionCode)
+                                            TimeManager.sharedInstance.resetTimeStamp()
+                                            if !self.user.availableMissions.contains(missionCode) {
+                                                self.user.availableMissions.append(missionCode)
+                                            }
+                                        }
                                     }
                                 }
                             }

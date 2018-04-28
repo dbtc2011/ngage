@@ -15,6 +15,7 @@ enum MissionState : Int {
 
 protocol HomeCollectionViewCellDelegate {
     func homeDidTapStart(tag: Int)
+    func homeDidTapLock(tag:Int)
 }
 
 class HomeCollectionViewCell: UICollectionViewCell {
@@ -44,6 +45,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         viewContent.layer.masksToBounds = true
         viewContent.clipsToBounds = true
         missionCode = mission.code
+        buttonLock.tag = missionCode
         state = mission.state
         lockContainerView.isHidden = true
         buttonLock.isHidden = true
@@ -95,11 +97,15 @@ class HomeCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
+    @IBAction func didTapLock(_ sender: UIButton) {
+        delegate?.homeDidTapLock(tag: sender.tag)
+    }
     @IBAction func didTapStart(_ sender: UIButton) {
         delegate?.homeDidTapStart(tag: self.tag)
     }
    
     func updateTime(mission: MissionModel) {
+        let user = UserModel().mainUser()
         // Dont proceed if mission code is 0 (First mission) or mission is expired or mission is not yet started
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -118,7 +124,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         if let dateRemaining = formatter.date(from: "2018-05-31T00:00:00") {
             labelRemainingPeriod.text = timeInterval!.remainingDays(from: TimeManager.sharedInstance.serverDate, to: dateRemaining)
         }
-        if (!UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) || missionCode == UserDefaults.standard.value(forKey: Keys.keyMissionCode) as! Int || missionCode == 1) {
+        if (!UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) || user.availableMissions.contains(missionCode)  || missionCode == 1) {
             return
         }else if (state == MissionState.completed) {
             return

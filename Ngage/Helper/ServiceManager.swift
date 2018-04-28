@@ -29,6 +29,14 @@ final class RegisterService: RequestManager {
         }
     }
     
+    class func unlockMission(fbid: String, mission: String, success: @escaping CompletionBlock) {
+        
+        let parameter = ["FBID": fbid, "MissionID": "\(mission)"]
+        perform(task: .unlockMission(parameter)) { (result, error) in
+            success(result, error)
+        }
+        
+    }
     class func validateRegistration(fbid: String, pCode: String, mobileNumber: String, success: @escaping CompletionBlock) {
         
         let parameter = ["FBID": fbid, "Pcode": pCode, "MSISDN": mobileNumber]
