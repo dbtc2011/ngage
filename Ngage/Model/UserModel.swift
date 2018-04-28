@@ -23,6 +23,8 @@ struct UserModel {
     var location = ""
     var dateCreated = ""
     
+    var availableMissions = [Int]()
+    
     var missions = [MissionModel]()
     
     // App Generated or inputs
@@ -47,6 +49,7 @@ extension UserModel {
             userModel.dateCreated = user.startDate ?? ""
             userModel.operatorID = user.operatorID ?? ""
             userModel.referralCode = String(userModel.facebookId.characters.prefix(4) + userModel.mobileNumber.characters.suffix(4))
+            userModel.refferedBy = user.referredBy ?? ""
             UserDefaults.standard.set(userModel.referralCode, forKey: Keys.ReferralCode)
     
             if let token = UserDefaults.standard.string(forKey: Keys.DeviceID) {

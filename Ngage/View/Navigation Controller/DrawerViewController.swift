@@ -55,6 +55,28 @@ class DrawerViewController: UIViewController {
         }
         
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? ReferralCodeViewController {
+            controller.delegate = self
+            controller.user = self.user
+            
+        }
+    }
+}
+
+extension DrawerViewController: ReferralCodeViewControllerDelegate {
+    func didEnterReferredBy(value: String) {
+        if value == "" {
+            return
+        }
+        self.user.refferedBy = value
+        
+        CoreDataManager.sharedInstance.updateUserReferredBy(withReferredBy: value) { (result) in
+            
+        }
+    }
 }
 
 extension DrawerViewController : UITableViewDelegate {
@@ -85,9 +107,8 @@ extension DrawerViewController : UITableViewDelegate {
                 identifier = "MarketNavigation"
                 storyboard = "RedeemStoryboard"
             } else if indexPath.section == 2 {
-                identifier = "DrawerWebViewController"
-                storyboard = "HomeStoryboard"
-                link = "https://ngage.ph/privacy_policy_ngage.html"
+                identifier = "referralVC"
+                storyboard = "Main"
                 
             }else {
                 return
@@ -171,6 +192,10 @@ extension DrawerViewController : UITableViewDataSource {
             return 4
             
         default:
+            if user.refferedBy.isEmpty {
+                return 2
+            }
+            
             return 1
         }
     }
@@ -202,8 +227,8 @@ extension DrawerViewController : UITableViewDataSource {
                 title = "Market Place"
                 image = #imageLiteral(resourceName: "ic_action_rewards")
             } else {
-                title = "Private Policy"
-                image = #imageLiteral(resourceName: "ic_action_private_policy")
+                title = "Enter Referral"
+                image = #imageLiteral(resourceName: "ic_action_about_us")
             }
             
         case 2:
