@@ -271,6 +271,76 @@ class CoreDataManager: NSObject {
         completionHandler(result)
     }
     
+    func updateUserReferredBy(withReferredBy referredBy: String,
+                              completionHandler: @escaping (_ fetchResult: CoreDataManagerResult) -> Void) {
+        var result = CoreDataManagerResult.Error
+        
+        if let user = self.getMainUser() {
+            user.referredBy = referredBy
+            
+            do {
+                try managedObjectContext.save()
+                result = .Success
+            } catch let error {
+                errorDescription = error.localizedDescription
+            }
+        } else {
+            errorDescription = "Error fetching user profile"
+        }
+        
+        completionHandler(result)
+    }
+    
+    func clearUserAvailableMissions(completionHandler: @escaping (_ fetchResult: CoreDataManagerResult) -> Void) {
+        var result = CoreDataManagerResult.Error
+        
+        if let user = self.getMainUser() {
+            user.availableMissions = ""
+            
+            do {
+                try managedObjectContext.save()
+                result = .Success
+            } catch let error {
+                errorDescription = error.localizedDescription
+            }
+        } else {
+            errorDescription = "Error fetching user profile"
+        }
+        
+        completionHandler(result)
+    }
+    
+    func addToUserAvailableMissions(withMissionCode code: Int,
+                                    completionHandler: @escaping (_ fetchResult: CoreDataManagerResult) -> Void) {
+        var result = CoreDataManagerResult.Error
+        
+        if let user = self.getMainUser() {
+            var strIds = ""
+            if let availableMissions = user.availableMissions {
+                strIds = availableMissions
+                
+                if !strIds.isEmpty {
+                    strIds += "|"
+                }
+                
+                strIds += "\(code)"
+            }
+            
+            user.availableMissions = strIds
+            
+            do {
+                try managedObjectContext.save()
+                result = .Success
+            } catch let error {
+                errorDescription = error.localizedDescription
+            }
+        } else {
+            errorDescription = "Error fetching user profile"
+        }
+        
+        completionHandler(result)
+    }
+    
     //MARK: - Private Methods
     
     //MARK: Fetching
@@ -297,6 +367,17 @@ class CoreDataManager: NSObject {
                 user.points = result.points ?? ""
                 user.operatorID = result.operatorID ?? ""
                 user.dateCreated = result.startDate ?? ""
+                user.refferedBy = result.referredBy ?? ""
+                
+                if let missions = result.availableMissions {
+                    let missionIds = missions.components(separatedBy: "|")
+                    for id in missionIds {
+                        if let intId = Int(id) {
+                            user.availableMissions.append(intId)
+                        }
+                    }
+                    
+                }
                 
                 convertedResults.append(user as AnyObject)
             }
@@ -393,6 +474,18 @@ class CoreDataManager: NSObject {
         entity.points = model.points
         entity.operatorID = model.operatorID
         entity.startDate = model.dateCreated
+        entity.referredBy = model.refferedBy
+        
+        var strIds = ""
+        for id in model.availableMissions {
+            if !strIds.isEmpty {
+                strIds += "|"
+            }
+            
+            strIds += "\(id)"
+        }
+        entity.availableMissions = strIds
+        
         for mission in model.missions {
             self.saveModelAsMissionEntity(withModel: mission)
         }
