@@ -23,6 +23,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var viewButtonContainer: UIView!
+    @IBOutlet weak var viewEnds: UIView!
+    @IBOutlet weak var viewEndsHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var labelRemainingPeriod: UILabel!
     @IBOutlet weak var viewContent: UIView!
@@ -32,7 +34,12 @@ class HomeCollectionViewCell: UICollectionViewCell {
     var delegate : HomeCollectionViewCellDelegate?
     
     func setupContents(mission : MissionModel) {
-        
+        viewEnds.isHidden = false
+        viewEndsHeightConstraint.constant = 60.0
+        if mission.code == 1 {
+            viewEnds.isHidden = true
+            viewEndsHeightConstraint.constant = 0.0
+        }
         viewContent.layer.cornerRadius = 15
         viewContent.layer.masksToBounds = true
         viewContent.clipsToBounds = true
@@ -96,8 +103,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
         // Dont proceed if mission code is 0 (First mission) or mission is expired or mission is not yet started
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        
-        
         var time = ""
         let newDate = Date()
         let difference = Double(newDate.timeIntervalSince(TimeManager.sharedInstance.currentDate))
