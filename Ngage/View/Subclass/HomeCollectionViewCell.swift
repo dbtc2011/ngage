@@ -52,6 +52,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         buttonLock.isHidden = true
         self.buttonWidth.constant = 200
         button.layer.cornerRadius = 13
+        labelEndsin.text = "Mission ends in"
         button.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
         viewButtonContainer.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorSecondary)
         if mission.imageTask!.data != nil {
@@ -84,6 +85,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
         case .completed:
             self.button.setTitle("COMPLETED", for: UIControlState.normal)
             button.isUserInteractionEnabled = true
+            labelEndsin.text = "Mission Completed"
+            labelRemainingPeriod.text = "---"
             
         case .started:
             self.button.setTitle("CONTINUE", for: UIControlState.normal)
@@ -128,14 +131,14 @@ class HomeCollectionViewCell: UICollectionViewCell {
         if let dateRemaining = formatter.date(from: "2018-05-31T00:00:00") {
             labelRemainingPeriod.text = timeInterval!.remainingDays(from: TimeManager.sharedInstance.serverDate, to: dateRemaining)
         }
-        if (!UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) || user.availableMissions.contains(missionCode)  || missionCode == 1) {
-            return
-        }else if (state == MissionState.completed) {
+        if (state == MissionState.completed) {
             labelEndsin.text = "Mission Completed"
             labelRemainingPeriod.text = "---"
             return
         }
-        
+        if (!UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) || user.availableMissions.contains(missionCode)  || missionCode == 1) {
+            return
+        }
         button.isUserInteractionEnabled = false
         buttonLock.isHidden = false
         lockContainerView.isHidden = false

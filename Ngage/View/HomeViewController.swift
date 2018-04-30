@@ -48,6 +48,11 @@ class HomeViewController: DrawerFrontViewController {
         if shouldReloadData == true {
             getMission()
         }
+        
+        if let didTapReload = UserDefaults.standard.value(forKey: Keys.reloadData) as? Bool, didTapReload == true {
+            getMission()
+        }
+        print("Did tap \(UserDefaults.standard.value(forKey: Keys.reloadData))")
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -375,6 +380,7 @@ class HomeViewController: DrawerFrontViewController {
                 }
                 
                 self.shouldReloadData = false
+                UserDefaults.standard.set(false, forKey: Keys.reloadData)
             }else {
                 self.getMission()
             }

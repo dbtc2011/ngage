@@ -19,4 +19,5 @@ struct Keys {
     static let MissionShouldSaveDate = "mission_should_save_date"
     static let hasFinishedTutorial = "has_finished_tutorial"
     static let sratchPoint = "scratch_point"
+    static let reloadData = "reload_data"
 }

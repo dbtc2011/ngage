@@ -52,6 +52,7 @@ class DrawerViewController: UIViewController {
             present(controller, animated: false, completion: nil)
         } else if let controller = viewController as? ReferralCodeViewController {
             controller.delegate = self
+            controller.origin = .drawer
             controller.user = self.user
             present(controller, animated: false, completion: nil)
         } else {
@@ -66,16 +67,12 @@ extension DrawerViewController: ReferralCodeViewControllerDelegate {
             return
         }
         self.user.refferedBy = value
+        self.tblMenu.reloadData()
         
-        CoreDataManager.sharedInstance.updateUserReferredBy(withReferredBy: value) { (result) in
-            self.tblMenu.reloadData()
-            
-            if let drawer = self.parent as? KYDrawerController {
-                drawer.setDrawerState(.opened, animated: true)
-            }
-            
-            
+        if let drawer = self.parent as? KYDrawerController {
+            drawer.setDrawerState(.opened, animated: true)
         }
+        
     }
 }
 
@@ -86,8 +83,12 @@ extension DrawerViewController : UITableViewDelegate {
         guard indexPath.section > 0 else { return }
         var displayingController: UIViewController?
         if let drawer = parent as? KYDrawerController {
+            if indexPath.section == 2 && indexPath.row == 0 {
+                UserDefaults.standard.set(true, forKey: Keys.reloadData)
+            }
             drawer.setDrawerState(.closed, animated: true)
             displayingController = drawer.mainViewController
+            
         }
         var link = ""
         var identifier = "MarketNavigation"
@@ -95,11 +96,7 @@ extension DrawerViewController : UITableViewDelegate {
         
         switch indexPath.row {
         case 0:
-            if indexPath.section == 2 {
-                if let mainConroller = displayingController as? HomeViewController {
-                    mainConroller.getMission()
-                }
-            }
+            
             return
             
         case 1:
@@ -219,7 +216,7 @@ extension DrawerViewController : UITableViewDataSource {
                 image = #imageLiteral(resourceName: "ic_action_home")
             } else {
                 title = "Refresh"
-                image = #imageLiteral(resourceName: "ic_action_about_us")
+                image = UIImage(named: "ic_action_refresh") ?? #imageLiteral(resourceName: "ic_action_about_us")
             }
             
         case 1:
@@ -228,7 +225,7 @@ extension DrawerViewController : UITableViewDataSource {
                 image = #imageLiteral(resourceName: "ic_action_rewards")
             } else {
                 title = "Enter Referral"
-                image = #imageLiteral(resourceName: "ic_action_about_us")
+                image = #imageLiteral(resourceName: "ic_menu").tint(with: UIColor.lightGray)
             }
             
         case 2:

@@ -64,10 +64,17 @@ class MultipleChoiceTaskViewController: UIViewController {
     
     //MARK: Functions
     func setupUI() {
-        viewHeader.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
-        viewQuestioniare.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
-        view.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
-        viewContainer.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
+        var backgroundColor = ""
+        switch task.type {
+        case 8:
+            backgroundColor = "#4f2370"
+        default:
+            backgroundColor = "#de4347"
+        }
+        viewHeader.backgroundColor = UIColor().setColorUsingHex(hex: backgroundColor)
+        viewQuestioniare.backgroundColor = UIColor().setColorUsingHex(hex: backgroundColor)
+        view.backgroundColor = UIColor().setColorUsingHex(hex: backgroundColor)
+        viewContainer.backgroundColor = UIColor().setColorUsingHex(hex: backgroundColor)
         button1.layer.cornerRadius = 10
         button2.layer.cornerRadius = 10
         button3.layer.cornerRadius = 10

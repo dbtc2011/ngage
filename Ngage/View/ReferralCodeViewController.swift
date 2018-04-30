@@ -8,15 +8,20 @@
 
 import UIKit
 
+enum ReferralOrigin {
+    case registration, drawer
+}
+
 protocol ReferralCodeViewControllerDelegate {
     
     func didEnterReferredBy(value: String)
     
 }
-class ReferralCodeViewController: UIViewController {
+class ReferralCodeViewController: MainViewController {
     
     var user : UserModel!
     @IBOutlet weak var buttonEnter: UIButton!
+    var origin = ReferralOrigin.registration
     var delegate : ReferralCodeViewControllerDelegate?
 
     @IBOutlet weak var textField: UITextField!
@@ -41,7 +46,23 @@ class ReferralCodeViewController: UIViewController {
         return true
     }
 
-    
+    //MARK: - API
+    func shouldAddToServer() {
+        showSpinner()
+        RegisterService.addReferral(FBID: user.facebookId, ReferralCode: user.referralCode, ReferredBy: textField.text ?? "") { (result, error) in
+            self.hideSpinner()
+            if let statusCode = result?["statusCode"].int, statusCode == 2 {
+                CoreDataManager.sharedInstance.updateUserReferredBy(withReferredBy: self.textField.text!) { (result) in
+                    self.delegate?.didEnterReferredBy(value: self.textField.text!)
+                    self.dismiss(animated: true) {
+                        
+                    }
+                }
+            }else {
+                self.presentDefaultAlertWithMessage(message: "Failed to send referral code!")
+            }
+        }
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -64,7 +85,10 @@ class ReferralCodeViewController: UIViewController {
     }
     
     @IBAction func enterButtonClicked(_ sender: UIButton) {
-    
+        if origin == ReferralOrigin.drawer {
+            shouldAddToServer()
+            return
+        }
         delegate?.didEnterReferredBy(value: textField.text ?? "")
         self.dismiss(animated: true) {
             

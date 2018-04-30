@@ -175,5 +175,11 @@ final class RegisterService: RequestManager {
         }
     }
     
+    class func addReferral(FBID: String, ReferralCode: String, ReferredBy: String, success: @escaping CompletionBlock) {
+        let parameter = ["FBID": FBID, "ReferralCode": ReferralCode, "ReferredBy":ReferredBy]
+        perform(task: .addReferral(parameter)) { (result, error) in
+            success(result, error)
+        }
+    }
 }
 
