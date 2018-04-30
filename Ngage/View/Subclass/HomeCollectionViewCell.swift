@@ -27,6 +27,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewEnds: UIView!
     @IBOutlet weak var viewEndsHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var labelEndsin: UILabel!
     @IBOutlet weak var labelRemainingPeriod: UILabel!
     @IBOutlet weak var viewContent: UIView!
     private var state = MissionState.enabled
@@ -116,6 +117,9 @@ class HomeCollectionViewCell: UICollectionViewCell {
         
         let timeRemaining = serverCounter - difference
         if timeRemaining <= 0 {
+            CoreDataManager.sharedInstance.clearUserAvailableMissions { (result) in
+                
+            }
             UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
         }
         let timeInterval = TimeInterval(exactly: timeRemaining)
@@ -127,6 +131,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
         if (!UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) || user.availableMissions.contains(missionCode)  || missionCode == 1) {
             return
         }else if (state == MissionState.completed) {
+            labelEndsin.text = "Mission Completed"
+            labelRemainingPeriod.text = "---"
             return
         }
         

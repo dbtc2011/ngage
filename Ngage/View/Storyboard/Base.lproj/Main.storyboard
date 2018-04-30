@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JRz-wn-Yo4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JRz-wn-Yo4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,6 +30,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PK2-wL-YVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1884" y="-136"/>
+        </scene>
+        <!--Required Terms View Controller-->
+        <scene sceneID="3LP-mB-cQy">
+            <objects>
+                <viewController storyboardIdentifier="RequiredTermsViewController" id="1cZ-CI-ol0" customClass="RequiredTermsViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G9T-QK-pLt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccd-Rq-TUI">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjv-Qb-Fx2">
+                                        <rect key="frame" x="15" y="25" width="345" height="597"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqX-5T-qwu">
+                                                <rect key="frame" x="0.0" y="15" width="345" height="22"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvJ-n3-BNy">
+                                                <rect key="frame" x="10" y="557" width="100" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="koL-b3-1gB"/>
+                                                    <constraint firstAttribute="width" constant="100" id="lS3-NP-p5x"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                                <state key="normal" title="DISAGREE">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapDisagree:" destination="1cZ-CI-ol0" eventType="touchUpInside" id="S1e-z4-tQm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJF-US-JO7">
+                                                <rect key="frame" x="235" y="557" width="100" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="9Gc-hg-UmL"/>
+                                                    <constraint firstAttribute="height" constant="30" id="ynm-if-9by"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                                <state key="normal" title="CONTINUE">
+                                                    <color key="titleColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapAgree:" destination="1cZ-CI-ol0" eventType="touchUpInside" id="fsn-58-ach"/>
+                                                </connections>
+                                            </button>
+                                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkS-ls-65f">
+                                                <rect key="frame" x="10" y="47" width="325" height="505"/>
+                                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <wkWebViewConfiguration key="configuration">
+                                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                    <wkPreferences key="preferences"/>
+                                                </wkWebViewConfiguration>
+                                            </wkWebView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="cvJ-n3-BNy" firstAttribute="top" secondItem="xkS-ls-65f" secondAttribute="bottom" constant="5" id="4gq-73-A7o"/>
+                                            <constraint firstItem="xkS-ls-65f" firstAttribute="top" secondItem="BqX-5T-qwu" secondAttribute="bottom" constant="10" id="9tc-DW-VFz"/>
+                                            <constraint firstAttribute="bottom" secondItem="IJF-US-JO7" secondAttribute="bottom" constant="10" id="El2-Vz-AoI"/>
+                                            <constraint firstAttribute="trailing" secondItem="BqX-5T-qwu" secondAttribute="trailing" id="Mat-Aj-Dbq"/>
+                                            <constraint firstItem="BqX-5T-qwu" firstAttribute="leading" secondItem="gjv-Qb-Fx2" secondAttribute="leading" id="Vno-Bh-2RY"/>
+                                            <constraint firstItem="xkS-ls-65f" firstAttribute="leading" secondItem="gjv-Qb-Fx2" secondAttribute="leading" constant="10" id="cIf-66-Kva"/>
+                                            <constraint firstAttribute="bottom" secondItem="cvJ-n3-BNy" secondAttribute="bottom" constant="10" id="i2d-Zg-Xko"/>
+                                            <constraint firstAttribute="trailing" secondItem="IJF-US-JO7" secondAttribute="trailing" constant="10" id="keZ-hh-So4"/>
+                                            <constraint firstItem="BqX-5T-qwu" firstAttribute="top" secondItem="gjv-Qb-Fx2" secondAttribute="top" constant="15" id="pGP-sc-TIZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="xkS-ls-65f" secondAttribute="trailing" constant="10" id="qKy-Sb-8TX"/>
+                                            <constraint firstItem="cvJ-n3-BNy" firstAttribute="leading" secondItem="gjv-Qb-Fx2" secondAttribute="leading" constant="10" id="xKH-JS-vrm"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gjv-Qb-Fx2" secondAttribute="trailing" constant="15" id="biy-cJ-jMt"/>
+                                    <constraint firstAttribute="bottom" secondItem="gjv-Qb-Fx2" secondAttribute="bottom" constant="25" id="dC4-qL-hB9"/>
+                                    <constraint firstItem="gjv-Qb-Fx2" firstAttribute="top" secondItem="ccd-Rq-TUI" secondAttribute="top" constant="25" id="kfO-7n-iPC"/>
+                                    <constraint firstItem="gjv-Qb-Fx2" firstAttribute="leading" secondItem="ccd-Rq-TUI" secondAttribute="leading" constant="15" id="rLi-Ag-PSl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UKv-5A-eoG" firstAttribute="bottom" secondItem="ccd-Rq-TUI" secondAttribute="bottom" id="Czk-JO-JIq"/>
+                            <constraint firstItem="ccd-Rq-TUI" firstAttribute="top" secondItem="UKv-5A-eoG" secondAttribute="top" id="Uwu-dg-D9i"/>
+                            <constraint firstItem="UKv-5A-eoG" firstAttribute="trailing" secondItem="ccd-Rq-TUI" secondAttribute="trailing" id="cHu-o8-Mpv"/>
+                            <constraint firstItem="ccd-Rq-TUI" firstAttribute="leading" secondItem="UKv-5A-eoG" secondAttribute="leading" id="saa-Oq-afl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UKv-5A-eoG"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonAgree" destination="IJF-US-JO7" id="7Uv-jg-tth"/>
+                        <outlet property="buttonDisagree" destination="cvJ-n3-BNy" id="Nx9-9n-OAv"/>
+                        <outlet property="labelTitle" destination="BqX-5T-qwu" id="SJo-Ok-AG3"/>
+                        <outlet property="webView" destination="xkS-ls-65f" id="8cS-3K-UEX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G9R-YT-im5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1122" y="-825"/>
         </scene>
         <!--Onboarding View Controller-->
         <scene sceneID="PSA-eA-Wu1">
@@ -156,6 +258,7 @@
                         <outlet property="pageIndicator" destination="bvN-AJ-ZzI" id="6Y5-3a-Owh"/>
                         <outlet property="scrollView" destination="2vR-kT-rC3" id="48g-N3-NvZ"/>
                         <segue destination="U43-TM-Y9Q" kind="show" identifier="goToLogin" id="0Hu-rp-X4I"/>
+                        <segue destination="1cZ-CI-ol0" kind="presentation" identifier="goToRequired" animates="NO" id="rV0-DR-LNn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X4e-pS-rO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -747,6 +850,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="X1s-Cw-Wuc"/>
-        <segue reference="CxY-jf-esJ"/>
+        <segue reference="kY7-yh-uEs"/>
     </inferredMetricsTieBreakers>
 </document>

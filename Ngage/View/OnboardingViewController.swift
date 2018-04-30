@@ -21,6 +21,7 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var imageSecond: UIImageView!
     @IBOutlet weak var imageThird: UIImageView!
     var loginButton : LoginButton!
+    var didAgree = false
     
     @IBOutlet weak var login: UIButton!
     //MARK: - View Life Cycle
@@ -173,6 +174,10 @@ extension OnboardingViewController : UIScrollViewDelegate {
         case 2:
             self.loginButton.isHidden = false
             self.login.isHidden = false
+            if !didAgree {
+                didAgree = true
+                self.performSegue(withIdentifier: "goToRequired", sender: self)
+            }
         default:
             self.loginButton.isHidden = true
             self.login.isHidden = true

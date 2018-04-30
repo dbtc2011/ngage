@@ -44,9 +44,15 @@ class TimeManager: NSObject {
                         if let lastMissionString = UserDefaults.standard.string(forKey: Keys.MissionStartDate) {
                             let arrayLastMission = lastMissionString.components(separatedBy: "T")
                             if self.currentDay != arrayLastMission[0] {
+                                CoreDataManager.sharedInstance.clearUserAvailableMissions { (result) in
+                                    
+                                }
                                 UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
                             }
                         }else {
+                            CoreDataManager.sharedInstance.clearUserAvailableMissions { (result) in
+                                
+                            }
                             UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
                         }
                         

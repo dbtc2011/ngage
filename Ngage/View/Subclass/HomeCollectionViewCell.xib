@@ -137,6 +137,7 @@
                 <outlet property="buttonLock" destination="NPd-O5-aPB" id="F1t-Rc-G6S"/>
                 <outlet property="buttonWidth" destination="JGh-WE-vEZ" id="ozk-xF-EfV"/>
                 <outlet property="image" destination="ODB-U1-HII" id="jzB-WS-5j6"/>
+                <outlet property="labelEndsin" destination="QPb-O9-S5n" id="a6W-kn-Pxo"/>
                 <outlet property="labelRemainingPeriod" destination="qqy-ah-P3E" id="1MM-cR-Bxu"/>
                 <outlet property="lockContainerView" destination="q5A-Pw-1QP" id="Z9L-0L-OzT"/>
                 <outlet property="viewButtonContainer" destination="D7o-hW-dt4" id="0yb-7a-hdW"/>
