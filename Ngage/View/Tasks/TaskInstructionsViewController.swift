@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskInstructionsViewController: UIViewController {
+class TaskInstructionsViewController: MainViewController {
     
     var task : TaskModel!
     var mission : MissionModel!
@@ -56,7 +56,9 @@ class TaskInstructionsViewController: UIViewController {
         buttonStart.layer.borderColor = UIColor.white.cgColor
     }
     func getData() {
+        showSpinner()
         RegisterService.getTaskContent(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", contentID: task.contentId, FBID: user.facebookId) { (result, error) in
+            self.hideSpinner()
             if let result = result {
                 if let contents = result["content"].array {
                     for content in contents {

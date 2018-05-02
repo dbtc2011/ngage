@@ -114,6 +114,7 @@ class HomeViewController: DrawerFrontViewController {
         customAlertView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
         customAlertView!.delegate = self
         customAlertView!.tag = tag
+        customAlertView?.titleHeightConstraint.constant = 0
         customAlertView!.icon.image = UIImage(named: "ic_app_logo_circle")
         customAlertView!.setupContent(value: message)
         customAlertView!.button.setTitle("Ok", for: UIControlState.normal)
@@ -409,6 +410,15 @@ class HomeViewController: DrawerFrontViewController {
                 newMission.state = MissionState.locked
             }
         }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let dateExpiry = formatter.date(from: mission.endDate) {
+            let dateToCompare = TimeManager.sharedInstance.serverDate ?? Date()
+            if let expiryDifference = dateToCompare.timeIntervalSince(dateExpiry) as? Double, expiryDifference > 0 {
+                newMission.state = .expired
+            }
+        }
         return newMission
     }
     
@@ -532,6 +542,11 @@ extension HomeViewController : HomeCollectionViewCellDelegate {
     }
     
     func homeDidTapLock(tag: Int) {
+        let mission = user.missions[selectedIndex]
+        if mission.state == .expired {
+            self.showCustomAlertWith(message: "This mission is no longer available.", tag: 1)
+            return
+        }
         if TimeManager.sharedInstance.hasFinishedFirstTask {
             if user.points.convertToInt() >= 10 {
                 self.showPopupBeforeUnlockingMission()

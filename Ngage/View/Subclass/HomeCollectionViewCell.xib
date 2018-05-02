@@ -53,10 +53,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="502" height="834"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPd-O5-aPB">
-                                        <rect key="frame" x="176" y="342.5" width="150" height="150"/>
+                                        <rect key="frame" x="188.5" y="355" width="125" height="180"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="OuK-Gg-Set"/>
-                                            <constraint firstAttribute="height" constant="150" id="dJx-V5-mO9"/>
+                                            <constraint firstAttribute="width" constant="125" id="OuK-Gg-Set"/>
+                                            <constraint firstAttribute="height" constant="180" id="dJx-V5-mO9"/>
                                         </constraints>
                                         <state key="normal" image="ic_lock"/>
                                         <connections>
@@ -67,7 +67,6 @@
                                 <color key="backgroundColor" white="1" alpha="0.80227953767123283" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="NPd-O5-aPB" firstAttribute="centerX" secondItem="q5A-Pw-1QP" secondAttribute="centerX" id="rpi-Tw-zBj"/>
-                                    <constraint firstItem="NPd-O5-aPB" firstAttribute="centerY" secondItem="q5A-Pw-1QP" secondAttribute="centerY" id="wMN-Ck-NhF"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zme-fg-0LV">
@@ -107,6 +106,7 @@
                         <constraints>
                             <constraint firstItem="D7o-hW-dt4" firstAttribute="top" secondItem="Zme-fg-0LV" secondAttribute="bottom" id="03t-Yv-XVO"/>
                             <constraint firstItem="q5A-Pw-1QP" firstAttribute="height" secondItem="WU7-TF-Hll" secondAttribute="height" id="56F-iX-JH4"/>
+                            <constraint firstItem="NPd-O5-aPB" firstAttribute="top" secondItem="Zme-fg-0LV" secondAttribute="top" constant="-210" id="5RH-ci-LVR"/>
                             <constraint firstAttribute="bottom" secondItem="D7o-hW-dt4" secondAttribute="bottom" id="A1a-Ad-dDX"/>
                             <constraint firstItem="q5A-Pw-1QP" firstAttribute="leading" secondItem="WU7-TF-Hll" secondAttribute="leading" id="ATG-fN-TYa"/>
                             <constraint firstItem="Zme-fg-0LV" firstAttribute="leading" secondItem="ODB-U1-HII" secondAttribute="leading" id="BhB-Lu-eIM"/>

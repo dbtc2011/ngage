@@ -61,6 +61,14 @@ class HomeCollectionViewCell: UICollectionViewCell {
                 
             }
         }
+        // Double checking of state, server time might be nil 
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let dateExpiry = formatter.date(from: mission.endDate) {
+            if let expiryDifference = TimeManager.sharedInstance.serverDate.timeIntervalSince(dateExpiry) as? Double, expiryDifference > 0 {
+                state = .expired
+            }
+        }
         switch state {
         case .locked:
             self.button.setTitle("LOCKED", for: UIControlState.normal)
@@ -68,7 +76,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
             buttonLock.isHidden = false
             lockContainerView.isHidden = false
             buttonLock.setImage(UIImage(named: "ic_lock"), for: UIControlState.normal)
-            buttonLock.contentMode = UIViewContentMode.scaleAspectFit
             updateTime(mission: mission)
             
         case .expired:
@@ -76,6 +83,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
             button.isUserInteractionEnabled = false
             lockContainerView.isHidden = false
             buttonLock.isHidden = false
+            labelEndsin.text = "Mission has expired"
+            labelRemainingPeriod.text = "---"
             buttonLock.setImage(UIImage(named: "ic_expire"), for: UIControlState.normal)
             
         case .soon:
@@ -96,6 +105,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
             self.button.setTitle("START", for: UIControlState.normal)
             button.isUserInteractionEnabled = true
         }
+        
+        buttonLock.contentMode = UIViewContentMode.scaleToFill
         self.clipsToBounds = true
         contentView.clipsToBounds = true
         super.layoutSubviews()
@@ -109,6 +120,11 @@ class HomeCollectionViewCell: UICollectionViewCell {
     }
    
     func updateTime(mission: MissionModel) {
+        if mission.state == .expired {
+            labelEndsin.text = "Mission has expired"
+            labelRemainingPeriod.text = "---"
+            return
+        }
         let user = UserModel().mainUser()
         // Dont proceed if mission code is 0 (First mission) or mission is expired or mission is not yet started
         let formatter = DateFormatter()
@@ -131,14 +147,18 @@ class HomeCollectionViewCell: UICollectionViewCell {
         if let dateRemaining = formatter.date(from: "2018-05-31T00:00:00") {
             labelRemainingPeriod.text = timeInterval!.remainingDays(from: TimeManager.sharedInstance.serverDate, to: dateRemaining)
         }
+        
+        
         if (state == MissionState.completed) {
             labelEndsin.text = "Mission Completed"
             labelRemainingPeriod.text = "---"
             return
         }
+        
         if (!UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) || user.availableMissions.contains(missionCode)  || missionCode == 1) {
             return
         }
+        
         button.isUserInteractionEnabled = false
         buttonLock.isHidden = false
         lockContainerView.isHidden = false
