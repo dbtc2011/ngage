@@ -121,6 +121,8 @@
 		8CF745232029FED700C44C06 /* SingleMarketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF745222029FED700C44C06 /* SingleMarketTableViewController.swift */; };
 		C0600F5CA5D5B9BEA29645F3 /* Pods_Ngage_PHUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A091758B73D85735DF581BC /* Pods_Ngage_PHUITests.framework */; };
 		CF1B87702096E8F6009FB460 /* RequiredTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B876F2096E8F6009FB460 /* RequiredTermsViewController.swift */; };
+		CF45212B209A185D00AC94C3 /* TaskSoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF45212A209A185D00AC94C3 /* TaskSoundView.xib */; };
+		CF45212D209A1DFC00AC94C3 /* TaskSoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45212C209A1DFC00AC94C3 /* TaskSoundView.swift */; };
 		D726018ECEDF3F36F0A99D6C /* Pods_NgageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -277,6 +279,8 @@
 		B8A58246AB9DB2ED12F63B2C /* Pods_Ngage_PH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ngage_PH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAEEEA30556FD08E1DF705E3 /* Pods-Ngage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage/Pods-Ngage.release.xcconfig"; sourceTree = "<group>"; };
 		CF1B876F2096E8F6009FB460 /* RequiredTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredTermsViewController.swift; sourceTree = "<group>"; };
+		CF45212A209A185D00AC94C3 /* TaskSoundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskSoundView.xib; sourceTree = "<group>"; };
+		CF45212C209A1DFC00AC94C3 /* TaskSoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSoundView.swift; sourceTree = "<group>"; };
 		D18F56628567470784E86F54 /* Pods-Ngage PHTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC4AE8178C6EA52452032B29 /* Pods-Ngage PHUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHUITests/Pods-Ngage PHUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -456,6 +460,8 @@
 				50141F59202CC67F0082EF2B /* AudioPlayerView.xib */,
 				50DF518C203015E800F16FB4 /* TaskNameThatSountPlayerView.swift */,
 				50DF518E203015FC00F16FB4 /* TaskNameThatSoundView.xib */,
+				CF45212A209A185D00AC94C3 /* TaskSoundView.xib */,
+				CF45212C209A1DFC00AC94C3 /* TaskSoundView.swift */,
 				8CCD9CE3202C9392000D887F /* RedeemableTableViewCell.swift */,
 				8C3C3FCD2039F9F9000EBEEC /* MerchantFormInfoTableViewCell.swift */,
 				8C3C3FCF2039FA23000EBEEC /* MerchantFormMessageTableViewCell.swift */,
@@ -756,6 +762,7 @@
 				50141F5A202CC67F0082EF2B /* AudioPlayerView.xib in Resources */,
 				35E0A374207E6515001E2538 /* Montserrat-Bold.otf in Resources */,
 				509B0FA52019A77000DC0F21 /* HomeStoryboard.storyboard in Resources */,
+				CF45212B209A185D00AC94C3 /* TaskSoundView.xib in Resources */,
 				35921E62208139C900811304 /* HomeCollectionViewCell.xib in Resources */,
 				35E0A376207E6515001E2538 /* Montserrat-UltraLight.otf in Resources */,
 				6768E3CA208270DC00904CEB /* SuccessWithVerifcationView.xib in Resources */,
@@ -1011,6 +1018,7 @@
 				8CCD9CE4202C9392000D887F /* RedeemableTableViewCell.swift in Sources */,
 				502403B120258D4900180BAC /* Constants.swift in Sources */,
 				8C4EC038203B0200006A71A5 /* MerchantLocationTableViewCell.swift in Sources */,
+				CF45212D209A1DFC00AC94C3 /* TaskSoundView.swift in Sources */,
 				35DFC6892066959B00F749E0 /* TutorialViewController.swift in Sources */,
 				50C8B00E201F741F0014DCEF /* RequestManager.swift in Sources */,
 				50366C83202C95E800AA9B1A /* View.swift in Sources */,

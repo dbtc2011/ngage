@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TaskSoundView" customModule="Ngage_PH" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="515" height="254"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zb-n2-qW8">
+                    <rect key="frame" x="231" y="5" width="53" height="244"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mir-Xf-lpn">
+                    <rect key="frame" x="0.0" y="0.0" width="231" height="254"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkH-YX-C1I">
+                            <rect key="frame" x="181" y="102" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="UOD-c7-pQG"/>
+                                <constraint firstAttribute="height" constant="50" id="dIh-Wd-u9j"/>
+                            </constraints>
+                            <state key="normal" image="ic_preview_play"/>
+                            <connections>
+                                <action selector="didTapPlay:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ph5-l9-4u0"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" priority="250" constant="60" id="ONO-JG-6AB"/>
+                        <constraint firstItem="hkH-YX-C1I" firstAttribute="centerY" secondItem="mir-Xf-lpn" secondAttribute="centerY" id="TXg-e6-hgN"/>
+                        <constraint firstAttribute="trailing" secondItem="hkH-YX-C1I" secondAttribute="trailing" id="sbq-nC-ZVc"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tol-gy-oVz">
+                    <rect key="frame" x="284" y="0.0" width="231" height="254"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mir-Xf-lpn" firstAttribute="width" secondItem="Tol-gy-oVz" secondAttribute="width" id="26M-Mt-daR"/>
+                <constraint firstItem="Tol-gy-oVz" firstAttribute="leading" secondItem="5zb-n2-qW8" secondAttribute="trailing" id="FAr-fM-Fcq"/>
+                <constraint firstItem="5zb-n2-qW8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FbS-KU-osb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mir-Xf-lpn" secondAttribute="bottom" id="Qi5-yS-NA9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Tol-gy-oVz" secondAttribute="bottom" id="Zg9-N6-g40"/>
+                <constraint firstItem="mir-Xf-lpn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="dRH-bg-DNV"/>
+                <constraint firstItem="5zb-n2-qW8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="gH4-PV-vAP"/>
+                <constraint firstItem="Tol-gy-oVz" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="lJ6-O5-snZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Tol-gy-oVz" secondAttribute="trailing" id="uDG-gw-egG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5zb-n2-qW8" secondAttribute="bottom" constant="5" id="vbb-zu-CMv"/>
+                <constraint firstItem="5zb-n2-qW8" firstAttribute="leading" secondItem="mir-Xf-lpn" secondAttribute="trailing" id="zKO-Eg-xCe"/>
+                <constraint firstItem="mir-Xf-lpn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zaX-QB-gsT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="button" destination="hkH-YX-C1I" id="7hg-SS-dGQ"/>
+                <outlet property="labelContent" destination="5zb-n2-qW8" id="FUx-fB-J5x"/>
+            </connections>
+            <point key="canvasLocation" x="104.5" y="525"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_preview_play" width="42" height="42"/>
+    </resources>
+</document>

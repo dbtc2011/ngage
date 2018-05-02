@@ -32,7 +32,8 @@ class MultipleChoiceTaskViewController: UIViewController {
     var maxTime = 40
     var currentTime : Int!
     var currentPath = ""
-    var playerView : TaskNameThatSountPlayerView?
+    var playerView: TaskSoundView?
+    var questionView: TaskNameThatSountPlayerView?
     var correctAnswer = 0
     var wrongAnswer = 0
     var correctAnswers = ""
@@ -124,7 +125,7 @@ class MultipleChoiceTaskViewController: UIViewController {
         if let url = URL(string: fileURL) {
             player = AVPlayer(url: url)
             player!.play()
-            playerView!.buttonWidth.constant = 0
+            playerView!.button.isHidden = true
         }else {
             print("URL not playable ----> \(fileURL)")
         }
@@ -150,7 +151,7 @@ class MultipleChoiceTaskViewController: UIViewController {
                 print("Download Finished")
                 
                 DispatchQueue.main.async {
-                    self.playerView!.imageLogo.image = UIImage(data: data)
+                    self.questionView!.imageLogo.image = UIImage(data: data)
                 }
             })
             
@@ -166,7 +167,11 @@ class MultipleChoiceTaskViewController: UIViewController {
             self.button4.setAsDefault()
         }) { (value) in
             if self.playerView != nil {
-                self.playerView!.title.text = question.question
+                self.playerView!.labelContent.text = question.question
+                self.playerView?.layoutIfNeeded()
+            }
+            if self.questionView != nil {
+                self.questionView!.title.text = question.question
             }
             self.button1.setTitle(question.choices[0], for: UIControlState.normal)
             self.button2.setTitle(question.choices[1], for: UIControlState.normal)
@@ -184,7 +189,7 @@ class MultipleChoiceTaskViewController: UIViewController {
                     self.submitTask()
                 }else {
                     self.player = nil
-                    self.playerView?.buttonWidth.constant = 42
+                    self.playerView!.button.isHidden = false
                     self.answerdQuestion()
                 }
                 return
@@ -221,22 +226,28 @@ class MultipleChoiceTaskViewController: UIViewController {
     
     func setupNameThatSound() {
         let question = questions[currentQuestion]
-        playerView = (Bundle.main.loadNibNamed("TaskNameThatSoundView", owner: self, options: nil)?.first as! TaskNameThatSountPlayerView)
-        playerView!.bounds = viewContainer.bounds
-        playerView?.backgroundColor = UIColor.clear
-        playerView!.delegate = self
-        playerView!.frame.origin = CGPoint(x: 0, y: 0)
+        
         if task.type == 17 {
-            playerView!.buttonWidth.constant = 0
+            questionView = (Bundle.main.loadNibNamed("TaskNameThatSoundView", owner: self, options: nil)?.first as! TaskNameThatSountPlayerView)
+            questionView!.bounds = viewContainer.bounds
+            questionView?.backgroundColor = UIColor.clear
+            questionView!.frame.origin = CGPoint(x: 0, y: 0)
+            questionView!.buttonWidth.constant = 0
             if question.isLogo {
-                playerView!.labelBottomConstraint.constant = viewContainer.frame.size.height - 55
-                playerView!.imageLogo.isHidden = false
-                playerView!.imageLogo.backgroundColor = UIColor.clear
+                questionView!.labelBottomConstraint.constant = viewContainer.frame.size.height - 55
+                questionView!.imageLogo.isHidden = false
+                questionView!.imageLogo.backgroundColor = UIColor.clear
             }
+            viewContainer.addSubview(questionView!)
         }else if task.type == 8 {
-            playerView!.buttonWidth.constant = 42
+            playerView = (Bundle.main.loadNibNamed("TaskSoundView", owner: self, options: nil)?.first as! TaskSoundView)
+            playerView!.bounds = viewContainer.bounds
+            playerView?.backgroundColor = UIColor.clear
+            playerView!.delegate = self
+            playerView!.frame.origin = CGPoint(x: 0, y: 0)
+            playerView!.button.isHidden = false
+            viewContainer.addSubview(playerView!)
         }
-        viewContainer.addSubview(playerView!)
     }
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
@@ -279,7 +290,7 @@ class MultipleChoiceTaskViewController: UIViewController {
             if timeLimit != nil {
                 timeLimit!.invalidate()
             }
-            playerView?.buttonWidth.constant = 42
+            playerView!.button.isHidden = false
             player = nil
         }
         
