@@ -50,7 +50,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         state = mission.state
         lockContainerView.isHidden = true
         buttonLock.isHidden = true
-        self.buttonWidth.constant = 200
+        self.buttonWidth.constant = 100
         button.layer.cornerRadius = 13
         labelEndsin.text = "Mission ends in"
         button.backgroundColor = UIColor().setColorUsingHex(hex: mission.colorBackground)
@@ -83,6 +83,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
             button.isUserInteractionEnabled = false
             lockContainerView.isHidden = false
             buttonLock.isHidden = false
+            self.buttonWidth.constant = 120
             labelEndsin.text = "Mission has expired"
             labelRemainingPeriod.text = "---"
             buttonLock.setImage(UIImage(named: "ic_expire"), for: UIControlState.normal)
@@ -90,12 +91,14 @@ class HomeCollectionViewCell: UICollectionViewCell {
         case .soon:
             self.button.setTitle("COMING SOON", for: UIControlState.normal)
             button.isUserInteractionEnabled = false
+            self.buttonWidth.constant = 150
             
         case .completed:
             self.button.setTitle("COMPLETED", for: UIControlState.normal)
             button.isUserInteractionEnabled = true
             labelEndsin.text = "Mission Completed"
             labelRemainingPeriod.text = "---"
+            self.buttonWidth.constant = 150
             
         case .started:
             self.button.setTitle("CONTINUE", for: UIControlState.normal)
@@ -166,6 +169,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         
         DispatchQueue.main.async {
             self.button.setTitle(time, for: UIControlState.normal)
+            self.buttonWidth.constant = 200
         }
     }
 }

@@ -181,5 +181,14 @@ final class RegisterService: RequestManager {
             success(result, error)
         }
     }
+    
+    class func checkMissionAvailability(FBID: String, MissionID: Int, success: @escaping CompletionBlock) {
+        let parameter = ["FBID": FBID, "MissionID": MissionID] as [String : Any]
+        perform(task: .checkMission(parameter)) { (result, error) in
+            print("Task result = \(result)")
+            success(result, error)
+        }
+    }
+
 }
 

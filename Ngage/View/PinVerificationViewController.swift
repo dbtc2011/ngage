@@ -12,6 +12,7 @@ class PinVerificationViewController: MainViewController {
     
     var user: UserModel!
     var pinCode = ""
+    var regCode = 9
     @IBOutlet weak var labelPleaseWait: UILabel!
     
     @IBOutlet weak var buttonVerify: UIButton!
@@ -24,6 +25,12 @@ class PinVerificationViewController: MainViewController {
         setupUI()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if regCode == 8 {
+            requestPin()
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -35,7 +42,6 @@ class PinVerificationViewController: MainViewController {
     func setupUI() {
         buttonResend.layer.cornerRadius = 27
         buttonVerify.layer.cornerRadius = 27
-        
         labelPleaseWait.text = labelPleaseWait.text?.replacingOccurrences(of: "{number}", with: user.mobileNumber)
     }
     

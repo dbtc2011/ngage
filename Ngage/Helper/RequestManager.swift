@@ -35,6 +35,7 @@ enum Task {
     case merchantInfo(Parameters)
     case refreshPoints(Parameters)
     case addReferral(Parameters)
+    case checkMission(Parameters)
 }
 
 typealias SuccessBlock = (_ response: Any) -> Void
@@ -120,26 +121,23 @@ class RequestManager {
                 
             case let .addReferral(parameters):
                 return RequestTask(urlRequest: Router.addReferral(parameter: parameters))
+                
+            case let .checkMission(parameters):
+                return RequestTask(urlRequest: Router.checkMission(parameter: parameters))
             }
             
         }()
-        
-        
-        
+        print("Task = \(task)")
         reqTask.perform({ (response) in
             let responseJSON = JSON(response)
             if let error = responseJSON["Message"].string {
-                
                 completion(nil, NSError(domain: "Ngage", code: 500, userInfo: [NSLocalizedDescriptionKey: error]))
             }else {
-                
                 completion(responseJSON, nil)
-                
             }
 
         }) { (error) in
             // show error if needed
-
             completion(nil, error)
         }
     }

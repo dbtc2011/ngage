@@ -15,6 +15,7 @@ class MSISDNViewController: MainViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var buttonCarrier: UIButton!
     @IBOutlet weak var buttonSubmit: UIButton!
+    var regCode = 0
     
     //MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -98,7 +99,8 @@ class MSISDNViewController: MainViewController {
                                 
                             }
                             
-                        }else if statusCode == 9{
+                        }else if statusCode == 9 || statusCode == 8 {
+                            self.regCode = statusCode
                             self.user.dateCreated = userRegistration["dtCreated"]?.string ?? ""
                             TimeManager.sharedInstance.shouldEditMission = true
                             DispatchQueue.main.async {

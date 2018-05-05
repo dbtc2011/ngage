@@ -21,6 +21,7 @@ class HomeViewController: DrawerFrontViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var marketAds: MarketPlaceAdsView?
     var customAlertView: CustomModalView?
+    @IBOutlet weak var pageController: UIPageControl!
     
     @IBOutlet weak var buttonTutorial: UIButton!
     @IBOutlet weak var viewTutorial: UIView!
@@ -80,6 +81,7 @@ class HomeViewController: DrawerFrontViewController {
                     }
                     self.user.missions.append(missionModel)
                 }
+                self.pageController.numberOfPages = self.user.missions.count + 1
             }
             
         }
@@ -279,6 +281,18 @@ class HomeViewController: DrawerFrontViewController {
         }
     }
     
+    func unlockMissionWithCode() {
+        if TimeManager.sharedInstance.hasFinishedFirstTask {
+            if user.points.convertToInt() >= 10 {
+                self.showPopupBeforeUnlockingMission()
+            }else {
+                self.showCustomAlertWith(message: "This mission require 10 points to unlock.", tag: 1)
+            }
+        }else {
+            self.showCustomAlertWith(message: "You have to first complete Let's get started to unlock this mission", tag: 1)
+        }
+    }
+    
     //MARK: - API
     func getMission() {
         showSpinner()
@@ -367,6 +381,7 @@ class HomeViewController: DrawerFrontViewController {
                                 DispatchQueue.main.asyncAfter(deadline: when) {
                                     self.reloadTime()
                                     self.removeProfileBackground()
+                                    self.pageController.numberOfPages = self.user.missions.count + 1
                                     self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: UICollectionViewScrollPosition.left, animated: false)
                                     if let hasFinished = UserDefaults.standard.bool(forKey: Keys.hasFinishedTutorial) as? Bool {
                                         if hasFinished {
@@ -387,6 +402,23 @@ class HomeViewController: DrawerFrontViewController {
             }
         }
     
+    }
+    
+    func checkMissionAvailability(code: Int, tag: Int) {
+        showSpinner()
+        RegisterService.checkMissionAvailability(FBID: user.facebookId, MissionID: code) { (result, error) in
+            self.hideSpinner()
+            let errorDesc = result?["StatusDesc"].string ?? "Something went wrong!"
+            if let statusCode = result?["StatusCode"].int, statusCode == 2 {
+                if tag == 1 {
+                    self.performSegue(withIdentifier: "taskPage", sender: self)
+                }else {
+                    self.unlockMissionWithCode()
+                }
+            }else {
+                self.showCustomAlertWith(message: errorDesc, tag: 1)
+            }
+        }
     }
     
     func lockMissionForStarter(mission: MissionModel) -> MissionModel {
@@ -508,12 +540,9 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout {
 extension HomeViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if indexPath.section == 0 {
             return
         }
-        self.performSegue(withIdentifier: "taskPage", sender: self)
-        
     }
     
 }
@@ -522,12 +551,14 @@ extension HomeViewController : UICollectionViewDelegate {
 extension HomeViewController : UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = scrollView.contentOffset.x/self.view.frame.size.width
+        self.pageController.currentPage = Int(index)
         selectedIndex = Int(index)
         if selectedIndex == 0 {
             setupBackgroundProfile()
+            self.pageController.isHidden = true
             return
         }
-        
+        self.pageController.isHidden = false
         self.removeProfileBackground()
         selectedIndex = selectedIndex - 1
         let color = UIColor().setColorUsingHex(hex: self.user.missions[selectedIndex].colorBackground)
@@ -538,7 +569,12 @@ extension HomeViewController : UIScrollViewDelegate {
 extension HomeViewController : HomeCollectionViewCellDelegate {
     
     func homeDidTapStart(tag: Int) {
-        self.performSegue(withIdentifier: "taskPage", sender: self)
+        let mission = user.missions[selectedIndex]
+        if mission.state == .enabled {
+            checkMissionAvailability(code: selectedIndex, tag: 1)
+        }else {
+            self.performSegue(withIdentifier: "taskPage", sender: self)
+        }
     }
     
     func homeDidTapLock(tag: Int) {
@@ -547,15 +583,7 @@ extension HomeViewController : HomeCollectionViewCellDelegate {
             self.showCustomAlertWith(message: "This mission is no longer available.", tag: 1)
             return
         }
-        if TimeManager.sharedInstance.hasFinishedFirstTask {
-            if user.points.convertToInt() >= 10 {
-                self.showPopupBeforeUnlockingMission()
-            }else {
-                self.showCustomAlertWith(message: "This mission require 10 points to unlock.", tag: 1)
-            }
-        }else {
-            self.showCustomAlertWith(message: "You have to first complete Let's get started to unlock this mission", tag: 1)
-        }
+        checkMissionAvailability(code: selectedIndex, tag: 14)
     }
 }
 
