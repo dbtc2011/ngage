@@ -513,6 +513,7 @@ class CoreDataManager: NSObject {
             errorDescription = error.localizedDescription
             return
         }
+        print("Code to save : \(model.code)")
         
         missionEntity.code = Int64(model.code)
         missionEntity.userId = model.userId

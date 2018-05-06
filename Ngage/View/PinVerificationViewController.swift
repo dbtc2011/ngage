@@ -45,10 +45,13 @@ class PinVerificationViewController: MainViewController {
         labelPleaseWait.text = labelPleaseWait.text?.replacingOccurrences(of: "{number}", with: user.mobileNumber)
     }
     
+    //MARK: - API
     func requestPin() {
+        showSpinner()
         self.buttonResend.isEnabled = false
         self.buttonVerify.isEnabled = false
         RegisterService.resendVerificationCode(fbid: self.user.facebookId) { (result, error) in
+            self.hideSpinner()
             self.buttonVerify.isEnabled = true
             self.buttonResend.isEnabled = true
             print(result ?? "Result = nil")

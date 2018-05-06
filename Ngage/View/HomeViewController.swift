@@ -282,14 +282,10 @@ class HomeViewController: DrawerFrontViewController {
     }
     
     func unlockMissionWithCode() {
-        if TimeManager.sharedInstance.hasFinishedFirstTask {
-            if user.points.convertToInt() >= 10 {
-                self.showPopupBeforeUnlockingMission()
-            }else {
-                self.showCustomAlertWith(message: "This mission require 10 points to unlock.", tag: 1)
-            }
+        if user.points.convertToInt() >= 10 {
+            self.showPopupBeforeUnlockingMission()
         }else {
-            self.showCustomAlertWith(message: "You have to first complete Let's get started to unlock this mission", tag: 1)
+            self.showCustomAlertWith(message: "This mission require 10 points to unlock.", tag: 1)
         }
     }
     
@@ -299,6 +295,7 @@ class HomeViewController: DrawerFrontViewController {
         RegisterService.getMissionList(fbid: self.user.facebookId) { (result, error) in
             self.hideSpinner()
             self.shouldReloadTime = true
+            print("Result \(result)")
             if error == nil {
                 
                 if let missions = result?["missions"].array {
@@ -320,6 +317,7 @@ class HomeViewController: DrawerFrontViewController {
                         missionModel.createdBy = mission["missionCreatedBy"].string ?? ""
                         missionModel.title = mission["missionTitle"].string ?? ""
                         missionModel.imageUrl = mission["missionImage"].string ?? ""
+                        print("Mission : \(missionModel.code) - \(missionModel.title)")
                         missionModel.imageTask = DownloadImageClass(link: missionModel.imageUrl)
                         
                         if let tasks = mission["tasks"].array {
@@ -382,6 +380,7 @@ class HomeViewController: DrawerFrontViewController {
                                     self.reloadTime()
                                     self.removeProfileBackground()
                                     self.pageController.numberOfPages = self.user.missions.count + 1
+                                    self.pageController.currentPage = 1
                                     self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: UICollectionViewScrollPosition.left, animated: false)
                                     if let hasFinished = UserDefaults.standard.bool(forKey: Keys.hasFinishedTutorial) as? Bool {
                                         if hasFinished {
@@ -507,6 +506,7 @@ extension HomeViewController : UICollectionViewDataSource {
         cell.delegate = self
         let mission = self.user.missions[indexPath.row]
         cell.setupContents(mission: mission)
+        print("Mission code = \(mission.code)")
         if mission.imageTask!.state == DowloadingImageState.new {
             let url = URL(string: mission.imageUrl)
             mission.imageTask!.downloadTask = self.downloadsSession!.downloadTask(with: url!)
@@ -570,9 +570,11 @@ extension HomeViewController : HomeCollectionViewCellDelegate {
     
     func homeDidTapStart(tag: Int) {
         let mission = user.missions[selectedIndex]
-        if mission.state == .enabled {
-            checkMissionAvailability(code: selectedIndex, tag: 1)
-        }else {
+        if mission.code == 1 {
+            self.performSegue(withIdentifier: "taskPage", sender: self)
+        } else if mission.state == .enabled {
+            checkMissionAvailability(code: mission.code, tag: 1)
+        } else {
             self.performSegue(withIdentifier: "taskPage", sender: self)
         }
     }
@@ -583,7 +585,11 @@ extension HomeViewController : HomeCollectionViewCellDelegate {
             self.showCustomAlertWith(message: "This mission is no longer available.", tag: 1)
             return
         }
-        checkMissionAvailability(code: selectedIndex, tag: 14)
+        if !TimeManager.sharedInstance.hasFinishedFirstTask {
+            self.showCustomAlertWith(message: "You have to first complete Let's get started to unlock this mission", tag: 1)
+            return
+        }
+        checkMissionAvailability(code: mission.code, tag: 14)
     }
 }
 

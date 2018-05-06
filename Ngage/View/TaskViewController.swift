@@ -207,6 +207,7 @@ class TaskViewController: MainViewController {
         let modalView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
         modalView.delegate = self
         modalView.tag = 13
+        modalView.titleHeightConstraint.constant = 0
         modalView.button.tag = 13
         modalView.icon.image = UIImage(named: "ic_app_logo_circle")
         modalView.setupContent(value: "Congratulations!\nYou have been rewarded with \(mission.reward) Points for completing \(mission.title)")
@@ -612,7 +613,7 @@ extension TaskViewController : CustomModalViewDelegate {
         }else if tag == 2 {
             adjustTasks()
         }else if tag == 13 {
-            
+            setupCompleted()
         }
     }
 }
