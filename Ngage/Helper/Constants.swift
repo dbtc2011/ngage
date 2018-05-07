@@ -20,4 +20,5 @@ struct Keys {
     static let hasFinishedTutorial = "has_finished_tutorial"
     static let sratchPoint = "scratch_point"
     static let reloadData = "reload_data"
+    static let shouldResetDisabled = "reset_disabled"
 }

@@ -135,6 +135,9 @@
             <connections>
                 <outlet property="button" destination="YzJ-lx-gbZ" id="5Ap-kW-06U"/>
                 <outlet property="buttonLock" destination="NPd-O5-aPB" id="F1t-Rc-G6S"/>
+                <outlet property="buttonLockHeight" destination="dJx-V5-mO9" id="yzA-Ww-YkL"/>
+                <outlet property="buttonLockTop" destination="5RH-ci-LVR" id="JYr-Ka-iAy"/>
+                <outlet property="buttonLockWidth" destination="OuK-Gg-Set" id="oEM-aS-sm7"/>
                 <outlet property="buttonWidth" destination="JGh-WE-vEZ" id="ozk-xF-EfV"/>
                 <outlet property="image" destination="ODB-U1-HII" id="jzB-WS-5j6"/>
                 <outlet property="labelEndsin" destination="QPb-O9-S5n" id="a6W-kn-Pxo"/>

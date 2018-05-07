@@ -10,7 +10,7 @@ import UIKit
 
 enum MissionState : Int {
     
-    case locked = 0, enabled = 1, soon = 2, expired = 3, completed = 4, started = 5
+    case locked = 0, enabled = 1, soon = 2, expired = 3, completed = 4, started = 5, disabled = 6
 }
 
 protocol HomeCollectionViewCellDelegate {
@@ -20,6 +20,9 @@ protocol HomeCollectionViewCellDelegate {
 
 class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var buttonWidth: NSLayoutConstraint!
+    @IBOutlet weak var buttonLockWidth: NSLayoutConstraint!
+    @IBOutlet weak var buttonLockTop: NSLayoutConstraint!
+    @IBOutlet weak var buttonLockHeight: NSLayoutConstraint!
     @IBOutlet weak var buttonLock: UIButton!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var button: UIButton!
@@ -38,7 +41,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     func setupContents(mission : MissionModel) {
         viewEnds.isHidden = false
         viewEndsHeightConstraint.constant = 60.0
-        if mission.code == 1 {
+        if mission.code == 1 || mission.state == .disabled {
             viewEnds.isHidden = true
             viewEndsHeightConstraint.constant = 0.0
         }
@@ -104,6 +107,14 @@ class HomeCollectionViewCell: UICollectionViewCell {
             self.button.setTitle("CONTINUE", for: UIControlState.normal)
             button.isUserInteractionEnabled = true
             
+        case .disabled:
+            lockContainerView.isHidden = false
+            buttonLock.isHidden = false
+            buttonLock.setImage(#imageLiteral(resourceName: "ic_unavailable"), for: UIControlState.normal)
+            buttonLockWidth.constant = 160.0
+            buttonLockHeight.constant = 160.0
+            buttonLockTop.constant = -250.0
+            
         default:
             self.button.setTitle("START", for: UIControlState.normal)
             button.isUserInteractionEnabled = true
@@ -127,7 +138,16 @@ class HomeCollectionViewCell: UICollectionViewCell {
             labelEndsin.text = "Mission has expired"
             labelRemainingPeriod.text = "---"
             return
+        } else if mission.state == .disabled {
+            lockContainerView.isHidden = false
+            buttonLock.isHidden = false
+            buttonLock.setImage(#imageLiteral(resourceName: "ic_unavailable"), for: UIControlState.normal)
+            buttonLockWidth.constant = 160.0
+            buttonLockHeight.constant = 160.0
+            buttonLockTop.constant = -250.0
+            return
         }
+    
         let user = UserModel().mainUser()
         // Dont proceed if mission code is 0 (First mission) or mission is expired or mission is not yet started
         let formatter = DateFormatter()
@@ -142,6 +162,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
             CoreDataManager.sharedInstance.clearUserAvailableMissions { (result) in
                 
             }
+            UserDefaults.standard.set(true, forKey: Keys.shouldResetDisabled)
             UserDefaults.standard.set(false, forKey: Keys.keyHasStartedMission)
         }
         let timeInterval = TimeInterval(exactly: timeRemaining)

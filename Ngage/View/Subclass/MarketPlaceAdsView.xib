@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -105,17 +105,6 @@
                                 <action selector="marketButtonClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="jLi-hi-CMB"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUc-o1-34u">
-                            <rect key="frame" x="281" y="-17" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="Hvt-Ec-XJG"/>
-                                <constraint firstAttribute="height" constant="40" id="PnQ-mN-Fsz"/>
-                            </constraints>
-                            <state key="normal" image="ic_close"/>
-                            <connections>
-                                <action selector="closeButtonclicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="PLR-Vr-hcu"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -137,7 +126,6 @@
                         <constraint firstItem="KvP-fK-Hyt" firstAttribute="width" secondItem="uEi-eQ-Ron" secondAttribute="width" id="RxM-vj-dVh"/>
                         <constraint firstItem="VqQ-e7-Q78" firstAttribute="top" secondItem="uEi-eQ-Ron" secondAttribute="bottom" constant="15" id="Zfb-lU-9hK"/>
                         <constraint firstAttribute="trailing" secondItem="taj-Cf-7GG" secondAttribute="trailing" id="bqZ-px-8kJ"/>
-                        <constraint firstItem="eUc-o1-34u" firstAttribute="top" secondItem="C2w-LV-HOb" secondAttribute="top" constant="-17" id="dZ4-Pc-VCl"/>
                         <constraint firstItem="zpI-UH-4dU" firstAttribute="leading" secondItem="C2w-LV-HOb" secondAttribute="leading" id="eSO-6R-BUe"/>
                         <constraint firstItem="n9C-Jv-CKy" firstAttribute="leading" secondItem="C2w-LV-HOb" secondAttribute="leading" constant="30" id="eY0-zb-XRB"/>
                         <constraint firstAttribute="trailing" secondItem="gSR-YB-Kye" secondAttribute="trailing" id="hJa-lY-QkX"/>
@@ -147,12 +135,22 @@
                         <constraint firstItem="F6y-a4-sgi" firstAttribute="top" secondItem="n9C-Jv-CKy" secondAttribute="bottom" constant="20" id="k4O-3b-3Sw"/>
                         <constraint firstItem="KvP-fK-Hyt" firstAttribute="leading" secondItem="uEi-eQ-Ron" secondAttribute="leading" id="nBJ-83-mym"/>
                         <constraint firstItem="tkL-Bj-gNR" firstAttribute="centerX" secondItem="C2w-LV-HOb" secondAttribute="centerX" id="oxN-pb-Vcj"/>
-                        <constraint firstAttribute="trailing" secondItem="eUc-o1-34u" secondAttribute="trailing" constant="-16" id="oxe-0F-bBO"/>
                         <constraint firstItem="gSR-YB-Kye" firstAttribute="top" secondItem="zpI-UH-4dU" secondAttribute="bottom" constant="15" id="oxp-AH-vbp"/>
                         <constraint firstAttribute="trailing" secondItem="n9C-Jv-CKy" secondAttribute="trailing" constant="30" id="vY1-X2-1fp"/>
                         <constraint firstItem="gSR-YB-Kye" firstAttribute="leading" secondItem="C2w-LV-HOb" secondAttribute="leading" id="yNg-1Q-F0F"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUc-o1-34u">
+                    <rect key="frame" x="315" y="123.5" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Hvt-Ec-XJG"/>
+                        <constraint firstAttribute="height" constant="40" id="PnQ-mN-Fsz"/>
+                    </constraints>
+                    <state key="normal" image="ic_close"/>
+                    <connections>
+                        <action selector="closeButtonclicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="PLR-Vr-hcu"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -161,7 +159,9 @@
                 <constraint firstItem="tjE-BD-a9Q" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="MWT-Wj-h05"/>
                 <constraint firstItem="C2w-LV-HOb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="35" id="Owq-89-89z"/>
                 <constraint firstItem="tjE-BD-a9Q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="VUT-Nn-Uyt"/>
+                <constraint firstItem="eUc-o1-34u" firstAttribute="top" secondItem="C2w-LV-HOb" secondAttribute="top" constant="-15" id="Ylo-0w-fzd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tjE-BD-a9Q" secondAttribute="trailing" id="dQL-5q-c1A"/>
+                <constraint firstItem="eUc-o1-34u" firstAttribute="trailing" secondItem="C2w-LV-HOb" secondAttribute="trailing" constant="15" id="fXU-TD-k8e"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="tjE-BD-a9Q" secondAttribute="bottom" id="jJA-8A-Q1N"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

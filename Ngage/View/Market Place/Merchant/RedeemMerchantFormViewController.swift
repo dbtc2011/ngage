@@ -218,6 +218,16 @@ extension RedeemMerchantFormViewController: UITextFieldDelegate {
             formDetails.emailAddress = textField.text!
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.keyboardType == .numberPad {
+            let newText = textField.text! + string
+            if newText.count > 11 {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 //MARK: - UITextView Delegate

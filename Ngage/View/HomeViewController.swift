@@ -128,6 +128,10 @@ class HomeViewController: DrawerFrontViewController {
     }
     
     func showPopupBeforeUnlockingMission() {
+        if customAlertView != nil {
+            customAlertView!.removeFromSuperview()
+            customAlertView = nil
+        }
         customAlertView = Bundle.main.loadNibNamed("CustomModalView", owner: self, options: nil)?.first as! CustomModalView
         customAlertView!.delegate = self
         customAlertView!.tag = 1
@@ -246,12 +250,14 @@ class HomeViewController: DrawerFrontViewController {
             reloadMissionData()
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 1)) as? HomeCollectionViewCell {
                 let mission = self.user.missions[selectedIndex]
+                print("Model's state = \(mission.state)")
                 cell.setupContents(mission: mission)
                 cell.updateTime(mission: mission)
             }
             
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex-1, section: 1)) as? HomeCollectionViewCell {
                 let mission = self.user.missions[selectedIndex-1]
+                print("Model's state = \(mission.state)")
                 cell.setupContents(mission: mission)
                 cell.updateTime(mission: mission)
                 
@@ -259,6 +265,7 @@ class HomeViewController: DrawerFrontViewController {
             
             if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex+1, section: 1)) as? HomeCollectionViewCell {
                 let mission = self.user.missions[selectedIndex+1]
+                print("Model's state = \(mission.state)")
                 cell.setupContents(mission: mission)
                 cell.updateTime(mission: mission)
                 
@@ -280,15 +287,7 @@ class HomeViewController: DrawerFrontViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
-    
-    func unlockMissionWithCode() {
-        if user.points.convertToInt() >= 10 {
-            self.showPopupBeforeUnlockingMission()
-        }else {
-            self.showCustomAlertWith(message: "This mission require 10 points to unlock.", tag: 1)
-        }
-    }
-    
+
     //MARK: - API
     func getMission() {
         showSpinner()
@@ -297,10 +296,8 @@ class HomeViewController: DrawerFrontViewController {
             self.shouldReloadTime = true
             print("Result \(result)")
             if error == nil {
-                
                 if let missions = result?["missions"].array {
                     for mission in missions {
-                        
                         var missionModel = MissionModel()
                         missionModel.code = mission["missionCode"].int ?? 0
                         missionModel.colorPrimary = mission["missionPrimaryColor"].string ?? ""
@@ -407,33 +404,64 @@ class HomeViewController: DrawerFrontViewController {
         showSpinner()
         RegisterService.checkMissionAvailability(FBID: user.facebookId, MissionID: code) { (result, error) in
             self.hideSpinner()
-            let errorDesc = result?["StatusDesc"].string ?? "Something went wrong!"
-            if let statusCode = result?["StatusCode"].int, statusCode == 2 {
-                if tag == 1 {
-                    self.performSegue(withIdentifier: "taskPage", sender: self)
-                }else {
-                    self.unlockMissionWithCode()
+            var errorDesc = result?["StatusDesc"].string ?? "Something went wrong!"
+            let statusCode = result?["StatusCode"].int
+            if error != nil {
+                self.showCustomAlertWith(message: errorDesc, tag: 1)
+            } else {
+                if statusCode == 2 {
+                    if tag == 1 {
+                        self.performSegue(withIdentifier: "taskPage", sender: self)
+                    }else {
+                        self.showPopupBeforeUnlockingMission()
+                    }
+                    return
+                } else if statusCode == 1 {
+                    errorDesc = "Sorry! This mission has already reached its maximum user. Please try other mission."
+                } else if statusCode == 3 || statusCode == 0 {
+                    errorDesc = "Sorry! Mission has already expired."
                 }
-            }else {
+                var mission = self.user.missions[self.selectedIndex]
+                mission.state = .disabled
+                CoreDataManager.sharedInstance.saveModelToCoreData(withModel: mission as AnyObject, completionHandler: { (result) in
+                    UserDefaults.standard.set(false, forKey: Keys.shouldResetDisabled)
+                    self.user.missions[self.selectedIndex] = mission
+                    let indexPath = IndexPath(item: self.selectedIndex, section: 1)
+                    self.user = UserModel().mainUser()
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadItems(at: [indexPath])
+                    }
+                })
+
                 self.showCustomAlertWith(message: errorDesc, tag: 1)
             }
+            
         }
     }
     
     func lockMissionForStarter(mission: MissionModel) -> MissionModel {
         var newMission = mission
+        let shouldReset: Bool = UserDefaults.standard.value(forKey: Keys.shouldResetDisabled) as? Bool ?? true
         if let hasStarted = UserDefaults.standard.bool(forKey: Keys.keyHasStartedMission) as? Bool{
             if hasStarted {
                 if !user.availableMissions.contains(newMission.code) && newMission.code != 1 {
                     newMission.state = MissionState.locked
-                }else {
-                    newMission.state = .enabled
+                } else {
+                    if !shouldReset && mission.state == .disabled {
+                        newMission.state = .disabled
+                    } else {
+                        newMission.state = .enabled
+                    }
                 }
             }else {
                 if !TimeManager.sharedInstance.hasFinishedFirstTask && newMission.code != 1 {
                     newMission.state = MissionState.locked
                 }else {
-                    newMission.state = .enabled
+                    if !shouldReset && mission.state == .disabled {
+                        newMission.state = .disabled
+                    } else {
+                        newMission.state = .enabled
+                    }
                 }
             }
         }else {
@@ -589,7 +617,11 @@ extension HomeViewController : HomeCollectionViewCellDelegate {
             self.showCustomAlertWith(message: "You have to first complete Let's get started to unlock this mission", tag: 1)
             return
         }
-        checkMissionAvailability(code: mission.code, tag: 14)
+        if user.points.convertToInt() >= 10 {
+            checkMissionAvailability(code: mission.code, tag: 14)
+        } else {
+            self.showCustomAlertWith(message: "This mission require 10 points to unlock.", tag: 1)
+        }
     }
 }
 

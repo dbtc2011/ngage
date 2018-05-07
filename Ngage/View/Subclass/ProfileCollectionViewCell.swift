@@ -63,9 +63,12 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         image.clipsToBounds = true
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         if let dateOrigFormat = dateFormatter.date(from: user.dateCreated) {
-            dateFormatter.dateFormat = "MMMM YYYY"
+            dateFormatter.dateFormat = "MMMM dd, YYYY"
             date.text = dateFormatter.string(from: dateOrigFormat)
+        }else {
+            date.text = fuckingManuallyParseTheDate()
         }
+        date.text = fuckingManuallyParseTheDate()
     
         DispatchQueue.main.async {
             
@@ -93,6 +96,21 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         }
         
         
+    }
+    
+    func fuckingManuallyParseTheDate() -> String {
+        let user = UserModel().mainUser()
+        let dates = user.dateCreated.components(separatedBy: "T")
+        if dates.count > 0 {
+            var dateSince = dates[0]
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            if let dateOrigFormat = dateFormatter.date(from: dateSince) {
+                dateFormatter.dateFormat = "MMMM dd, YYYY"
+                dateSince = dateFormatter.string(from: dateOrigFormat)
+                return dateSince
+            }
+        }
+        return "nil"
     }
     
     func updatePoints(withPoints points: String) {

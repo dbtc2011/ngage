@@ -44,9 +44,9 @@ class CustomModalView: UIView {
         self.backgroundColor = UIColor.clear
         containerView.layer.cornerRadius = 10
         button.layer.cornerRadius = 5
+        buttonExtra.layer.cornerRadius = 5
         labelContent.text = value
-        
-        
+    
         if buttonExtra.title(for: UIControlState.normal) == "" || buttonExtra.title(for: UIControlState.normal) == nil {
             buttonExtra.isHidden = true
             extraWidthConstraint.constant = 0

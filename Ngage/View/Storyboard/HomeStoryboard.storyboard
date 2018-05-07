@@ -1587,7 +1587,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="img_congratulations" translatesAutoresizingMaskIntoConstraints="NO" id="vfE-hA-5fs">
                                 <rect key="frame" x="15" y="255" width="345" height="57"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjH-D6-U9x">
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjH-D6-U9x">
                                 <rect key="frame" x="30" y="581" width="315" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="b0g-YL-v4T"/>
@@ -1597,20 +1597,13 @@
                                     <action selector="didTapOKButton:" destination="b9O-aY-54L" eventType="touchUpInside" id="s9E-73-M4o"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDh-Qo-1je">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have just completed all the tasks.  Scratch the image with gift box and redeem your reward" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDh-Qo-1je">
                                 <rect key="frame" x="37.5" y="322" width="300" height="249"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="jci-4B-rg0"/>
                                 </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="You have just completed all the tasks.  Scratch the image with gift box and redeem your reward">
-                                        <attributes>
-                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <font key="NSFont" size="18" name="Optima-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" name="ChewedPenBB" family="Chewed Pen BB" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
