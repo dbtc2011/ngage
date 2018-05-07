@@ -101,7 +101,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
             button.isUserInteractionEnabled = true
             labelEndsin.text = "Mission Completed"
             labelRemainingPeriod.text = "---"
-            self.buttonWidth.constant = 150
+            self.buttonWidth.constant = 200
             
         case .started:
             self.button.setTitle("CONTINUE", for: UIControlState.normal)

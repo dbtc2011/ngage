@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="MissionDataModel" representedClassName="MissionDataModel" syncable="YES" codeGenerationType="class">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="code" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -16,6 +16,7 @@
         <attribute name="rewardInfo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rewardType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="missionTask" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskDataModel" inverseName="mission" inverseEntity="TaskDataModel" syncable="YES"/>
@@ -65,7 +66,7 @@
         <relationship name="userMission" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MissionDataModel" inverseName="user" inverseEntity="MissionDataModel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MissionDataModel" positionX="-18" positionY="-243" width="128" height="330"/>
+        <element name="MissionDataModel" positionX="-18" positionY="-243" width="128" height="345"/>
         <element name="NotificationDataModel" positionX="-18" positionY="-90" width="128" height="165"/>
         <element name="TaskDataModel" positionX="178" positionY="-243" width="128" height="270"/>
         <element name="UserDataModel" positionX="-216" positionY="-243" width="128" height="255"/>

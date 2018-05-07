@@ -409,6 +409,7 @@ class HomeViewController: DrawerFrontViewController {
             if error != nil {
                 self.showCustomAlertWith(message: errorDesc, tag: 1)
             } else {
+                //should be 2
                 if statusCode == 2 {
                     if tag == 1 {
                         self.performSegue(withIdentifier: "taskPage", sender: self)
@@ -416,6 +417,7 @@ class HomeViewController: DrawerFrontViewController {
                         self.showPopupBeforeUnlockingMission()
                     }
                     return
+                    //should be 1
                 } else if statusCode == 1 {
                     errorDesc = "Sorry! This mission has already reached its maximum user. Please try other mission."
                 } else if statusCode == 3 || statusCode == 0 {
@@ -427,15 +429,13 @@ class HomeViewController: DrawerFrontViewController {
                     UserDefaults.standard.set(false, forKey: Keys.shouldResetDisabled)
                     self.user.missions[self.selectedIndex] = mission
                     let indexPath = IndexPath(item: self.selectedIndex, section: 1)
-                    self.user = UserModel().mainUser()
                     DispatchQueue.main.async {
                         self.collectionView.reloadItems(at: [indexPath])
+                        self.showCustomAlertWith(message: errorDesc, tag: 1)
                     }
                 })
-
-                self.showCustomAlertWith(message: errorDesc, tag: 1)
+                
             }
-            
         }
     }
     
@@ -609,6 +609,9 @@ extension HomeViewController : HomeCollectionViewCellDelegate {
     
     func homeDidTapLock(tag: Int) {
         let mission = user.missions[selectedIndex]
+        if mission.state == .disabled {
+            return
+        }
         if mission.state == .expired {
             self.showCustomAlertWith(message: "This mission is no longer available.", tag: 1)
             return

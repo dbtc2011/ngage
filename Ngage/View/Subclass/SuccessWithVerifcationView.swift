@@ -25,7 +25,6 @@ class SuccessWithVerifcationView: UIView {
     */
     //MARK: - Public Function
     func setupContent(points: String) {
-        
         var pointsEarned = points
         if points == "0" || points == "1" {
             pointsEarned = pointsEarned + "pt"
@@ -37,6 +36,8 @@ class SuccessWithVerifcationView: UIView {
         }
         if type == "referral" {
             content.text = "You will earn an additional {point} for every successful referral"
+        }else if type == "install" {
+            content.text = "You will earn an additional {point} for finishing this task."
         }
         content.text = content.text!.replacingOccurrences(of: "{point}", with: pointsEarned)
         let muttAttString = NSMutableAttributedString(string: content.text!)

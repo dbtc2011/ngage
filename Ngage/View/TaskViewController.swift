@@ -303,14 +303,10 @@ class TaskViewController: MainViewController {
         case 1, 2:
             let totalPoint = Int(user.points)! + Int(task.reward)!
             submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "0", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
-            
-        case 3:
-            let totalPoint = Int(user.points)! + Int(task.reward)!
-            submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: task.contentId, SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
+    
         case 5, 6, 10:
             let totalPoint = Int(user.points)! + Int(task.reward)!
             submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
-            
         case 3 :
             let totalPoint = Int(user.points)! + Int(task.reward)!
             submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: contentID, SubContentID: "0", Answer: "", CorrectAnswer: "", WatchType: "video", WatchTime: contentDuration, DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
@@ -324,8 +320,6 @@ class TaskViewController: MainViewController {
             let totalPoint = Int(user.points)! + Int(task.reward)!
             submitTask(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", FBID: user.facebookId, ContentID: "0", SubContentID: "1", Answer: "", CorrectAnswer: "", WatchType: "", WatchTime: "", DeviceID: user.deviceID, TaskStatus: "2", Current_Points: "\(totalPoint)", Points: task.reward, Prev_Points: user.points)
         }
-        
-        //        adjustTasks()
     }
     
     
@@ -344,7 +338,6 @@ class TaskViewController: MainViewController {
             openQuestionaireWithMusic(task: self.selectedTask)
         case 9:
             installTask(task: self.selectedTask)
-            
         case 10, 11:
             showPhotoPopOver()
             
@@ -398,12 +391,13 @@ class TaskViewController: MainViewController {
     }
     
     func installTask(task: TaskModel) {
-//        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
-//        if let controller = storyBoard.instantiateViewController(withIdentifier: "InstallTaskViewController") as? InstallTaskViewController {
-//            controller.task = task
-//            controller.mission = mission
-//            self.navigationController?.pushViewController(controller, animated: true)
-//        }
+        let storyBoard = UIStoryboard(name: "Tasks", bundle: Bundle.main)
+        if let controller = storyBoard.instantiateViewController(withIdentifier: "InstallTaskViewController") as? InstallTaskViewController {
+            controller.task = task
+            controller.installDelegate = self
+            controller.mission = mission
+            self.navigationController?.pushViewController(controller, animated: false)
+        }
     }
     
     //MARK: - Tap Gesture
@@ -477,11 +471,13 @@ class TaskViewController: MainViewController {
                                     self.contentDuration = ""
                                     self.contentID = ""
                                     
-                                    if self.selectedTask.code == 4 {
+                                    if self.selectedTask.type == 4 {
                                         self.showModalForPendingReward(message: "", type: "normal")
-                                    }else if self.selectedTask.code == 5 {
+                                    } else if self.selectedTask.type == 5 {
                                         self.showModalForPendingReward(message: "2", type: "referral")
-                                    }else {
+                                    } else if self.selectedTask.type == 9 {
+                                        self.showModalForPendingReward(message: "2", type: "install")
+                                    } else {
                                         self.showSuccessModal(totalPoints: "\(points)")
                                     }
                                 }

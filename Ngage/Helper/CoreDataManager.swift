@@ -389,6 +389,8 @@ class CoreDataManager: NSObject {
             let sortedResults = missionResults!.sorted(by: { $0.code < $1.code })
             
             for result in sortedResults {
+                
+                
                 var mission = MissionModel()
                 mission.code = Int(result.code)
                 mission.userId = result.userId ?? ""
@@ -407,6 +409,22 @@ class CoreDataManager: NSObject {
                 mission.rewardType = result.rewardType ?? "0"
                 mission.startDate = result.startDate ?? "\(NSDate())"
                 mission.title = result.title ?? ""
+                switch result.state {
+                case 0:
+                    mission.state = .locked
+                case 1:
+                    mission.state = .enabled
+                case 3:
+                    mission.state = .expired
+                case 4:
+                    mission.state = .completed
+                case 5:
+                    mission.state = .started
+                case 6:
+                    mission.state = .disabled
+                default:
+                    mission.state = .enabled
+                }
                 
                 convertedResults.append(mission as AnyObject)
             }
@@ -514,8 +532,8 @@ class CoreDataManager: NSObject {
             return
         }
         print("Code to save : \(model.code)")
-        
         missionEntity.code = Int64(model.code)
+        missionEntity.state = Int64(model.state.rawValue)
         missionEntity.userId = model.userId
         missionEntity.brand = model.brand
         missionEntity.colorBackground = model.colorBackground

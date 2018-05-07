@@ -73,6 +73,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         TimeManager.sharedInstance.setTimer()
+        guard let parent = self.window?.rootViewController as? KYDrawerController, parent.childViewControllers.count > 0, let navigation = parent.childViewControllers[0] as? NavigationController, let installTask = navigation.viewControllers.last as? InstallTaskViewController else {
+            return
+        }
+        if installTask.didOpenUrl {
+            installTask.didInstall()
+        }
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
