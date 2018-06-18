@@ -28,7 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>40</string>
+	<string>45</string>
 	<key>FacebookAppID</key>
 	<string>459224324441092</string>
 	<key>FacebookDisplayName</key>
@@ -68,7 +68,7 @@
 		<string>remote-notification</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
-	<true/>
+	<false/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

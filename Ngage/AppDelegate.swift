@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.registerForRemoteNotifications()
         FirebaseApp.configure()
+  
         UserDefaults.standard.set(false, forKey: Keys.keyShouldEdit)
         
         if CoreDataManager.sharedInstance.getMainUser() != nil {
