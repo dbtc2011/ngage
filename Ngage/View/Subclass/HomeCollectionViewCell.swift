@@ -168,7 +168,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         let timeInterval = TimeInterval(exactly: timeRemaining)
         
         time = timeInterval!.hoursMinutesSecondMS + " REMAINING"
-        if let dateRemaining = formatter.date(from: "2018-05-31T00:00:00") {
+        if let dateRemaining = formatter.date(from: mission.endDate) {
             labelRemainingPeriod.text = timeInterval!.remainingDays(from: TimeManager.sharedInstance.serverDate, to: dateRemaining)
         }
         

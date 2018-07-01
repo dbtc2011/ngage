@@ -258,14 +258,12 @@ class HomeViewController: DrawerFrontViewController {
       reloadMissionData()
       if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex, section: 1)) as? HomeCollectionViewCell {
         let mission = self.user.missions[selectedIndex]
-        print("Model's state = \(mission.state)")
         cell.setupContents(mission: mission)
         cell.updateTime(mission: mission)
       }
       
       if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex-1, section: 1)) as? HomeCollectionViewCell {
         let mission = self.user.missions[selectedIndex-1]
-        print("Model's state = \(mission.state)")
         cell.setupContents(mission: mission)
         cell.updateTime(mission: mission)
         
@@ -273,7 +271,6 @@ class HomeViewController: DrawerFrontViewController {
       
       if let cell = collectionView.cellForItem(at: IndexPath(item: selectedIndex+1, section: 1)) as? HomeCollectionViewCell {
         let mission = self.user.missions[selectedIndex+1]
-        print("Model's state = \(mission.state)")
         cell.setupContents(mission: mission)
         cell.updateTime(mission: mission)
         
