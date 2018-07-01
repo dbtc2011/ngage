@@ -16,7 +16,8 @@ class MainViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+  
+  
     func presentDefaultAlertWithMessage(message: String) {
         let alertController = UIAlertController(title: "Ngage PH", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))

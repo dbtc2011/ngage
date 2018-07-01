@@ -33,9 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
-        
+      
+      FirebaseApp.configure()
         application.registerForRemoteNotifications()
-        FirebaseApp.configure()
   
         UserDefaults.standard.set(false, forKey: Keys.keyShouldEdit)
         
