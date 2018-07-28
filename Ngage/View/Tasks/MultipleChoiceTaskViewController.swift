@@ -102,6 +102,7 @@ class MultipleChoiceTaskViewController: UIViewController {
     
     func getData() {
         RegisterService.getTaskContent(missionID: "\(mission.code)", taskID: "\(task.code)", tasktype: "\(task.type)", contentID: task.contentId, FBID: user.facebookId) { (result, error) in
+          print("Result: \(result)")
             if let result = result {
                 if let contents = result["content"].array {
                     for content in contents {
@@ -138,23 +139,28 @@ class MultipleChoiceTaskViewController: UIViewController {
         
         let question = questions[currentQuestion]
         currentPath = question.filePath
+      var fileURL = currentPath.replacingOccurrences(of: "http", with: "http")
+      fileURL = fileURL.replacingOccurrences(of: "httpss", with: "https")
+      fileURL = fileURL.replacingOccurrences(of: " ", with: "%20")
+      print("File Url = \(fileURL)")
         correctTag = question.getCorrectAnswer() + 1
         correctAnswers = correctAnswers + question.answer
         if question.isLogo {
-            let imageUrl = URL(string: currentPath)
-            self.getDataFromUrl(url: imageUrl!, completion: { (data, response, error) in
-                guard let data = data, error == nil else {
-                    print("No Image to download")
-                    return
-                    
-                }
-                print("Download Finished")
+          if let imageUrl = URL(string: fileURL) {
+            self.getDataFromUrl(url: imageUrl, completion: { (data, response, error) in
+              guard let data = data, error == nil else {
+                print("No Image to download")
+                return
                 
-                DispatchQueue.main.async {
-                    self.questionView!.imageLogo.image = UIImage(data: data)
-                }
+              }
+              print("Download Finished")
+              
+              DispatchQueue.main.async {
+                self.questionView!.imageLogo.image = UIImage(data: data)
+                self.questionView?.contentMode = .scaleToFill
+              }
             })
-            
+          }
         }
         
         UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.allowAnimatedContent, animations: {

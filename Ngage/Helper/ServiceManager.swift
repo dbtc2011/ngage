@@ -23,7 +23,7 @@ final class RegisterService: RequestManager {
         
         let long = ""
         let lat = ""
-        let parameter = ["FBID" : fbid, "FName": fName, "LName": lName, "Gender": gender, "Email": email, "ReferralCode": referralCode, "DeviceID": user.deviceID, "Msisdn": msisdn, "Lat": lat, "LLong": long, "OperatorID": operatorID, "ReferredBy": refferedBy, "Itype" : "3"]
+      let parameter = ["FBID" : fbid, "FName": fName, "LName": lName, "Gender": gender, "Email": email, "ReferralCode": referralCode, "DeviceID": user.deviceID, "Msisdn": msisdn, "Lat": lat, "LLong": long, "OperatorID": operatorID, "ReferredBy": refferedBy, "Itype" : "3", "IMEI": UIDevice.current.identifierForVendor?.uuidString ?? ""]
         perform(task: .register(parameter)) { (result, error) in
             success(result, error)
         }

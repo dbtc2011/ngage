@@ -55,7 +55,7 @@ enum Router : URLRequestConvertible {
     }
     
     struct Endpoint {
-        static let register = "svc/api/Registration2"
+        static let register = "svc/api/Registration3"
         static let validateRegistration = "svc/api/ValidateREG"
         static let sendPinCode = "svc/api/SendPincode"
         static let resendVerificationCode = "svc/api/ResendPinCode/{FBID}"
