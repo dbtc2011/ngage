@@ -14,6 +14,9 @@
         <array key="Montserrat-Light.otf">
             <string>Montserrat-Light</string>
         </array>
+        <array key="Montserrat-Medium.otf">
+            <string>Montserrat-Medium</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
@@ -259,12 +262,84 @@
                         <outlet property="pageIndicator" destination="bvN-AJ-ZzI" id="6Y5-3a-Owh"/>
                         <outlet property="scrollView" destination="2vR-kT-rC3" id="48g-N3-NvZ"/>
                         <segue destination="U43-TM-Y9Q" kind="show" identifier="goToLogin" id="0Hu-rp-X4I"/>
-                        <segue destination="1cZ-CI-ol0" kind="presentation" identifier="goToRequired" animates="NO" id="rV0-DR-LNn"/>
+                        <segue destination="1cZ-CI-ol0" kind="presentation" identifier="" animates="NO" id="rV0-DR-LNn"/>
+                        <segue destination="1WA-7i-csD" kind="presentation" identifier="goToRequired" id="G56-nm-V3U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X4e-pS-rO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1121" y="-136"/>
+        </scene>
+        <!--Required Terms View Controller-->
+        <scene sceneID="dz2-xg-Sqm">
+            <objects>
+                <viewController id="1WA-7i-csD" customClass="RequiredTermsViewController" customModule="Ngage_PH" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EeK-Wd-bUX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MM-u1-SID">
+                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igq-aN-TDJ">
+                                        <rect key="frame" x="8" y="18" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="73e-4V-J4h"/>
+                                            <constraint firstAttribute="height" constant="25" id="zhf-c2-2GK"/>
+                                        </constraints>
+                                        <state key="normal" image="back"/>
+                                        <connections>
+                                            <action selector="didTapBack:" destination="1WA-7i-csD" eventType="touchUpInside" id="GkX-cG-LXt"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzA-Ck-0Wx">
+                                        <rect key="frame" x="53" y="0.0" width="302" height="60"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1529411765" green="0.36078431370000003" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="igq-aN-TDJ" firstAttribute="top" secondItem="6MM-u1-SID" secondAttribute="top" constant="18" id="3MU-QI-dIW"/>
+                                    <constraint firstAttribute="bottom" secondItem="vzA-Ck-0Wx" secondAttribute="bottom" id="CGx-EE-Lfk"/>
+                                    <constraint firstAttribute="bottom" secondItem="igq-aN-TDJ" secondAttribute="bottom" constant="17" id="QJd-RH-3C5"/>
+                                    <constraint firstItem="vzA-Ck-0Wx" firstAttribute="top" secondItem="6MM-u1-SID" secondAttribute="top" id="XLa-I3-jE2"/>
+                                    <constraint firstItem="vzA-Ck-0Wx" firstAttribute="leading" secondItem="igq-aN-TDJ" secondAttribute="trailing" constant="20" id="hM5-Jq-EOe"/>
+                                    <constraint firstAttribute="trailing" secondItem="vzA-Ck-0Wx" secondAttribute="trailing" constant="20" id="luA-jf-6YV"/>
+                                    <constraint firstItem="igq-aN-TDJ" firstAttribute="leading" secondItem="6MM-u1-SID" secondAttribute="leading" constant="8" id="n4K-hO-h7F"/>
+                                    <constraint firstAttribute="height" constant="60" id="r2A-ur-r5A"/>
+                                </constraints>
+                            </view>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9Z-rO-OLh">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="P9Z-rO-OLh" firstAttribute="leading" secondItem="MvO-Yb-pp4" secondAttribute="leading" id="1YD-j1-ipH"/>
+                            <constraint firstItem="6MM-u1-SID" firstAttribute="top" secondItem="MvO-Yb-pp4" secondAttribute="top" id="HZg-BC-24w"/>
+                            <constraint firstItem="MvO-Yb-pp4" firstAttribute="bottom" secondItem="P9Z-rO-OLh" secondAttribute="bottom" id="K5W-RA-drD"/>
+                            <constraint firstItem="P9Z-rO-OLh" firstAttribute="top" secondItem="6MM-u1-SID" secondAttribute="bottom" id="UGm-O0-adI"/>
+                            <constraint firstItem="MvO-Yb-pp4" firstAttribute="trailing" secondItem="P9Z-rO-OLh" secondAttribute="trailing" id="be7-p9-H6O"/>
+                            <constraint firstItem="MvO-Yb-pp4" firstAttribute="trailing" secondItem="6MM-u1-SID" secondAttribute="trailing" id="grH-bg-5am"/>
+                            <constraint firstItem="6MM-u1-SID" firstAttribute="leading" secondItem="EeK-Wd-bUX" secondAttribute="leading" id="t6h-fa-Amh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MvO-Yb-pp4"/>
+                    </view>
+                    <connections>
+                        <outlet property="labelTitle" destination="vzA-Ck-0Wx" id="wfE-k2-Lw2"/>
+                        <outlet property="webView" destination="P9Z-rO-OLh" id="Mhn-Qq-vAs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gHx-Y8-581" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1122" y="578"/>
         </scene>
         <!--Ngage PH-->
         <scene sceneID="bLd-ox-n2H">

@@ -39,7 +39,7 @@ class TaskInstructionsViewController: MainViewController {
     
     //MARK: - Functions
     func setupUI() {
-        if task.type == 17 || task.type == 7 {
+        if task.type == 17 || task.type == 7 || task.type == 18 {
             imageQuiz.image = UIImage(named: "bg_rules_quiz")
             let countValue = "\(questions.count * 6)"
             seconInstruction.text! = seconInstruction.text!.replacingOccurrences(of: "{sec}", with: countValue)

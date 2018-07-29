@@ -123,6 +123,14 @@
 		CF1B87702096E8F6009FB460 /* RequiredTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B876F2096E8F6009FB460 /* RequiredTermsViewController.swift */; };
 		CF45212B209A185D00AC94C3 /* TaskSoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF45212A209A185D00AC94C3 /* TaskSoundView.xib */; };
 		CF45212D209A1DFC00AC94C3 /* TaskSoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45212C209A1DFC00AC94C3 /* TaskSoundView.swift */; };
+		CF4BB0F4210D738400F9B338 /* quiz_wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF4BB0F0210D738400F9B338 /* quiz_wrong.wav */; };
+		CF4BB0F5210D738400F9B338 /* quiz_correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF4BB0F1210D738400F9B338 /* quiz_correct.wav */; };
+		CF4BB0F6210D738400F9B338 /* finish.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CF4BB0F2210D738400F9B338 /* finish.m4a */; };
+		CF4BB0F7210D738400F9B338 /* scratch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF4BB0F3210D738400F9B338 /* scratch.mp3 */; };
+		CF4CBD7B210DE55D00A46DC3 /* TermsAndConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4CBD7A210DE55D00A46DC3 /* TermsAndConditionView.swift */; };
+		CF4CBD7D210DE57A00A46DC3 /* TermsAndConditionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4CBD7C210DE57A00A46DC3 /* TermsAndConditionView.xib */; };
+		CF656AEA210CE46D00363A15 /* CustomRewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF656AE9210CE46D00363A15 /* CustomRewardView.swift */; };
+		CF656AEC210CE47C00363A15 /* CustomRewardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF656AEB210CE47C00363A15 /* CustomRewardView.xib */; };
 		D726018ECEDF3F36F0A99D6C /* Pods_NgageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DBAD273C9A803CE49A8B20 /* Pods_NgageUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -281,6 +289,14 @@
 		CF1B876F2096E8F6009FB460 /* RequiredTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredTermsViewController.swift; sourceTree = "<group>"; };
 		CF45212A209A185D00AC94C3 /* TaskSoundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskSoundView.xib; sourceTree = "<group>"; };
 		CF45212C209A1DFC00AC94C3 /* TaskSoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSoundView.swift; sourceTree = "<group>"; };
+		CF4BB0F0210D738400F9B338 /* quiz_wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = quiz_wrong.wav; sourceTree = "<group>"; };
+		CF4BB0F1210D738400F9B338 /* quiz_correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = quiz_correct.wav; sourceTree = "<group>"; };
+		CF4BB0F2210D738400F9B338 /* finish.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = finish.m4a; sourceTree = "<group>"; };
+		CF4BB0F3210D738400F9B338 /* scratch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scratch.mp3; sourceTree = "<group>"; };
+		CF4CBD7A210DE55D00A46DC3 /* TermsAndConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionView.swift; sourceTree = "<group>"; };
+		CF4CBD7C210DE57A00A46DC3 /* TermsAndConditionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsAndConditionView.xib; sourceTree = "<group>"; };
+		CF656AE9210CE46D00363A15 /* CustomRewardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRewardView.swift; sourceTree = "<group>"; };
+		CF656AEB210CE47C00363A15 /* CustomRewardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomRewardView.xib; sourceTree = "<group>"; };
 		D18F56628567470784E86F54 /* Pods-Ngage PHTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHTests/Pods-Ngage PHTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC4AE8178C6EA52452032B29 /* Pods-Ngage PHUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ngage PHUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ngage PHUITests/Pods-Ngage PHUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -482,6 +498,10 @@
 				4983E451208B38C00018A0EF /* NotificationDetailHeaderTableViewCell.swift */,
 				4983E453208B38CC0018A0EF /* NotificationDetailMessageTableViewCell.swift */,
 				4983E455208B38D80018A0EF /* NotificationDetailButtonTableViewCell.swift */,
+				CF656AE9210CE46D00363A15 /* CustomRewardView.swift */,
+				CF656AEB210CE47C00363A15 /* CustomRewardView.xib */,
+				CF4CBD7A210DE55D00A46DC3 /* TermsAndConditionView.swift */,
+				CF4CBD7C210DE57A00A46DC3 /* TermsAndConditionView.xib */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -575,6 +595,7 @@
 		8CDE8492201F69C400C525A4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF4BB0EF210D737200F9B338 /* Audio */,
 				35E0A36E207E6515001E2538 /* Fonts */,
 				8CDE8493201F69C400C525A4 /* Core Data */,
 			);
@@ -614,6 +635,17 @@
 				8C3C3FC82039E674000EBEEC /* Merchant */,
 			);
 			path = "Market Place";
+			sourceTree = "<group>";
+		};
+		CF4BB0EF210D737200F9B338 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				CF4BB0F2210D738400F9B338 /* finish.m4a */,
+				CF4BB0F1210D738400F9B338 /* quiz_correct.wav */,
+				CF4BB0F0210D738400F9B338 /* quiz_wrong.wav */,
+				CF4BB0F3210D738400F9B338 /* scratch.mp3 */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -749,6 +781,7 @@
 			files = (
 				50DF518F203015FC00F16FB4 /* TaskNameThatSoundView.xib in Resources */,
 				35EEFF6120729D79001573F1 /* MarketPlaceAdsView.xib in Resources */,
+				CF4CBD7D210DE57A00A46DC3 /* TermsAndConditionView.xib in Resources */,
 				501AE437201849490088983A /* LaunchScreen.storyboard in Resources */,
 				35E0A378207E6515001E2538 /* ChewedPenBB.otf in Resources */,
 				503A59712043228000EB4687 /* CustomModalView.xib in Resources */,
@@ -758,16 +791,21 @@
 				35E0A377207E6515001E2538 /* Montserrat-Medium.otf in Resources */,
 				359E4F622071FBA500644087 /* GoogleService-Info.plist in Resources */,
 				351C6D9A207FC1A400ED435A /* ProfileCollectionViewCell.xib in Resources */,
+				CF4BB0F6210D738400F9B338 /* finish.m4a in Resources */,
 				501AE434201849490088983A /* Assets.xcassets in Resources */,
 				50141F5A202CC67F0082EF2B /* AudioPlayerView.xib in Resources */,
 				35E0A374207E6515001E2538 /* Montserrat-Bold.otf in Resources */,
 				509B0FA52019A77000DC0F21 /* HomeStoryboard.storyboard in Resources */,
+				CF4BB0F5210D738400F9B338 /* quiz_correct.wav in Resources */,
+				CF4BB0F4210D738400F9B338 /* quiz_wrong.wav in Resources */,
 				CF45212B209A185D00AC94C3 /* TaskSoundView.xib in Resources */,
 				35921E62208139C900811304 /* HomeCollectionViewCell.xib in Resources */,
 				35E0A376207E6515001E2538 /* Montserrat-UltraLight.otf in Resources */,
 				6768E3CA208270DC00904CEB /* SuccessWithVerifcationView.xib in Resources */,
 				8C3C3FCA2039E95E000EBEEC /* RedeemStoryboard.storyboard in Resources */,
+				CF656AEC210CE47C00363A15 /* CustomRewardView.xib in Resources */,
 				501AE432201849490088983A /* Main.storyboard in Resources */,
+				CF4BB0F7210D738400F9B338 /* scratch.mp3 in Resources */,
 				5078EA632029F8F900E35591 /* Tasks.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -998,8 +1036,10 @@
 				35E3FB84208A588000B62CC5 /* NotificationModel.swift in Sources */,
 				4983E458208B3BB20018A0EF /* NotificationDetailsTableViewController.swift in Sources */,
 				8CDE84B6201F7CA900C525A4 /* TaskModel.swift in Sources */,
+				CF656AEA210CE46D00363A15 /* CustomRewardView.swift in Sources */,
 				8C3C3FCC2039F787000EBEEC /* RedeemMerchantFormViewController.swift in Sources */,
 				50A9C0F220389B8B00F46DE8 /* InstallTaskViewController.swift in Sources */,
+				CF4CBD7B210DE55D00A46DC3 /* TermsAndConditionView.swift in Sources */,
 				8C3C3FC72039E66C000EBEEC /* MerchantLocationsViewController.swift in Sources */,
 				4983E452208B38C00018A0EF /* NotificationDetailHeaderTableViewCell.swift in Sources */,
 				506C347320381679004E651C /* CongratulationsMCTaskViewController.swift in Sources */,

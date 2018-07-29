@@ -9,6 +9,10 @@
 import UIKit
 import SwiftyJSON
 
+let keyShouldUpdate = "should_refresh_data"
+let keyMessage = "update_message"
+let keyVersion = "update_version"
+
 class HomeViewController: DrawerFrontViewController {
   public var shouldReloadData = false
   var downloadsSession: URLSession?
@@ -38,6 +42,7 @@ class HomeViewController: DrawerFrontViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    shouldReloadData = UserDefaults.standard.bool(forKey: keyShouldUpdate)
     let newUser = UserModel().mainUser()
     self.user.points = newUser.points
     self.user.availableMissions = newUser.availableMissions
@@ -50,7 +55,7 @@ class HomeViewController: DrawerFrontViewController {
     if #available(iOS 11.0, *) {
       let window = UIApplication.shared.keyWindow
       let bottomPadding = window?.safeAreaInsets.bottom ?? 0.0
-//      let topPadding = window?.safeAreaInsets.top ?? 0.0
+      //      let topPadding = window?.safeAreaInsets.top ?? 0.0
       pageTopConstraints.constant = pageTopConstraints.constant - (bottomPadding/2)
     }
     reloadTime()
@@ -61,7 +66,6 @@ class HomeViewController: DrawerFrontViewController {
     if let didTapReload = UserDefaults.standard.value(forKey: Keys.reloadData) as? Bool, didTapReload == true {
       getMission()
     }
-    print("Did tap \(UserDefaults.standard.value(forKey: Keys.reloadData))")
     self.navigationController?.isNavigationBarHidden = true
   }
   
@@ -297,6 +301,7 @@ class HomeViewController: DrawerFrontViewController {
   func getMission() {
     showSpinner()
     RegisterService.getMissionList(fbid: self.user.facebookId) { (result, error) in
+      UserDefaults.standard.set(false, forKey: keyShouldUpdate)
       self.hideSpinner()
       self.shouldReloadTime = true
       print("Result \(result)")
@@ -816,4 +821,62 @@ extension HomeViewController: ProfileCollectionViewCellDelegate {
     
   }
   
+}
+
+extension HomeViewController {
+  static func forceUpdateLink() -> String {
+    return "http://pencoop.net/public/loading.json"
+  }
+  
+  static func mustUpdate(completion: @escaping (_ result: Bool) -> ()) {
+    
+    let url = self.forceUpdateLink()
+    if let requestUrl = URL(string:url) {
+      let request = URLRequest(url:requestUrl)
+      let config = URLSessionConfiguration.default
+      config.requestCachePolicy = .reloadIgnoringCacheData
+      config.urlCache = nil
+      config.timeoutIntervalForRequest = 5
+      config.timeoutIntervalForResource = 5
+      
+      let task = URLSession(configuration: config).dataTask(with: request) {
+        (data, response, error) in
+        if let _ = error {
+          completion(false)
+        } else {
+          guard let usableData = data else {
+            completion(false)
+            return
+          }
+          
+          do {
+            let json =  try JSONSerialization.jsonObject(with: usableData, options: .allowFragments)
+            
+            guard let resultDictionary = json as? [String : Any] else {
+              completion(false)
+              return
+            }
+            let updateVersion = resultDictionary["level"] as? Int ?? 1
+            if let message = resultDictionary["message"] as? String {
+              UserDefaults.standard.set(message, forKey: keyMessage)
+            }
+            UserDefaults.standard.set(updateVersion, forKey: keyVersion)
+            if updateVersion == 1 {
+              completion(false)
+              return
+            }
+            completion(true)
+            return
+            
+          } catch _ {
+            completion(false)
+          }
+        }
+      }
+      
+      task.resume()
+    } else {
+      completion(false)
+    }
+  }
 }

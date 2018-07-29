@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+        </array>
+        <array key="Montserrat-Medium.otf">
+            <string>Montserrat-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomRewardView" customModule="Ngage_PH" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7cS-Dr-9KR">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cE-ti-BgF">
+                    <rect key="frame" x="30" y="250" width="315" height="168"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_app_logo_circle" translatesAutoresizingMaskIntoConstraints="NO" id="WU3-Xi-fHg">
+                            <rect key="frame" x="132.5" y="20" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="2He-WA-se1"/>
+                                <constraint firstAttribute="height" constant="50" id="ANF-s5-RdA"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujJ-QF-Bca">
+                            <rect key="frame" x="122.5" y="118" width="70" height="30"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="0.86579623287671237" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="IQc-sr-A07"/>
+                                <constraint firstAttribute="width" constant="70" id="po9-aL-qOv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="17"/>
+                            <state key="normal" title="Ok">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="didTapButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="ijX-8Q-yys"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-4M-zqI">
+                            <rect key="frame" x="15" y="85" width="285" height="18"/>
+                            <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ujJ-QF-Bca" secondAttribute="bottom" constant="20" id="4Uw-Qy-GVE"/>
+                        <constraint firstItem="UKz-4M-zqI" firstAttribute="leading" secondItem="2cE-ti-BgF" secondAttribute="leading" constant="15" id="BJz-jH-Rym"/>
+                        <constraint firstItem="ujJ-QF-Bca" firstAttribute="centerX" secondItem="2cE-ti-BgF" secondAttribute="centerX" id="IPS-1E-d1I"/>
+                        <constraint firstItem="ujJ-QF-Bca" firstAttribute="top" secondItem="UKz-4M-zqI" secondAttribute="bottom" constant="15" id="Ptj-1U-MoA"/>
+                        <constraint firstItem="WU3-Xi-fHg" firstAttribute="top" secondItem="2cE-ti-BgF" secondAttribute="top" constant="20" id="VHB-mI-XHW"/>
+                        <constraint firstAttribute="trailing" secondItem="UKz-4M-zqI" secondAttribute="trailing" constant="15" id="Yq6-dI-iKn"/>
+                        <constraint firstItem="WU3-Xi-fHg" firstAttribute="centerX" secondItem="2cE-ti-BgF" secondAttribute="centerX" id="Z1v-Nb-2M0"/>
+                        <constraint firstItem="UKz-4M-zqI" firstAttribute="top" secondItem="WU3-Xi-fHg" secondAttribute="bottom" constant="15" id="dhz-mU-y37"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="7cS-Dr-9KR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="66i-R7-4cW"/>
+                <constraint firstItem="2cE-ti-BgF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="OlR-Ao-jyv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7cS-Dr-9KR" secondAttribute="trailing" id="R7Y-t2-uZa"/>
+                <constraint firstItem="7cS-Dr-9KR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="e2e-U2-85d"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2cE-ti-BgF" secondAttribute="trailing" constant="30" id="iZF-16-DCG"/>
+                <constraint firstItem="2cE-ti-BgF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="jSl-uz-7X2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="7cS-Dr-9KR" secondAttribute="bottom" id="nK7-FO-LNm"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="button" destination="ujJ-QF-Bca" id="3tq-QK-JUf"/>
+                <outlet property="containerView" destination="2cE-ti-BgF" id="vdt-tJ-c3H"/>
+                <outlet property="contentLabel" destination="UKz-4M-zqI" id="n0M-IZ-4Xp"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="86.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_app_logo_circle" width="70" height="70"/>
+    </resources>
+</document>

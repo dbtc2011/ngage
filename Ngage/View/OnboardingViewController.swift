@@ -22,7 +22,7 @@ class OnboardingViewController: MainViewController {
   @IBOutlet weak var imageThird: UIImageView!
   var loginButton : LoginButton!
   var didAgree = false
-  
+  var termsView: TermsAndConditionView?
   @IBOutlet weak var login: UIButton!
   //MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -72,7 +72,6 @@ class OnboardingViewController: MainViewController {
     loginButton.center = view.center
     loginButton.frame.origin.y = height
     loginButton.isHidden = true
-    view.addSubview(loginButton)
     
     pageIndicator.currentPage = 0
     pageIndicator.isEnabled = false
@@ -83,7 +82,17 @@ class OnboardingViewController: MainViewController {
     login.imageView?.contentMode = UIViewContentMode.scaleAspectFit
     login.isHidden = true
     
-    
+    if let tempView = Bundle.main.loadNibNamed("TermsAndConditionView", owner: self, options: nil)?.first as? TermsAndConditionView {
+      tempView.frame = loginButton.frame
+      tempView.buttonTAC.layer.cornerRadius = 5
+      tempView.buttonTAC.layer.borderWidth = 1.0
+      tempView.buttonTAC.layer.borderColor = UIColor.white.cgColor
+      tempView.isHidden = true
+      tempView.delegate = self
+      termsView = tempView
+      view.addSubview(termsView!)
+    }
+    view.addSubview(loginButton)
   }
   
   func getFBUserData(){
@@ -140,6 +149,8 @@ class OnboardingViewController: MainViewController {
     
     if let controller = segue.destination as? LoginViewController {
       controller.user = self.user
+    } else if let controller = segue.destination as? RequiredTermsViewController, let index = sender as? Int {
+      controller.selectedIndex = index
     }
   }
   
@@ -147,11 +158,9 @@ class OnboardingViewController: MainViewController {
   @IBAction func loginButtonClicked(_ sender: UIButton) {
     print("Did login!")
   }
-  
-  
-  
-}
 
+}
+//MARK: - Delegates
 extension OnboardingViewController : LoginButtonDelegate {
   func loginButtonDidLogOut(_ loginButton: LoginButton) {
     
@@ -168,7 +177,6 @@ extension OnboardingViewController : LoginButtonDelegate {
       self.getFBUserData()
       break
     }
-    
   }
 }
 
@@ -179,15 +187,37 @@ extension OnboardingViewController : UIScrollViewDelegate {
     pageIndicator.currentPage = Int(index)
     switch Int(index) {
     case 2:
-      self.loginButton.isHidden = false
-      self.login.isHidden = false
-      if !didAgree {
-        didAgree = true
-        self.performSegue(withIdentifier: "goToRequired", sender: self)
+      if didAgree {
+        self.loginButton.isHidden = false
+        self.login.isHidden = false
+        self.termsView?.isHidden = true
+      } else {
+        self.termsView?.isHidden = false
+        self.loginButton.isHidden = true
+        self.login.isHidden = true
       }
     default:
       self.loginButton.isHidden = true
       self.login.isHidden = true
+      self.termsView?.isHidden = true
+    }
+  }
+}
+
+extension OnboardingViewController: TermsAndConditionViewDelegate {
+  func termsDidSelect(action: String) {
+    switch action {
+    case "":
+      self.termsView!.isHidden = true
+      self.login.isHidden = false
+      self.loginButton.isHidden = false
+      didAgree = true
+      
+    case "Privacy Policy":
+      self.performSegue(withIdentifier: "goToRequired", sender: 1)
+      
+    default:
+      self.performSegue(withIdentifier: "goToRequired", sender: 0)
     }
   }
 }
